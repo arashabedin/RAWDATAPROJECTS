@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RDJTP", "RDJTP\RDJTP.csproj", "{9CBDA463-F0B1-4DEA-912A-D30602BE412D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment3TestSuite", "TestSuite\Assignment3TestSuite\Assignment3TestSuite.csproj", "{62205C36-D3F1-4B7E-B164-7DBC42D11FCB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9CBDA463-F0B1-4DEA-912A-D30602BE412D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CBDA463-F0B1-4DEA-912A-D30602BE412D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CBDA463-F0B1-4DEA-912A-D30602BE412D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CBDA463-F0B1-4DEA-912A-D30602BE412D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62205C36-D3F1-4B7E-B164-7DBC42D11FCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62205C36-D3F1-4B7E-B164-7DBC42D11FCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62205C36-D3F1-4B7E-B164-7DBC42D11FCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62205C36-D3F1-4B7E-B164-7DBC42D11FCB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CACF91FB-492C-4E62-9965-B2C0682E09D7}
+	EndGlobalSection
+EndGlobal
