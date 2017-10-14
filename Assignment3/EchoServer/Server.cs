@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using Newtonsoft.Json;
 
-namespace RDJTP
+namespace EchoServer
 {
     public class Server
     {

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Newtonsoft.Json;
 
-namespace RDJTP
+namespace EchoServer
 {
     public static class API
     {
