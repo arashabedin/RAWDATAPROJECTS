@@ -1,0 +1,11 @@
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\Assignment3\SampleClient\bin\Debug\netcoreapp2.0\SampleClient.deps.json
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\Assignment3\SampleClient\bin\Debug\netcoreapp2.0\SampleClient.runtimeconfig.json
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\Assignment3\SampleClient\bin\Debug\netcoreapp2.0\SampleClient.runtimeconfig.dev.json
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\Assignment3\SampleClient\bin\Debug\netcoreapp2.0\SampleClient.dll
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\Assignment3\SampleClient\bin\Debug\netcoreapp2.0\SampleClient.pdb
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\Assignment3\SampleClient\obj\Debug\netcoreapp2.0\SampleClient.csprojResolveAssemblyReference.cache
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\Assignment3\SampleClient\obj\Debug\netcoreapp2.0\SampleClient.csproj.CoreCompileInputs.cache
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\Assignment3\SampleClient\obj\Debug\netcoreapp2.0\SampleClient.AssemblyInfoInputs.cache
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\Assignment3\SampleClient\obj\Debug\netcoreapp2.0\SampleClient.AssemblyInfo.cs
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\Assignment3\SampleClient\obj\Debug\netcoreapp2.0\SampleClient.dll
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\Assignment3\SampleClient\obj\Debug\netcoreapp2.0\SampleClient.pdb
