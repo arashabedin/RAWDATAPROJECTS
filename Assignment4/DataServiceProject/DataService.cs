@@ -20,6 +20,7 @@ namespace DataServiceProject
 
 
         }
+        // Products
         public Product GetProduct(int id)
         {
             using (var db = new NorthwindContex())
