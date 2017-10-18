@@ -9,10 +9,14 @@ namespace DataServiceProject
     {
         [Column("ProductId")]
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string UnitPrice { get; set; }
+        [Column("ProductName")]
+        public String Name { get; set; }
+        [Column("ProductUnitPrice")]
+        public double Date { get; set; }
+        [Column("ProductQuantityPerUnit ")]
         public string QuantityPerUnit { get; set; }
-        public string UnitsInStock { get; set; }
+        [Column("ProductUnitsInStock")]
+        public int UnitsInStock { get; set; }
 
     }
 }
