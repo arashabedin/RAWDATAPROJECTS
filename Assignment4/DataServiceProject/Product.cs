@@ -13,7 +13,7 @@ namespace DataServiceProject
         public String Name { get; set; }
         [Column("ProductUnitPrice")]
         public double UnitPrice { get; set; }
-        [Column("ProductQuantityPerUnit ")]
+        [Column("ProductQuantityPerUnit ")
         public string QuantityPerUnit { get; set; }
         [Column("ProductUnitsInStock")]
         public int UnitsInStock { get; set; }
