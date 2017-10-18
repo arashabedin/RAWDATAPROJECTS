@@ -8,8 +8,11 @@ namespace DataServiceProject
     class OrderDetails
     {
         [Column("OrderId")]
-        public int UnitPrice { get; set; }
-        public string Quantity { get; set; }
-        public string Discount { get; set; }
+        public int OrderId { get; set; }
+        public int ProductId { get; set; }
+        public Double UnitPrice { get; set; }
+        public int  Quantity { get; set; }
+        public Double Discount { get; set; }
+      //  public Order Order { get; set; }
     }
 }

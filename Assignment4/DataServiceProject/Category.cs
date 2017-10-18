@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace DataServiceProject
 {
@@ -15,6 +17,8 @@ namespace DataServiceProject
         [Column("Description")]
 
         public string Description { get; set; }
+
+       public virtual ICollection<Product> Product { get; set; }
     }
 
 }

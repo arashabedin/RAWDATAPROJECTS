@@ -7,14 +7,15 @@ namespace DataServiceProject
 {
     class Order
     {
-        [Column("OrderId")]
+       [Column("OrderId")]
         public int Id { get; set; }
-        public string Date { get; set; }
-        public string Require { get; set; }
-        public string Shipped { get; set; }
-        public double Frieght { get; set; }
+        public DateTime Date { get; set; }
+        public DateTime Required { get; set; }
+        public DateTime Shipped { get; set; }
+        public Double  Frieght { get; set; }
         public string ShipName { get; set; }
         public string ShipCity { get; set; }
+        public OrderDetails OrderDetails { get; set; }
     }
 
 }
