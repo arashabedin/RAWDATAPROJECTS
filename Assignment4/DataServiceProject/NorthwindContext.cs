@@ -18,6 +18,7 @@ namespace DataServiceProject
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Categories
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Category>().ToTable("categories");
             modelBuilder.Entity<Category>()
