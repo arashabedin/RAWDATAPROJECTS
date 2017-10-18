@@ -30,9 +30,25 @@ namespace DataServiceProject
             .Property(x => x.Description).HasColumnName("Description");
 
 
+
+            //Products
+            modelBuilder.Entity<Product>().ToTable("products");
+            modelBuilder.Entity<Product>()
+            .Property(x => x.Id).HasColumnName("ProductId");
+            modelBuilder.Entity<Product>()
+           .Property(x => x.Name).HasColumnName("ProductName");
+            modelBuilder.Entity<Product>()
+                .Property(x => x.UnitPrice).HasColumnName("ProductUnitPrice");
+            modelBuilder.Entity<Product>()
+                .Property(x => x.QuantityPerUnit).HasColumnName("ProductQuantityPerUnit");
+            modelBuilder.Entity<Product>()
+                .Property(x => x.UnitsInStock).HasColumnName("ProductUnitsInStock");
+
+
+
         }
 
-    
+
 
 
     }

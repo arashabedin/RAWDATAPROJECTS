@@ -12,7 +12,7 @@ namespace DataServiceProject
         public string Name { get; set; }
         public string UnitPrice { get; set; }
         public string QuantityPerUnit { get; set; }
-        public string UnitsInStick { get; set; }
+        public string UnitsInStock { get; set; }
 
     }
 }
