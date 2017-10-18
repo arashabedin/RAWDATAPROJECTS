@@ -20,7 +20,18 @@ namespace DataServiceProject
 
 
         }
+        public Product GetProduct(int id)
+        {
+            using (var db = new NorthwindContex())
+            {
 
+                var product = db.Products.Where(p => p.Id == id);
+                return product.FirstOrDefault();
+            }
+
+
+
+        }
 
 
 
