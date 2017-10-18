@@ -7,6 +7,7 @@ namespace DataServiceProject
 {
     class NorthwindContex : DbContext
     {
+        //Here we initialize our models
         public DbSet<Category> Categories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -33,6 +34,7 @@ namespace DataServiceProject
 
 
             //Products
+
             modelBuilder.Entity<Product>().ToTable("products");
             modelBuilder.Entity<Product>()
             .Property(x => x.Id).HasColumnName("ProductId");
