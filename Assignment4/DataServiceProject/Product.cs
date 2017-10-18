@@ -12,7 +12,7 @@ namespace DataServiceProject
         [Column("ProductName")]
         public String Name { get; set; }
         [Column("ProductUnitPrice")]
-        public double Date { get; set; }
+        public double UnitPrice { get; set; }
         [Column("ProductQuantityPerUnit ")]
         public string QuantityPerUnit { get; set; }
         [Column("ProductUnitsInStock")]
