@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
+using DataServiceProject.Models;
 
 namespace DataServiceProject
 {
-    class NorthwindContex : DbContext
+    public class NorthwindContext : DbContext
     {
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderDetails> OrderDetailss { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
 
 
 
@@ -70,53 +71,53 @@ namespace DataServiceProject
             modelBuilder.Entity<Product>()
         .Property(x => x.UnitsInStock).HasColumnName("UnitsInStock");
 
-            
-            
+
+
             // configures one-to-many relationship
 
             modelBuilder.Entity<Product>()
            .HasOne(s => s.Category)
            .WithMany(p => p.Product);
 
-            
-               //Order
+
+            //Order
 
 
-               modelBuilder.Entity<Order>().ToTable("orders");
-               modelBuilder.Entity<Order>()
-               .Property(x => x.Id).HasColumnName("OrderId");
-               modelBuilder.Entity<Order>()
-              .Property(x => x.Date).HasColumnName("OrderDate");
-               modelBuilder.Entity<Order>()
-              .Property(x => x.Required).HasColumnName("RequiredDate");
-               modelBuilder.Entity<Order>()
-              .Property(x => x.Shipped).HasColumnName("ShippedDate");
+            modelBuilder.Entity<Order>().ToTable("orders");
+            modelBuilder.Entity<Order>()
+            .Property(x => x.Id).HasColumnName("OrderId");
+            modelBuilder.Entity<Order>()
+           .Property(x => x.Date).HasColumnName("OrderDate");
+            modelBuilder.Entity<Order>()
+           .Property(x => x.Required).HasColumnName("RequiredDate");
+            modelBuilder.Entity<Order>()
+           .Property(x => x.Shipped).HasColumnName("ShippedDate");
 
 
-               modelBuilder.Entity<Order>()
-            .Property(x => x.Frieght).HasColumnName("Freight");
+            modelBuilder.Entity<Order>()
+         .Property(x => x.Frieght).HasColumnName("Freight");
 
-               modelBuilder.Entity<Order>()
-              .Property(x => x.ShipName).HasColumnName("ShipName");
+            modelBuilder.Entity<Order>()
+           .Property(x => x.ShipName).HasColumnName("ShipName");
 
             modelBuilder.Entity<Order>()
         .Property(x => x.ShipCity).HasColumnName("ShipCity");
 
-               //OrderDetails
+            //OrderDetails
 
 
-               modelBuilder.Entity<OrderDetails>().ToTable("orderdetails");
+            modelBuilder.Entity<OrderDetails>().ToTable("orderdetails");
             modelBuilder.Entity<OrderDetails>()
         .HasKey(op => new { op.OrderId, op.ProductId });
 
             modelBuilder.Entity<OrderDetails>()
                .Property(x => x.OrderId).HasColumnName("OrderId");
-               modelBuilder.Entity<OrderDetails>()
-              .Property(x => x.ProductId).HasColumnName("ProductId");
+            modelBuilder.Entity<OrderDetails>()
+           .Property(x => x.ProductId).HasColumnName("ProductId");
 
-               modelBuilder.Entity<OrderDetails>()
-               .Property(x => x.UnitPrice).HasColumnName("UnitPrice");
-            
+            modelBuilder.Entity<OrderDetails>()
+            .Property(x => x.UnitPrice).HasColumnName("UnitPrice");
+
             modelBuilder.Entity<OrderDetails>()
              .Property(x => x.Quantity).HasColumnName("Quantity");
 
@@ -125,8 +126,8 @@ namespace DataServiceProject
 
 
 
-    
-       
+
+
 
 
 

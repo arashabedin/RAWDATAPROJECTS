@@ -5,9 +5,9 @@ using System.Text;
 using System.ComponentModel.DataAnnotations;
 
 
-namespace DataServiceProject
+namespace DataServiceProject.Models
 {
-    class Category
+    public class Category
     {
         [Column("CategoryId")]
         public int Id { get; set; }
@@ -18,7 +18,7 @@ namespace DataServiceProject
 
         public string Description { get; set; }
 
-       public virtual ICollection<Product> Product { get; set; }
+        public virtual ICollection<Product> Product { get; set; }
     }
 
 }

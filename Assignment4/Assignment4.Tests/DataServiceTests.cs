@@ -1,7 +1,10 @@
 using System;
 using Xunit;
+using DataServiceProject.Models;
+using DataServiceProject;
 
-namespace DataServiceProject
+
+namespace Assignment4.Tests
 {
     public class DataServiceTests
     {
@@ -23,7 +26,65 @@ namespace DataServiceProject
             var category = service.GetCategory(1);
             Assert.Equal("Beverages", category.Name);
         }
+        /*
+       [Fact]
+       public void CreateCategory_ValidData_CreteCategoryAndRetunsNewObject()
+       {
+           var service = new DataService();
+           var category = service.CreateCategory("Test", "CreateCategory_ValidData_CreteCategoryAndRetunsNewObject");
+           Assert.True(category.Id > 0);
+           Assert.Equal("Test", category.Name);
+           Assert.Equal("CreateCategory_ValidData_CreteCategoryAndRetunsNewObject", category.Description);
 
+           // cleanup
+           service.DeleteCategory(category.Id);
+       }
+
+       [Fact]
+       public void DeleteCategory_ValidId_RemoveTheCategory()
+       {
+           var service = new DataService();
+           var category = service.CreateCategory("Test", "DeleteCategory_ValidId_RemoveTheCategory");
+           var result = service.DeleteCategory(category.Id);
+           Assert.True(result);
+           category = service.GetCategory(category.Id);
+           Assert.Null(category);
+       }
+
+       [Fact]
+       public void DeleteCategory_InvalidId_ReturnsFalse()
+       {
+           var service = new DataService();
+           var result = service.DeleteCategory(-1);
+           Assert.False(result);
+       }
+
+       [Fact]
+       public void UpdateCategory_NewNameAndDescription_UpdateWithNewValues()
+       {
+           var service = new DataService();
+           var category = service.CreateCategory("TestingUpdate", "UpdateCategory_NewNameAndDescription_UpdateWithNewValues");
+
+           var result = service.UpdateCategory(category.Id, "UpdatedName", "UpdatedDescription");
+           Assert.True(result);
+
+           category = service.GetCategory(category.Id);
+
+           Assert.Equal("UpdatedName", category.Name);
+           Assert.Equal("UpdatedDescription", category.Description);
+
+           // cleanup
+           service.DeleteCategory(category.Id);
+       }
+
+       [Fact]
+       public void UpdateCategory_InvalidID_ReturnsFalse()
+       {
+           var service = new DataService();
+           var result = service.UpdateCategory(-1, "UpdatedName", "UpdatedDescription");
+           Assert.False(result);
+       }
+       */
         /* products */
 
         [Fact]
@@ -46,7 +107,7 @@ namespace DataServiceProject
             Assert.Equal("Beverages", product.Category.Name);
         }
 
-        // orders 
+        /* orders */
         [Fact]
         public void Order_Object_HasIdDatesAndOrderDetails()
         {
@@ -54,12 +115,11 @@ namespace DataServiceProject
             Assert.Equal(0, order.Id);
             Assert.Equal(new DateTime(), order.Date);
             Assert.Equal(new DateTime(), order.Required);
-           Assert.Null(order.OrderDetails);
+            Assert.Null(order.OrderDetails);
             Assert.Null(order.ShipName);
             Assert.Null(order.ShipCity);
         }
         /*
-
         [Fact]
         public void GetOrder_ValidId_ReturnsCompleteOrder()
         {
@@ -69,7 +129,7 @@ namespace DataServiceProject
             Assert.Equal("Queso Cabrales", order.OrderDetails.First().Product.Name);
             Assert.Equal("Dairy Products", order.OrderDetails.First().Product.Category.Name);
         }
-
+        */
         [Fact]
         public void GetOrders()
         {
@@ -79,7 +139,7 @@ namespace DataServiceProject
         }
 
 
-        // orderdetails 
+        /* orderdetails */
         [Fact]
         public void OrderDetails_Object_HasOrderProductUnitPriceQuantityAndDiscount()
         {
@@ -92,7 +152,7 @@ namespace DataServiceProject
             Assert.Equal(0.0, orderDetails.Quantity);
             Assert.Equal(0.0, orderDetails.Discount);
         }
-
+        /*
         [Fact]
         public void GetOrderDetailByOrderId_ValidId_ReturnsProductNameUnitPriceAndQuantity()
         {
@@ -114,7 +174,6 @@ namespace DataServiceProject
             Assert.Equal(14, orderDetails.First().UnitPrice);
             Assert.Equal(12, orderDetails.First().Quantity);
         }
-
-        */
+    */
     }
 }

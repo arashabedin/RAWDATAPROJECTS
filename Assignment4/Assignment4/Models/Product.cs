@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 
-namespace DataServiceProject
+namespace DataServiceProject.Models
 {
-    class Product
+    public class Product
     {
         [Column("ProductId")]
         public int Id { get; set; }
@@ -28,6 +28,6 @@ namespace DataServiceProject
         public virtual Category Category { get; set; }
 
 
-   
+
     }
 }
