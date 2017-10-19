@@ -11,7 +11,7 @@ namespace DataServiceProject
             using (var db = new NorthwindContext())
             {
                 DataService ds = new DataService();
-                var orders = ds.GetOrders();
+                var orders = ds.GetOrderDetailsByOrderId(10248);
 
                 Console.WriteLine(orders.Count());
             Console.ReadLine();

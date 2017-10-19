@@ -111,19 +111,22 @@ namespace DataServiceProject
         using (var db = new NorthwindContext())
         {
 
-            return db.Orders.ToList();
+                var orders = db.Orders.ToList(); 
+                return orders;
         }
         }
         
 
         public Order GetOrder(int id)
         {
-        using (var db = new NorthwindContext())
-        {
-            var order = db.Orders.FirstOrDefault(x => x.Id == id);
-            if (order != null)
-                order.OrderDetails = db.OrderDetails.Where(z => z.OrderId == id).ToList();
-            return order;
+            using (var db = new NorthwindContext())
+            {
+                var order = db.Orders.FirstOrDefault(x => x.Id == id);
+                if (order != null) { 
+                  //  order.OrderDetails = GetOrderDetailsByOrderId(id);
+                     return order;
+                }
+                return null;
         }
         }
 
@@ -134,9 +137,15 @@ namespace DataServiceProject
             using (var db = new NorthwindContext())
             {
 
-                //SHOULD BE IMPLEMENTED
+                var orderDetails = db.OrderDetails.Where(o => o.OrderId == id).ToList();
+                foreach (var item in orderDetails)
+                {
+                    item.Product = GetProduct(item.ProductId);
+                    item.Order = GetOrder(item.OrderId);
+                }
 
-                return new List<OrderDetails>();
+                return orderDetails;
+
             }
         }
 
@@ -144,9 +153,14 @@ namespace DataServiceProject
         {
             using (var db = new NorthwindContext())
             {
-                //SHOULD BE IMPLEMENTED
+                var orderDetails = db.OrderDetails.Where(p => p.ProductId == id).ToList();
+                foreach (var item in orderDetails)
+                {
+                    item.Product = GetProduct(item.ProductId);
+                    item.Order = GetOrder(item.OrderId);
+                }
 
-                return new List<OrderDetails>();
+                return orderDetails;
             }
         }
 
