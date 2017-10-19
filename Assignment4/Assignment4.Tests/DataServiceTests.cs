@@ -26,7 +26,7 @@ namespace Assignment4.Tests
             var category = service.GetCategory(1);
             Assert.Equal("Beverages", category.Name);
         }
-        /*
+        
        [Fact]
        public void CreateCategory_ValidData_CreteCategoryAndRetunsNewObject()
        {
@@ -50,7 +50,7 @@ namespace Assignment4.Tests
            category = service.GetCategory(category.Id);
            Assert.Null(category);
        }
-
+        
        [Fact]
        public void DeleteCategory_InvalidId_ReturnsFalse()
        {
@@ -58,7 +58,7 @@ namespace Assignment4.Tests
            var result = service.DeleteCategory(-1);
            Assert.False(result);
        }
-
+        
        [Fact]
        public void UpdateCategory_NewNameAndDescription_UpdateWithNewValues()
        {
@@ -70,13 +70,13 @@ namespace Assignment4.Tests
 
            category = service.GetCategory(category.Id);
 
-           Assert.Equal("UpdatedName", category.Name);
-           Assert.Equal("UpdatedDescription", category.Description);
+            Assert.Equal("UpdatedName", category.Name);
+            Assert.Equal("UpdatedDescription", category.Description);
 
            // cleanup
            service.DeleteCategory(category.Id);
        }
-
+        
        [Fact]
        public void UpdateCategory_InvalidID_ReturnsFalse()
        {
@@ -84,7 +84,7 @@ namespace Assignment4.Tests
            var result = service.UpdateCategory(-1, "UpdatedName", "UpdatedDescription");
            Assert.False(result);
        }
-       */
+       
         /* products */
 
         [Fact]
