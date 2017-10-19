@@ -1,8 +1,8 @@
 using System;
 using Xunit;
-using DataServiceProject.Models;
+using System.Linq;
 using DataServiceProject;
-
+using DataServiceProject.Models;
 
 namespace Assignment4.Tests
 {
@@ -119,7 +119,7 @@ namespace Assignment4.Tests
             Assert.Null(order.ShipName);
             Assert.Null(order.ShipCity);
         }
-        /*
+
         [Fact]
         public void GetOrder_ValidId_ReturnsCompleteOrder()
         {
@@ -129,7 +129,7 @@ namespace Assignment4.Tests
             Assert.Equal("Queso Cabrales", order.OrderDetails.First().Product.Name);
             Assert.Equal("Dairy Products", order.OrderDetails.First().Product.Category.Name);
         }
-        */
+        
         [Fact]
         public void GetOrders()
         {
@@ -152,7 +152,7 @@ namespace Assignment4.Tests
             Assert.Equal(0.0, orderDetails.Quantity);
             Assert.Equal(0.0, orderDetails.Discount);
         }
-        /*
+   
         [Fact]
         public void GetOrderDetailByOrderId_ValidId_ReturnsProductNameUnitPriceAndQuantity()
         {
@@ -174,6 +174,6 @@ namespace Assignment4.Tests
             Assert.Equal(14, orderDetails.First().UnitPrice);
             Assert.Equal(12, orderDetails.First().Quantity);
         }
-    */
+  
     }
 }
