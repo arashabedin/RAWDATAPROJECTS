@@ -22,7 +22,7 @@ namespace DataServiceProject
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseMySql(
                "server=localhost;database=north;uid=root;");
-              //"server=localhost;database=paractics;uid=root;pwd=root");
+             // "server=localhost;database=paractics;uid=root;pwd=root");
 
         }
 
