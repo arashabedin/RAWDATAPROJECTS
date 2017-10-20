@@ -8,10 +8,8 @@ namespace DataServiceProject
 {
     public class DataService
     {
-        //private readonly  NorthwindContext db;
         public DataService()
         {
-       //     db = new NorthwindContext();
         }
 
 
