@@ -12,11 +12,22 @@ namespace DataServiceProject
     {
         public DataService()
         {
+
         }
 
 
 
         // Category
+
+            public IList<Category> GetCategory()
+        {
+            using (var db = new NorthwindContext())
+            {
+                var category = db.Categories.ToList();
+                return category;
+
+            }
+        }
 
         public Category GetCategory(int id)
         {
