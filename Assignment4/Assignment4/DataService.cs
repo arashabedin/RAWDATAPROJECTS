@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using DataServiceProject.Models;
 using DataServiceProject;
+using Microsoft.EntityFrameworkCore;
+
 namespace DataServiceProject
 {
     public class DataService
@@ -119,7 +121,8 @@ namespace DataServiceProject
         {
             using (var db = new NorthwindContext())
             {
-                var order = db.Orders.FirstOrDefault(x => x.Id == id);
+                // Henriks guide on including the child objects
+                var order = db.Orders.Include(x => x.OrderDetails).FirstOrDefault(x => x.Id == id);
                 if (order != null) { 
                   //  order.OrderDetails = GetOrderDetailsByOrderId(id);
                      return order;
