@@ -17,8 +17,8 @@ namespace WebService.Controllers
             _dataService = dataService;
 
         }
-        [HttpGet]
 
+        [HttpGet]
         public IActionResult GetCategories()
         {
             return Ok(_dataService.GetCategory());
