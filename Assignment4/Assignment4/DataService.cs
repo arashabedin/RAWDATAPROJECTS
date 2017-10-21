@@ -159,11 +159,15 @@ namespace DataServiceProject
         {
             using (var db = new NorthwindContext())
             {
-                // Henriks guide on including the child objects
-                var order = db.Orders.Include(x => x.OrderDetails).Where(x => x.Id == id).FirstOrDefault();
-                if (order != null) { 
-                  //  order.OrderDetails = GetOrderDetailsByOrderId(id);
-                     return order;
+                var order = db.Orders.Where(x => x.Id == id).FirstOrDefault();
+                if (order != null) {                     
+                    var orderDetails = GetOrderDetailsByOrderId(id);
+                   foreach(var item in orderDetails)
+                    {
+                        item.Product = GetProduct(item.ProductId);
+                    }
+                    order.OrderDetails = orderDetails;
+                    return order;
                 }
                 return null;
         }
@@ -183,6 +187,7 @@ namespace DataServiceProject
                     item.Order = GetOrder(item.OrderId);
                 }
                 */
+            
                 return orderDetails;
 
             }
