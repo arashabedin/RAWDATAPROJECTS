@@ -25,7 +25,7 @@ namespace WebService.Controllers
             var product = _dataService.GetProduct(id);
             if (product == null)
             {
-                return NotFound();
+                return NotFound(product);
             }
 
             return Ok(product);
@@ -37,9 +37,9 @@ namespace WebService.Controllers
         public IActionResult GetProductByCategory(int id)
         {
             var products = _dataService.GetProductByCategory(id);
-            if (products == null)
+            if (products.Count == 0)
             {
-                return NotFound();
+                return NotFound(products);
             }
 
             return Ok(products);
@@ -53,9 +53,9 @@ namespace WebService.Controllers
         public IActionResult GetProductByName(String name)
         {
             var products = _dataService.GetProductByName(name);
-            if (products == null)
+            if (products.Count==0)
             {
-                return NotFound();
+                return NotFound(products);
             }
 
             return Ok(products);
