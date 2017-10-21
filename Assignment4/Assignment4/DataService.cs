@@ -108,12 +108,40 @@ namespace DataServiceProject
         using (var db = new NorthwindContext())
         {
 
-            var product = db.Products.Where(p => p.Id == id).FirstOrDefault();
-            var Category = db.Categories.Where(c => c.Id == product.CategoryId).FirstOrDefault();
-            product.Category = Category;
+            var product = db.Products.Include(x => x.Category).Where(p => p.Id == id).FirstOrDefault();
+            // var Category = db.Categories.Where(c => c.Id == product.CategoryId).FirstOrDefault();
+           // product.Category = Category;
             return product;
         }
         
+        }
+
+
+
+        public List<Product> GetProductByCategory(int id)
+        {
+            using (var db = new NorthwindContext())
+            {
+
+                var products = db.Products.Include(x => x.Category).Where(p => p.CategoryId == id).ToList();
+                // var Category = db.Categories.Where(c => c.Id == product.CategoryId).FirstOrDefault();
+                // product.Category = Category;
+                return products;
+            }
+
+        }
+
+        public List<Product> GetProductByName(String name)
+        {
+            using (var db = new NorthwindContext())
+            {
+
+                var products = db.Products.Include(x => x.Category).Where(p => p.Name == name).ToList();
+                // var Category = db.Categories.Where(c => c.Id == product.CategoryId).FirstOrDefault();
+                // product.Category = Category;
+                return products;
+            }
+
         }
 
         // Orders
@@ -133,7 +161,7 @@ namespace DataServiceProject
             using (var db = new NorthwindContext())
             {
                 // Henriks guide on including the child objects
-                var order = db.Orders.Include(x => x.OrderDetails).FirstOrDefault(x => x.Id == id);
+                var order = db.Orders.Include(x => x.OrderDetails).Where(x => x.Id == id).FirstOrDefault();
                 if (order != null) { 
                   //  order.OrderDetails = GetOrderDetailsByOrderId(id);
                      return order;
@@ -149,13 +177,13 @@ namespace DataServiceProject
             using (var db = new NorthwindContext())
             {
 
-                var orderDetails = db.OrderDetails.Where(o => o.OrderId == id).ToList();
-                foreach (var item in orderDetails)
+                var orderDetails = db.OrderDetails.Include(x => x.Product).Include(x => x.Order).Where(o => o.OrderId == id).ToList();
+              /*  foreach (var item in orderDetails)
                 {
-                    item.Product = GetProduct(item.ProductId);
+                  item.Product = GetProduct(item.ProductId);
                     item.Order = GetOrder(item.OrderId);
                 }
-
+                */
                 return orderDetails;
 
             }
@@ -165,13 +193,13 @@ namespace DataServiceProject
         {
             using (var db = new NorthwindContext())
             {
-                var orderDetails = db.OrderDetails.Where(p => p.ProductId == id).ToList();
-                foreach (var item in orderDetails)
+                var orderDetails = db.OrderDetails.Include(x => x.Product).Include(x => x.Order).Where(p => p.ProductId == id).ToList();
+              /*  foreach (var item in orderDetails)
                 {
                     item.Product = GetProduct(item.ProductId);
                     item.Order = GetOrder(item.OrderId);
                 }
-
+                */
                 return orderDetails;
             }
         }

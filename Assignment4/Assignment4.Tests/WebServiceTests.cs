@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xunit;
 
+
 namespace Assignment4.PartII.Tests
 {
     public class WebServiceTests
@@ -23,10 +24,10 @@ namespace Assignment4.PartII.Tests
         {
             var (data, statusCode) = GetArray(CategoriesApi);
 
-            Assert.Equal(HttpStatusCode.OK, statusCode);
-            Assert.Equal(8, data.Count);
-            Assert.Equal("Beverages", data.First()["name"]);
-            Assert.Equal("Seafood", data.Last()["name"]);
+            Assert.Equal(HttpStatusCode.OK, statusCode);            
+             Assert.Equal(8, data.Count);
+              Assert.Equal("Beverages", data.First()["name"]);
+              Assert.Equal("Seafood", data.Last()["name"]);
         }
 
         [Fact]

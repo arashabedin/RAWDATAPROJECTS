@@ -19,7 +19,6 @@ namespace DataServiceProject.Models
 
         public string Description { get; set; }
 
-        public virtual ICollection<Product> Product { get; set; }
     }
 
 }

@@ -36,9 +36,16 @@ namespace WebService.Controllers
             return Ok(category);
 
         }
-       
+        [HttpPost]
+        public IActionResult createCategory([FromBody]Category category)
+        {
+             category = _dataService.CreateCategory(category.Name, category.Description);
+          
+          return Created($"api/categories/{category}", category);
 
-        
+        }
+
+
 
 
     }

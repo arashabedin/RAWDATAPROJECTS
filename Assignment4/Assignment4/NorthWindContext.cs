@@ -73,14 +73,7 @@ namespace DataServiceProject
             modelBuilder.Entity<Product>()
         .Property(x => x.UnitsInStock).HasColumnName("UnitsInStock");
 
-
-
-            // configures one-to-many relationship
-
-            modelBuilder.Entity<Product>()
-           .HasOne(s => s.Category)
-           .WithMany(p => p.Product);
-
+     
 
             //Order
 

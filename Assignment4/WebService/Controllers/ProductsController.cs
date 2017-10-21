@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace WebService.Controllers
 {
 
@@ -17,7 +18,7 @@ namespace WebService.Controllers
             _dataService = dataService;
 
         }
-
+        // GET api/products/id
         [HttpGet("{id}")]
         public IActionResult GetProduct(int id)
         {
@@ -30,10 +31,36 @@ namespace WebService.Controllers
             return Ok(product);
 
         }
+        // GET api/products/category/id
+        [Route("category/{id}")]
+        // [HttpGet("{id}")]
+        public IActionResult GetProductByCategory(int id)
+        {
+            var products = _dataService.GetProductByCategory(id);
+            if (products == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(products);
+
+        }
 
 
 
+        //  GET api/products/name
+        [Route("name/{name}")]
+        public IActionResult GetProductByName(String name)
+        {
+            var products = _dataService.GetProductByName(name);
+            if (products == null)
+            {
+                return NotFound();
+            }
 
+            return Ok(products);
+
+        }
 
 
     }
