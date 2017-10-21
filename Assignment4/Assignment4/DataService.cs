@@ -135,7 +135,7 @@ namespace DataServiceProject
         {
             using (var db = new NorthwindContext())
             {
-                var products = db.Products.Include(x => x.Category).Where(p => p.Name == name).ToList();
+                var products = db.Products.Include(x => x.Category).Where(p => p.Name.Contains(name)).ToList();
                 // var Category = db.Categories.Where(c => c.Id == product.CategoryId).FirstOrDefault();
                 // product.Category = Category;
                 return products;
