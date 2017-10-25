@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataService", "SOVAapp\DataService.csproj", "{632BA4C6-D4CE-48D7-A6BE-72D9893B7146}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{632BA4C6-D4CE-48D7-A6BE-72D9893B7146}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{632BA4C6-D4CE-48D7-A6BE-72D9893B7146}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{632BA4C6-D4CE-48D7-A6BE-72D9893B7146}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{632BA4C6-D4CE-48D7-A6BE-72D9893B7146}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {97A7AF82-A1C6-41C9-B6E4-F51D8C9896D8}
+	EndGlobalSection
+EndGlobal
