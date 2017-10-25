@@ -1,0 +1,8 @@
+C:\Users\Arash\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\SOVAapp\bin\Debug\netcoreapp2.0\DataService.deps.json
+C:\Users\Arash\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\SOVAapp\bin\Debug\netcoreapp2.0\DataService.runtimeconfig.json
+C:\Users\Arash\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\SOVAapp\bin\Debug\netcoreapp2.0\DataService.runtimeconfig.dev.json
+C:\Users\Arash\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\SOVAapp\bin\Debug\netcoreapp2.0\DataService.dll
+C:\Users\Arash\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\SOVAapp\obj\Debug\netcoreapp2.0\DataService.csprojResolveAssemblyReference.cache
+C:\Users\Arash\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\SOVAapp\obj\Debug\netcoreapp2.0\DataService.csproj.CoreCompileInputs.cache
+C:\Users\Arash\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\SOVAapp\obj\Debug\netcoreapp2.0\DataService.AssemblyInfoInputs.cache
+C:\Users\Arash\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\SOVAapp\obj\Debug\netcoreapp2.0\DataService.AssemblyInfo.cs
