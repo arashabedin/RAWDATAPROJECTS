@@ -40,11 +40,11 @@ namespace DataService
 
             // Table Comment
 
-            modelBuilder.Entity<Comment>().Property(x => x.Id).HasColumnName("Commentid");
+            modelBuilder.Entity<Comment>().Property(x => x.CommentId).HasColumnName("Commentid");
             modelBuilder.Entity<Comment>().Property(x => x.PostId).HasColumnName("Postid");
-            modelBuilder.Entity<Comment>().Property(x => x.Text).HasColumnName("Text");
-            modelBuilder.Entity<Comment>().Property(x => x.Score).HasColumnName("Score");
-            modelBuilder.Entity<Comment>().Property(x => x.CreationDate).HasColumnName("CreationDate");
+            modelBuilder.Entity<Comment>().Property(x => x.CommentText).HasColumnName("CommentText");
+            modelBuilder.Entity<Comment>().Property(x => x.CommentScore).HasColumnName("CommentScore");
+            modelBuilder.Entity<Comment>().Property(x => x.CommentCreateDate).HasColumnName("CommentCreateDate");
             modelBuilder.Entity<Comment>().Property(x => x.OwneruserId).HasColumnName("OwneruserId");
 
 
