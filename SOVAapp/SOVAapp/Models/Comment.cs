@@ -8,12 +8,12 @@ namespace DataService.Models
     public class Comment
     {
 
-        public int Id { get; set; }
-        public int PostId { get; set; }
-        public String Text { get; set; }
-        public int Score { get; set; }
-        public DateTime CreationDate { get; set; }
-        public string OwneruserId { get; set; }
+            public int Commentid { get; set; }
+            public int PostId { get; set; }
+            public String Commenttext { get; set; }
+            public int Commentscore { get; set; }
+            public DateTime Commentcreatedate { get; set; }
+            public int Owneruserid { get; set; }
 
     }
 }
