@@ -9,5 +9,6 @@ namespace DataService.Models
         public int MarkeId { get; set; }
         public int MarkedPostId { get; set; }
         public String MarkingDate { get; set; }
+        public virtual Post Post { get; set; }
     }
 }

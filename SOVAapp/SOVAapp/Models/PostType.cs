@@ -9,6 +9,6 @@ namespace DataService.Models
 
         public int Id { get; set; }
         public int PostId { get; set; }
-
+        public ICollection<Post> Posts;
     }
 }

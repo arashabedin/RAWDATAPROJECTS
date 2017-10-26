@@ -18,6 +18,11 @@ namespace DataService.Models
         public DateTime CreationDate { get; set; }
         public DateTime ClosedDate { get; set; }
 
+        public ICollection<Comment> Comments;
+        public virtual PostType PostType { get; set; }
+        public virtual Marking Marking { get; set; }
+        public ICollection<PostTags> PostTags;
+        public virtual UserInfo UserInfo { get; set; }
 
 
     }

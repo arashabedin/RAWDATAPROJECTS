@@ -9,5 +9,6 @@ namespace DataService.Models
         public int Id { get; set; }
         public int Postlimit { get; set; }
         public string CreationDate { get; set; }
+        public ICollection<FavoriteTags> FavoriteTags;
     }
 }
