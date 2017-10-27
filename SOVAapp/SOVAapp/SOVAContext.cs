@@ -72,7 +72,7 @@ namespace DataService
             modelBuilder.Entity<SearchHistory>().Property(x => x.SearchDate).HasColumnName("SearchDate");
 
             // Table Marking
-            modelBuilder.Entity<Marking>().Property(x => x.MarkeId).HasColumnName("MarkeId");
+          
             modelBuilder.Entity<Marking>().Property(x => x.MarkedPostId).HasColumnName("MarkedPostId");
             modelBuilder.Entity<Marking>().Property(x => x.MarkingDate).HasColumnName("MarkingDate");
 
@@ -93,10 +93,11 @@ namespace DataService
     
             // Table PostType
 
-            modelBuilder.Entity<PostType>().Property(x => x.Id).HasColumnName("Posttypeid");
-            modelBuilder.Entity<PostType>().Property(x => x.Id).HasColumnName("Postid");
-
            
+            modelBuilder.Entity<PostType>().Property(x => x.Id).HasColumnName("Posttypeid");
+            modelBuilder.Entity<PostType>().Property(x => x.Type).HasColumnName("posttype");
+
+
 
         }
     }

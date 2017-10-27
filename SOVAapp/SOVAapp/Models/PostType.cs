@@ -8,7 +8,7 @@ namespace DataService.Models
     {
 
         public int Id { get; set; }
-        public int PostId { get; set; }
+        public String Type { get; set; }
         public ICollection<Post> Posts;
     }
 }
