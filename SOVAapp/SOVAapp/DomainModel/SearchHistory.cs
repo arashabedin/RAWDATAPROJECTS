@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataService.Models
+namespace DataService.DomainModel
 {
     public class SearchHistory
     {

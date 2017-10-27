@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataService.Models
+namespace DataService.DomainModel
 {
-    public class Tags
+    public class UserCustomeField
     {
         public int Id { get; set; }
-        public String Tag { get; set; }
-        public ICollection<PostTags> PostTags;
+        public int Postlimit { get; set; }
+        public string CreationDate { get; set; }
         public ICollection<FavoriteTags> FavoriteTags;
     }
 }
