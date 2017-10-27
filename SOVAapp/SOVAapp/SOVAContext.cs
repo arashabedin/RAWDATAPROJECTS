@@ -71,10 +71,16 @@ namespace DataService
             modelBuilder.Entity<SearchHistory>().Property(x => x.SearchContent).HasColumnName("SearchContent");
             modelBuilder.Entity<SearchHistory>().Property(x => x.SearchDate).HasColumnName("SearchDate");
 
+
             // Table Marking
-          
+
             modelBuilder.Entity<Marking>().Property(x => x.MarkedPostId).HasColumnName("MarkedPostId");
             modelBuilder.Entity<Marking>().Property(x => x.MarkingDate).HasColumnName("MarkingDate");
+
+            // Table Annotation
+
+            modelBuilder.Entity<Annotations>().Property(x => x.MarkedPostId).HasColumnName("MarkedPostId");
+            modelBuilder.Entity<Annotations>().Property(x => x.Annotation).HasColumnName("annotation");
 
 
             // Table UserCustomeField
