@@ -15,6 +15,9 @@ namespace DataService
         public DbSet<Tags> Tags { get; set; }
         public DbSet<PostTags> PostTags { get; set; }
         public DbSet<SearchHistory> SearchHistory { get; set; }
+        public DbSet<Annotations> Annotations { get; set; }
+        public DbSet<FavoriteTags> FavoriteTags { get; set; }
+        public DbSet<UserCustomeField> UserCustomeField { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -94,7 +97,7 @@ namespace DataService
 
 
             // Table FavoriteTags
-            modelBuilder.Entity<FavoriteTags>().ToTable("favorittags");
+            modelBuilder.Entity<FavoriteTags>().ToTable("favoritetags");
             modelBuilder.Entity<FavoriteTags>().Property(x => x.Id).HasColumnName("id");
             modelBuilder.Entity<FavoriteTags>().Property(x => x.User_CustomeField_Id).HasColumnName("User_CustomeField_Id");
             modelBuilder.Entity<FavoriteTags>().Property(x => x.TagId).HasColumnName("TagId");

@@ -9,7 +9,7 @@ namespace DataService
         {
             Repositorybody rep = new Repositorybody();
 
-            Console.WriteLine(rep.CountPosts());
+            Console.WriteLine(rep.CountUserCustomeFields());
             Console.ReadLine();
         }
     }

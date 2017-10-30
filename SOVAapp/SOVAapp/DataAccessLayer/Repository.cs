@@ -55,7 +55,7 @@ namespace DataService.DataAccessLayer
         ICollection<PostDTO> GetAllPostsByUserId();
         ICollection<QuestionDTO> GetAllQuestionsByUserID();
         ICollection<AnswerDTO> GetAllAnswersByUserId();
-        int CountOfUsers();
+        int CountUsers();
         int CountAnswersByUserId();
         int CountQuestionsByUserId();
 

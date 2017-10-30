@@ -10,7 +10,7 @@ namespace DataService.DataAccessLayer
     public class Repositorybody : Repository
     {
 
-        // Posts
+        //////////////// Posts
 
        public PostDTO GetPostById(int id)
         {
@@ -27,6 +27,8 @@ namespace DataService.DataAccessLayer
             throw new NotImplementedException();
         }
 
+
+        //implemented
         public int CountPosts()
         {
             using (var db = new SOVAContext())
@@ -46,234 +48,259 @@ namespace DataService.DataAccessLayer
             throw new NotImplementedException();
         }
 
-        bool Repository.AddFavoriteTags()
+       public bool AddFavoriteTags()
         {
             throw new NotImplementedException();
         }
 
-        bool Repository.AddMarking(int postId)
+        public bool AddMarking(int postId)
         {
             throw new NotImplementedException();
         }
 
-        bool Repository.AddSearchHistory(string SearchText)
+        public bool AddSearchHistory(string SearchText)
         {
             throw new NotImplementedException();
         }
 
-        bool Repository.AddUserCustomeField()
+        public bool AddUserCustomeField()
         {
             throw new NotImplementedException();
         }
 
+        //implemented
+        public int CountAnnotations()
+        {
+            using (var db = new SOVAContext())
+            {
+                return db.Annotations.Count();
+            }
+        }
 
-        int Repository.CountAnnotations()
+        public int CountAnnotationsById()
         {
             throw new NotImplementedException();
         }
 
-        int Repository.CountAnnotationsById()
+        public int CountAnswers()
         {
             throw new NotImplementedException();
         }
 
-        int Repository.CountAnswers()
+        public int CountAnswersByUserId()
         {
             throw new NotImplementedException();
         }
 
-        int Repository.CountAnswersByUserId()
+        //implemented
+        public int CountComments()
+        {
+            using (var db = new SOVAContext())
+            {
+                return db.Comments.Count();
+            }
+        }
+
+        //implemented
+        public int CountFavoriteTags()
+        {
+            using (var db = new SOVAContext())
+            {
+                return db.FavoriteTags.Count();
+            }
+        }
+
+        //implemented
+        public int CountUsers()
+        {
+            using (var db = new SOVAContext())
+            {
+                return db.UserInfos.Count();
+            }
+        }
+
+
+        //implemented
+        public int CountPostTags()
+        {
+            using (var db = new SOVAContext())
+            {
+                return db.PostTags.Count();
+            }
+        }
+
+        public int CountQuestions()
         {
             throw new NotImplementedException();
         }
 
-        int Repository.CountComments()
+        public int CountQuestionsByUserId()
         {
             throw new NotImplementedException();
         }
 
-        int Repository.CountFavoriteTags()
+        //implemented
+        public int CountTags()
+        {
+            using (var db = new SOVAContext())
+            {
+                return db.Tags.Count();
+            }
+        }
+        //implemented
+        public int CountUserCustomeFields()
+        {
+            using (var db = new SOVAContext())
+            {
+                return db.UserCustomeField.Count();
+            }
+        }
+
+        public bool DeleteAnnotation(int id)
         {
             throw new NotImplementedException();
         }
 
-        int Repository.CountOfUsers()
+        public bool DeleteUserCustomeField(int id)
         {
             throw new NotImplementedException();
         }
 
-   
-
-        int Repository.CountPostTags()
+        public bool EditAnnotation()
         {
             throw new NotImplementedException();
         }
 
-        int Repository.CountQuestions()
+        public ICollection<AnswerDTO> GetAllAnswersByUserId()
         {
             throw new NotImplementedException();
         }
 
-        int Repository.CountQuestionsByUserId()
+        public ICollection<PostDTO> GetAllPostsByUserId()
         {
             throw new NotImplementedException();
         }
 
-        int Repository.CountTags()
+        public ICollection<QuestionDTO> GetAllQuestionsByUserID()
         {
             throw new NotImplementedException();
         }
 
-        int Repository.CountUserCustomeFields()
+        public AnnotationsDTO GetAnnotationById(int id)
         {
             throw new NotImplementedException();
         }
 
-        bool Repository.DeleteAnnotation(int id)
+        public ICollection<AnnotationsDTO> GetAnnotations()
         {
             throw new NotImplementedException();
         }
 
-        bool Repository.DeleteUserCustomeField(int id)
+        public AnswerDTO GetAnswerById(int id)
         {
             throw new NotImplementedException();
         }
 
-        bool Repository.EditAnnotation()
+        public ICollection<AnswerDTO> GetAnswersByQuestionId()
         {
             throw new NotImplementedException();
         }
 
-        ICollection<AnswerDTO> Repository.GetAllAnswersByUserId()
+        public CommentDTO GetCommentById()
         {
             throw new NotImplementedException();
         }
 
-        ICollection<PostDTO> Repository.GetAllPostsByUserId()
+        public ICollection<CommentDTO> GetComments()
         {
             throw new NotImplementedException();
         }
 
-        ICollection<QuestionDTO> Repository.GetAllQuestionsByUserID()
+        public ICollection<CommentDTO> GetCommentsByPostId()
         {
             throw new NotImplementedException();
         }
 
-        AnnotationsDTO Repository.GetAnnotationById(int id)
+        public ICollection<FavoriteTagsDTO> GetFavoriteTags()
         {
             throw new NotImplementedException();
         }
 
-        ICollection<AnnotationsDTO> Repository.GetAnnotations()
+        public ICollection<FavoriteTagsDTO> GetFavoriteTagsByCustomeId(int id)
         {
             throw new NotImplementedException();
         }
 
-        AnswerDTO Repository.GetAnswerById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        ICollection<AnswerDTO> Repository.GetAnswersByQuestionId()
-        {
-            throw new NotImplementedException();
-        }
-
-        CommentDTO Repository.GetCommentById()
-        {
-            throw new NotImplementedException();
-        }
-
-        ICollection<CommentDTO> Repository.GetComments()
-        {
-            throw new NotImplementedException();
-        }
-
-        ICollection<CommentDTO> Repository.GetCommentsByPostId()
-        {
-            throw new NotImplementedException();
-        }
-
-        ICollection<FavoriteTagsDTO> Repository.GetFavoriteTags()
-        {
-            throw new NotImplementedException();
-        }
-
-        ICollection<FavoriteTagsDTO> Repository.GetFavoriteTagsByCustomeId(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        int Repository.GetNumberOfSearches()
+        public int GetNumberOfSearches()
         {
             throw new NotImplementedException();
         }
 
        
 
-        ICollection<PostTagsDTO> Repository.GetPostTagsByPostId()
+        public ICollection<PostTagsDTO> GetPostTagsByPostId()
         {
             throw new NotImplementedException();
         }
 
     
 
-        QuestionDTO Repository.GetQuestionByAnswreId()
+        public QuestionDTO GetQuestionByAnswreId()
         {
             throw new NotImplementedException();
         }
 
-        QuestionDTO Repository.GetQuestionById(int id)
+        public QuestionDTO GetQuestionById(int id)
         {
             throw new NotImplementedException();
         }
 
-        ICollection<QuestionDTO> Repository.GetQuestions()
+        public ICollection<QuestionDTO> GetQuestions()
         {
             throw new NotImplementedException();
         }
 
-        ICollection<SearchHistoryDTO> Repository.GetSearchHistories()
+        public ICollection<SearchHistoryDTO> GetSearchHistories()
         {
             throw new NotImplementedException();
         }
 
-        SearchHistoryDTO Repository.GetSearchHistoryById(int id)
+        public SearchHistoryDTO GetSearchHistoryById(int id)
         {
             throw new NotImplementedException();
         }
 
-        TagsDTO Repository.GetTag(int id)
+        public TagsDTO GetTag(int id)
         {
             throw new NotImplementedException();
         }
 
-        ICollection<TagsDTO> Repository.GetTags()
+        public ICollection<TagsDTO> GetTags()
         {
             throw new NotImplementedException();
         }
 
-        UserInfoDTO Repository.GetUserByPostId()
+        public UserInfoDTO GetUserByPostId()
         {
             throw new NotImplementedException();
         }
 
-        UserCustomeFieldDTO Repository.GetUserCustomeFieldById(int id)
+        public UserCustomeFieldDTO GetUserCustomeFieldById(int id)
         {
             throw new NotImplementedException();
         }
 
-        ICollection<UserCustomeFieldDTO> Repository.GetUserCustomeFields()
+        public ICollection<UserCustomeFieldDTO> GetUserCustomeFields()
         {
             throw new NotImplementedException();
         }
 
-        bool Repository.RemoveFavoriteTags(int id)
+        public bool RemoveFavoriteTags(int id)
         {
             throw new NotImplementedException();
         }
 
-        bool Repository.RemoveMarking(int id)
+        public bool RemoveMarking(int id)
         {
             throw new NotImplementedException();
         }
