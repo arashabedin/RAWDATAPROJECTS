@@ -4,6 +4,7 @@ using System.Text;
 using DataService.DomainModel;
 using DataService.DTO;
 using DataService;
+using System.Linq;
 namespace DataService.DataAccessLayer
 {
     public class Repositorybody : Repository
@@ -11,28 +12,36 @@ namespace DataService.DataAccessLayer
 
         // Posts
 
-        PostDTO Repository.GetPostById(int id)
+       public PostDTO GetPostById(int id)
+        {
+            using (var db = new SOVAContext())
+            {
+                var post =  db.Posts.FirstOrDefault(a => a.Id == id);
+                return null; /* new PostDTO(post.Id, post.OwneruserId, post.Body, post.Title, post.Score, post.CreationDate, post.ClosedDate
+                    , comments, postType, marking, postTags, userInfo); */
+            }
+        }
+
+        public ICollection<PostDTO> GetPosts()
         {
             throw new NotImplementedException();
         }
 
-        ICollection<PostDTO> Repository.GetPosts()
+        public int CountPosts()
+        {
+            using (var db = new SOVAContext())
+            {
+                return db.Posts.Count();
+            }
+        }
+
+        public PostTypeDTO GetPostTypeByPostId()
         {
             throw new NotImplementedException();
         }
 
-        int Repository.CountPosts()
-        {
-            throw new NotImplementedException();
-        }
 
-        PostTypeDTO Repository.GetPostTypeByPostId()
-        {
-            throw new NotImplementedException();
-        }
-
-
-        bool Repository.AddAnnotation()
+        public bool AddAnnotation()
         {
             throw new NotImplementedException();
         }

@@ -1,13 +1,16 @@
 ﻿using System;
+using DataService.DataAccessLayer;
 
 namespace DataService
-
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Repositorybody rep = new Repositorybody();
+
+            Console.WriteLine(rep.CountPosts());
+            Console.ReadLine();
         }
     }
 }

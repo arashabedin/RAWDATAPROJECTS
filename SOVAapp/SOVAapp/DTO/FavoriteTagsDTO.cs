@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using DataService.DomainModel;
-
+using System.ComponentModel.DataAnnotations;
 
 namespace DataService.DTO
 {
     public class FavoriteTagsDTO
     {
+        [Key]
+        public int Id { get; set; }
         public int User_CustomeField_Id { get; set; }
         public int TagId { get; set; }
         public virtual UserCustomeField UserCustomeField { get; set; }
