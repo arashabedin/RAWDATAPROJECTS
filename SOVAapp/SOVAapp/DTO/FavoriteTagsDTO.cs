@@ -11,9 +11,9 @@ namespace DataService.DTO
         public int User_CustomeField_Id { get; set; }
         public int TagId { get; set; }
         public virtual UserCustomeField UserCustomeField { get; set; }
-        public virtual Tags Tag { get; set; }
+        public virtual TagsDTO Tag { get; set; }
 
-        public FavoriteTagsDTO (int User_CustomeField_Id, int TagId, UserCustomeField UserCustomeField, Tags Tag)
+        public FavoriteTagsDTO (int User_CustomeField_Id, int TagId, UserCustomeField UserCustomeField, TagsDTO Tag)
         {
 
             this.User_CustomeField_Id = User_CustomeField_Id;

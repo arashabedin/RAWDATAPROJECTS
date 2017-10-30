@@ -10,9 +10,9 @@ namespace DataService.DTO
     {
         public int MarkedPostId { get; set; }
         public String Annotation { get; set; }
-        public Marking Marking { get; set; }
+        public MarkingDTO Marking { get; set; }
 
-        public AnnotationsDTO( int MarkedPostId,  String Annotation , Marking Marking )
+        public AnnotationsDTO( int MarkedPostId,  String Annotation , MarkingDTO Marking )
         {
             this.MarkedPostId = MarkedPostId;
             this.Annotation = Annotation;

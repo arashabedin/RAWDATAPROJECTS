@@ -10,9 +10,9 @@ namespace DataService.DTO
         public int Id { get; set; }
         public int Postlimit { get; set; }
         public string CreationDate { get; set; }
-        public ICollection<FavoriteTags> FavoriteTags;
+        public ICollection<FavoriteTagsDTO> FavoriteTags;
 
-        public UserCustomeFieldDTO (int Id, int Postlimit, string CreationDate, ICollection<FavoriteTags> FavoriteTags)
+        public UserCustomeFieldDTO (int Id, int Postlimit, string CreationDate, ICollection<FavoriteTagsDTO> FavoriteTags)
         {
             this.Id = Id;
             this.Postlimit = Postlimit;

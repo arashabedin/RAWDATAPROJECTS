@@ -9,8 +9,8 @@ namespace DataService.DTO
     {
         public int PostId { get; set; }
         public int TagId { get; set; }
-        public virtual Post Post { get; set; }
-        public virtual Tags Tag { get; set; }
+        public virtual PostDTO Post { get; set; }
+        public virtual TagsDTO Tag { get; set; }
 
         public PostTagsDTO (int PostId, int TagId, Post Post, Tags Tag) 
         {
