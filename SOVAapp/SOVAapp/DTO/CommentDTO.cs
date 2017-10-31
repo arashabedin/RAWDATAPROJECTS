@@ -15,10 +15,10 @@ namespace DataService.DTO
         public DateTime CommentCreateDate { get; set; }
         public int OwnerUserId { get; set; }
 
-        public virtual PostDTO post { get; set; }
+        public virtual Post post { get; set; }
         public virtual UserInfoDTO UserInfo { get; set; }
 
-        public CommentDTO (int CommentId , int PostId ,String CommentText ,int CommentScore ,DateTime CommentCreateDate, int OwnerUserId, PostDTO post , UserInfoDTO UserInfo )
+        public CommentDTO (int CommentId , int PostId ,String CommentText ,int CommentScore ,DateTime CommentCreateDate, int OwnerUserId, Post post , UserInfoDTO UserInfo )
 
         {
             this.CommentId = CommentId;

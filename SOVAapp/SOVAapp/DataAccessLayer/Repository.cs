@@ -18,7 +18,7 @@ namespace DataService.DataAccessLayer
         int CountPosts();
 
         //PostType
-        PostTypeDTO GetPostTypeByPostId();
+        PostTypeDTO GetPostTypeByPostId(int id);
         
 
         //Answer
@@ -28,30 +28,31 @@ namespace DataService.DataAccessLayer
 
         //Question
         QuestionDTO GetQuestionById(int id);
-        QuestionDTO GetQuestionByAnswreId();
+        QuestionDTO GetQuestionByAnswreId(int id);
         ICollection<QuestionDTO> GetQuestions();
         int CountQuestions();
 
         //Comment
         CommentDTO GetCommentById();
         ICollection<CommentDTO> GetComments();
-        ICollection<CommentDTO> GetCommentsByPostId();
+        ICollection<CommentDTO> GetCommentsByPostId(int postId);
         int CountComments();
 
         //Tags
-        TagsDTO GetTag(int id);
+        TagsDTO GetTagByPostTagId(int id);
         ICollection<TagsDTO> GetTags();
         int CountTags();
  
 
         //PostTags
-        ICollection<PostTagsDTO> GetPostTagsByPostId();
+        ICollection<PostTagsDTO> GetPostTagsByPostId(int id);
         int CountPostTags();
 
 
         //UserInfo
 
-        UserInfoDTO GetUserByPostId();
+        UserInfoDTO GetUserByPostId(int id);
+        UserInfoDTO GetUserByCommentId(int id);
         ICollection<PostDTO> GetAllPostsByUserId();
         ICollection<QuestionDTO> GetAllQuestionsByUserID();
         ICollection<AnswerDTO> GetAllAnswersByUserId();
@@ -69,7 +70,6 @@ namespace DataService.DataAccessLayer
         Boolean EditAnnotation();
         AnnotationsDTO GetAnnotationById(int id);
         ICollection<AnnotationsDTO> GetAnnotations();
-        int CountAnnotationsById();
         int CountAnnotations();
 
         //SearchHistory

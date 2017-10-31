@@ -1,15 +1,30 @@
 ﻿using System;
 using DataService.DataAccessLayer;
-
+using System.Linq;
 namespace DataService
 {
     public class Program
     {
         static void Main(string[] args)
         {
-            Repositorybody rep = new Repositorybody();
+            /*  using (var db = new SOVAContext())
+              {
+                  int x = 1;
+                  foreach (var item in db.UserInfo)
+                  {
 
-            Console.WriteLine(rep.CountUserCustomeFields());
+
+                      db.Entry(item).Reload();
+                      db.SaveChanges();
+
+                      Console.WriteLine("done with" + x);
+                      x++;
+
+                  }
+              }*/
+            var rep = new Repositorybody();
+
+            Console.WriteLine(rep.GetAnswerById(71).Question.Answers.First().ParentId);
             Console.ReadLine();
         }
     }

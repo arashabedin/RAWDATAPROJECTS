@@ -15,17 +15,17 @@ namespace DataService.DTO
         public String Title { get; set; }
         public int Score { get; set; }
         public DateTime CreationDate { get; set; }
-        public DateTime ClosedDate { get; set; }
+        public DateTime? ClosedDate { get; set; }
 
         public ICollection<CommentDTO> Comments;
-        public virtual QuestionDTO QuestionDTO { get; set; }
-        public virtual MarkingDTO Marking { get; set; }
+        public virtual QuestionDTO Question{ get; set; }
+        public virtual PostTypeDTO PostType { get; set; }
         public ICollection<PostTagsDTO> PostTags;
         public virtual UserInfoDTO UserInfo { get; set; }
 
 
-        public AnswerDTO(int Id, int ParentId, int OwneruserId, String Body, String Title, int Score, DateTime CreationDate, DateTime ClosedDate
-            , ICollection<CommentDTO> Comments,QuestionDTO QuestionDTO,PostType PostType, MarkingDTO Marking, ICollection<PostTagsDTO> PostTags, UserInfoDTO UserInfo)
+        public AnswerDTO(int Id, int ParentId, int OwneruserId, String Body, String Title, int Score, DateTime CreationDate, DateTime? ClosedDate
+            , ICollection<CommentDTO> Comments,QuestionDTO Question , PostTypeDTO PostType, ICollection<PostTagsDTO> PostTags, UserInfoDTO UserInfo)
         {
             this.Id = Id;
             this.ParentId = ParentId;
@@ -36,8 +36,8 @@ namespace DataService.DTO
             this.CreationDate = CreationDate;
             this.ClosedDate = ClosedDate;
             this.Comments = Comments;
-            this.QuestionDTO = QuestionDTO;
-            this.Marking = Marking;
+            this.Question = Question;
+            this.PostType = PostType;
             this.PostTags = PostTags;
             this.UserInfo = UserInfo;
 

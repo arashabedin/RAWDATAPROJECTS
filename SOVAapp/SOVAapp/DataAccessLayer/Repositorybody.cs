@@ -5,6 +5,8 @@ using DataService.DomainModel;
 using DataService.DTO;
 using DataService;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+
 namespace DataService.DataAccessLayer
 {
     public class Repositorybody : Repository
@@ -14,11 +16,14 @@ namespace DataService.DataAccessLayer
 
        public PostDTO GetPostById(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db2 = new SOVAContext())
             {
-                var post =  db.Posts.FirstOrDefault(a => a.Id == id);
-                return null; /* new PostDTO(post.Id, post.OwneruserId, post.Body, post.Title, post.Score, post.CreationDate, post.ClosedDate
-                    , comments, postType, marking, postTags, userInfo); */
+                var post =  db2.Posts.FirstOrDefault(a => a.Id == id);
+
+
+
+                return new PostDTO(post.Id,post.OwnerUserId, post.Body, post.PostTypeId,post.ParentId, post.Title,post.Score,post.CreationDate,post.ClosedDate, GetCommentsByPostId(id), GetPostTypeByPostId(id), GetPostTagsByPostId(id), GetUserByPostId(id)); /*new PostDTO(post.Id, post.OwnerUserId, post.Body,post.PostTypeId, post.Title, post.Score, post.CreationDate, post.ClosedDate
+                    , GetCommentsByPostId(id), GetPostTypeByPostId(id),  GetPostTagsByPostId(id), GetUserByPostId(id));*/
             }
         }
 
@@ -36,11 +41,49 @@ namespace DataService.DataAccessLayer
                 return db.Posts.Count();
             }
         }
-
-        public PostTypeDTO GetPostTypeByPostId()
+        //Implemented
+        public PostTypeDTO GetPostTypeByPostId(int id)
         {
-            throw new NotImplementedException();
+            using (var db = new SOVAContext())
+            {
+                var post = db.Posts.FirstOrDefault(i => i.Id == id);
+                var postType = db.PostTypes.Where(p => p.Id == post.PostTypeId).FirstOrDefault();
+                var postTypeDTO = new PostTypeDTO(postType.Id, postType.Type);
+                return postTypeDTO;
+            }
         }
+        //Comments
+        //Implemented 
+        public ICollection<CommentDTO> GetCommentsByPostId(int postId)
+        {
+            using (var db2 = new SOVAContext())
+            {
+                var Comments = db2.Comments.Include(p=> p.post).Where(p => p.PostId == postId);
+                List<CommentDTO> CommentsDTO = new List<CommentDTO>();
+
+                foreach (var item in Comments)
+                {
+             
+var commentDTO = new CommentDTO(item.CommentId, item.PostId, item.CommentText, item.CommentScore, item.CommentCreateDate, item.OwnerUserId, item.post, GetUserByPostId(postId));
+
+                    CommentsDTO.Add(commentDTO);
+                }
+                return CommentsDTO;
+            }
+        }
+
+        //implemented
+       public UserInfoDTO GetUserByCommentId(int id)
+        {
+            using (var db = new SOVAContext()) {
+                var comment = db.Comments.FirstOrDefault(c => c.CommentId == id);
+
+                var user = db.UserInfo.FirstOrDefault(i => i.OwnerUserId == comment.OwnerUserId);
+            return new UserInfoDTO(user.OwnerUserId,user.OwnerUserAge, user.OwnerUserDisplayName,user.CreationDate, user.OwnerUserLocation);
+            }
+
+        }
+
 
 
         public bool AddAnnotation()
@@ -77,14 +120,15 @@ namespace DataService.DataAccessLayer
             }
         }
 
-        public int CountAnnotationsById()
-        {
-            throw new NotImplementedException();
-        }
 
+        //implemented
         public int CountAnswers()
         {
-            throw new NotImplementedException();
+            using (var db = new SOVAContext()){
+
+                var answers = db.Posts.Where(t => t.PostTypeId == 2);
+                return answers.Count();
+            }
         }
 
         public int CountAnswersByUserId()
@@ -115,7 +159,7 @@ namespace DataService.DataAccessLayer
         {
             using (var db = new SOVAContext())
             {
-                return db.UserInfos.Count();
+                return db.UserInfo.Count();
             }
         }
 
@@ -196,9 +240,23 @@ namespace DataService.DataAccessLayer
             throw new NotImplementedException();
         }
 
+        //implemented
         public AnswerDTO GetAnswerById(int id)
         {
-            throw new NotImplementedException();
+
+            using (var db = new SOVAContext())
+            {
+                var post = GetPostById(id);
+                if (post.PostType.Id == 2)
+                {
+                    return new AnswerDTO(post.Id, (int)post.ParentId, post.OwneruserId, post.Body, post.Title, post.Score, post.CreationDate,
+                        post.ClosedDate, post.Comments, GetQuestionById((int)post.ParentId), post.PostType, post.PostTags, post.UserInfo);
+                }
+                else{
+                    return null;
+                }
+            }
+            
         }
 
         public ICollection<AnswerDTO> GetAnswersByQuestionId()
@@ -216,10 +274,7 @@ namespace DataService.DataAccessLayer
             throw new NotImplementedException();
         }
 
-        public ICollection<CommentDTO> GetCommentsByPostId()
-        {
-            throw new NotImplementedException();
-        }
+
 
         public ICollection<FavoriteTagsDTO> GetFavoriteTags()
         {
@@ -237,22 +292,43 @@ namespace DataService.DataAccessLayer
         }
 
        
-
-        public ICollection<PostTagsDTO> GetPostTagsByPostId()
+        // implemented 
+        public ICollection<PostTagsDTO> GetPostTagsByPostId(int id)
         {
-            throw new NotImplementedException();
+            using (var db = new SOVAContext())
+            {
+                var postTags = db.PostTags.Where(p => p.PostId == id);
+               List<PostTagsDTO> PostTagsDTO = new List<PostTagsDTO>();
+
+                foreach (var item in postTags)
+                {
+                    var postTagsDTO = new PostTagsDTO(item.PostId, item.TagId,GetTagByPostTagId(item.TagId));
+
+                    PostTagsDTO.Add(postTagsDTO);
+                }
+                return PostTagsDTO;
+            }
         }
 
     
 
-        public QuestionDTO GetQuestionByAnswreId()
+        public QuestionDTO GetQuestionByAnswreId(int id)
         {
+
             throw new NotImplementedException();
         }
 
+        //implemented
         public QuestionDTO GetQuestionById(int id)
         {
-            throw new NotImplementedException();
+            
+              using (var db = new SOVAContext())
+            {
+                var answerCollection = db.Posts.Where(p => p.ParentId == id).ToList();
+                var post = GetPostById(id);
+                return new QuestionDTO(post.Id, post.AcceptedAnswerId, post.OwneruserId, post.Body, post.Title,post.Score, post.CreationDate,
+                    post.ClosedDate, post.Comments, answerCollection, post.PostTags, post.UserInfo);
+            }
         }
 
         public ICollection<QuestionDTO> GetQuestions()
@@ -270,9 +346,20 @@ namespace DataService.DataAccessLayer
             throw new NotImplementedException();
         }
 
-        public TagsDTO GetTag(int id)
+        //implemented
+        public TagsDTO GetTagByPostTagId(int id)
         {
-            throw new NotImplementedException();
+            using (var db = new SOVAContext())
+            {
+                var tag = db.Tags.Where(t => t.Id == id).FirstOrDefault();
+               TagsDTO tagsDTO = null;
+                if (tag != null) { 
+                 tagsDTO = new TagsDTO(tag.Id, tag.Tag);
+                }
+                return tagsDTO;
+
+            
+        }
         }
 
         public ICollection<TagsDTO> GetTags()
@@ -280,9 +367,14 @@ namespace DataService.DataAccessLayer
             throw new NotImplementedException();
         }
 
-        public UserInfoDTO GetUserByPostId()
+        public UserInfoDTO GetUserByPostId(int id)
         {
-            throw new NotImplementedException();
+            using (var db2 = new SOVAContext())
+            {
+                var post = db2.Posts.Where(i => i.Id == id).FirstOrDefault();
+                var user = db2.UserInfo.Where(u => u.OwnerUserId == post.OwnerUserId).FirstOrDefault();
+                return new UserInfoDTO(user.OwnerUserId, user.OwnerUserAge, user.OwnerUserDisplayName, user.CreationDate, user.OwnerUserLocation);
+            }
         }
 
         public UserCustomeFieldDTO GetUserCustomeFieldById(int id)
