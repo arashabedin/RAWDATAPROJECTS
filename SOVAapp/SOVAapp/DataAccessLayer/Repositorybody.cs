@@ -22,14 +22,23 @@ namespace DataService.DataAccessLayer
 
 
 
-                return new PostDTO(post.Id,post.OwnerUserId, post.Body, post.PostTypeId,post.ParentId, post.Title,post.Score,post.CreationDate,post.ClosedDate, GetCommentsByPostId(id), GetPostTypeByPostId(id), GetPostTagsByPostId(id), GetUserByPostId(id)); /*new PostDTO(post.Id, post.OwnerUserId, post.Body,post.PostTypeId, post.Title, post.Score, post.CreationDate, post.ClosedDate
-                    , GetCommentsByPostId(id), GetPostTypeByPostId(id),  GetPostTagsByPostId(id), GetUserByPostId(id));*/
+                return new PostDTO(post.Id,post.OwnerUserId, post.Body, post.PostTypeId,post.ParentId, post.Title,post.Score,post.CreationDate,post.ClosedDate, GetCommentsByPostId(id), GetPostTypeByPostId(id), GetPostTagsByPostId(id), GetUserByPostId(id)); 
             }
         }
 
         public ICollection<PostDTO> GetPosts()
         {
-            throw new NotImplementedException();
+            using(var db = new SOVAContext()) {
+                var posts = db.Posts.ToList();
+                List<PostDTO> postsDTO = new List<PostDTO>();
+                foreach(var post in posts)
+                {
+                    var myPost =  new PostDTO(post.Id, post.OwnerUserId, post.Body, post.PostTypeId, post.ParentId, post.Title, post.Score, post.CreationDate, post.ClosedDate, GetCommentsByPostId(post.Id), GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
+                    postsDTO.Add(myPost);
+                }
+                return postsDTO;
+
+            }
         }
 
 
@@ -130,10 +139,15 @@ var commentDTO = new CommentDTO(item.CommentId, item.PostId, item.CommentText, i
                 return answers.Count();
             }
         }
-
-        public int CountAnswersByUserId()
+        //implemented
+        public int CountAnswersByUserId(int id)
         {
-            throw new NotImplementedException();
+          using( var db = new SOVAContext())
+            {
+                var answers = db.Posts.Where(i => i.PostTypeId == 2).ToList();
+                return answers.Where(u => u.OwnerUserId == id).Count();
+
+            }
         }
 
         //implemented
@@ -172,15 +186,24 @@ var commentDTO = new CommentDTO(item.CommentId, item.PostId, item.CommentText, i
                 return db.PostTags.Count();
             }
         }
-
+        //implemented
         public int CountQuestions()
         {
-            throw new NotImplementedException();
-        }
+            using (var db = new SOVAContext())
+            {
 
-        public int CountQuestionsByUserId()
+                return db.Posts.Where(i => i.PostTypeId == 1).Count();
+            }
+        }
+        //implemented
+        public int CountQuestionsByUserId(int id)
         {
-            throw new NotImplementedException();
+            using (var db = new SOVAContext())
+            {
+                var answers = db.Posts.Where(i => i.PostTypeId == 1).ToList();
+                return answers.Where(u => u.OwnerUserId == id).Count();
+
+            }
         }
 
         //implemented
@@ -214,20 +237,73 @@ var commentDTO = new CommentDTO(item.CommentId, item.PostId, item.CommentText, i
         {
             throw new NotImplementedException();
         }
-
-        public ICollection<AnswerDTO> GetAllAnswersByUserId()
+        //implemented
+        public ICollection<AnswerDTO> GetAllAnswersByUserId(int id)
         {
-            throw new NotImplementedException();
+
+            using (var db = new SOVAContext())
+            {
+                var answers = db.Posts.Where(i => i.PostTypeId == 2).ToList();
+                var answersByUserId = answers.Where(u => u.OwnerUserId == id);
+                List<AnswerDTO> answersDTO = new List<AnswerDTO>();
+                foreach (var post in answersByUserId)
+                {
+                    var answer = new AnswerDTO(post.Id, (int)post.ParentId, post.OwnerUserId, post.Body, post.Title, post.Score, post.CreationDate,
+    post.ClosedDate,GetCommentsByPostId(post.Id), GetQuestionById((int)post.ParentId),GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
+                    answersDTO.Add(answer);
+                }
+                return answersDTO;
+
+            }
         }
-
-        public ICollection<PostDTO> GetAllPostsByUserId()
+        public ICollection<AnswerDTO> GetAllAnswersByQuestionId(int id)
         {
-            throw new NotImplementedException();
+
+            using (var db = new SOVAContext())
+            {
+                var answers = db.Posts.Where(i => i.PostTypeId == 2).ToList();
+                var answersByUserId = answers.Where(u => u.ParentId == id);
+                List<AnswerDTO> answersDTO = new List<AnswerDTO>();
+                foreach (var post in answersByUserId)
+                {
+                    var answer = new AnswerDTO(post.Id, (int)post.ParentId, post.OwnerUserId, post.Body, post.Title, post.Score, post.CreationDate,
+    post.ClosedDate, GetCommentsByPostId(post.Id), GetQuestionById((int)post.ParentId), GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
+                    answersDTO.Add(answer);
+                }
+                return answersDTO;
+
+            }
         }
-
-        public ICollection<QuestionDTO> GetAllQuestionsByUserID()
+        //not resulted yet
+        public ICollection<PostDTO> GetAllPostsByUserId(int id)
         {
-            throw new NotImplementedException();
+            using (var db = new SOVAContext())
+            {
+                var posts = GetPosts();
+                return posts.Where(u => u.OwneruserId == id).ToList();
+
+            }
+
+        }
+        //implemented
+        public ICollection<QuestionDTO> GetAllQuestionsByUserID(int id)
+        {
+            using (var db = new SOVAContext())
+            {
+                var questions = db.Posts.Where(i => i.PostTypeId == 1).ToList();
+                var questionsByUserId = questions.Where(u => u.OwnerUserId == id);
+                List<QuestionDTO> questionDTO = new List<QuestionDTO>();
+               
+                foreach (var post in questionsByUserId)
+                {
+                    var answerCollection = db.Posts.Where(p => p.ParentId == post.Id).ToList();
+                    var question = new QuestionDTO(post.Id, post.AcceptedAnswerId, post.OwnerUserId, post.Body, post.Title, post.Score, post.CreationDate,
+    post.ClosedDate, GetCommentsByPostId(post.Id), answerCollection, GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
+                    questionDTO.Add(question);
+                }
+                return questionDTO;
+
+            }
         }
 
         public AnnotationsDTO GetAnnotationById(int id)

@@ -7744,7 +7744,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\aabedin\\.nuget\\packages\\": {},
+    "C:\\Users\\Arash\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -7753,17 +7753,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\UnitTests\\UnitTests.csproj",
+      "projectUniqueName": "C:\\Users\\Arash\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\UnitTests\\UnitTests.csproj",
       "projectName": "UnitTests",
-      "projectPath": "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\UnitTests\\UnitTests.csproj",
-      "packagesPath": "C:\\Users\\aabedin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\UnitTests\\obj\\",
+      "projectPath": "C:\\Users\\Arash\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\UnitTests\\UnitTests.csproj",
+      "packagesPath": "C:\\Users\\Arash\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Arash\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\UnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\aabedin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Arash\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7776,8 +7776,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\SOVAapp\\DataService.csproj": {
-              "projectPath": "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\SOVAapp\\DataService.csproj"
+            "C:\\Users\\Arash\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\SOVAapp\\DataService.csproj": {
+              "projectPath": "C:\\Users\\Arash\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\SOVAapp\\DataService.csproj"
             }
           }
         }

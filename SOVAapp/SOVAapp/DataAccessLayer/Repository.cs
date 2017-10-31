@@ -53,12 +53,14 @@ namespace DataService.DataAccessLayer
 
         UserInfoDTO GetUserByPostId(int id);
         UserInfoDTO GetUserByCommentId(int id);
-        ICollection<PostDTO> GetAllPostsByUserId();
-        ICollection<QuestionDTO> GetAllQuestionsByUserID();
-        ICollection<AnswerDTO> GetAllAnswersByUserId();
+        ICollection<PostDTO> GetAllPostsByUserId(int id);
+        ICollection<QuestionDTO> GetAllQuestionsByUserID(int id);
+        ICollection<AnswerDTO> GetAllAnswersByUserId(int id);
+        ICollection<AnswerDTO> GetAllAnswersByQuestionId(int id);
+
         int CountUsers();
-        int CountAnswersByUserId();
-        int CountQuestionsByUserId();
+        int CountAnswersByUserId(int id);
+        int CountQuestionsByUserId(int id);
 
         //Markings
         Boolean AddMarking(int postId);
