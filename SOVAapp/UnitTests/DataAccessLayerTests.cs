@@ -47,6 +47,17 @@ namespace UnitTests
             Assert.Equal(15, Comments.First().CommentScore);
         }
 
+        [Fact]
+
+        public void FavoriteTags_GetEachTag()
+        {
+            var db = new Repositorybody();
+            var tagsCount = db.GetFavoriteTagsByCustomeId(1).Count;
+            var firstTag = db.GetFavoriteTagsByCustomeId(1).First().Tag.Tag;
+            Assert.Equal(3, tagsCount);
+            Assert.Equal("java", firstTag);
+
+        }
 
     }
 }
