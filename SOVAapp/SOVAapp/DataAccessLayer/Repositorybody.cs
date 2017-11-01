@@ -14,6 +14,7 @@ namespace DataService.DataAccessLayer
 
         //////////////// Posts
 
+       //implemented
        public PostDTO GetPostById(int id)
         {
             using (var db2 = new SOVAContext())
@@ -24,6 +25,7 @@ namespace DataService.DataAccessLayer
             }
         }
 
+        //implemented
         public ICollection<PostDTO> GetPosts()
         {
             using(var db = new SOVAContext()) {
@@ -570,14 +572,33 @@ var commentDTO = new CommentDTO(item.CommentId, item.PostId, item.CommentText, i
             }
         }
 
+        //implemented
         public UserCustomeFieldDTO GetUserCustomeFieldById(int id)
         {
-            throw new NotImplementedException();
+            using (var db = new SOVAContext())
+            {
+                var u = db.UserCustomeField.Where(i => i.Id == id).FirstOrDefault();
+
+                return new UserCustomeFieldDTO(u.Id,u.Postlimit,u.CreationDate,GetFavoriteTagsByCustomeId(id));
+            } 
         }
 
+        //implemented
         public ICollection<UserCustomeFieldDTO> GetUserCustomeFields()
         {
-            throw new NotImplementedException();
+            using (var db = new SOVAContext())
+            {
+                var CustomeFields = db.UserCustomeField.ToList();
+                List<UserCustomeFieldDTO> CustomeFieldsDTO = new List<UserCustomeFieldDTO>();
+                foreach (var u in CustomeFields)
+                {
+                    var newCustomeField = new UserCustomeFieldDTO(u.Id, u.Postlimit,u.CreationDate, GetFavoriteTagsByCustomeId(u.Id));
+                    CustomeFieldsDTO.Add(newCustomeField);
+                }
+                return CustomeFieldsDTO;
+
+            }
+
         }
 
         public bool RemoveFavoriteTags(int id)

@@ -24,7 +24,7 @@ namespace DataService
               }*/
             var rep = new Repositorybody();
 
-            Console.WriteLine(rep.GetTags().First().Tag);
+            Console.WriteLine(rep.GetUserCustomeFields().Count());
             Console.WriteLine("done");
             Console.ReadLine();
         }
