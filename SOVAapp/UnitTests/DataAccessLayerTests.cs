@@ -66,7 +66,9 @@ namespace UnitTests
             
             var parentId = db.GetQuestionByAnswerId(71).Answers.First().ParentId;
             var SameParentId = db.GetQuestionByAnswerId(71).Id;
-            Assert.Equal(parentId, SameParentId);  
+
+            Assert.Equal(parentId, SameParentId);
+         
 
         }
 

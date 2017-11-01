@@ -24,7 +24,7 @@ namespace DataService
               }*/
             var rep = new Repositorybody();
 
-            Console.WriteLine(rep.GetQuestionByAnswerId(71).Answers.First().ParentId);
+            Console.WriteLine(rep.GetSearchHistories().First().SearchContent);
             Console.WriteLine("done");
             Console.ReadLine();
         }
