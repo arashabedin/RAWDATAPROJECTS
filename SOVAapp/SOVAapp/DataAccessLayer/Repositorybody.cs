@@ -18,9 +18,7 @@ namespace DataService.DataAccessLayer
         {
             using (var db2 = new SOVAContext())
             {
-                var post =  db2.Posts.FirstOrDefault(a => a.Id == id);
-
-
+                var post =  db2.Posts.FirstOrDefault(a => a.Id == id);          
 
                 return new PostDTO(post.Id,post.OwnerUserId, post.Body, post.PostTypeId,post.ParentId, post.Title,post.Score,post.CreationDate,post.ClosedDate, GetCommentsByPostId(id), GetPostTypeByPostId(id), GetPostTagsByPostId(id), GetUserByPostId(id)); 
             }
@@ -274,13 +272,22 @@ var commentDTO = new CommentDTO(item.CommentId, item.PostId, item.CommentText, i
 
             }
         }
-        //not resulted yet
+        //implemented
         public ICollection<PostDTO> GetAllPostsByUserId(int id)
         {
             using (var db = new SOVAContext())
             {
-                var posts = GetPosts();
-                return posts.Where(u => u.OwneruserId == id).ToList();
+                var posts = db.Posts.Where(u => u.OwnerUserId == id);
+                List<PostDTO> PostDTO = new List<PostDTO>();
+
+                foreach(var post in posts)
+                {
+
+                    var newPost = new PostDTO(post.Id, post.OwnerUserId, post.Body, post.PostTypeId, post.ParentId, post.Title, post.Score, post.CreationDate,
+                        post.ClosedDate, GetCommentsByPostId(post.Id), GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
+                    PostDTO.Add(newPost);
+                }
+                return PostDTO;
 
             }
 
@@ -305,15 +312,38 @@ var commentDTO = new CommentDTO(item.CommentId, item.PostId, item.CommentText, i
 
             }
         }
-
+        //implemented
         public AnnotationsDTO GetAnnotationById(int id)
         {
-            throw new NotImplementedException();
+            using (var db = new SOVAContext()) {
+                var annotation = db.Annotations.Where(i => i.MarkedPostId == id).FirstOrDefault();
+                if (annotation != null) { 
+                return new AnnotationsDTO(annotation.MarkedPostId, annotation.Annotation, annotation.Marking);
+                }
+                return null;
+            }
         }
-
+        //implemented
         public ICollection<AnnotationsDTO> GetAnnotations()
         {
-            throw new NotImplementedException();
+            using (var db = new SOVAContext())
+            {
+                var annotations = db.Annotations.ToList();
+                if(annotations != null)
+                {
+                    List<AnnotationsDTO> AnnotationsDTO = new List<AnnotationsDTO>();
+                    foreach(var annotation in annotations)
+                    {
+                      var newAnn = new AnnotationsDTO(annotation.MarkedPostId, annotation.Annotation, annotation.Marking);
+                        AnnotationsDTO.Add(newAnn);
+
+                    }
+                    return AnnotationsDTO;
+
+                }
+                return null;
+
+            }
         }
 
         //implemented
@@ -335,14 +365,17 @@ var commentDTO = new CommentDTO(item.CommentId, item.PostId, item.CommentText, i
             
         }
 
-        public ICollection<AnswerDTO> GetAnswersByQuestionId()
+        //implemented
+        public CommentDTO GetCommentById(int id)
         {
-            throw new NotImplementedException();
-        }
+        using(var db = new SOVAContext())
+            {
+                var c = db.Comments.Where(i => i.CommentId == id).FirstOrDefault();
+                var CommentedPost = db.Posts.Where(i => i.Id == c.PostId).FirstOrDefault();
+                return new CommentDTO(c.CommentId,c.PostId,c.CommentText,c.CommentScore,c.CommentCreateDate,c.OwnerUserId, CommentedPost , GetUserByCommentId(c.CommentId));
 
-        public CommentDTO GetCommentById()
-        {
-            throw new NotImplementedException();
+            }
+            
         }
 
         public ICollection<CommentDTO> GetComments()
