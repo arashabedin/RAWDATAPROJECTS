@@ -72,7 +72,21 @@ namespace UnitTests
 
         }
 
+        [Fact]
 
-        
+        public void GetSearchHistories_returns_SearchContent()
+        {
+            var db = new Repositorybody();
+
+            var searchHistory = db.GetSearchHistories();
+  
+
+            Assert.Equal("How to create variables in Python?", searchHistory.First().SearchContent);
+
+
+        }
+ 
+
+
     }
 }
