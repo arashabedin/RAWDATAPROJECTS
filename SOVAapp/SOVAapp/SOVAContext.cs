@@ -94,6 +94,8 @@ namespace DataService
             modelBuilder.Entity<UserCustomeField>().Property(x => x.Id).HasColumnName("id");
             modelBuilder.Entity<UserCustomeField>().Property(x => x.Postlimit).HasColumnName("postlimit");
             modelBuilder.Entity<UserCustomeField>().Property(x => x.CreationDate).HasColumnName("creationdate");
+            modelBuilder.Entity<UserCustomeField>().HasKey(x => x.Id);
+
 
 
             // Table FavoriteTags
@@ -101,6 +103,8 @@ namespace DataService
             modelBuilder.Entity<FavoriteTags>().Property(x => x.Id).HasColumnName("id");
             modelBuilder.Entity<FavoriteTags>().Property(x => x.UserCustomeFieldId).HasColumnName("user_customeField_id");
             modelBuilder.Entity<FavoriteTags>().Property(x => x.TagId).HasColumnName("tagid");
+            modelBuilder.Entity<FavoriteTags>().HasKey(x => x.Id);
+
 
 
 
