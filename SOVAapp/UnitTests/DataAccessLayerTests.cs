@@ -16,6 +16,26 @@ namespace UnitTests
             int postCount = db.CountPosts();
             Assert.Equal(13629, postCount);
         }
+         [Fact]
+
+        public void PostType_GetPostTypeByPostId()
+        {
+            var db = new Repositorybody();
+            var PostType = db.GetPostTypeByPostId(19);
+            Assert.Equal(1,PostType.Id);
+
+        }
+
+        [Fact]
+
+        public void UserInfo_GetUserByCommentId()
+        {
+            var db = new Repositorybody();
+            var UserInfo = db.GetUserByCommentId(69759);
+            Assert.Equal("Jeff Atwood", UserInfo.OwnerUserDisplayName);
+           Assert.Equal(null, UserInfo.OwnerUserAge);
+     
+        }
 
     }
 }
