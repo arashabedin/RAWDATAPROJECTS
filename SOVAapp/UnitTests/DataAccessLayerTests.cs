@@ -58,6 +58,19 @@ namespace UnitTests
             Assert.Equal("java", firstTag);
 
         }
+        [Fact]
 
+        public void QuestionByAnswerId_returnsListOf_Its_Answers()
+        {
+            var db = new Repositorybody();
+            
+            var parentId = db.GetQuestionByAnswerId(71).Answers.First().ParentId;
+            var SameParentId = db.GetQuestionByAnswerId(71).Id;
+            Assert.Equal(parentId, SameParentId);  
+
+        }
+
+
+        
     }
 }
