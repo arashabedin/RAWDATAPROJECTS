@@ -400,7 +400,7 @@ var commentDTO = new CommentDTO(item.CommentId, item.PostId, item.CommentText, i
         }
 
 
-
+        //implemented
         public TagsDTO GetTagByID(int id)
         {
             using (var db = new SOVAContext())
@@ -455,10 +455,19 @@ var commentDTO = new CommentDTO(item.CommentId, item.PostId, item.CommentText, i
 
     
 
-        public QuestionDTO GetQuestionByAnswreId(int id)
+        public QuestionDTO GetQuestionByAnswerId(int id)
         {
 
-            throw new NotImplementedException();
+            using (var db = new SOVAContext())
+            {
+                var answer = db.Posts.Where(i => i.Id == id).FirstOrDefault();
+                var q = db.Posts.Where(i => i.Id == answer.ParentId).FirstOrDefault();
+                var answersOfq = db.Posts.Where(i => i.ParentId == q.Id).ToList();
+
+                return new QuestionDTO(q.Id, q.AcceptedAnswerId,q.OwnerUserId,q.Body,q.Title,q.Score,q.CreationDate,
+                    q.ClosedDate,GetCommentsByPostId(q.Id), answersOfq , GetPostTagsByPostId(q.Id),GetUserByPostId(q.Id));
+
+            }
         }
 
         //implemented

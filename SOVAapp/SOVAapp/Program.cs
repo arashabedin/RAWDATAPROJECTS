@@ -24,7 +24,7 @@ namespace DataService
               }*/
             var rep = new Repositorybody();
 
-            Console.WriteLine(rep.GetFavoriteTagsByCustomeId(1).First().Tag.Tag);
+            Console.WriteLine(rep.GetQuestionByAnswerId(71).Answers.First().ParentId);
             Console.WriteLine("done");
             Console.ReadLine();
         }
