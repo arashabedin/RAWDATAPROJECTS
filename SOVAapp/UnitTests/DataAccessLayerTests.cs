@@ -23,7 +23,6 @@ namespace UnitTests
             var db = new Repositorybody();
             var PostType = db.GetPostTypeByPostId(19);
             Assert.Equal(1,PostType.Id);
-
         }
 
         [Fact]
@@ -36,6 +35,18 @@ namespace UnitTests
            Assert.Equal("El Cerrito, CA", UserInfo.OwnerUserLocation);
      
         }
+        
+       [Fact]
+        
+        public void Comments_GetCommentsByPostId()
+        {
+            var db = new Repositorybody();
+            var Comments = db.GetCommentsByPostId(52002);
+            Assert.Equal(9, Comments.Count());
+            Assert.Equal("A man, a plan, a canal, Panama", Comments.First().CommentText);
+            Assert.Equal(15, Comments.First().CommentScore);
+        }
+
 
     }
 }
