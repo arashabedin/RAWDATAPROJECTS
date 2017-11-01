@@ -12,7 +12,7 @@ namespace UnitTests
         [Fact]
         public void CountPosts_ReturnsPostsNumbers()
         {
-            var db = new Repositorybody();
+            var db = new RepositoryBody();
             int postCount = db.CountPosts();
             Assert.Equal(13629, postCount);
         }
@@ -20,7 +20,7 @@ namespace UnitTests
 
         public void PostType_GetPostTypeByPostId()
         {
-            var db = new Repositorybody();
+            var db = new RepositoryBody();
             var PostType = db.GetPostTypeByPostId(19);
             Assert.Equal(1,PostType.Id);
         }
@@ -29,7 +29,7 @@ namespace UnitTests
 
         public void UserInfo_GetUserByCommentId()
         {
-            var db = new Repositorybody();
+            var db = new RepositoryBody();
             var UserInfo = db.GetUserByCommentId(69759);
             Assert.Equal("Jeff Atwood", UserInfo.OwnerUserDisplayName);
            Assert.Equal("El Cerrito, CA", UserInfo.OwnerUserLocation);
@@ -40,7 +40,7 @@ namespace UnitTests
         
         public void Comments_GetCommentsByPostId()
         {
-            var db = new Repositorybody();
+            var db = new RepositoryBody();
             var Comments = db.GetCommentsByPostId(52002);
             Assert.Equal(9, Comments.Count());
             Assert.Equal("A man, a plan, a canal, Panama", Comments.First().CommentText);
@@ -51,7 +51,7 @@ namespace UnitTests
 
         public void FavoriteTags_GetEachTag()
         {
-            var db = new Repositorybody();
+            var db = new RepositoryBody();
             var tagsCount = db.GetFavoriteTagsByCustomeId(1).Count;
             var firstTag = db.GetFavoriteTagsByCustomeId(1).First().Tag.Tag;
             Assert.Equal(3, tagsCount);
@@ -62,7 +62,7 @@ namespace UnitTests
 
         public void QuestionByAnswerId_returnsListOf_Its_Answers()
         {
-            var db = new Repositorybody();
+            var db = new RepositoryBody();
             
             var parentId = db.GetQuestionByAnswerId(71).Answers.First().ParentId;
             var SameParentId = db.GetQuestionByAnswerId(71).Id;
@@ -76,7 +76,7 @@ namespace UnitTests
 
         public void GetSearchHistories_returns_SearchContent()
         {
-            var db = new Repositorybody();
+            var db = new RepositoryBody();
 
             var searchHistory = db.GetSearchHistories();
   

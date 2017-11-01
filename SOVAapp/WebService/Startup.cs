@@ -25,7 +25,7 @@ namespace WebService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSingleton<Repositorybody>();
+            services.AddSingleton<RepositoryBody>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

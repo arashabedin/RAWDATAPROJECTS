@@ -22,7 +22,7 @@ namespace DataService
 
                   }
               }*/
-            var rep = new Repositorybody();
+            var rep = new RepositoryBody();
 
             Console.WriteLine();
             rep.AddUserCustomeField();

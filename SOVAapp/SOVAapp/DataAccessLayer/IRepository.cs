@@ -7,7 +7,7 @@ using DataService.DTO;
 
 namespace DataService.DataAccessLayer
 {
-    public interface Repository
+    public interface IRepository
     {
 
 
@@ -23,6 +23,7 @@ namespace DataService.DataAccessLayer
         
 
         //Answer
+        ICollection<Post> GetAnswers();
         AnswerDTO GetAnswerById(int id);
         ICollection<AnswerDTO> GetAllAnswersByUserId(int id);
         ICollection<AnswerDTO> GetAllAnswersByQuestionId(int id);
@@ -31,7 +32,7 @@ namespace DataService.DataAccessLayer
 
         //Question
         QuestionDTO GetQuestionByAnswerId(int id);
-        ICollection<QuestionDTO> GetQuestions();
+        ICollection<Post> GetQuestions();
         ICollection<QuestionDTO> GetAllQuestionsByUserID(int id);
         int CountQuestions();
         int CountQuestionsByUserId(int id);
