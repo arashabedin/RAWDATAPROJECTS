@@ -22,7 +22,7 @@ namespace DataService
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=raw5;uid=raw5;pwd=raw5");
+            optionsBuilder.UseMySql("server=localhost;database=raw5;uid=root;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -99,7 +99,7 @@ namespace DataService
             // Table FavoriteTags
             modelBuilder.Entity<FavoriteTags>().ToTable("favoritetags");
             modelBuilder.Entity<FavoriteTags>().Property(x => x.Id).HasColumnName("id");
-            modelBuilder.Entity<FavoriteTags>().Property(x => x.User_CustomeField_Id).HasColumnName("user_customeField_id");
+            modelBuilder.Entity<FavoriteTags>().Property(x => x.UserCustomeFieldId).HasColumnName("user_customeField_id");
             modelBuilder.Entity<FavoriteTags>().Property(x => x.TagId).HasColumnName("tagid");
 
 

@@ -41,6 +41,7 @@ namespace DataService.DataAccessLayer
 
         //Tags
         TagsDTO GetTagByPostTagId(int id);
+        TagsDTO GetTagByID(int id);
         ICollection<TagsDTO> GetTags();
         int CountTags();
  
@@ -84,7 +85,6 @@ namespace DataService.DataAccessLayer
         Boolean AddFavoriteTags();
         Boolean RemoveFavoriteTags(int id);
         ICollection<FavoriteTagsDTO> GetFavoriteTagsByCustomeId(int id);
-        ICollection<FavoriteTagsDTO> GetFavoriteTags();
         int CountFavoriteTags();
 
         //UserCustomeField

@@ -377,22 +377,56 @@ var commentDTO = new CommentDTO(item.CommentId, item.PostId, item.CommentText, i
             }
             
         }
-
+        //implemented
         public ICollection<CommentDTO> GetComments()
         {
-            throw new NotImplementedException();
+            using (var db = new SOVAContext())
+            {
+                var comments = db.Comments.ToList();
+                List<CommentDTO> commentsDTO = new List<CommentDTO>();
+
+                foreach (var c in comments)
+                {
+                    var commentsPost = db.Posts.Where(i => i.Id == c.PostId).FirstOrDefault();
+                    var newComment = new CommentDTO(c.CommentId, c.PostId,c.CommentText,c.CommentScore,c.CommentCreateDate,c.OwnerUserId
+                        , commentsPost, GetUserByCommentId(c.CommentId));
+                    commentsDTO.Add(newComment);
+                }
+                return commentsDTO;
+
+            }
+
+
         }
 
 
 
-        public ICollection<FavoriteTagsDTO> GetFavoriteTags()
+        public TagsDTO GetTagByID(int id)
         {
-            throw new NotImplementedException();
+            using (var db = new SOVAContext())
+            {
+                var tag = db.Tags.Where(i => i.Id == id).FirstOrDefault();
+                return new TagsDTO(tag.Id, tag.Tag);
+            }
+
         }
 
         public ICollection<FavoriteTagsDTO> GetFavoriteTagsByCustomeId(int id)
         {
-            throw new NotImplementedException();
+
+            using (var db = new SOVAContext())
+            {
+                var FavTags = db.FavoriteTags.Where(i => i.UserCustomeFieldId == id);
+                List<FavoriteTagsDTO> FavTagsDTO = new List<FavoriteTagsDTO>();
+                foreach (var t in FavTags) {
+                    var Customfield = db.UserCustomeField.Where(i => i.Id == t.UserCustomeFieldId).FirstOrDefault();
+                    var newTag = new FavoriteTagsDTO(t.UserCustomeFieldId, t.TagId, Customfield, GetTagByID(t.TagId));
+                    FavTagsDTO.Add(newTag);
+                }
+                return FavTagsDTO;
+            }
+
+
         }
 
         public int GetNumberOfSearches()

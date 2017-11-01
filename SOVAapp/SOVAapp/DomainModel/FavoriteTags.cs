@@ -9,7 +9,7 @@ namespace DataService.DomainModel
     {
         [Key]
         public int Id { get; set; }
-        public int User_CustomeField_Id { get; set; }
+        public int UserCustomeFieldId { get; set; }
         public int TagId { get; set; }
         public virtual UserCustomeField UserCustomeField { get; set; }
         public virtual Tags Tag { get; set; }
