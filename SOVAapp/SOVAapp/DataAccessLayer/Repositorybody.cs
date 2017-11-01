@@ -454,7 +454,7 @@ var commentDTO = new CommentDTO(item.CommentId, item.PostId, item.CommentText, i
         }
 
     
-
+        //implemented
         public QuestionDTO GetQuestionByAnswerId(int id)
         {
 
@@ -512,9 +512,15 @@ var commentDTO = new CommentDTO(item.CommentId, item.PostId, item.CommentText, i
 
         }
 
+        //implemented
         public SearchHistoryDTO GetSearchHistoryById(int id)
         {
-            throw new NotImplementedException();
+            using (var db = new SOVAContext())
+            {
+                var s = db.SearchHistory.Where(i => i.Id == id).FirstOrDefault();
+                return new SearchHistoryDTO(s.Id, s.SearchContent, s.SearchDate);
+
+            }
         }
 
         //implemented
@@ -533,11 +539,27 @@ var commentDTO = new CommentDTO(item.CommentId, item.PostId, item.CommentText, i
         }
         }
 
+        //implemented
         public ICollection<TagsDTO> GetTags()
         {
-            throw new NotImplementedException();
+            using (var db = new SOVAContext())
+            {
+                var tags = db.Tags.ToList();
+                List<TagsDTO> tagsDTO = new List<TagsDTO>();
+
+                foreach (var t in tags)
+                {
+                    var newtag = new TagsDTO(t.Id, t.Tag);
+                    tagsDTO.Add(newtag);
+
+                }
+                return tagsDTO;
+
+            }
+
         }
 
+        //implemented
         public UserInfoDTO GetUserByPostId(int id)
         {
             using (var db2 = new SOVAContext())
