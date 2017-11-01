@@ -33,7 +33,7 @@ namespace UnitTests
             var db = new Repositorybody();
             var UserInfo = db.GetUserByCommentId(69759);
             Assert.Equal("Jeff Atwood", UserInfo.OwnerUserDisplayName);
-           Assert.Equal(null, UserInfo.OwnerUserAge);
+           Assert.Equal("El Cerrito, CA", UserInfo.OwnerUserLocation);
      
         }
 
