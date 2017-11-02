@@ -36,6 +36,7 @@ namespace WebService.Controllers
                 .Select(x => new QuestionModel
                 {
                     Url = Url.Link(nameof(QuestionController.GetQuestionById), new { id = x.Id }),
+                    UserName = x.UserInfo.OwnerUserDisplayName,
                     CreationDate = x.CreationDate,
                     Score = x.Score,
                     Title = x.Title,
@@ -43,8 +44,9 @@ namespace WebService.Controllers
                     UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = x.OwnerUserId }),
                     // AcceptedAnswerUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = x.OwnerUserId }),
                       AnswersUrl = Url.Link(nameof(QuestionAnswersController.GetAnswersByQuestionId), new { id = x.Id }),
-                    // CommentsUrl = Url.Link("Comments", new { PostId = x.Comments }),
-                });
+                    CommentsUrl = Url.Link(nameof(QuestionCommentsController.GetCommentsByQuestionId), new { id = x.Id })
+
+        });
 
             var result = new
             {

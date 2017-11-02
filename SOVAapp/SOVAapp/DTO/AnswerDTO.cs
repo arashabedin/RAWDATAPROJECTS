@@ -10,6 +10,7 @@ namespace DataService.DTO
     {
         public int Id { get; set; }
         public int ParentId { get; set; }
+        public string UserName { get; set; }
         public int OwneruserId { get; set; }
         public String Body { get; set; }
         public String Title { get; set; }

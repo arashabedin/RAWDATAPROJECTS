@@ -21,7 +21,7 @@ namespace DataService.DataAccessLayer
             {
                 var post = db2.Posts.FirstOrDefault(a => a.Id == id);
 
-                return new PostDTO(post.Id, post.OwnerUserId, post.Body, post.PostTypeId, post.ParentId, post.Title, post.Score, post.CreationDate, post.ClosedDate, GetCommentsByPostId(id), GetPostTypeByPostId(id), GetPostTagsByPostId(id), GetUserByPostId(id));
+                return new PostDTO(post.Id, post.OwnerUserId, post.Body, post.PostTypeId, post.ParentId, post.Title, post.Score, post.CreationDate, post.ClosedDate, null, GetPostTypeByPostId(id), GetPostTagsByPostId(id), GetUserByPostId(id));
             }
         }
 
@@ -33,7 +33,7 @@ namespace DataService.DataAccessLayer
                 List<PostDTO> postsDTO = new List<PostDTO>();
                 foreach (var post in posts)
                 {
-                    var myPost = new PostDTO(post.Id, post.OwnerUserId, post.Body, post.PostTypeId, post.ParentId, post.Title, post.Score, post.CreationDate, post.ClosedDate, GetCommentsByPostId(post.Id), GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
+                    var myPost = new PostDTO(post.Id, post.OwnerUserId, post.Body, post.PostTypeId, post.ParentId, post.Title, post.Score, post.CreationDate, post.ClosedDate, null, GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
                     postsDTO.Add(myPost);
                 }
                 return postsDTO;
@@ -53,7 +53,7 @@ namespace DataService.DataAccessLayer
                 {
 
                     var newPost = new PostDTO(post.Id, post.OwnerUserId, post.Body, post.PostTypeId, post.ParentId, post.Title, post.Score, post.CreationDate,
-                        post.ClosedDate, GetCommentsByPostId(post.Id), GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
+                        post.ClosedDate,null, GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
                     PostDTO.Add(newPost);
                 }
                 return PostDTO;
@@ -105,7 +105,7 @@ namespace DataService.DataAccessLayer
                 if (post.PostType.Id == 2)
                 {
                     return new AnswerDTO(post.Id, (int)post.ParentId, post.OwneruserId, post.Body, post.Title, post.Score, post.CreationDate,
-                        post.ClosedDate, null, null, post.PostType, post.PostTags, null);
+                        post.ClosedDate, null, null, post.PostType, post.PostTags, GetUserByPostId(post.Id));
                 }
                 else
                 {
@@ -149,7 +149,7 @@ namespace DataService.DataAccessLayer
                 foreach (var post in answersByUserId)
                 {
                     var answer = new AnswerDTO(post.Id, (int)post.ParentId, post.OwnerUserId, post.Body, post.Title, post.Score, post.CreationDate,
-    post.ClosedDate, null, null, GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id),null);
+    post.ClosedDate, null, null, GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
                     answersDTO.Add(answer);
                 }
                 return answersDTO.OrderBy(x => x.Id)
@@ -204,7 +204,7 @@ namespace DataService.DataAccessLayer
                 if (post.PostTypeId == 1)
                 {
                     return new QuestionDTO(post.Id, (int)post.AcceptedAnswerId, post.OwnerUserId, post.Body, post.Title, post.Score, post.CreationDate,
-                      post.ClosedDate, null, null, null, null);
+                      post.ClosedDate, null, null, null, GetUserByPostId(post.Id));
                 }
                     return null;
                 
@@ -221,7 +221,7 @@ namespace DataService.DataAccessLayer
                 var answersOfq = db.Posts.Where(i => i.ParentId == q.Id).ToList();
 
                 return new QuestionDTO(q.Id, q.AcceptedAnswerId, q.OwnerUserId, q.Body, q.Title, q.Score, q.CreationDate,
-                                       q.ClosedDate, GetCommentsByPostId(q.Id), answersOfq, GetPostTagsByPostId(q.Id), GetUserByPostId(q.Id));
+                                       q.ClosedDate, null, answersOfq, GetPostTagsByPostId(q.Id), GetUserByPostId(q.Id));
 
             }
         }
@@ -233,6 +233,10 @@ namespace DataService.DataAccessLayer
             using (var db = new SOVAContext())
             {
                 var questions = db.Posts.Where(i => i.PostTypeId == 1).ToList();
+                foreach(var item in questions)
+                {
+                    item.UserInfo = db.UserInfo.Where(i => i.OwnerUserId == item.OwnerUserId).FirstOrDefault();
+                }
                 return questions.OrderBy(x => x.Id)
                     .Skip(page * pageSize)
                     .Take(pageSize)
@@ -254,7 +258,7 @@ namespace DataService.DataAccessLayer
                 {
                     var answerCollection = db.Posts.Where(p => p.ParentId == post.Id).ToList();
                     var question = new QuestionDTO(post.Id, post.AcceptedAnswerId, post.OwnerUserId, post.Body, post.Title, post.Score, post.CreationDate,
-    post.ClosedDate, GetCommentsByPostId(post.Id), answerCollection, GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
+    post.ClosedDate, null, answerCollection, GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
                     questionDTO.Add(question);
                 }
                 return questionDTO;
@@ -297,7 +301,7 @@ namespace DataService.DataAccessLayer
 
         }
 
-        public ICollection<CommentDTO> GetCommentsByPostId(int postId)
+        public ICollection<CommentDTO> GetCommentsByPostId(int postId, int page, int pageSize)
         {
             using (var db2 = new SOVAContext())
             {
@@ -312,7 +316,10 @@ namespace DataService.DataAccessLayer
 
                     CommentsDTO.Add(commentDTO);
                 }
-                return CommentsDTO;
+                return CommentsDTO.OrderBy(x => x.CommentId)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList();
             }
         }
 
@@ -343,6 +350,15 @@ namespace DataService.DataAccessLayer
             {
                 return db.Comments.Count();
             }
+        }
+
+        public int CountCommentsByPostId(int id)
+        {
+            using (var db = new SOVAContext())
+            {
+                return db.Comments.Where(i => i.PostId == id).Count();
+            }
+
         }
 
         ////////////////Tags

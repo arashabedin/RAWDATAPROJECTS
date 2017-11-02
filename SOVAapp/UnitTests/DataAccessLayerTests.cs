@@ -45,8 +45,8 @@ namespace UnitTests
             var db = new RepositoryBody();
             var Comments = db.GetCommentsByPostId(52002);
             Assert.Equal(9, Comments.Count());
-            Assert.Equal("A man, a plan, a canal, Panama", Comments.First().CommentText);
-            Assert.Equal(15, Comments.First().CommentScore);
+            Assert.Equal("A man, a plan, a canal, Panama", Comments.First().Body);
+            Assert.Equal(15, Comments.First().Score);
         }
 
 

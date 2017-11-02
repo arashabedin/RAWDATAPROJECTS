@@ -11,7 +11,7 @@ using AutoMapper;
 
 namespace WebService.Controllers
 {
-    [Route("api/{id}/answers")]
+    [Route("api/questions/{id}/answers")]
     public class QuestionAnswersController : CustomeController
     { 
   private readonly IRepository _repository;
@@ -35,13 +35,13 @@ namespace WebService.Controllers
                 .Select(x => new AnswerModel
                 {
                     Url = Url.Link(nameof(AnswerController.GetAnswerById), new { id = x.Id }),
-         
-                    CreationDate = x.CreationDate,
+                   UserName = x.UserInfo.DisplayName,
+            CreationDate = x.CreationDate,
                     Score = x.Score,
                     Body = x.Body,
                     QuestionUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { id = x.ParentId }),
                     UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = x.OwneruserId }),
-                  //  CommentsUrl = Url.Link("Comments", new { PostId = x.Comments }),
+                  CommentsUrl = Url.Link(nameof(QAnswerCommentsController.GetCommentsByAnswerId), new { Id = x.Id }),
                 });
 
             var result = new

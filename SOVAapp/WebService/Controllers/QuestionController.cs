@@ -35,10 +35,12 @@ namespace WebService.Controllers
         if (Question == null) return NotFound();
 
         var model = _mapper.Map<QuestionModel>(Question);
+            model.UserName = Question.UserInfo.DisplayName;
         model.Url = Url.Link(nameof(GetQuestionById), new { id = Question.Id });
         model.UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = Question.OwneruserId });
         model.AcceptedAnswerUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { id = Question.AcceptedAnswerId });
         model.AnswersUrl = Url.Link(nameof(QuestionAnswersController.GetAnswersByQuestionId), new { id = Question.Id });
+            model.CommentsUrl = Url.Link(nameof(QuestionCommentsController.GetCommentsByQuestionId), new { id = Question.Id }); 
         return Ok(model);
     }
 

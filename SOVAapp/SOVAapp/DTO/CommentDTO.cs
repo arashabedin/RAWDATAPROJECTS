@@ -10,10 +10,10 @@ namespace DataService.DTO
 
         public int CommentId { get; set; }
         public int PostId { get; set; }
-        public String CommentText { get; set; }
-        public int CommentScore { get; set; }
-        public DateTime CommentCreateDate { get; set; }
-        public int OwnerUserId { get; set; }
+        public String Body { get; set; }
+        public int Score { get; set; }
+        public DateTime CreationDate { get; set; }
+        public int User { get; set; }
 
         public virtual Post post { get; set; }
         public virtual UserInfoDTO UserInfo { get; set; }
@@ -22,10 +22,10 @@ namespace DataService.DTO
 
         {
             this.CommentId = CommentId;
-            this.CommentText = CommentText;
-            this.CommentScore = CommentScore;
-            this.CommentCreateDate = CommentCreateDate;
-            this.OwnerUserId = OwnerUserId;
+            this.Body = CommentText;
+            this.Score = CommentScore;
+            this.CreationDate = CommentCreateDate;
+            this.User = OwnerUserId;
             this.post = post;
             this.UserInfo = UserInfo;
 

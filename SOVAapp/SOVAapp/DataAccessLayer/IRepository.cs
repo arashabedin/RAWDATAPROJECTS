@@ -42,8 +42,9 @@ namespace DataService.DataAccessLayer
         //Comment
         CommentDTO GetCommentById(int id);
         ICollection<CommentDTO> GetComments();
-        ICollection<CommentDTO> GetCommentsByPostId(int postId);
+        ICollection<CommentDTO> GetCommentsByPostId(int postId, int page, int pageSize);
         int CountComments();
+        int CountCommentsByPostId(int id);
 
         //Tags
         TagsDTO GetTagByPostTagId(int id);

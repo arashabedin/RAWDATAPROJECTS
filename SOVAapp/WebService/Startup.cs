@@ -54,6 +54,8 @@ namespace WebService
                   .ReverseMap();
                 cfg.CreateMap<QuestionDTO, QuestionModel>()
               .ReverseMap();
+                cfg.CreateMap<CommentDTO, CommentModel>()
+          .ReverseMap();
             });
 
 
