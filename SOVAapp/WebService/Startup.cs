@@ -52,6 +52,8 @@ namespace WebService
                     .ReverseMap();
                 cfg.CreateMap<UserInfoDTO, UserInfoModel>()
                   .ReverseMap();
+                cfg.CreateMap<QuestionDTO, QuestionModel>()
+              .ReverseMap();
             });
 
 

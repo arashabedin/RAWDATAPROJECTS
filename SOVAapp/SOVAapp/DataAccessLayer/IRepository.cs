@@ -25,14 +25,15 @@ namespace DataService.DataAccessLayer
         //Answer
         ICollection<Post> GetAnswers(int page, int pageSize);
         AnswerDTO GetAnswerById(int id);
-        ICollection<AnswerDTO> GetAllAnswersByUserId(int id);
-        ICollection<AnswerDTO> GetAllAnswersByQuestionId(int id);
+        ICollection<AnswerDTO> GetAllAnswersByUserId(int id, int page, int pageSize);
+        ICollection<AnswerDTO> GetAllAnswersByQuestionId(int id, int page, int pageSize);
         int CountAnswers();
         int CountAnswersByUserId(int id);
+        int CountAnswersByQuestionId(int id);
 
         //Question
         QuestionDTO GetQuestionByAnswerId(int id);
-        ICollection<Post> GetQuestions();
+        ICollection<Post> GetQuestions(int page, int pageSize);
         ICollection<QuestionDTO> GetAllQuestionsByUserID(int id);
         int CountQuestions();
         int CountQuestionsByUserId(int id);
@@ -56,6 +57,7 @@ namespace DataService.DataAccessLayer
 
 
         //UserInfo
+        ICollection<UserInfoDTO> GetUsers(int page, int pageSize);
         UserInfoDTO GetUserById(int id);
         UserInfoDTO GetUserByPostId(int id);
         UserInfoDTO GetUserByCommentId(int id);

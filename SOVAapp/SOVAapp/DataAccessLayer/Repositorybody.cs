@@ -116,7 +116,7 @@ namespace DataService.DataAccessLayer
         }
 
 
-        public ICollection<AnswerDTO> GetAllAnswersByUserId(int id)
+        public ICollection<AnswerDTO> GetAllAnswersByUserId(int id, int page, int pageSize)
         {
 
             using (var db = new SOVAContext())
@@ -127,15 +127,18 @@ namespace DataService.DataAccessLayer
                 foreach (var post in answersByUserId)
                 {
                     var answer = new AnswerDTO(post.Id, (int)post.ParentId, post.OwnerUserId, post.Body, post.Title, post.Score, post.CreationDate,
-    post.ClosedDate, GetCommentsByPostId(post.Id), GetQuestionByAnswerId((int)post.ParentId), GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
+    post.ClosedDate, null, null, GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id), null);
                     answersDTO.Add(answer);
                 }
-                return answersDTO;
+                return answersDTO.OrderBy(x => x.Id)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList();
 
             }
         }
 
-        public ICollection<AnswerDTO> GetAllAnswersByQuestionId(int id)
+        public ICollection<AnswerDTO> GetAllAnswersByQuestionId(int id, int page, int pageSize)
         {
 
             using (var db = new SOVAContext())
@@ -146,10 +149,13 @@ namespace DataService.DataAccessLayer
                 foreach (var post in answersByUserId)
                 {
                     var answer = new AnswerDTO(post.Id, (int)post.ParentId, post.OwnerUserId, post.Body, post.Title, post.Score, post.CreationDate,
-    post.ClosedDate, GetCommentsByPostId(post.Id), GetQuestionByAnswerId((int)post.ParentId), GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
+    post.ClosedDate, null, null, GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id),null);
                     answersDTO.Add(answer);
                 }
-                return answersDTO;
+                return answersDTO.OrderBy(x => x.Id)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList();
 
             }
         }
@@ -175,6 +181,16 @@ namespace DataService.DataAccessLayer
 
             }
         }
+        public int CountAnswersByQuestionId(int id)
+        {
+            using (var db = new SOVAContext())
+            {
+                var answers = db.Posts.Where(i => i.PostTypeId == 2).ToList();
+                return answers.Where(u => u.ParentId == id).Count();
+
+            }
+
+        }
 
 
         ////////////////Questions
@@ -194,13 +210,17 @@ namespace DataService.DataAccessLayer
         }
 
 
-        public ICollection<Post> GetQuestions()
+        public ICollection<Post> GetQuestions(int page, int pageSize)
         {
 
             using (var db = new SOVAContext())
             {
                 var questions = db.Posts.Where(i => i.PostTypeId == 1).ToList();
-                return questions;
+                return questions.OrderBy(x => x.Id)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList(); 
+            
 
             }
         }
@@ -393,6 +413,23 @@ namespace DataService.DataAccessLayer
         }
 
         ////////////////UserInfo
+        public ICollection<UserInfoDTO> GetUsers(int page, int pageSize)
+        {
+            using (var db = new SOVAContext())
+            {
+                var users = db.UserInfo.ToList();
+                List<UserInfoDTO> UsersDTO = new List<UserInfoDTO>();
+                foreach( var i in users)
+                {
+                    var newUser = new UserInfoDTO(i.OwnerUserId, i.OwnerUserAge,i.OwnerUserDisplayName,i.CreationDate,i.OwnerUserLocation);
+                    UsersDTO.Add(newUser);
+                }
+                return UsersDTO.OrderBy(x => x.Id)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+            }
+        }
         public UserInfoDTO GetUserById(int id)
         {
             using (var db = new SOVAContext())
