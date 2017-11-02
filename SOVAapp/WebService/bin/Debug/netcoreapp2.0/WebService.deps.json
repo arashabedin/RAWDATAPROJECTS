@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "c7508f2fa98a2675a65170647668832f3683c23e"
+    "signature": "71e54a97490f1b18865283fc0a065be7d86beede"
   },
   "compilationOptions": {
     "defines": [
@@ -26,6 +26,7 @@
           "AutoMapper": "6.1.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "3.1.0",
           "DataService": "1.0.0",
+          "Hyprlinkr": "2.0.1",
           "LessJie.System.Web.Http": "1.0.0",
           "Microsoft.AspNetCore.All": "2.0.0",
           "Microsoft.NETCore.App": "2.0.0"
@@ -76,6 +77,17 @@
         },
         "compile": {
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "Hyprlinkr/2.0.1": {
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.Core": "5.0.0"
+        },
+        "runtime": {
+          "lib/net45/Ploeh.Hyprlinkr.dll": {}
+        },
+        "compile": {
+          "lib/net45/Ploeh.Hyprlinkr.dll": {}
         }
       },
       "LessJie.System.Web.Http/1.0.0": {
@@ -171,6 +183,19 @@
         },
         "compile": {
           "lib/netstandard1.6/Microsoft.AI.DependencyCollector.dll": {}
+        }
+      },
+      "Microsoft.AspNet.WebApi.Client/5.0.0": {
+        "runtime": {
+          "lib/net45/System.Net.Http.Formatting.dll": {}
+        },
+        "compile": {
+          "lib/net45/System.Net.Http.Formatting.dll": {}
+        }
+      },
+      "Microsoft.AspNet.WebApi.Core/5.0.0": {
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.Client": "5.0.0"
         }
       },
       "Microsoft.AspNetCore/2.0.0": {
@@ -4152,6 +4177,13 @@
       "path": "automapper.extensions.microsoft.dependencyinjection/3.1.0",
       "hashPath": "automapper.extensions.microsoft.dependencyinjection.3.1.0.nupkg.sha512"
     },
+    "Hyprlinkr/2.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ef3isBIj7cwIqGlTEwdkeGb6EYBCmA2J0f+SPeChhhdZtw5f9oVLPlStbQP4JTAkE7HdLqZG/e/EnJjCQf+tig==",
+      "path": "hyprlinkr/2.0.1",
+      "hashPath": "hyprlinkr.2.0.1.nupkg.sha512"
+    },
     "LessJie.System.Web.Http/1.0.0": {
       "type": "package",
       "serviceable": true,
@@ -4186,6 +4218,20 @@
       "sha512": "sha512-RWxdX90MY6tNF8S5lwRvJcHiBMIWwVLCxd4TGIEl3X0yAKaolY2vs4zTCvyCIVkEAMs1aInTgWkYwOjzYvAHWw==",
       "path": "microsoft.applicationinsights.dependencycollector/2.4.1",
       "hashPath": "microsoft.applicationinsights.dependencycollector.2.4.1.nupkg.sha512"
+    },
+    "Microsoft.AspNet.WebApi.Client/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OMTp9ot40TZgZxnFO+S0ac0EY5CtQs6KTHkMSHmNFDc+a0tWMCsSBuOG6HoH9+G95wNhEfZrZ20btAsHMlQe7w==",
+      "path": "microsoft.aspnet.webapi.client/5.0.0",
+      "hashPath": "microsoft.aspnet.webapi.client.5.0.0.nupkg.sha512"
+    },
+    "Microsoft.AspNet.WebApi.Core/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZOVLLtFpSM8nkJopUM9upbJEUkAUS60j6Sj1hDKewHaekWMUnnoMX/i3Ee+7KgxMGk13yxxQRHtSwcjh1JpJ4w==",
+      "path": "microsoft.aspnet.webapi.core/5.0.0",
+      "hashPath": "microsoft.aspnet.webapi.core.5.0.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore/2.0.0": {
       "type": "package",

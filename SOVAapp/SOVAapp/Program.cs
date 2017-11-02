@@ -24,8 +24,7 @@ namespace DataService
               }*/
             var rep = new RepositoryBody();
 
-            Console.WriteLine();
-            rep.AddUserCustomeField();
+            Console.WriteLine(rep.GetUserById(91).DisplayName);
             Console.WriteLine("done");
             Console.ReadLine();
         }

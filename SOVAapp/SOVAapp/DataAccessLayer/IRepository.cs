@@ -56,7 +56,7 @@ namespace DataService.DataAccessLayer
 
 
         //UserInfo
-
+        UserInfoDTO GetUserById(int id);
         UserInfoDTO GetUserByPostId(int id);
         UserInfoDTO GetUserByCommentId(int id);
         int CountUsers();

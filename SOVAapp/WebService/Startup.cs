@@ -50,7 +50,11 @@ namespace WebService
             {
                 cfg.CreateMap<AnswerDTO, AnswerModel>()
                     .ReverseMap();
+                cfg.CreateMap<UserInfoDTO, UserInfoModel>()
+                  .ReverseMap();
             });
+
+
 
             return config.CreateMapper();
         }

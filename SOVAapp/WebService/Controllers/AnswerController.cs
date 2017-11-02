@@ -8,6 +8,7 @@ using DataService.DTO;
 using System.Web.Http.Routing;
 using WebService.Util;
 using WebService.Models;
+using AutoMapper;
 
 namespace WebService.Controllers
 {
@@ -15,10 +16,12 @@ namespace WebService.Controllers
     public class AnswerController : Controller
     { 
   private readonly IRepository _repository;
+        private readonly IMapper _mapper;
 
-    public AnswerController(IRepository _repository)
+        public AnswerController(IRepository _repository, IMapper mapper)
     {
         this._repository = _repository;
+        this._mapper = mapper;
     }
 
         [HttpGet(Name = nameof(GetAnswers))]
@@ -37,7 +40,7 @@ namespace WebService.Controllers
                     CreationDate = x.CreationDate,
                     Score = x.Score,
                     Body = x.Body,
-                    UserUrl = Url.Link("Users", new { id = x.OwnerUserId }),
+                    UserUrl = Url.Link(nameof(UserInfoController.GetUserByUserId), new { id = x.OwnerUserId }),
                     CommentsUrl = Url.Link("Comments", new { PostId = x.Comments }),
                 });
 

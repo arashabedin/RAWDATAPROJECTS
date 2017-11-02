@@ -393,14 +393,31 @@ namespace DataService.DataAccessLayer
         }
 
         ////////////////UserInfo
-
+        public UserInfoDTO GetUserById(int id)
+        {
+            using (var db = new SOVAContext())
+            {
+                var user = db.UserInfo.Where(i => i.OwnerUserId == id).FirstOrDefault();
+                if (user != null)
+                {
+                    return new UserInfoDTO(user.OwnerUserId, user.OwnerUserId, user.OwnerUserDisplayName, user.CreationDate, user.OwnerUserLocation);
+                }
+                return null;
+            }
+            }
         public UserInfoDTO GetUserByPostId(int id)
         {
             using (var db2 = new SOVAContext())
             {
                 var post = db2.Posts.Where(i => i.Id == id).FirstOrDefault();
                 var user = db2.UserInfo.Where(u => u.OwnerUserId == post.OwnerUserId).FirstOrDefault();
-                return new UserInfoDTO(user.OwnerUserId, user.OwnerUserAge, user.OwnerUserDisplayName, user.CreationDate, user.OwnerUserLocation);
+                if (user != null)
+                {
+                    var userDTO = new UserInfoDTO(user.OwnerUserId, user.OwnerUserAge, user.OwnerUserDisplayName, user.CreationDate, user.OwnerUserLocation);
+                    return userDTO;
+                }
+                return null;
+           
             }
         }
 

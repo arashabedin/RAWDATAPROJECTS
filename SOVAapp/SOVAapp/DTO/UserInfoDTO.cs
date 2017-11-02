@@ -8,10 +8,10 @@ namespace DataService.DTO
     public class UserInfoDTO
     {
         public int Id { get; set; }
-        public int? OwnerUserAge { get; set; }
-        public String OwnerUserDisplayName { get; set; }
+        public int? Age { get; set; }
+        public String DisplayName { get; set; }
         public DateTime CreationDate { get; set; }
-        public string OwnerUserLocation { get; set; }
+        public string Location { get; set; }
 
        
 
@@ -19,10 +19,10 @@ namespace DataService.DTO
         {
 
             this.Id = Id;
-            this.OwnerUserAge = OwnerUserAge;
-            this.OwnerUserDisplayName = OwnerUserDisplayName;
+            this.Age = OwnerUserAge;
+            this.DisplayName = OwnerUserDisplayName;
             this.CreationDate = CreationDate;
-            this.OwnerUserLocation = OwnerUserLocation;
+            this.Location = OwnerUserLocation;
          
         }
     }
