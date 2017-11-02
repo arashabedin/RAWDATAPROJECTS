@@ -10,19 +10,21 @@ namespace UnitTests
     public class DataAccessLayerTests
     {
         [Fact]
+        
         public void CountPosts_ReturnsPostsNumbers()
         {
             var db = new RepositoryBody();
             int postCount = db.CountPosts();
             Assert.Equal(13629, postCount);
         }
-         [Fact]
+        
+        [Fact]
 
         public void PostType_GetPostTypeByPostId()
         {
             var db = new RepositoryBody();
             var PostType = db.GetPostTypeByPostId(19);
-            Assert.Equal(1,PostType.Id);
+            Assert.Equal(1, PostType.Id);
         }
 
         [Fact]
@@ -32,12 +34,12 @@ namespace UnitTests
             var db = new RepositoryBody();
             var UserInfo = db.GetUserByCommentId(69759);
             Assert.Equal("Jeff Atwood", UserInfo.DisplayName);
-           Assert.Equal("El Cerrito, CA", UserInfo.Location);
-     
+            Assert.Equal("El Cerrito, CA", UserInfo.Location);
+
         }
-        
-       [Fact]
-        
+
+        [Fact]
+
         public void Comments_GetCommentsByPostId()
         {
             var db = new RepositoryBody();
@@ -46,6 +48,20 @@ namespace UnitTests
             Assert.Equal("A man, a plan, a canal, Panama", Comments.First().CommentText);
             Assert.Equal(15, Comments.First().CommentScore);
         }
+
+
+        [Fact]
+
+        public void PostTags_GetPostTagsByPostId()
+        {
+            var db = new RepositoryBody();
+            var PostTags = db.GetPostTagsByPostId(26583319);
+            var PostTag = db.GetPostTagsByPostId(18332611);
+            Assert.Equal(4, PostTags.Count());
+            Assert.Equal("android", PostTag.First().Tag.Tag);
+            Assert.Equal(1920, PostTag.First().TagId);
+        }
+
 
         [Fact]
 
@@ -58,17 +74,18 @@ namespace UnitTests
             Assert.Equal("java", firstTag);
 
         }
+        
         [Fact]
 
         public void QuestionByAnswerId_returnsListOf_Its_Answers()
         {
             var db = new RepositoryBody();
-            
+
             var parentId = db.GetQuestionByAnswerId(71).Answers.First().ParentId;
             var SameParentId = db.GetQuestionByAnswerId(71).Id;
 
             Assert.Equal(parentId, SameParentId);
-         
+
 
         }
 
@@ -79,14 +96,79 @@ namespace UnitTests
             var db = new RepositoryBody();
 
             var searchHistory = db.GetSearchHistories();
-  
+
 
             Assert.Equal("How to create variables in Python?", searchHistory.First().SearchContent);
 
 
         }
- 
 
+         
+       [Fact]
+
+        public void UserCustomField_GetUserCustomeFieldById()
+
+        {
+            var db = new RepositoryBody();
+
+            var UserCustomField = db.GetUserCustomeFieldById(2);
+
+            var FavtTag = db.GetUserCustomeFieldById(5);
+
+            Assert.Equal("2017 - 11 - 01", UserCustomField.CreationDate.ToString("yyyy-MM-dd"));
+
+            Assert.Equal(3751, FavtTag.FavoriteTags.First().TagId);
+
+       }
+        
+
+
+       [Fact]
+
+        public void FavoriteTag_GetFavoriteTagsByCustomeId()
+
+        {
+            var db = new RepositoryBody();
+
+            var TotalFavtTags = db.GetFavoriteTagsByCustomeId(2).Count;
+
+            var FavtTag = db.GetFavoriteTagsByCustomeId(1);
+
+            Assert.Equal(3, TotalFavtTags);
+
+            Assert.Equal(2726, FavtTag.First().TagId);
+
+        }
+
+        [Fact]
+
+        public void Annotations_GetAnnotations()
+
+        {
+            var db = new RepositoryBody();
+
+            var Annotations = db.GetAnnotations().Count;
+
+           Assert.Equal(0,Annotations);
+
+           
+
+        }
+
+        [Fact]
+
+        public void CustomField_GetUserCustomeFields()
+        {
+            var db = new RepositoryBody();
+
+            var CountCustomField = db.GetUserCustomeFields().Count;
+                        
+            Assert.Equal(2, CountCustomField);
+
+           
+        }
 
     }
-}
+    
+    }
+
