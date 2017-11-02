@@ -80,10 +80,8 @@ namespace UnitTests
         public void QuestionByAnswerId_returnsListOf_Its_Answers()
         {
             var db = new RepositoryBody();
-
             var parentId = db.GetQuestionByAnswerId(71).Answers.First().ParentId;
             var SameParentId = db.GetQuestionByAnswerId(71).Id;
-
             Assert.Equal(parentId, SameParentId);
 
 
@@ -97,10 +95,7 @@ namespace UnitTests
 
             var searchHistory = db.GetSearchHistories();
 
-
             Assert.Equal("How to create variables in Python?", searchHistory.First().SearchContent);
-
-
         }
 
          
@@ -110,20 +105,42 @@ namespace UnitTests
 
         {
             var db = new RepositoryBody();
-
-            var UserCustomField = db.GetUserCustomeFieldById(2);
-
-            var FavtTag = db.GetUserCustomeFieldById(5);
-
-            Assert.Equal("2017 - 11 - 01", UserCustomField.CreationDate.ToString("yyyy-MM-dd"));
-
-            Assert.Equal(3751, FavtTag.FavoriteTags.First().TagId);
-
-       }
-        
+            var Ftag = db.GetUserCustomeFieldById(2);
+            Assert.Equal(3, Ftag.FavoriteTags.Count());
+        }
 
 
-       [Fact]
+        [Fact]
+
+        public void GetAnnotation_GetAnnotations()
+
+        {
+            var db = new RepositoryBody();
+
+            var TotalAnnotation = db.GetAnnotations();
+
+            Assert.Equal(0, TotalAnnotation.Count());
+            
+
+        }
+
+
+        [Fact]
+
+        public void GetAnnotation_GetAnnotationById()
+
+        {
+            var db = new RepositoryBody();
+
+            var GetAnnotation = db.GetAnnotationById(86513);
+
+            Assert.Equal(0,GetAnnotation.MarkedPostId);
+
+
+        }
+
+
+        [Fact]
 
         public void FavoriteTag_GetFavoriteTagsByCustomeId()
 
@@ -142,14 +159,14 @@ namespace UnitTests
 
         [Fact]
 
-        public void Annotations_GetAnnotations()
+        public void CountAnnotations_CountAnnotations()
 
         {
             var db = new RepositoryBody();
 
-            var Annotations = db.GetAnnotations().Count;
+            var CountAnnotations = db.CountAnnotations();
 
-           Assert.Equal(0,Annotations);
+           Assert.Equal(0,CountAnnotations);
 
            
 
@@ -168,7 +185,20 @@ namespace UnitTests
            
         }
 
+        
+        [Fact]
+
+        public void AnswerbyQuestionid_GetAllAnswersByQuestionId()
+        {
+            var db = new RepositoryBody();
+            var Answers = db.GetAllAnswersByQuestionId(1).Count;
+            Assert.Equal(0, Answers);
+
+   
+        }
+    
     }
+    
     
     }
 
