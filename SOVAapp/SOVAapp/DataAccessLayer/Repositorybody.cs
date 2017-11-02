@@ -105,7 +105,7 @@ namespace DataService.DataAccessLayer
                 if (post.PostType.Id == 2)
                 {
                     return new AnswerDTO(post.Id, (int)post.ParentId, post.OwneruserId, post.Body, post.Title, post.Score, post.CreationDate,
-                        post.ClosedDate, post.Comments, GetQuestionByAnswerId((int)post.ParentId), post.PostType, post.PostTags, post.UserInfo);
+                        post.ClosedDate, null, null, post.PostType, post.PostTags, null);
                 }
                 else
                 {
@@ -194,6 +194,23 @@ namespace DataService.DataAccessLayer
 
 
         ////////////////Questions
+
+        public QuestionDTO GetQuestionById(int id)
+        {
+
+            using (var db = new SOVAContext())
+            {
+                var post = db.Posts.Where(i => i.Id == id).FirstOrDefault();
+                if (post.PostTypeId == 1)
+                {
+                    return new QuestionDTO(post.Id, (int)post.AcceptedAnswerId, post.OwnerUserId, post.Body, post.Title, post.Score, post.CreationDate,
+                      post.ClosedDate, null, null, null, null);
+                }
+                    return null;
+                
+            }
+
+        }
         public QuestionDTO GetQuestionByAnswerId(int id)
         {
 

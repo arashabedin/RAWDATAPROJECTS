@@ -34,12 +34,13 @@ namespace WebService.Controllers
             var data = _repository.GetAllAnswersByUserId(Id, page, pageSize)
                 .Select(x => new AnswerModel
                 {
-                    Url = Url.Link(nameof(GetAnswersByUserId), new { id = x.Id }),
-                    Id = x.Id,
+                    Url = Url.Link(nameof(AnswerController.GetAnswerById), new { id = x.Id }),
+          
                     CreationDate = x.CreationDate,
                     Score = x.Score,
                     Body = x.Body,
                     UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = x.OwneruserId }),
+                    QuestionUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { id = x.ParentId }),
                     CommentsUrl = Url.Link("Comments", new { PostId = x.Comments }),
                 });
 

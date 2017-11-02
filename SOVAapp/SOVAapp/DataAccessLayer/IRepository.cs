@@ -32,6 +32,7 @@ namespace DataService.DataAccessLayer
         int CountAnswersByQuestionId(int id);
 
         //Question
+        QuestionDTO GetQuestionById(int id);
         QuestionDTO GetQuestionByAnswerId(int id);
         ICollection<Post> GetQuestions(int page, int pageSize);
         ICollection<QuestionDTO> GetAllQuestionsByUserID(int id);

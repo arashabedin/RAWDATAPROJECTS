@@ -35,15 +35,14 @@ namespace WebService.Controllers
             var data = _repository.GetQuestions(page, pageSize)
                 .Select(x => new QuestionModel
                 {
-                    Url = Url.Link(nameof(GetQuestions), new { id = x.Id }),
-                    Id = x.Id,
+                    Url = Url.Link(nameof(QuestionController.GetQuestionById), new { id = x.Id }),
                     CreationDate = x.CreationDate,
                     Score = x.Score,
                     Title = x.Title,
                     Body = x.Body,
                     UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = x.OwnerUserId }),
                     // AcceptedAnswerUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = x.OwnerUserId }),
-                      AnswersUrl = Url.Link(nameof(QuestionAnswerController.GetAnswersByQuestionId), new { id = x.Id }),
+                      AnswersUrl = Url.Link(nameof(QuestionAnswersController.GetAnswersByQuestionId), new { id = x.Id }),
                     // CommentsUrl = Url.Link("Comments", new { PostId = x.Comments }),
                 });
 
