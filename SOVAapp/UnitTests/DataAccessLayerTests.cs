@@ -43,7 +43,7 @@ namespace UnitTests
         public void Comments_GetCommentsByPostId()
         {
             var db = new RepositoryBody();
-            var Comments = db.GetCommentsByPostId(52002);
+            var Comments = db.GetCommentsByPostId(52002,20,20);
             Assert.Equal(9, Comments.Count());
             Assert.Equal("A man, a plan, a canal, Panama", Comments.First().Body);
             Assert.Equal(15, Comments.First().Score);
@@ -191,7 +191,7 @@ namespace UnitTests
         public void AnswerbyQuestionid_GetAllAnswersByQuestionId()
         {
             var db = new RepositoryBody();
-            var Answers = db.GetAllAnswersByQuestionId(1).Count;
+            var Answers = db.GetAllAnswersByQuestionId(1,20,20).Count;
             Assert.Equal(0, Answers);
 
    
