@@ -82,12 +82,15 @@ namespace DataService.DataAccessLayer
         }
 
         ////////////////Answers
-        public ICollection<Post> GetAnswers()
+        public ICollection<Post> GetAnswers(int page, int pageSize)
         {
             using (var db = new SOVAContext())
             {
                 var Answers = db.Posts.Where(t => t.PostTypeId == 2).ToList();
-                return Answers;
+                return Answers.OrderBy(x => x.Id)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList(); 
             }
 
 

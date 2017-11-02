@@ -9,6 +9,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using DataService.DataAccessLayer;
+using Microsoft.AspNetCore.Http;
+using WebService.Models;
+using AutoMapper;
+using DataService.DTO;
+
 
 namespace WebService
 {
@@ -25,7 +30,8 @@ namespace WebService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSingleton<RepositoryBody>();
+            services.AddSingleton<IRepository, RepositoryBody>();
+            services.AddSingleton<IMapper>(CreateMapper());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +43,16 @@ namespace WebService
             }
 
             app.UseMvc();
+        }
+        public IMapper CreateMapper()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<AnswerDTO, AnswerModel>()
+                    .ReverseMap();
+            });
+
+            return config.CreateMapper();
         }
     }
 }

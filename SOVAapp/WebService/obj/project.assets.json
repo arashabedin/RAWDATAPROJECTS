@@ -45,6 +45,15 @@
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
+      "LessJie.System.Web.Http/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/System.Web.Http.dll": {}
+        },
+        "runtime": {
+          "lib/System.Web.Http.dll": {}
+        }
+      },
       "Libuv/1.10.0": {
         "type": "package",
         "dependencies": {
@@ -4939,6 +4948,17 @@
         "automapper.extensions.microsoft.dependencyinjection.3.1.0.nupkg.sha512",
         "automapper.extensions.microsoft.dependencyinjection.nuspec",
         "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
+      ]
+    },
+    "LessJie.System.Web.Http/1.0.0": {
+      "sha512": "6OFq2UNxTuZ95fC1vTtdwyT68MmxG4VBVGYmEAR0+e7x3hBmZb9yWF9NMAhYbtHNWWNY2jZBEvOL5qNfv3WDJw==",
+      "type": "package",
+      "path": "lessjie.system.web.http/1.0.0",
+      "files": [
+        "lessjie.system.web.http.1.0.0.nupkg.sha512",
+        "lessjie.system.web.http.nuspec",
+        "lib/System.Web.Http.dll",
+        "lib/System.Web.Http.xml"
       ]
     },
     "Libuv/1.10.0": {
@@ -12865,6 +12885,7 @@
       "AutoMapper >= 6.1.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 3.1.0",
       "DataService >= 1.0.0",
+      "LessJie.System.Web.Http >= 1.0.0",
       "Microsoft.AspNetCore.All >= 2.0.0",
       "Microsoft.NETCore.App >= 2.0.0"
     ]
@@ -12921,6 +12942,10 @@
             "target": "Package",
             "version": "3.1.0"
           },
+          "LessJie.System.Web.Http": {
+            "target": "Package",
+            "version": "1.0.0"
+          },
           "Microsoft.NETCore.App": {
             "target": "Package",
             "version": "2.0.0",
@@ -12942,5 +12967,17 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'LessJie.System.Web.Http 1.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
+      "libraryId": "LessJie.System.Web.Http",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.0"
+      ]
+    }
+  ]
 }

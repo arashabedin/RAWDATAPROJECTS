@@ -23,7 +23,7 @@ namespace DataService.DataAccessLayer
         
 
         //Answer
-        ICollection<Post> GetAnswers();
+        ICollection<Post> GetAnswers(int page, int pageSize);
         AnswerDTO GetAnswerById(int id);
         ICollection<AnswerDTO> GetAllAnswersByUserId(int id);
         ICollection<AnswerDTO> GetAllAnswersByQuestionId(int id);

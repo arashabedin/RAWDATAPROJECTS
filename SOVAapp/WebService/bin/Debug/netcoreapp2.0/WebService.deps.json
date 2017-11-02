@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "b49a1bd3771b7deaba3d38f5b17940dbe4359cac"
+    "signature": "c7508f2fa98a2675a65170647668832f3683c23e"
   },
   "compilationOptions": {
     "defines": [
@@ -24,7 +24,9 @@
       "WebService/1.0.0": {
         "dependencies": {
           "AutoMapper": "6.1.1",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "3.1.0",
           "DataService": "1.0.0",
+          "LessJie.System.Web.Http": "1.0.0",
           "Microsoft.AspNetCore.All": "2.0.0",
           "Microsoft.NETCore.App": "2.0.0"
         },
@@ -61,6 +63,27 @@
         },
         "compile": {
           "lib/netstandard1.3/AutoMapper.dll": {}
+        }
+      },
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/3.1.0": {
+        "dependencies": {
+          "AutoMapper": "6.1.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0",
+          "Microsoft.Extensions.DependencyModel": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "compile": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "LessJie.System.Web.Http/1.0.0": {
+        "runtime": {
+          "lib/System.Web.Http.dll": {}
+        },
+        "compile": {
+          "lib/System.Web.Http.dll": {}
         }
       },
       "Libuv/1.10.0": {
@@ -4121,6 +4144,20 @@
       "sha512": "sha512-A+6PAblvzmkXPS20nFBQJvlNSW5oEdyfN5+cxT/Du35fTNyuP5pNDXT64KT/jBgxt7CPduOM0Y7oLnNe0E5IXg==",
       "path": "automapper/6.1.1",
       "hashPath": "automapper.6.1.1.nupkg.sha512"
+    },
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IWvYn9BMBrIL7bRfDBhkmEtYmTlbxjPDGfhgOEJFI3vvdctfn+wgtZNDu1NhZvc63dB+m7XIf1HxCm1SsNMizA==",
+      "path": "automapper.extensions.microsoft.dependencyinjection/3.1.0",
+      "hashPath": "automapper.extensions.microsoft.dependencyinjection.3.1.0.nupkg.sha512"
+    },
+    "LessJie.System.Web.Http/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6OFq2UNxTuZ95fC1vTtdwyT68MmxG4VBVGYmEAR0+e7x3hBmZb9yWF9NMAhYbtHNWWNY2jZBEvOL5qNfv3WDJw==",
+      "path": "lessjie.system.web.http/1.0.0",
+      "hashPath": "lessjie.system.web.http.1.0.0.nupkg.sha512"
     },
     "Libuv/1.10.0": {
       "type": "package",
