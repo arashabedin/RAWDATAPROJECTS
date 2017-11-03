@@ -24,7 +24,7 @@ namespace DataService
               }*/
             var rep = new RepositoryBody();
 
-            Console.WriteLine(rep.GetUserById(91).DisplayName);
+            Console.WriteLine(rep.GetCommentsByUserId(5021,0,3).First().Body );
             Console.WriteLine("done");
             Console.ReadLine();
         }

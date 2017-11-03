@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace WebService.Controllers
 {
-    [Route("api/questions")]
+    [Route("api")]
     public class CommentController : CustomeController
     { 
      private readonly IRepository _repository;
@@ -29,7 +29,7 @@ namespace WebService.Controllers
     }
 
         //Question Comments
-        [HttpGet("{Qid}/questioncomments", Name = nameof(GetCommentsByQuestionId))]
+        [HttpGet("questions/{Qid}/comments", Name = nameof(GetCommentsByQuestionId))]
         public IActionResult GetCommentsByQuestionId(int Qid, int page = 0, int pageSize = 2)
         {
             CheckPageSize(ref pageSize);
@@ -46,7 +46,7 @@ namespace WebService.Controllers
                  CreationDate = x.CreationDate,
                  Score = x.Score,
                  Body = x.Body,
-                 PostUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { id = x.post.Id }),
+                 AnswerUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { id = x.post.Id }),
                  //   UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = x.User }),
                   
                 });
@@ -67,7 +67,7 @@ namespace WebService.Controllers
 
 
         //Question each Comment
-        [HttpGet("{Qid}/questioncomments/{commentId}", Name = nameof(GetQuestionCommentById))]
+        [HttpGet("questions/{Qid}/comments/{commentId}", Name = nameof(GetQuestionCommentById))]
 
         public IActionResult GetQuestionCommentById(int commentId)
         {
@@ -85,14 +85,14 @@ namespace WebService.Controllers
             model.Body = Comment.Body;
             model.CreationDate = Comment.CreationDate;
             model.UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = Comment.User });
-            model.PostUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { id = Comment.post.Id });
+            model.AnswerUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { id = Comment.post.Id });
 
             return Ok(model);
         }
 
 
         //Answers Comments
-        [HttpGet("{Qid}/answers/{Aid}/answercomments", Name = nameof(GetCommentsByAnswerId))]
+        [HttpGet("questions/{Qid}/answers/{Aid}/comments", Name = nameof(GetCommentsByAnswerId))]
     
         public IActionResult GetCommentsByAnswerId(int Aid, int page = 0, int pageSize = 2)
         {
@@ -109,7 +109,7 @@ namespace WebService.Controllers
                     CreationDate = x.CreationDate,
                     Score = x.Score,
                     Body = x.Body,
-                    PostUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { id = x.post.Id }),
+                    AnswerUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { id = x.post.Id }),
                     UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = x.User }),
 
                 });
@@ -128,7 +128,7 @@ namespace WebService.Controllers
             return Ok(result);
         }
         //Answers each Comment
-        [HttpGet("{Qid}/answers/{Aid}/answercomments/{commentId}", Name = nameof(GetCommentById))]
+        [HttpGet("questions/{Qid}/answers/{Aid}/comments/{commentId}", Name = nameof(GetCommentById))]
 
     public IActionResult GetCommentById(int commentId)
     {
@@ -146,13 +146,52 @@ namespace WebService.Controllers
             model.Body = Comment.Body;
             model.CreationDate = Comment.CreationDate;
             model.UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = Comment.User });
-            model.PostUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { id = Comment.post.Id });
+            model.AnswerUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { id = Comment.post.Id });
 
             return Ok(model);
     }
 
+        //User's Comments
+        [HttpGet("users/{Uid}/comments", Name = nameof(GetCommentsByUserId))]
+
+        public IActionResult GetCommentsByUserId(int Uid, int page = 0, int pageSize = 2)
+        {
+            CheckPageSize(ref pageSize);
+
+            var total = _repository.CountCommentsByUserId(Uid);
+            var totalPages = GetTotalPages(pageSize, total);
+
+            var data = _repository.GetCommentsByUserId(Uid, page, pageSize)
+                .Select(x => new CommentModel
+                {
+                    Url = Url.Link(nameof(GetCommentById), new { Qid = _repository.GetPostById(x.PostId).ParentId, Aid = x.PostId, commentId = x.CommentId }),
+                    UserName = x.UserInfo.DisplayName,
+                    CreationDate = x.CreationDate,
+                    Score = x.Score,
+                    Body = x.Body,
+                    AnswerUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { Aid = x.PostId }) ,
+                    QuestionUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = x.PostId }),
+                    UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = x.User }),
+
+                });
+
+            var result = new
+            {
+                Total = total,
+                Pages = totalPages,
+                Page = page,
+                Prev = Link(nameof(GetCommentsByAnswerId), page, pageSize, -1, () => page > 0),
+                Next = Link(nameof(GetCommentsByAnswerId), page, pageSize, 1, () => page < totalPages - 1),
+                Url = Link(nameof(GetCommentsByAnswerId), page, pageSize),
+                Data = data
+            };
+
+            return Ok(result);
+        }
 
 
 
-}
+
+
+    }
 }

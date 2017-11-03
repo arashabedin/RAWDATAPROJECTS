@@ -35,7 +35,7 @@ namespace DataService.DataAccessLayer
         QuestionDTO GetQuestionById(int id);
         QuestionDTO GetQuestionByAnswerId(int id);
         ICollection<Post> GetQuestions(int page, int pageSize);
-        ICollection<QuestionDTO> GetAllQuestionsByUserID(int id);
+        ICollection<QuestionDTO> GetQuestionsByUserID(int id, int page, int pageSize);
         int CountQuestions();
         int CountQuestionsByUserId(int id);
 
@@ -43,8 +43,10 @@ namespace DataService.DataAccessLayer
         CommentDTO GetCommentById(int id);
         ICollection<CommentDTO> GetComments();
         ICollection<CommentDTO> GetCommentsByPostId(int postId, int page, int pageSize);
+        ICollection<CommentDTO> GetCommentsByUserId(int userId, int page, int pageSize);
         int CountComments();
         int CountCommentsByPostId(int id);
+        int CountCommentsByUserId(int id);
 
         //Tags
         TagsDTO GetTagByPostTagId(int id);

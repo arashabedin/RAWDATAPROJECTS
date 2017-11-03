@@ -23,6 +23,7 @@ namespace DataService.DTO
         {
             this.CommentId = CommentId;
             this.Body = CommentText;
+            this.PostId = PostId;
             this.Score = CommentScore;
             this.CreationDate = CommentCreateDate;
             this.User = OwnerUserId;

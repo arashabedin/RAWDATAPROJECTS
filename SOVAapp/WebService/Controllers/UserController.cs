@@ -15,9 +15,9 @@ using Microsoft.AspNetCore.Routing;
 namespace WebService.Controllers
 {
 
-    [Route("api/user/{id}")]
+    [Route("api/users")]
 
-    public class UserController: Controller
+    public class UserController: CustomeController
     {  
     
          private readonly IRepository _repository;
@@ -30,17 +30,56 @@ namespace WebService.Controllers
            this._mapper = mapper;
          
         }
-      
-       [HttpGet(Name = nameof(GetUserByUserId))]
-        public IActionResult GetUserByUserId( int Id)
+
+
+        [HttpGet(Name = nameof(GetUsers))]
+        public IActionResult GetUsers(int page = 0, int pageSize = 2)
+        {
+            CheckPageSize(ref pageSize);
+
+            var total = _repository.CountAnswers();
+            var totalPages = GetTotalPages(pageSize, total);
+
+            var data = _repository.GetUsers(page, pageSize)
+                .Select(x => new UserInfoModel
+                {
+                    Url = Url.Link(nameof(GetUsers), new { id = x.Id }),
+                    DisplayName = x.DisplayName,
+                    CreateDate = x.CreationDate,
+                    Location = x.Location,
+                    Age = x.Age,
+                    QuestionsUrl = Url.Link(nameof(QuestionController.GetQuestionsByUserId), new { Uid = x.Id}),
+                    AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByUserId), new { Uid = x.Id }),
+                    CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByUserId), new { Uid = x.Id }),
+                });
+
+            var result = new
+            {
+                Total = total,
+                Pages = totalPages,
+                Page = page,
+                Prev = Link(nameof(GetUsers), page, pageSize, -1, () => page > 0),
+                Next = Link(nameof(GetUsers), page, pageSize, 1, () => page < totalPages - 1),
+                Url = Link(nameof(GetUsers), page, pageSize),
+                Data = data
+            };
+
+            return Ok(result);
+        }
+
+
+        [HttpGet("{Uid}",Name = nameof(GetUserByUserId))]
+        public IActionResult GetUserByUserId( int Uid)
     {
             
-            var User = _repository.GetUserById(Id);
+            var User = _repository.GetUserById(Uid);
             if (User == null) return NotFound();
            
             var model = _mapper.Map<UserInfoModel>(User);
-            model.Url = Url.Link(nameof(GetUserByUserId), new { id = User.Id });
-            model.AnswersUrl = Url.Link(nameof(UserAnswersController.GetAnswersByUserId), new { id = User.Id });
+            model.Url = Url.Link(nameof(GetUserByUserId), new { Uid = User.Id });
+            model.QuestionsUrl = Url.Link(nameof(QuestionController.GetQuestionsByUserId), new { Uid = User.Id });
+            model.AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByUserId), new { Uid = User.Id });
+            model.CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByUserId), new { Uid = User.Id });
             return Ok(model);
         }
 

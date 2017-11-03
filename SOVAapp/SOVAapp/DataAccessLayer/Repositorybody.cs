@@ -127,7 +127,7 @@ namespace DataService.DataAccessLayer
                 foreach (var post in answersByUserId)
                 {
                     var answer = new AnswerDTO(post.Id, (int)post.ParentId, post.OwnerUserId, post.Body, post.Title, post.Score, post.CreationDate,
-    post.ClosedDate, null, null, GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id), null);
+    post.ClosedDate, null, null, GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
                     answersDTO.Add(answer);
                 }
                 return answersDTO.OrderBy(x => x.Id)
@@ -246,7 +246,7 @@ namespace DataService.DataAccessLayer
             }
         }
 
-        public ICollection<QuestionDTO> GetAllQuestionsByUserID(int id)
+        public ICollection<QuestionDTO> GetQuestionsByUserID(int id, int page, int pageSize)
         {
             using (var db = new SOVAContext())
             {
@@ -261,7 +261,11 @@ namespace DataService.DataAccessLayer
     post.ClosedDate, null, answerCollection, GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
                     questionDTO.Add(question);
                 }
-                return questionDTO;
+                return questionDTO.OrderBy(x => x.Id)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+                
 
             }
         }
@@ -323,6 +327,28 @@ namespace DataService.DataAccessLayer
             }
         }
 
+        public ICollection<CommentDTO> GetCommentsByUserId(int userId, int page, int pageSize)
+        {
+            using (var db = new SOVAContext())
+            {
+                var Comments = db.Comments.Where(p => p.OwnerUserId == userId).ToList();
+                List<CommentDTO> CommentsDTO = new List<CommentDTO>();
+
+                foreach (var item in Comments)
+                {
+
+                    var commentDTO = new CommentDTO(item.CommentId, item.PostId, item.CommentText, item.CommentScore, item.CommentCreateDate,
+                        item.OwnerUserId,null, GetUserByCommentId(item.CommentId));
+
+                    CommentsDTO.Add(commentDTO);
+                }
+                return CommentsDTO.OrderBy(x => x.CommentId)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+            }
+        }
+
 
         public ICollection<CommentDTO> GetComments()
         {
@@ -360,6 +386,16 @@ namespace DataService.DataAccessLayer
             }
 
         }
+
+        public int CountCommentsByUserId(int id)
+        {
+            using (var db = new SOVAContext())
+            {
+                return db.Comments.Where(i => i.OwnerUserId == id).Count();
+            }
+
+        }
+
 
         ////////////////Tags
 

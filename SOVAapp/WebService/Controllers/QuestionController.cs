@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace WebService.Controllers
 {
-    [Route("api/questions")]
+    [Route("api")]
     public class QuestionController : CustomeController
     { 
         private readonly IRepository _repository;
@@ -27,7 +27,7 @@ namespace WebService.Controllers
 
     }
 
-        [HttpGet(Name = nameof(GetQuestions))]
+        [HttpGet("questions", Name = nameof(GetQuestions))]
         public IActionResult GetQuestions(int page = 0, int pageSize = 2)
         {
             CheckPageSize(ref pageSize);
@@ -46,7 +46,7 @@ namespace WebService.Controllers
                     Body = x.Body,
                     UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = x.OwnerUserId }),
                     // AcceptedAnswerUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = x.OwnerUserId }),
-                    AnswersUrl = Url.Link(nameof(QuestionAnswersController.GetAnswersByQuestionId), new { id = x.Id }),
+                    AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByQuestionId), new { Qid = x.Id }),
                     CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = x.Id })
 
                 });
@@ -68,7 +68,7 @@ namespace WebService.Controllers
 
 
 
-        [HttpGet("{Qid}", Name = nameof(GetQuestionById))]
+        [HttpGet("questions/{Qid}", Name = nameof(GetQuestionById))]
     public IActionResult GetQuestionById(int Qid)
     {
 
@@ -80,13 +80,51 @@ namespace WebService.Controllers
         model.Url = Url.Link(nameof(GetQuestionById), new { Qid = Question.Id });
         model.UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = Question.OwneruserId });
         model.AcceptedAnswerUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { id = Question.AcceptedAnswerId });
-        model.AnswersUrl = Url.Link(nameof(QuestionAnswersController.GetAnswersByQuestionId), new { id = Question.Id });
+            model.AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByQuestionId), new { Qid = Question.Id });
         model.CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = Question.Id }); 
         return Ok(model);
     }
 
+        // Questions of A user
+        [HttpGet("users/{Uid}/questions", Name = nameof(GetQuestionsByUserId))]
+        public IActionResult GetQuestionsByUserId(int Uid, int page = 0, int pageSize = 2)
+        {
+            CheckPageSize(ref pageSize);
+
+            var total = _repository.CountQuestionsByUserId(Uid);
+            var totalPages = GetTotalPages(pageSize, total);
+
+            var data = _repository.GetQuestionsByUserID(Uid, page, pageSize)
+                .Select(x => new QuestionModel
+                {
+                    Url = Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = x.Id }),
+                    UserName = x.UserInfo.DisplayName,
+                    CreationDate = x.CreationDate,
+                    Score = x.Score,
+                    Title = x.Title,
+                    Body = x.Body,
+                    UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = x.OwneruserId }),
+                    AcceptedAnswerUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { id = x.AcceptedAnswerId }),
+                    AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByQuestionId), new { Qid = x.Id }),
+                    CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = x.Id })
+
+                });
+
+            var result = new
+            {
+                Total = total,
+                Pages = totalPages,
+                Page = page,
+                Prev = Link(nameof(GetQuestions), page, pageSize, -1, () => page > 0),
+                Next = Link(nameof(GetQuestions), page, pageSize, 1, () => page < totalPages - 1),
+                Url = Link(nameof(GetQuestions), page, pageSize),
+                Data = data
+            };
+
+            return Ok(result);
+        }
 
 
 
-}
+    }
 }
