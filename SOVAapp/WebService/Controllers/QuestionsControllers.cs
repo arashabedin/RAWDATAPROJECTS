@@ -44,7 +44,7 @@ namespace WebService.Controllers
                     UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = x.OwnerUserId }),
                     // AcceptedAnswerUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = x.OwnerUserId }),
                       AnswersUrl = Url.Link(nameof(QuestionAnswersController.GetAnswersByQuestionId), new { id = x.Id }),
-                    CommentsUrl = Url.Link(nameof(QuestionCommentsController.GetCommentsByQuestionId), new { id = x.Id })
+                    CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = x.Id })
 
         });
 

@@ -40,7 +40,7 @@ namespace WebService.Controllers
         model.UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = Question.OwneruserId });
         model.AcceptedAnswerUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { id = Question.AcceptedAnswerId });
         model.AnswersUrl = Url.Link(nameof(QuestionAnswersController.GetAnswersByQuestionId), new { id = Question.Id });
-            model.CommentsUrl = Url.Link(nameof(QuestionCommentsController.GetCommentsByQuestionId), new { id = Question.Id }); 
+            model.CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = Question.Id }); 
         return Ok(model);
     }
 

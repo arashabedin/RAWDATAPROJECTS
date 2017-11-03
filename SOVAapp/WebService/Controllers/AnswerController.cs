@@ -41,7 +41,7 @@ namespace WebService.Controllers
             model.Url = Url.Link(nameof(GetAnswerById), new { id = Answer.Id });
             model.UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = Answer.OwneruserId });
             model.QuestionUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { id = Answer.ParentId });
-            model.CommentsUrl = Url.Link(nameof(QAnswerCommentsController.GetCommentsByAnswerId), new { id = Answer.Id});
+         //   model.CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByAnswerId), new { Qid ,id = Answer.Id});
             return Ok(model);
         }
 
