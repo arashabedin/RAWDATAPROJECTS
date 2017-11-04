@@ -45,6 +45,27 @@
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
+      "Castle.Core/4.2.1": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "System.Collections.Specialized": "4.3.0",
+          "System.ComponentModel": "4.3.0",
+          "System.ComponentModel.TypeConverter": "4.3.0",
+          "System.Diagnostics.TraceSource": "4.3.0",
+          "System.Dynamic.Runtime": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Emit": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Xml.XmlDocument": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/Castle.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Castle.Core.dll": {}
+        }
+      },
       "Hyprlinkr/2.0.1": {
         "type": "package",
         "dependencies": {
@@ -2891,6 +2912,21 @@
           }
         }
       },
+      "Moq/4.7.142": {
+        "type": "package",
+        "dependencies": {
+          "Castle.Core": "4.2.1",
+          "NETStandard.Library": "1.6.1",
+          "System.Linq.Queryable": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/Moq.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Moq.dll": {}
+        }
+      },
       "MySqlConnector/0.29.2": {
         "type": "package",
         "dependencies": {
@@ -3841,6 +3877,33 @@
         },
         "compile": {
           "ref/netstandard1.0/System.Diagnostics.Tools.dll": {}
+        }
+      },
+      "System.Diagnostics.TraceSource/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "runtime.native.System": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Diagnostics.TraceSource.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netstandard1.3/System.Diagnostics.TraceSource.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/netstandard1.3/System.Diagnostics.TraceSource.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
         }
       },
       "System.Diagnostics.Tracing/4.3.0": {
@@ -5229,6 +5292,7 @@
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
           "Microsoft.NETCore.App": "2.0.0",
+          "Moq": "4.7.142",
           "Pomelo.EntityFrameworkCore.MySql": "2.0.0.1"
         },
         "compile": {
@@ -5264,6 +5328,27 @@
         "automapper.extensions.microsoft.dependencyinjection.3.1.0.nupkg.sha512",
         "automapper.extensions.microsoft.dependencyinjection.nuspec",
         "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
+      ]
+    },
+    "Castle.Core/4.2.1": {
+      "sha512": "XSNA0Gc1Zu33L+8+/3Tqt+aFu8QWS8UenVHZ7RenIP5wJfhoLrA4PnNscpxReeo5aBq8PDoGnV8rNaOzIOUo/w==",
+      "type": "package",
+      "path": "castle.core/4.2.1",
+      "files": [
+        "ASL - Apache Software Foundation License.txt",
+        "CHANGELOG.md",
+        "LICENSE",
+        "castle.core.4.2.1.nupkg.sha512",
+        "castle.core.nuspec",
+        "lib/net35/Castle.Core.dll",
+        "lib/net35/Castle.Core.xml",
+        "lib/net40/Castle.Core.dll",
+        "lib/net40/Castle.Core.xml",
+        "lib/net45/Castle.Core.dll",
+        "lib/net45/Castle.Core.xml",
+        "lib/netstandard1.3/Castle.Core.dll",
+        "lib/netstandard1.3/Castle.Core.xml",
+        "readme.txt"
       ]
     },
     "Hyprlinkr/2.0.1": {
@@ -8107,6 +8192,21 @@
         "version.txt"
       ]
     },
+    "Moq/4.7.142": {
+      "sha512": "LeQTESlgZJMYWpyLX/jQLkIx2Uf9CLTu9WfO2o/W0gl+qduhTRDqviVGPlP36RHfCwhNMDf42WSNhIFWbyj8aQ==",
+      "type": "package",
+      "path": "moq/4.7.142",
+      "files": [
+        "lib/net45/Moq.dll",
+        "lib/net45/Moq.pdb",
+        "lib/net45/Moq.xml",
+        "lib/netstandard1.3/Moq.dll",
+        "lib/netstandard1.3/Moq.pdb",
+        "lib/netstandard1.3/Moq.xml",
+        "moq.4.7.142.nupkg.sha512",
+        "moq.nuspec"
+      ]
+    },
     "MySqlConnector/0.29.2": {
       "sha512": "pkahXELIVPq7qdXNUs4KhxUqU2xk8S2V/+7/+NdqG6AnSHonbGn3z5JC5O4ppW7oPTdJenyjj70s8xpKpkDCig==",
       "type": "package",
@@ -9832,6 +9932,45 @@
         "ref/xamarinwatchos10/_._",
         "system.diagnostics.tools.4.3.0.nupkg.sha512",
         "system.diagnostics.tools.nuspec"
+      ]
+    },
+    "System.Diagnostics.TraceSource/4.3.0": {
+      "sha512": "VnYp1NxGx8Ww731y2LJ1vpfb/DKVNKEZ8Jsh5SgQTZREL/YpWRArgh9pI8CDLmgHspZmLL697CaLvH85qQpRiw==",
+      "type": "package",
+      "path": "system.diagnostics.tracesource/4.3.0",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.Diagnostics.TraceSource.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/System.Diagnostics.TraceSource.dll",
+        "ref/netstandard1.3/System.Diagnostics.TraceSource.dll",
+        "ref/netstandard1.3/System.Diagnostics.TraceSource.xml",
+        "ref/netstandard1.3/de/System.Diagnostics.TraceSource.xml",
+        "ref/netstandard1.3/es/System.Diagnostics.TraceSource.xml",
+        "ref/netstandard1.3/fr/System.Diagnostics.TraceSource.xml",
+        "ref/netstandard1.3/it/System.Diagnostics.TraceSource.xml",
+        "ref/netstandard1.3/ja/System.Diagnostics.TraceSource.xml",
+        "ref/netstandard1.3/ko/System.Diagnostics.TraceSource.xml",
+        "ref/netstandard1.3/ru/System.Diagnostics.TraceSource.xml",
+        "ref/netstandard1.3/zh-hans/System.Diagnostics.TraceSource.xml",
+        "ref/netstandard1.3/zh-hant/System.Diagnostics.TraceSource.xml",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "runtimes/unix/lib/netstandard1.3/System.Diagnostics.TraceSource.dll",
+        "runtimes/win/lib/net46/System.Diagnostics.TraceSource.dll",
+        "runtimes/win/lib/netstandard1.3/System.Diagnostics.TraceSource.dll",
+        "system.diagnostics.tracesource.4.3.0.nupkg.sha512",
+        "system.diagnostics.tracesource.nuspec"
       ]
     },
     "System.Diagnostics.Tracing/4.3.0": {
@@ -13539,11 +13678,12 @@
       "LessJie.System.Web.Http >= 1.0.0",
       "Microsoft.AspNetCore.All >= 2.0.0",
       "Microsoft.NETCore.App >= 2.0.0",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.0.0"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.0.0",
+      "Moq >= 4.7.142"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\aabedin\\.nuget\\packages\\": {},
+    "C:\\Users\\Ricky\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -13552,17 +13692,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\WebService\\WebService.csproj",
+      "projectUniqueName": "C:\\Users\\Ricky\\source\\repos\\RAWDATAPROJECTS\\SOVAapp\\WebService\\WebService.csproj",
       "projectName": "WebService",
-      "projectPath": "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\WebService\\WebService.csproj",
-      "packagesPath": "C:\\Users\\aabedin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\WebService\\obj\\",
+      "projectPath": "C:\\Users\\Ricky\\source\\repos\\RAWDATAPROJECTS\\SOVAapp\\WebService\\WebService.csproj",
+      "packagesPath": "C:\\Users\\Ricky\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ricky\\source\\repos\\RAWDATAPROJECTS\\SOVAapp\\WebService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\aabedin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ricky\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -13575,8 +13715,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\SOVAapp\\DataService.csproj": {
-              "projectPath": "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\SOVAapp\\DataService.csproj"
+            "C:\\Users\\Ricky\\source\\repos\\RAWDATAPROJECTS\\SOVAapp\\SOVAapp\\DataService.csproj": {
+              "projectPath": "C:\\Users\\Ricky\\source\\repos\\RAWDATAPROJECTS\\SOVAapp\\SOVAapp\\DataService.csproj"
             }
           }
         }
@@ -13605,6 +13745,10 @@
           "LessJie.System.Web.Http": {
             "target": "Package",
             "version": "1.0.0"
+          },
+          "Moq": {
+            "target": "Package",
+            "version": "4.7.142"
           },
           "Microsoft.NETCore.App": {
             "target": "Package",
