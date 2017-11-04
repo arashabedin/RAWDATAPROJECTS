@@ -631,9 +631,41 @@ namespace DataService.DataAccessLayer
 
         ////////////////SearchHistory
 
-        public bool AddSearchHistory(string SearchText)
+        public void AddSearchHistory(string SearchText)
         {
-            throw new NotImplementedException();
+            using (var db = new SOVAContext())
+            {
+
+                var conn = (MySqlConnection)db.Database.GetDbConnection();
+                conn.Open();
+                var cmd = new MySqlCommand
+                {
+                    Connection = conn
+                };
+
+                cmd.Parameters.Add("@1", DbType.String);
+                cmd.Parameters["@1"].Value = SearchText;
+                cmd.CommandText = "call updateSearchHistory(@1)";
+                var executer = cmd.ExecuteNonQuery();
+
+            }
+        }
+
+        public bool RemoveSearchHistory(int id)
+        {
+            using (var db = new SOVAContext())
+            {
+                var searchedItem = db.SearchHistory.Where(i => i.Id == id).FirstOrDefault();
+                if (searchedItem != null)
+                {
+                    db.SearchHistory.Remove(searchedItem);
+                    db.SaveChanges();
+                    return true;
+                }
+
+                return false;
+            }
+          
         }
 
 
@@ -670,7 +702,12 @@ namespace DataService.DataAccessLayer
 
         public int GetNumberOfSearches()
         {
-            throw new NotImplementedException();
+            using (var db = new SOVAContext())
+            {
+                var number = db.SearchHistory.Count();
+                return number;
+
+            }
         }
 
 
@@ -716,7 +753,7 @@ namespace DataService.DataAccessLayer
 
         ////////////////UserCustomeField
 
-        public bool AddUserCustomeField(int postLimit , string tags)
+        public void AddUserCustomeField(int postLimit , string tags)
         {
             using (var db = new SOVAContext())
             {
@@ -734,7 +771,7 @@ namespace DataService.DataAccessLayer
                 cmd.Parameters["@2"].Value = tags;
                 cmd.CommandText = "call addUserCustomeField(@1,@2)";
                 var reader = cmd.ExecuteNonQuery();
-                return true;
+                
 
             }
         }

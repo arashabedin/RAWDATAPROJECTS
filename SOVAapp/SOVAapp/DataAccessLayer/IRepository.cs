@@ -81,7 +81,8 @@ namespace DataService.DataAccessLayer
         int CountAnnotations();
 
         //SearchHistory
-        Boolean AddSearchHistory(String SearchText);
+        void AddSearchHistory(String SearchText);
+        bool RemoveSearchHistory(int id);
         SearchHistoryDTO GetSearchHistoryById(int id);
         ICollection<SearchHistoryDTO> GetSearchHistories();
         int GetNumberOfSearches();
@@ -93,7 +94,7 @@ namespace DataService.DataAccessLayer
         int CountFavoriteTags();
 
         //UserCustomeField
-        Boolean AddUserCustomeField(int postLimit, string tags);
+        void AddUserCustomeField(int postLimit, string tags);
         Boolean DeleteUserCustomeField(int id);
         UserCustomeFieldDTO GetUserCustomeFieldById(int id);
         ICollection<UserCustomeFieldDTO> GetUserCustomeFields();

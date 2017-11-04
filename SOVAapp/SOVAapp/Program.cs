@@ -24,7 +24,8 @@ namespace DataService
               }*/
             var rep = new RepositoryBody();
 
-            Console.WriteLine(rep.AddUserCustomeField(6, "Visual Basic,3D Max"));
+           // rep.AddSearchHistory("whats you name");
+            Console.WriteLine(rep.RemoveSearchHistory(11));
             Console.WriteLine("done");
             Console.ReadLine();
         }
