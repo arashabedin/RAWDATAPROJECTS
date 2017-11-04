@@ -29,17 +29,30 @@ namespace WebService.Controllers
         {
             HomeModel model = new HomeModel()
             {
-                 QuestionsUrl = Url.Link(nameof(QuestionController.GetQuestions), new { }),
-                 UsersUrl = Url.Link(nameof(UserController.GetUsers), new { }),
+           
+                QuestionsUrl = Url.Link(nameof(QuestionController.GetQuestions), new { }),
+                UsersUrl = Url.Link(nameof(UserController.GetUsers), new { }),
+                RecommendedQuestions = _Irepository.ShowCustomePosts().Select(i => new CustomPostModel
+                {
+                    Title = i.Title,
+                    Body = i.Body,
+                    QuestionUrl = Url.Link(nameof(QuestionController.GetQuestionById), new {Qid = i.PostId }),
+                    UsernUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = _Irepository.GetUserByPostId(i.PostId).Id })
+
+                }).ToList()
                 //MarkingsUrl =
                 //SearchHistoryUrl =
                 //CustomeFieldUrl = 
-                //RecommendedQuestions =
+
             };
+        
+      
+            
             
             return Ok(model);
         }
+    
 
 
-    }
+}
 }

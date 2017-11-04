@@ -22,7 +22,7 @@ namespace DataService.DomainModel
         public ICollection<Comment> Comments;
         public virtual PostType PostType { get; set; }
        
-        public ICollection<PostTags> PostTags;
+        public ICollection<PostTag> PostTags;
         public virtual UserInfo UserInfo { get; set; }
 
 

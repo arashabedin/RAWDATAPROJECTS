@@ -205,7 +205,7 @@ namespace DataService.DataAccessLayer
                 var post = db.Posts.Where(i => i.Id == id).FirstOrDefault();
                 if (post.PostTypeId == 1)
                 {
-                    return new QuestionDTO(post.Id, (int)post.AcceptedAnswerId, post.OwnerUserId, post.Body, post.Title, post.Score, post.CreationDate,
+                    return new QuestionDTO(post.Id, post.AcceptedAnswerId, post.OwnerUserId, post.Body, post.Title, post.Score, post.CreationDate,
                       post.ClosedDate, null, null, null, GetUserByPostId(post.Id));
                 }
                 return null;

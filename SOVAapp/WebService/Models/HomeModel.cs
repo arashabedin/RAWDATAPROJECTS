@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using DataService.DTO;
 namespace WebService.Models
 {
     public class HomeModel
@@ -12,7 +12,7 @@ namespace WebService.Models
         public string MarkingsUrl { get; set; }
         public string SearchHistoryUrl { get; set; }
         public string CustomeFieldUrl { get; set; }
-        public List<QuestionModel> RecommendedQuestions;
+        public List<CustomPostModel> RecommendedQuestions;
 
     }
 }

@@ -13,7 +13,7 @@ namespace DataService
         public DbSet<UserInfo> UserInfo { get; set; }
         public DbSet<PostType> PostTypes { get; set; }
         public DbSet<Tags> Tags { get; set; }
-        public DbSet<PostTags> PostTags { get; set; }
+        public DbSet<PostTag> PostTags { get; set; }
         public DbSet<SearchHistory> SearchHistory { get; set; }
         public DbSet<Annotations> Annotations { get; set; }
         public DbSet<FavoriteTags> FavoriteTags { get; set; }
@@ -22,8 +22,8 @@ namespace DataService
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-         // optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=raw5;uid=raw5;pwd=raw5");
-         optionsBuilder.UseMySql("server=localhost;database=raw5;uid=root;");
+            // optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=raw5;uid=raw5;pwd=raw5");
+            optionsBuilder.UseMySql("server=localhost;database=raw5;uid=root;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -68,9 +68,10 @@ namespace DataService
             modelBuilder.Entity<Tags>().Property(x => x.Tag).HasColumnName("tag");
 
             // Table PostTags
-            modelBuilder.Entity<PostTags>().ToTable("posttags_id");
-            modelBuilder.Entity<PostTags>().Property(x => x.PostId).HasColumnName("PostId");
-            modelBuilder.Entity<PostTags>().Property(x => x.TagId).HasColumnName("TagId");
+            modelBuilder.Entity<PostTag>().ToTable("posttags");
+            modelBuilder.Entity<PostTag>().Property(x => x.PostTagId).HasColumnName("posttag_id");
+            modelBuilder.Entity<PostTag>().Property(x => x.PostId).HasColumnName("postid");
+            modelBuilder.Entity<PostTag>().Property(x => x.TagId).HasColumnName("tagid");
 
             // Table SearchHistory
             modelBuilder.Entity<SearchHistory>().ToTable("searchhistory");
