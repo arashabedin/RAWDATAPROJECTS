@@ -10,12 +10,14 @@ namespace DataService.DTO
         public int PostId { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
+        public int UserId { get; set; }
         public int PostTypeId { get; set; }
-        public CustomePostsDTO(int PostId, string Title, string Body, int PostTypeId)
+        public CustomePostsDTO(int PostId, string Title, string Body, int UserId , int PostTypeId)
         {
             this.PostId = PostId;
             this.Title = Title;
             this.Body = Body;
+            this.UserId = UserId;
             this.PostTypeId = PostTypeId;
 
         }

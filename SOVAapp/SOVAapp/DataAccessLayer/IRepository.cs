@@ -103,6 +103,9 @@ namespace DataService.DataAccessLayer
         ICollection<UserCustomeFieldDTO> GetUserCustomeFields();
         int CountUserCustomeFields();
 
+        //RecommendedPosts
+        ICollection<CustomePostsDTO> ShowCustomePosts();
+     
       
 
 

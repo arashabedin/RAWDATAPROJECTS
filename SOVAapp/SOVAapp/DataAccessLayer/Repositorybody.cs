@@ -12,7 +12,7 @@ using System.Data;
 namespace DataService.DataAccessLayer
 {
     public class RepositoryBody : IRepository
-                 
+
     {
 
         //////////////// Posts
@@ -55,7 +55,7 @@ namespace DataService.DataAccessLayer
                 {
 
                     var newPost = new PostDTO(post.Id, post.OwnerUserId, post.Body, post.PostTypeId, post.ParentId, post.Title, post.Score, post.CreationDate,
-                        post.ClosedDate,null, GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
+                        post.ClosedDate, null, GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
                     PostDTO.Add(newPost);
                 }
                 return PostDTO;
@@ -92,7 +92,7 @@ namespace DataService.DataAccessLayer
                 return Answers.OrderBy(x => x.Id)
                     .Skip(page * pageSize)
                     .Take(pageSize)
-                    .ToList(); 
+                    .ToList();
             }
 
 
@@ -208,8 +208,8 @@ namespace DataService.DataAccessLayer
                     return new QuestionDTO(post.Id, (int)post.AcceptedAnswerId, post.OwnerUserId, post.Body, post.Title, post.Score, post.CreationDate,
                       post.ClosedDate, null, null, null, GetUserByPostId(post.Id));
                 }
-                    return null;
-                
+                return null;
+
             }
 
         }
@@ -235,15 +235,15 @@ namespace DataService.DataAccessLayer
             using (var db = new SOVAContext())
             {
                 var questions = db.Posts.Where(i => i.PostTypeId == 1).ToList();
-                foreach(var item in questions)
+                foreach (var item in questions)
                 {
                     item.UserInfo = db.UserInfo.Where(i => i.OwnerUserId == item.OwnerUserId).FirstOrDefault();
                 }
                 return questions.OrderBy(x => x.Id)
                     .Skip(page * pageSize)
                     .Take(pageSize)
-                    .ToList(); 
-            
+                    .ToList();
+
 
             }
         }
@@ -267,7 +267,7 @@ namespace DataService.DataAccessLayer
                     .Skip(page * pageSize)
                     .Take(pageSize)
                     .ToList();
-                
+
 
             }
         }
@@ -340,7 +340,7 @@ namespace DataService.DataAccessLayer
                 {
 
                     var commentDTO = new CommentDTO(item.CommentId, item.PostId, item.CommentText, item.CommentScore, item.CommentCreateDate,
-                        item.OwnerUserId,null, GetUserByCommentId(item.CommentId));
+                        item.OwnerUserId, null, GetUserByCommentId(item.CommentId));
 
                     CommentsDTO.Add(commentDTO);
                 }
@@ -490,9 +490,9 @@ namespace DataService.DataAccessLayer
             {
                 var users = db.UserInfo.ToList();
                 List<UserInfoDTO> UsersDTO = new List<UserInfoDTO>();
-                foreach( var i in users)
+                foreach (var i in users)
                 {
-                    var newUser = new UserInfoDTO(i.OwnerUserId, i.OwnerUserAge,i.OwnerUserDisplayName,i.CreationDate,i.OwnerUserLocation);
+                    var newUser = new UserInfoDTO(i.OwnerUserId, i.OwnerUserAge, i.OwnerUserDisplayName, i.CreationDate, i.OwnerUserLocation);
                     UsersDTO.Add(newUser);
                 }
                 return UsersDTO.OrderBy(x => x.Id)
@@ -512,7 +512,7 @@ namespace DataService.DataAccessLayer
                 }
                 return null;
             }
-            }
+        }
         public UserInfoDTO GetUserByPostId(int id)
         {
             using (var db2 = new SOVAContext())
@@ -525,7 +525,7 @@ namespace DataService.DataAccessLayer
                     return userDTO;
                 }
                 return null;
-           
+
             }
         }
 
@@ -611,7 +611,7 @@ namespace DataService.DataAccessLayer
         {
 
             using (var db = new SOVAContext()) {
-            Annotations a = new Annotations();
+                Annotations a = new Annotations();
                 a.MarkedPostId = primaryKey;
                 a.Annotation = text;
                 db.Add(a);
@@ -699,7 +699,7 @@ namespace DataService.DataAccessLayer
         }
         ////////////////Searching
 
-       public ICollection<CustomePostsDTO> DoSearch(string searchText)
+        public ICollection<CustomePostsDTO> DoSearch(string searchText)
         {
             using (var db = new SOVAContext())
             {
@@ -707,7 +707,7 @@ namespace DataService.DataAccessLayer
                 List<CustomePostsDTO> ResultsDTO = new List<CustomePostsDTO>();
                 foreach (var FoundItem in result)
                 {
-                    var newItemDTO = new CustomePostsDTO(FoundItem.Id, FoundItem.Title, FoundItem.Body,FoundItem.PostTypeId);
+                    var newItemDTO = new CustomePostsDTO(FoundItem.Id, FoundItem.Title, FoundItem.Body, FoundItem.OwnerUserId, FoundItem.PostTypeId);
                     ResultsDTO.Add(newItemDTO);
 
                 }
@@ -752,7 +752,7 @@ namespace DataService.DataAccessLayer
 
                 return false;
             }
-          
+
         }
 
 
@@ -840,11 +840,11 @@ namespace DataService.DataAccessLayer
 
         ////////////////UserCustomeField
 
-        public void AddUserCustomeField(int postLimit , string tags)
+        public void AddUserCustomeField(int postLimit, string tags)
         {
             using (var db = new SOVAContext())
             {
-               
+
                 var conn = (MySqlConnection)db.Database.GetDbConnection();
                 conn.Open();
                 var cmd = new MySqlCommand
@@ -858,7 +858,7 @@ namespace DataService.DataAccessLayer
                 cmd.Parameters["@2"].Value = tags;
                 cmd.CommandText = "call addUserCustomeField(@1,@2)";
                 var reader = cmd.ExecuteNonQuery();
-                
+
 
             }
         }
@@ -923,7 +923,23 @@ namespace DataService.DataAccessLayer
             }
         }
 
+        //RecommendedPosts
+        public ICollection<CustomePostsDTO> ShowCustomePosts(){
 
+            using (var db = new SOVAContext())
+            {
+                var result = db.Posts.FromSql("call selectUserCustomePosts()");
+                List<CustomePostsDTO> ResultsDTO = new List<CustomePostsDTO>();
+                foreach (var FoundItem in result)
+                {
+                    var newItemDTO = new CustomePostsDTO(FoundItem.Id, FoundItem.Title, FoundItem.Body,FoundItem.OwnerUserId, FoundItem.PostTypeId);
+                    ResultsDTO.Add(newItemDTO);
+
+                }
+                return ResultsDTO;
+
+            }
+        }
 
     }
 }

@@ -24,8 +24,8 @@ namespace DataService
               }*/
             var rep = new RepositoryBody();
 
-           // rep.AddSearchHistory("whats you name");
-            Console.WriteLine(rep.DeleteAnnotation(19));
+           // rep.AddSearchHistory("whats your name");
+            Console.WriteLine(rep.ShowCustomePosts().First().Body);
             Console.WriteLine("done");
             Console.ReadLine();
         }

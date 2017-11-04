@@ -22,8 +22,8 @@ namespace DataService
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            //   optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=raw5;uid=raw5;pwd=raw5");
-            optionsBuilder.UseMySql("server=localhost;database=raw5;uid=root;");
+         // optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=raw5;uid=raw5;pwd=raw5");
+         optionsBuilder.UseMySql("server=localhost;database=raw5;uid=root;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -68,7 +68,7 @@ namespace DataService
             modelBuilder.Entity<Tags>().Property(x => x.Tag).HasColumnName("tag");
 
             // Table PostTags
-            modelBuilder.Entity<PostTags>().ToTable("posttags");
+            modelBuilder.Entity<PostTags>().ToTable("posttags_id");
             modelBuilder.Entity<PostTags>().Property(x => x.PostId).HasColumnName("PostId");
             modelBuilder.Entity<PostTags>().Property(x => x.TagId).HasColumnName("TagId");
 
@@ -101,7 +101,7 @@ namespace DataService
 
             // Table FavoriteTags
             modelBuilder.Entity<FavoriteTags>().ToTable("favoritetags");
-            modelBuilder.Entity<FavoriteTags>().Property(x => x.Id).HasColumnName("id");
+            modelBuilder.Entity<FavoriteTags>().Property(x => x.Id).HasColumnName("favourite_id");
             modelBuilder.Entity<FavoriteTags>().Property(x => x.UserCustomeFieldId).HasColumnName("user_customeField_id");
             modelBuilder.Entity<FavoriteTags>().Property(x => x.TagId).HasColumnName("tagid");
             modelBuilder.Entity<FavoriteTags>().HasKey(x => x.Id);
