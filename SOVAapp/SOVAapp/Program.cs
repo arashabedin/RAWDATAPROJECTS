@@ -24,7 +24,7 @@ namespace DataService
               }*/
             var rep = new RepositoryBody();
 
-            Console.WriteLine(rep.GetCommentsByUserId(5021,0,3).First().Body );
+            Console.WriteLine(rep.AddUserCustomeField(6, "Visual Basic,3D Max"));
             Console.WriteLine("done");
             Console.ReadLine();
         }

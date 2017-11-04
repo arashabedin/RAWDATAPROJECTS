@@ -14,7 +14,5 @@ namespace WebService.Models
         public string CustomeFieldUrl { get; set; }
         public List<QuestionModel> RecommendedQuestions;
 
-
-
     }
 }

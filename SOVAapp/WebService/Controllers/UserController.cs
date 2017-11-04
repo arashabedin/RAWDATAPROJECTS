@@ -33,7 +33,7 @@ namespace WebService.Controllers
 
 
         [HttpGet(Name = nameof(GetUsers))]
-        public IActionResult GetUsers(int page = 0, int pageSize = 2)
+        public IActionResult GetUsers(int page = 0, int pageSize = 5)
         {
             CheckPageSize(ref pageSize);
 

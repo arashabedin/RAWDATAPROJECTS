@@ -6,6 +6,8 @@ using DataService.DTO;
 using DataService;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace DataService.DataAccessLayer
 {
@@ -714,14 +716,26 @@ namespace DataService.DataAccessLayer
 
         ////////////////UserCustomeField
 
-        public bool AddUserCustomeField()
+        public bool AddUserCustomeField(int postLimit , string tags)
         {
             using (var db = new SOVAContext())
             {
-                var result = db.UserCustomeField.FromSql("call addUserCustomeField({0},{1})", 5, "excel,JSON");
+               
+                var conn = (MySqlConnection)db.Database.GetDbConnection();
+                conn.Open();
+                var cmd = new MySqlCommand
+                {
+                    Connection = conn
+                };
 
-                db.SaveChanges();
+                cmd.Parameters.Add("@1", DbType.Int32);
+                cmd.Parameters.Add("@2", DbType.String);
+                cmd.Parameters["@1"].Value = postLimit;
+                cmd.Parameters["@2"].Value = tags;
+                cmd.CommandText = "call addUserCustomeField(@1,@2)";
+                var reader = cmd.ExecuteNonQuery();
                 return true;
+
             }
         }
 

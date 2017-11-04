@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DataService.DataAccessLayer;
 using DataService.DTO;
 using System.Web.Http.Routing;
 using WebService.Models;
+using DataService.DataAccessLayer;
 using AutoMapper;
 using Microsoft.AspNetCore.Routing;
 
@@ -28,7 +28,7 @@ namespace WebService.Controllers
     }
         //Get All Questions
         [HttpGet("questions", Name = nameof(GetQuestions))]
-        public IActionResult GetQuestions(int page = 0, int pageSize = 2)
+        public IActionResult GetQuestions(int page = 0, int pageSize = 5)
         {
             CheckPageSize(ref pageSize);
 
@@ -89,7 +89,7 @@ namespace WebService.Controllers
 
         // Questions of A user
         [HttpGet("users/{Uid}/questions", Name = nameof(GetQuestionsByUserId))]
-        public IActionResult GetQuestionsByUserId(int Uid, int page = 0, int pageSize = 2)
+        public IActionResult GetQuestionsByUserId(int Uid, int page = 0, int pageSize = 5)
         {
             CheckPageSize(ref pageSize);
 

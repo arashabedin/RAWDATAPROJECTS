@@ -30,7 +30,7 @@ namespace WebService.Controllers
 
         //Question Comments
         [HttpGet("questions/{Qid}/comments", Name = nameof(GetCommentsByQuestionId))]
-        public IActionResult GetCommentsByQuestionId(int Qid, int page = 0, int pageSize = 2)
+        public IActionResult GetCommentsByQuestionId(int Qid, int page = 0, int pageSize = 5)
         {
             CheckPageSize(ref pageSize);
 
@@ -94,7 +94,7 @@ namespace WebService.Controllers
         //Answers Comments
         [HttpGet("questions/{Qid}/answers/{Aid}/comments", Name = nameof(GetCommentsByAnswerId))]
     
-        public IActionResult GetCommentsByAnswerId(int Aid, int page = 0, int pageSize = 2)
+        public IActionResult GetCommentsByAnswerId(int Aid, int page = 0, int pageSize = 5)
         {
             CheckPageSize(ref pageSize);
             

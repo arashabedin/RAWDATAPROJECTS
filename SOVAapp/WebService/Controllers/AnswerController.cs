@@ -29,7 +29,7 @@ namespace WebService.Controllers
 
         }
         [HttpGet("questions/{Qid}/answers", Name = nameof(GetAnswersByQuestionId))]
-        public IActionResult GetAnswersByQuestionId(int Qid, int page = 0, int pageSize = 2)
+        public IActionResult GetAnswersByQuestionId(int Qid, int page = 0, int pageSize = 5)
         {
             CheckPageSize(ref pageSize);
 
@@ -84,7 +84,7 @@ namespace WebService.Controllers
 
 
         [HttpGet("users/{Uid}/answers", Name = nameof(GetAnswersByUserId))]
-        public IActionResult GetAnswersByUserId(int Uid, int page = 0, int pageSize = 2)
+        public IActionResult GetAnswersByUserId(int Uid, int page = 0, int pageSize = 5)
         {
             CheckPageSize(ref pageSize);
 
