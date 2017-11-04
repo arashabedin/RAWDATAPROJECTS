@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SOVAapp\DataService.csproj" />
+    <ProjectReference Include="..\WebService\WebService.csproj" />
   </ItemGroup>
 
   <ItemGroup>

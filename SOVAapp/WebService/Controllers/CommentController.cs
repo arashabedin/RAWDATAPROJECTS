@@ -46,8 +46,8 @@ namespace WebService.Controllers
                  CreationDate = x.CreationDate,
                  Score = x.Score,
                  Body = x.Body,
-                 AnswerUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { id = x.post.Id }),
-                 //   UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = x.User }),
+                 PostUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { id = x.post.Id }),
+                 UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = x.User }),
                   
                 });
 
@@ -66,7 +66,7 @@ namespace WebService.Controllers
         }
 
 
-        //Question each Comment
+        //Question's each Comment
         [HttpGet("questions/{Qid}/comments/{commentId}", Name = nameof(GetQuestionCommentById))]
 
         public IActionResult GetQuestionCommentById(int commentId)
@@ -84,8 +84,8 @@ namespace WebService.Controllers
             model.Score = Comment.Score;
             model.Body = Comment.Body;
             model.CreationDate = Comment.CreationDate;
-            model.UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = Comment.User });
-            model.AnswerUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { id = Comment.post.Id });
+            model.UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = Comment.User });
+            model.PostUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { id = Comment.post.Id });
 
             return Ok(model);
         }
@@ -109,8 +109,8 @@ namespace WebService.Controllers
                     CreationDate = x.CreationDate,
                     Score = x.Score,
                     Body = x.Body,
-                    AnswerUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { id = x.post.Id }),
-                    UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = x.User }),
+                    PostUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { id = x.post.Id }),
+                    UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = x.User }),
 
                 });
             
@@ -145,8 +145,8 @@ namespace WebService.Controllers
             model.Score = Comment.Score;
             model.Body = Comment.Body;
             model.CreationDate = Comment.CreationDate;
-            model.UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = Comment.User });
-            model.AnswerUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { id = Comment.post.Id });
+            model.UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = Comment.User });
+            model.PostUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { id = Comment.post.Id });
 
             return Ok(model);
     }
@@ -169,9 +169,11 @@ namespace WebService.Controllers
                     CreationDate = x.CreationDate,
                     Score = x.Score,
                     Body = x.Body,
-                    AnswerUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { Aid = x.PostId }) ,
-                    QuestionUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = x.PostId }),
-                    UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = x.User }),
+                    // Checking whether the post is an answer or question to give it the correct link
+                    PostUrl = _repository.GetPostById(x.PostId).PostTypeId == 2?
+                     Url.Link(nameof(AnswerController.GetAnswerById), new {Qid = _repository.GetPostById(x.PostId).ParentId, Aid = x.PostId }):
+                     Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = x.PostId }),
+                    UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = x.User }),
 
                 });
 

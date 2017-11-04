@@ -26,7 +26,7 @@ namespace WebService.Controllers
         this._mapper = mapper;
 
     }
-
+        //Get All Questions
         [HttpGet("questions", Name = nameof(GetQuestions))]
         public IActionResult GetQuestions(int page = 0, int pageSize = 2)
         {
@@ -44,7 +44,7 @@ namespace WebService.Controllers
                     Score = x.Score,
                     Title = x.Title,
                     Body = x.Body,
-                    UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = x.OwnerUserId }),
+                    UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = x.OwnerUserId }),
                     // AcceptedAnswerUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = x.OwnerUserId }),
                     AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByQuestionId), new { Qid = x.Id }),
                     CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = x.Id })
@@ -66,7 +66,7 @@ namespace WebService.Controllers
         }
 
 
-
+        // Get Question by Id
 
         [HttpGet("questions/{Qid}", Name = nameof(GetQuestionById))]
     public IActionResult GetQuestionById(int Qid)
@@ -78,7 +78,7 @@ namespace WebService.Controllers
         var model = _mapper.Map<QuestionModel>(Question);
         model.UserName = Question.UserInfo.DisplayName;
         model.Url = Url.Link(nameof(GetQuestionById), new { Qid = Question.Id });
-        model.UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = Question.OwneruserId });
+        model.UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = Question.OwneruserId });
         model.AcceptedAnswerUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { id = Question.AcceptedAnswerId });
             model.AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByQuestionId), new { Qid = Question.Id });
         model.CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = Question.Id }); 

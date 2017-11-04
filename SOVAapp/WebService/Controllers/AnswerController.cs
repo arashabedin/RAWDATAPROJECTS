@@ -76,9 +76,9 @@ namespace WebService.Controllers
             var model = _mapper.Map<AnswerModel>(Answer);
             model.UserName = Answer.UserInfo.DisplayName;
             model.Url = Url.Link(nameof(GetAnswerById), new { Aid = Answer.Id });
-            model.UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = Answer.OwneruserId });
-            model.QuestionUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { id = Answer.ParentId });
-         //   model.CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByAnswerId), new { Qid ,id = Answer.Id});
+            model.UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = Answer.OwneruserId });
+            model.QuestionUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = Answer.ParentId });
+            model.CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByAnswerId), new { Qid = Answer.ParentId ,Aid = Answer.Id});
             return Ok(model);
         }
 

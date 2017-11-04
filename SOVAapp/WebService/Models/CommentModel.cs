@@ -13,8 +13,8 @@ namespace WebService.Models
         public string Body { get; set; }
         public DateTime CreationDate { get; set; }
         public string UserUrl { get; set; }
-        public string AnswerUrl { get; set; }
-        public string QuestionUrl { get; set; }
+        public string PostUrl { get; set; }
+  
 
 
     }
