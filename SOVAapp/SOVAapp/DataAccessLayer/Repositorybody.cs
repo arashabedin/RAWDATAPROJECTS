@@ -555,9 +555,49 @@ namespace DataService.DataAccessLayer
 
         public bool AddMarking(int postId)
         {
-            throw new NotImplementedException();
-        }
+            using (var db = new SOVAContext())
+            {
 
+                var conn = (MySqlConnection)db.Database.GetDbConnection();
+                conn.Open();
+                var cmd = new MySqlCommand
+                {
+                    Connection = conn
+                };
+
+                cmd.Parameters.Add("@1", DbType.Int32);
+                cmd.Parameters["@1"].Value = postId;
+                cmd.CommandText = "call updateMarking(@1)";
+                var executer = cmd.ExecuteNonQuery();
+                return true;
+
+
+            }
+
+        }
+        public bool AddMarkingWithAnnotation(int postId, string text)
+        {
+            using (var db = new SOVAContext())
+            {
+
+                var conn = (MySqlConnection)db.Database.GetDbConnection();
+                conn.Open();
+                var cmd = new MySqlCommand
+                {
+                    Connection = conn
+                };
+
+                cmd.Parameters.Add("@1", DbType.Int32);
+                cmd.Parameters["@1"].Value = postId;
+                cmd.CommandText = "call updateMarking(@1)";
+                var executer = cmd.ExecuteNonQuery();
+                AddAnnotation(postId, text);
+                return true;
+
+
+            }
+
+        }
         public bool RemoveMarking(int id)
         {
             throw new NotImplementedException();
@@ -567,20 +607,49 @@ namespace DataService.DataAccessLayer
         ////////////////Annotations
 
 
-        public bool AddAnnotation()
+        public Annotations AddAnnotation(int primaryKey, string text)
         {
-            throw new NotImplementedException();
+
+            using (var db = new SOVAContext()) {
+            Annotations a = new Annotations();
+                a.MarkedPostId = primaryKey;
+                a.Annotation = text;
+                db.Add(a);
+                db.SaveChanges();
+                return a;
+            }
+
         }
 
-        public bool EditAnnotation()
+        public bool EditAnnotation(int id, string EditedText)
         {
-            throw new NotImplementedException();
+            using (var db = new SOVAContext())
+            {
+                var annotation = db.Annotations.FirstOrDefault(x => x.MarkedPostId == id);
+                if (annotation != null)
+                {
+                    annotation.Annotation = EditedText;
+                    db.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
         }
 
 
         public bool DeleteAnnotation(int id)
         {
-            throw new NotImplementedException();
+            using (var db = new SOVAContext())
+            {
+                var annotation = db.Annotations.FirstOrDefault(x => x.MarkedPostId == id);
+                if (annotation != null)
+                {
+                    db.Annotations.Remove(annotation);
+                    db.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
         }
 
 

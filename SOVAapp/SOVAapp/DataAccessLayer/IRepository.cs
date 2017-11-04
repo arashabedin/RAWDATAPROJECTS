@@ -73,8 +73,8 @@ namespace DataService.DataAccessLayer
         Boolean RemoveMarking(int id);
 
         //Annotations
-        Boolean AddAnnotation();
-        Boolean EditAnnotation();
+        Annotations AddAnnotation(int primaryKey, string text);
+        Boolean EditAnnotation(int id, string EditedText);
         Boolean DeleteAnnotation(int id);
         AnnotationsDTO GetAnnotationById(int id);
         ICollection<AnnotationsDTO> GetAnnotations();

@@ -25,7 +25,7 @@ namespace DataService
             var rep = new RepositoryBody();
 
            // rep.AddSearchHistory("whats you name");
-            Console.WriteLine(rep.DoSearch("different between C# and java").First().Title);
+            Console.WriteLine(rep.DeleteAnnotation(19));
             Console.WriteLine("done");
             Console.ReadLine();
         }
