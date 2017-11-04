@@ -25,7 +25,7 @@ namespace DataService
             var rep = new RepositoryBody();
 
            // rep.AddSearchHistory("whats you name");
-            Console.WriteLine(rep.RemoveSearchHistory(11));
+            Console.WriteLine(rep.DeleteUserCustomeField(3));
             Console.WriteLine("done");
             Console.ReadLine();
         }

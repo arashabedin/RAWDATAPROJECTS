@@ -779,7 +779,24 @@ namespace DataService.DataAccessLayer
 
         public bool DeleteUserCustomeField(int id)
         {
-            throw new NotImplementedException();
+            using (var db = new SOVAContext())
+            {
+                var customeField = db.UserCustomeField.Where(i => i.Id == id).FirstOrDefault();
+
+                if (customeField != null)
+                {
+                    var favoriteTagsOfC = db.FavoriteTags.Where(i => i.UserCustomeFieldId == id);
+                    foreach (var item in favoriteTagsOfC)
+                    {
+                        db.FavoriteTags.Remove(item);
+                    }
+                    db.UserCustomeField.Remove(customeField);
+                    db.SaveChanges();
+                    return true;
+                }
+
+                return false;
+            }
         }
 
 
