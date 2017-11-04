@@ -628,7 +628,25 @@ namespace DataService.DataAccessLayer
                 return db.Annotations.Count();
             }
         }
+        ////////////////Searching
 
+       public ICollection<CustomePostsDTO> DoSearch(string searchText)
+        {
+            using (var db = new SOVAContext())
+            {
+                var result = db.Posts.FromSql("call searching({0})", searchText);
+                List<CustomePostsDTO> ResultsDTO = new List<CustomePostsDTO>();
+                foreach (var FoundItem in result)
+                {
+                    var newItemDTO = new CustomePostsDTO(FoundItem.Id, FoundItem.Title, FoundItem.Body,FoundItem.PostTypeId);
+                    ResultsDTO.Add(newItemDTO);
+
+                }
+                return ResultsDTO;
+
+            }
+
+        }
         ////////////////SearchHistory
 
         public void AddSearchHistory(string SearchText)

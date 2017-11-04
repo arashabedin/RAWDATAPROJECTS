@@ -80,6 +80,9 @@ namespace DataService.DataAccessLayer
         ICollection<AnnotationsDTO> GetAnnotations();
         int CountAnnotations();
 
+        //Searching
+        ICollection<CustomePostsDTO> DoSearch(string searchText);
+
         //SearchHistory
         void AddSearchHistory(String SearchText);
         bool RemoveSearchHistory(int id);

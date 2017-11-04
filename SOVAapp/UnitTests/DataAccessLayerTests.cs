@@ -196,7 +196,18 @@ namespace UnitTests
 
    
         }
-    
+
+        [Fact]
+
+        public void DoSearch_MustReturnValidValues()
+        {
+            var db = new RepositoryBody();
+            var foundTitle = db.DoSearch("different between C# and java").First().Title;
+            Assert.Equal(foundTitle, "What is the copy-and-swap idiom?");
+
+        }
+       
+
     }
     
     
