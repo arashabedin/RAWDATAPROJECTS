@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using DataService.DTO;
 namespace WebService.Models
 {
     public class QuestionModel
@@ -13,11 +13,11 @@ namespace WebService.Models
         public int Score { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
+        public List<String> Tags;
         public string UserUrl { get; set; }
         public string AcceptedAnswerUrl { get; set; }
-
         public string AnswersUrl { get; set; }
-
         public string CommentsUrl { get; set; }
+       
     }
 }

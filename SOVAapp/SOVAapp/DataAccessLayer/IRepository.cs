@@ -53,7 +53,7 @@ namespace DataService.DataAccessLayer
         TagsDTO GetTagByID(int id);
         ICollection<TagsDTO> GetTags();
         int CountTags();
- 
+
 
         //PostTags
         ICollection<PostTagsDTO> GetPostTagsByPostId(int id);
