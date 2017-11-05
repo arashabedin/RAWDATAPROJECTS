@@ -12,6 +12,8 @@ namespace DataService.DTO
         public string Body { get; set; }
         public int UserId { get; set; }
         public int PostTypeId { get; set; }
+        public int? Score { get; set; }
+        public int? totalResults { get; set; }
         public CustomePostsDTO(int PostId, string Title, string Body, int UserId , int PostTypeId)
         {
             this.PostId = PostId;

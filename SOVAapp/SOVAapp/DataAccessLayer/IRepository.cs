@@ -85,7 +85,7 @@ namespace DataService.DataAccessLayer
         int CountAnnotations();
 
         //Searching
-        ICollection<CustomePostsDTO> DoSearch(string searchText);
+        ICollection<CustomePostsDTO> DoSearch(string searchText,int page, int pageSize);
 
         //SearchHistory
         void AddSearchHistory(String SearchText);

@@ -747,7 +747,7 @@ namespace DataService.DataAccessLayer
         }
         ////////////////Searching
 
-        public ICollection<CustomePostsDTO> DoSearch(string searchText)
+        public ICollection<CustomePostsDTO> DoSearch(string searchText, int page, int pageSize)
         {
             using (var db = new SovaContext())
             {
@@ -757,9 +757,13 @@ namespace DataService.DataAccessLayer
                 {
                     var newItemDTO = new CustomePostsDTO(FoundItem.Id, FoundItem.Title, FoundItem.Body, FoundItem.OwnerUserId, FoundItem.PostTypeId);
                     ResultsDTO.Add(newItemDTO);
-
+                    newItemDTO.Score = FoundItem.Score;
+                    newItemDTO.totalResults = result.Count();
                 }
-                return ResultsDTO;
+                return ResultsDTO.OrderByDescending(x => x.Score)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList();
 
             }
 

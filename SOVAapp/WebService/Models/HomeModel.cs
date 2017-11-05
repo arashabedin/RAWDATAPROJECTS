@@ -10,8 +10,10 @@ namespace WebService.Models
         public string QuestionsUrl{get; set;}
         public string UsersUrl { get; set; }
         public string MarkingsUrl { get; set; }
+        public string Search { get; set; }
         public string SearchHistoryUrl { get; set; }
         public string CustomeFieldUrl { get; set; }
+
         public List<CustomPostModel> RecommendedQuestions;
 
     }
