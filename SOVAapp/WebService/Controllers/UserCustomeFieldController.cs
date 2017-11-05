@@ -47,7 +47,7 @@ namespace WebService.Controllers
             return NotFound();
         }
 
-        [HttpPost("{postlimit}Tags{tags}", Name = nameof(NewUserCustomeField))]
+        [HttpPost("{postlimit}_{tags}", Name = nameof(NewUserCustomeField))]
         public IActionResult NewUserCustomeField(int postlimit, string tags)
         {
             _repository.AddUserCustomeField(postlimit, tags);
