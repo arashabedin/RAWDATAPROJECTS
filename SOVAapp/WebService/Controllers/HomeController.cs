@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace WebService.Controllers
 {
-    [Route("api/home")]
+    [Route("api")]
     public class HomeController : CustomeController
     {
         private readonly IRepository _repository;

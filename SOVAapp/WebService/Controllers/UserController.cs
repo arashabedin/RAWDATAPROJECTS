@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Routing;
 namespace WebService.Controllers
 {
 
-    [Route("api/users")]
+    [Route("api/user")]
 
     public class UserController: CustomeController
     {  

@@ -27,7 +27,7 @@ namespace WebService.Controllers
 
     }
         //Get All Questions
-        [HttpGet("questions", Name = nameof(GetQuestions))]
+        [HttpGet("question", Name = nameof(GetQuestions))]
         public IActionResult GetQuestions(int page = 0, int pageSize = 5)
         {
             CheckPageSize(ref pageSize);
@@ -72,7 +72,7 @@ namespace WebService.Controllers
 
         // Get Question by Id
 
-        [HttpGet("questions/{Qid}", Name = nameof(GetQuestionById))]
+        [HttpGet("question/{Qid}", Name = nameof(GetQuestionById))]
     public IActionResult GetQuestionById(int Qid)
     {
 
@@ -86,12 +86,17 @@ namespace WebService.Controllers
         model.UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = Question.OwneruserId });
         model.AcceptedAnswerUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { id = Question.AcceptedAnswerId });
         model.AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByQuestionId), new { Qid = Question.Id });
-        model.CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = Question.Id }); 
+        model.CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = Question.Id });
+        model.MarkThisPost = _repository.GetMarkingById(Question.Id) == null ?
+              Url.Link(nameof(MarkingController.AddMarkingWithAnnotation), new { Pid = Question.Id, annotation = "empty-text" }) :
+              "Already marked";
+
+
         return Ok(model);
     }
 
         // Questions of A user
-        [HttpGet("users/{Uid}/questions", Name = nameof(GetQuestionsByUserId))]
+        [HttpGet("users/{Uid}/question", Name = nameof(GetQuestionsByUserId))]
         public IActionResult GetQuestionsByUserId(int Uid, int page = 0, int pageSize = 5)
         {
             CheckPageSize(ref pageSize);
@@ -112,9 +117,12 @@ namespace WebService.Controllers
                     UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = x.OwneruserId }),
                     AcceptedAnswerUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { id = x.AcceptedAnswerId }),
                     AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByQuestionId), new { Qid = x.Id }),
-                    CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = x.Id })
+                    CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = x.Id }),
+                    MarkThisPost = _repository.GetMarkingById(x.Id) == null ?
+                      Url.Link(nameof(MarkingController.AddMarkingWithAnnotation), new { Pid = x.Id, annotation = "empty-text" }) :
+                      "Already marked",
 
-                });
+        });
 
             var result = new
             {

@@ -28,7 +28,7 @@ namespace WebService.Controllers
             this._mapper = mapper;
         }
 
-        [HttpGet("questions/{Qid}/answers", Name = nameof(GetAnswersByQuestionId))]
+        [HttpGet("question/{Qid}/answer", Name = nameof(GetAnswersByQuestionId))]
         public IActionResult GetAnswersByQuestionId(int Qid, int page = 0, int pageSize = 5)
         {
             CheckPageSize(ref pageSize);
@@ -66,7 +66,7 @@ namespace WebService.Controllers
 
 
 
-        [HttpGet("questions/{Qid}/answers/{Aid}", Name = nameof(GetAnswerById))]
+        [HttpGet("question/{Qid}/answer/{Aid}", Name = nameof(GetAnswerById))]
         public IActionResult GetAnswerById(int Aid)
         {
 
@@ -83,7 +83,7 @@ namespace WebService.Controllers
         }
 
 
-        [HttpGet("users/{Uid}/answers", Name = nameof(GetAnswersByUserId))]
+        [HttpGet("user/{Uid}/answer", Name = nameof(GetAnswersByUserId))]
         public IActionResult GetAnswersByUserId(int Uid, int page = 0, int pageSize = 5)
         {
             CheckPageSize(ref pageSize);

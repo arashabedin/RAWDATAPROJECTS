@@ -29,7 +29,7 @@ namespace WebService.Controllers
     }
 
         //Question Comments
-        [HttpGet("questions/{Qid}/comments", Name = nameof(GetCommentsByQuestionId))]
+        [HttpGet("question/{Qid}/comment", Name = nameof(GetCommentsByQuestionId))]
         public IActionResult GetCommentsByQuestionId(int Qid, int page = 0, int pageSize = 5)
         {
             CheckPageSize(ref pageSize);
@@ -67,7 +67,7 @@ namespace WebService.Controllers
 
 
         //Question's each Comment
-        [HttpGet("questions/{Qid}/comments/{commentId}", Name = nameof(GetQuestionCommentById))]
+        [HttpGet("question/{Qid}/comment/{commentId}", Name = nameof(GetQuestionCommentById))]
 
         public IActionResult GetQuestionCommentById(int commentId)
         {
@@ -92,7 +92,7 @@ namespace WebService.Controllers
 
 
         //Answers Comments
-        [HttpGet("questions/{Qid}/answers/{Aid}/comments", Name = nameof(GetCommentsByAnswerId))]
+        [HttpGet("question/{Qid}/answer/{Aid}/comment", Name = nameof(GetCommentsByAnswerId))]
     
         public IActionResult GetCommentsByAnswerId(int Aid, int page = 0, int pageSize = 5)
         {
@@ -128,7 +128,7 @@ namespace WebService.Controllers
             return Ok(result);
         }
         //Answers each Comment
-        [HttpGet("questions/{Qid}/answers/{Aid}/comments/{commentId}", Name = nameof(GetCommentById))]
+        [HttpGet("question/{Qid}/answer/{Aid}/comment/{commentId}", Name = nameof(GetCommentById))]
 
     public IActionResult GetCommentById(int commentId)
     {
@@ -152,7 +152,7 @@ namespace WebService.Controllers
     }
 
         //User's Comments
-        [HttpGet("users/{Uid}/comments", Name = nameof(GetCommentsByUserId))]
+        [HttpGet("user/{Uid}/comment", Name = nameof(GetCommentsByUserId))]
 
         public IActionResult GetCommentsByUserId(int Uid, int page = 0, int pageSize = 2)
         {
