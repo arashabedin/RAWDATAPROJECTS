@@ -91,7 +91,7 @@ namespace DataService.DataAccessLayer
         void AddSearchHistory(String SearchText);
         bool RemoveSearchHistory(int id);
         SearchHistoryDTO GetSearchHistoryById(int id);
-        ICollection<SearchHistoryDTO> GetSearchHistories();
+        ICollection<SearchHistoryDTO> GetSearchHistories(int page, int pageSize);
         int GetNumberOfSearches();
 
         //FavoriteTags

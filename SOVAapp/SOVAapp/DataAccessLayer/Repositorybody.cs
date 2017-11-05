@@ -816,7 +816,7 @@ namespace DataService.DataAccessLayer
         }
 
 
-        public ICollection<SearchHistoryDTO> GetSearchHistories()
+        public ICollection<SearchHistoryDTO> GetSearchHistories(int page, int pageSize)
         {
             using (var db = new SovaContext())
             {
@@ -830,7 +830,10 @@ namespace DataService.DataAccessLayer
                     SearchHistoriesDTO.Add(newSearchHistory);
 
                 }
-                return SearchHistoriesDTO;
+                return SearchHistoriesDTO.OrderBy(x => x.Id)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList();
             }
 
         }

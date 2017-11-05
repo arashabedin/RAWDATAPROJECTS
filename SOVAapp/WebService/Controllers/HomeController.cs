@@ -29,19 +29,19 @@ namespace WebService.Controllers
         {
             HomeModel model = new HomeModel()
             {
-           
+
                 QuestionsUrl = Url.Link(nameof(QuestionController.GetQuestions), new { }),
                 UsersUrl = Url.Link(nameof(UserController.GetUsers), new { }),
                 RecommendedQuestions = _repository.ShowCustomePosts().Select(i => new CustomPostModel
                 {
                     Title = i.Title,
                     Body = i.Body,
-                    QuestionUrl = Url.Link(nameof(QuestionController.GetQuestionById), new {Qid = i.PostId }),
+                    QuestionUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = i.PostId }),
                     UsernUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = _repository.GetUserByPostId(i.PostId).Id })
 
                 }).ToList(),
-                 MarkingsUrl = Url.Link(nameof(MarkingController.GetMarkings), new { }),
-                //SearchHistoryUrl =
+                MarkingsUrl = Url.Link(nameof(MarkingController.GetMarkings), new { }),
+                SearchHistoryUrl = Url.Link(nameof(SearchHistoryController.GetSearchHistories), new { }),
                 //CustomeFieldUrl = 
 
             };
