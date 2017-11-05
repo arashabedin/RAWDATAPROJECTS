@@ -13,13 +13,13 @@ namespace WebService.Controllers
     [Route("api/home")]
     public class HomeController : CustomeController
     {
-        private readonly IRepository _Irepository;
+        private readonly IRepository _repository;
         private IMapper _Imapper;
 
         public HomeController(IRepository _Irepository, IMapper _Imapper)
         {
 
-            this._Irepository = _Irepository;
+            this._repository = _Irepository;
             this._Imapper = _Imapper;
 
         }
@@ -32,15 +32,15 @@ namespace WebService.Controllers
            
                 QuestionsUrl = Url.Link(nameof(QuestionController.GetQuestions), new { }),
                 UsersUrl = Url.Link(nameof(UserController.GetUsers), new { }),
-                RecommendedQuestions = _Irepository.ShowCustomePosts().Select(i => new CustomPostModel
+                RecommendedQuestions = _repository.ShowCustomePosts().Select(i => new CustomPostModel
                 {
                     Title = i.Title,
                     Body = i.Body,
                     QuestionUrl = Url.Link(nameof(QuestionController.GetQuestionById), new {Qid = i.PostId }),
-                    UsernUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = _Irepository.GetUserByPostId(i.PostId).Id })
+                    UsernUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = _repository.GetUserByPostId(i.PostId).Id })
 
-                }).ToList()
-                //MarkingsUrl =
+                }).ToList(),
+                 MarkingsUrl = Url.Link(nameof(MarkingController.GetMarkings), new { }),
                 //SearchHistoryUrl =
                 //CustomeFieldUrl = 
 

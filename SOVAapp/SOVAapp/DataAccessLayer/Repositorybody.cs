@@ -625,7 +625,7 @@ namespace DataService.DataAccessLayer
             }
 
         }
-       public ICollection<MarkingDTO> GetMarkings()
+       public ICollection<MarkingDTO> GetMarkings(int page, int pageSize)
         {
 
             using (var db = new SovaContext())
@@ -637,8 +637,17 @@ namespace DataService.DataAccessLayer
                     MarkingDTO newMarking = new MarkingDTO(item.MarkedPostId, item.MarkingDate, GetAnnotationById(item.MarkedPostId));
                     markingsDTO.Add(newMarking);
                 }
-                return markingsDTO;
+                return markingsDTO.OrderBy(x => x.MarkingDate)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList();
 
+            }
+        }
+        public int CountMarkings() {
+            using (var db = new SovaContext())
+            {
+                return db.Markings.Count();
             }
         }
 
@@ -700,7 +709,7 @@ namespace DataService.DataAccessLayer
                 {
                     return new AnnotationsDTO(annotation.MarkedPostId, annotation.Annotation, annotation.Marking);
                 }
-                return null;
+                return new AnnotationsDTO(id, " ", null);
             }
         }
 

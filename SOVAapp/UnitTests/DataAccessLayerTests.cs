@@ -155,7 +155,7 @@ namespace UnitTests
         {
 
             var db = new RepositoryBody();
-            db.AddUserCustomeField(11, "assembly, robots");
+            db.AddUserCustomeField(11, "assembly,robots");
             var id = db.GetUserCustomeFields().Last().Id;
             var favoriteTags = db.GetFavoriteTagsByCustomeId(id);
             Assert.Equal(favoriteTags.First().Tag.Tag, "assembly");
