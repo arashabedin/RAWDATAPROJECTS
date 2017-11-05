@@ -37,12 +37,12 @@ namespace WebService.Controllers
                     Title = i.Title,
                     Body = i.Body,
                     QuestionUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = i.PostId }),
-                    UsernUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = _repository.GetUserByPostId(i.PostId).Id })
+                    UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = _repository.GetUserByPostId(i.PostId).Id })
 
                 }).ToList(),
                 MarkingsUrl = Url.Link(nameof(MarkingController.GetMarkings), new { }),
                 SearchHistoryUrl = Url.Link(nameof(SearchHistoryController.GetSearchHistories), new { }),
-                //CustomeFieldUrl = 
+                CustomeFieldUrl = Url.Link(nameof(UserCustomeFieldController.GetUserCustomeField), new { })
 
             };
         

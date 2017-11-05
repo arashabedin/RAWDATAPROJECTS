@@ -104,6 +104,7 @@ namespace DataService.DataAccessLayer
         void AddUserCustomeField(int postLimit, string tags);
         Boolean DeleteUserCustomeField(int id);
         UserCustomeFieldDTO GetUserCustomeFieldById(int id);
+        UserCustomeFieldDTO GetLatestUserCustomeField();
         ICollection<UserCustomeFieldDTO> GetUserCustomeFields();
         int CountUserCustomeFields();
 

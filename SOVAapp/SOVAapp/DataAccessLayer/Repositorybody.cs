@@ -947,6 +947,16 @@ namespace DataService.DataAccessLayer
                 return new UserCustomeFieldDTO(u.Id, u.Postlimit, u.CreationDate, GetFavoriteTagsByCustomeId(id));
             }
         }
+        public UserCustomeFieldDTO GetLatestUserCustomeField()
+        {
+            using (var db = new SovaContext())
+            {
+                var u = db.UserCustomeField.OrderByDescending(x => x.Id).FirstOrDefault();
+
+                return new UserCustomeFieldDTO(u.Id, u.Postlimit, u.CreationDate, GetFavoriteTagsByCustomeId(u.Id));
+            }
+
+        }
 
 
         public ICollection<UserCustomeFieldDTO> GetUserCustomeFields()
