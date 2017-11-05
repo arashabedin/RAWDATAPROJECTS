@@ -77,8 +77,8 @@ namespace DataService.DataAccessLayer
         int CountMarkings();
 
         //Annotations
-        Annotations AddAnnotation(int primaryKey, string text);
-        Boolean EditAnnotation(int id, string EditedText);
+        AnnotationsDTO AddAnnotation(int primaryKey, string text);
+        AnnotationsDTO EditAnnotation(int id, string EditedText);
         Boolean DeleteAnnotation(int id);
         AnnotationsDTO GetAnnotationById(int id);
         ICollection<AnnotationsDTO> GetAnnotations();

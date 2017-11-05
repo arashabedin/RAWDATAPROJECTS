@@ -654,7 +654,7 @@ namespace DataService.DataAccessLayer
         ////////////////Annotations
 
 
-        public Annotations AddAnnotation(int primaryKey, string text)
+        public AnnotationsDTO AddAnnotation(int primaryKey, string text)
         {
 
             using (var db = new SovaContext()) {
@@ -663,12 +663,13 @@ namespace DataService.DataAccessLayer
                 a.Annotation = text;
                 db.Add(a);
                 db.SaveChanges();
-                return a;
+
+                return new AnnotationsDTO(a.MarkedPostId, a.Annotation,null);
             }
 
         }
 
-        public bool EditAnnotation(int id, string EditedText)
+        public AnnotationsDTO EditAnnotation(int id, string EditedText)
         {
             using (var db = new SovaContext())
             {
@@ -677,9 +678,9 @@ namespace DataService.DataAccessLayer
                 {
                     annotation.Annotation = EditedText;
                     db.SaveChanges();
-                    return true;
+                    return new AnnotationsDTO ( annotation.MarkedPostId, annotation.Annotation ,null);
                 }
-                return false;
+                return null;
             }
         }
 
@@ -709,7 +710,7 @@ namespace DataService.DataAccessLayer
                 {
                     return new AnnotationsDTO(annotation.MarkedPostId, annotation.Annotation, annotation.Marking);
                 }
-                return new AnnotationsDTO(id, " ", null);
+                return new AnnotationsDTO(id, "Empty", null);
             }
         }
 

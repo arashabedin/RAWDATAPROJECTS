@@ -26,8 +26,8 @@ namespace WebService.Controllers
         {
             this._repository = _repository;
             this._mapper = mapper;
-
         }
+
         [HttpGet("questions/{Qid}/answers", Name = nameof(GetAnswersByQuestionId))]
         public IActionResult GetAnswersByQuestionId(int Qid, int page = 0, int pageSize = 5)
         {

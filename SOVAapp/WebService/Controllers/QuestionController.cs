@@ -46,10 +46,13 @@ namespace WebService.Controllers
                     Body = x.Body,
                     Tags = _repository.GetPostTagsByPostId(x.Id).Select(t =>  t.Tag.Tag ).ToList(),
                     UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = x.OwnerUserId }),
-                    AcceptedAnswerUrl = Url.Link(nameof(AnswerController.GetAnswersByQuestionId), new { Qid = x.Id, Aid = x.AcceptedAnswerId }),
+                    AcceptedAnswerUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { Qid = x.Id, Aid = x.AcceptedAnswerId }),
                     AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByQuestionId), new { Qid = x.Id }),
-                    CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = x.Id })
-
+                    CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = x.Id }),
+                    MarkThisPost = _repository.GetMarkingById(x.Id)== null?
+                    Url.Link(nameof(MarkingController.AddMarkingWithAnnotation),new {Pid= x.Id , annotation= "empty-text"}):
+                    "Already marked"
+                   
                 });
 
             var result = new
