@@ -834,7 +834,7 @@ namespace DataService.DataAccessLayer
                     SearchHistoriesDTO.Add(newSearchHistory);
 
                 }
-                return SearchHistoriesDTO.OrderBy(x => x.Id)
+                return SearchHistoriesDTO.OrderByDescending(x => x.Id)
                     .Skip(page * pageSize)
                     .Take(pageSize)
                     .ToList();
