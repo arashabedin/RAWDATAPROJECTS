@@ -19,7 +19,7 @@ namespace DataService.DataAccessLayer
 
         public PostDTO GetPostById(int id)
         {
-            using (var db2 = new SOVAContext())
+            using (var db2 = new SovaContext())
             {
                 var post = db2.Posts.FirstOrDefault(a => a.Id == id);
 
@@ -29,7 +29,7 @@ namespace DataService.DataAccessLayer
 
         public ICollection<PostDTO> GetPosts()
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var posts = db.Posts.ToList();
                 List<PostDTO> postsDTO = new List<PostDTO>();
@@ -46,7 +46,7 @@ namespace DataService.DataAccessLayer
 
         public ICollection<PostDTO> GetAllPostsByUserId(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var posts = db.Posts.Where(u => u.OwnerUserId == id);
                 List<PostDTO> PostDTO = new List<PostDTO>();
@@ -66,7 +66,7 @@ namespace DataService.DataAccessLayer
 
         public int CountPosts()
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 return db.Posts.Count();
             }
@@ -74,7 +74,7 @@ namespace DataService.DataAccessLayer
 
         public PostTypeDTO GetPostTypeByPostId(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var post = db.Posts.FirstOrDefault(i => i.Id == id);
                 var postType = db.PostTypes.Where(p => p.Id == post.PostTypeId).FirstOrDefault();
@@ -86,7 +86,7 @@ namespace DataService.DataAccessLayer
         ////////////////Answers
         public ICollection<Post> GetAnswers(int page, int pageSize)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var Answers = db.Posts.Where(t => t.PostTypeId == 2).ToList();
                 return Answers.OrderBy(x => x.Id)
@@ -101,7 +101,7 @@ namespace DataService.DataAccessLayer
         public AnswerDTO GetAnswerById(int id)
         {
 
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var post = GetPostById(id);
                 if (post.PostType.Id == 2)
@@ -121,7 +121,7 @@ namespace DataService.DataAccessLayer
         public ICollection<AnswerDTO> GetAllAnswersByUserId(int id, int page, int pageSize)
         {
 
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var answers = db.Posts.Where(i => i.PostTypeId == 2).ToList();
                 var answersByUserId = answers.Where(u => u.OwnerUserId == id);
@@ -143,7 +143,7 @@ namespace DataService.DataAccessLayer
         public ICollection<AnswerDTO> GetAllAnswersByQuestionId(int id, int page, int pageSize)
         {
 
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var answers = db.Posts.Where(i => i.PostTypeId == 2).ToList();
                 var answersByUserId = answers.Where(u => u.ParentId == id);
@@ -164,7 +164,7 @@ namespace DataService.DataAccessLayer
 
         public int CountAnswers()
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
 
                 var answers = db.Posts.Where(t => t.PostTypeId == 2);
@@ -176,7 +176,7 @@ namespace DataService.DataAccessLayer
 
         public int CountAnswersByUserId(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var answers = db.Posts.Where(i => i.PostTypeId == 2).ToList();
                 return answers.Where(u => u.OwnerUserId == id).Count();
@@ -185,7 +185,7 @@ namespace DataService.DataAccessLayer
         }
         public int CountAnswersByQuestionId(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var answers = db.Posts.Where(i => i.PostTypeId == 2).ToList();
                 return answers.Where(u => u.ParentId == id).Count();
@@ -200,7 +200,7 @@ namespace DataService.DataAccessLayer
         public QuestionDTO GetQuestionById(int id)
         {
 
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var post = db.Posts.Where(i => i.Id == id).FirstOrDefault();
                 if (post.PostTypeId == 1)
@@ -216,7 +216,7 @@ namespace DataService.DataAccessLayer
         public QuestionDTO GetQuestionByAnswerId(int id)
         {
 
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var answer = db.Posts.Where(i => i.Id == id).FirstOrDefault();
                 var q = db.Posts.Where(i => i.Id == answer.ParentId).FirstOrDefault();
@@ -232,7 +232,7 @@ namespace DataService.DataAccessLayer
         public ICollection<Post> GetQuestions(int page, int pageSize)
         {
 
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var questions = db.Posts.Where(i => i.PostTypeId == 1).ToList();
                 foreach (var item in questions)
@@ -250,7 +250,7 @@ namespace DataService.DataAccessLayer
 
         public ICollection<QuestionDTO> GetQuestionsByUserID(int id, int page, int pageSize)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var questions = db.Posts.Where(i => i.PostTypeId == 1).ToList();
                 var questionsByUserId = questions.Where(u => u.OwnerUserId == id);
@@ -275,7 +275,7 @@ namespace DataService.DataAccessLayer
 
         public int CountQuestionsByUserId(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var answers = db.Posts.Where(i => i.PostTypeId == 1).ToList();
                 return answers.Where(u => u.OwnerUserId == id).Count();
@@ -285,7 +285,7 @@ namespace DataService.DataAccessLayer
 
         public int CountQuestions()
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
 
                 return db.Posts.Where(i => i.PostTypeId == 1).Count();
@@ -297,7 +297,7 @@ namespace DataService.DataAccessLayer
 
         public CommentDTO GetCommentById(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var c = db.Comments.Where(i => i.CommentId == id).FirstOrDefault();
                 var CommentedPost = db.Posts.Where(i => i.Id == c.PostId).FirstOrDefault();
@@ -309,7 +309,7 @@ namespace DataService.DataAccessLayer
 
         public ICollection<CommentDTO> GetCommentsByPostId(int postId, int page, int pageSize)
         {
-            using (var db2 = new SOVAContext())
+            using (var db2 = new SovaContext())
             {
                 var Comments = db2.Comments.Include(p => p.post).Where(p => p.PostId == postId);
                 List<CommentDTO> CommentsDTO = new List<CommentDTO>();
@@ -331,7 +331,7 @@ namespace DataService.DataAccessLayer
 
         public ICollection<CommentDTO> GetCommentsByUserId(int userId, int page, int pageSize)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var Comments = db.Comments.Where(p => p.OwnerUserId == userId).ToList();
                 List<CommentDTO> CommentsDTO = new List<CommentDTO>();
@@ -354,7 +354,7 @@ namespace DataService.DataAccessLayer
 
         public ICollection<CommentDTO> GetComments()
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var comments = db.Comments.ToList();
                 List<CommentDTO> commentsDTO = new List<CommentDTO>();
@@ -374,7 +374,7 @@ namespace DataService.DataAccessLayer
 
         public int CountComments()
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 return db.Comments.Count();
             }
@@ -382,7 +382,7 @@ namespace DataService.DataAccessLayer
 
         public int CountCommentsByPostId(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 return db.Comments.Where(i => i.PostId == id).Count();
             }
@@ -391,7 +391,7 @@ namespace DataService.DataAccessLayer
 
         public int CountCommentsByUserId(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 return db.Comments.Where(i => i.OwnerUserId == id).Count();
             }
@@ -403,7 +403,7 @@ namespace DataService.DataAccessLayer
 
         public TagsDTO GetTagByPostTagId(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var tag = db.Tags.Where(t => t.Id == id).FirstOrDefault();
                 TagsDTO tagsDTO = null;
@@ -420,7 +420,7 @@ namespace DataService.DataAccessLayer
 
         public TagsDTO GetTagByID(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var tag = db.Tags.Where(i => i.Id == id).FirstOrDefault();
                 return new TagsDTO(tag.Id, tag.Tag);
@@ -431,7 +431,7 @@ namespace DataService.DataAccessLayer
 
         public ICollection<TagsDTO> GetTags()
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var tags = db.Tags.ToList();
                 List<TagsDTO> tagsDTO = new List<TagsDTO>();
@@ -450,7 +450,7 @@ namespace DataService.DataAccessLayer
 
         public int CountTags()
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 return db.Tags.Count();
             }
@@ -459,7 +459,7 @@ namespace DataService.DataAccessLayer
 
         public ICollection<PostTagsDTO> GetPostTagsByPostId(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var postTags = db.PostTags.Where(p => p.PostId == id);
                 List<PostTagsDTO> PostTagsDTO = new List<PostTagsDTO>();
@@ -477,7 +477,7 @@ namespace DataService.DataAccessLayer
 
         public int CountPostTags()
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 return db.PostTags.Count();
             }
@@ -486,7 +486,7 @@ namespace DataService.DataAccessLayer
         ////////////////UserInfo
         public ICollection<UserInfoDTO> GetUsers(int page, int pageSize)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var users = db.UserInfo.ToList();
                 List<UserInfoDTO> UsersDTO = new List<UserInfoDTO>();
@@ -503,7 +503,7 @@ namespace DataService.DataAccessLayer
         }
         public UserInfoDTO GetUserById(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var user = db.UserInfo.Where(i => i.OwnerUserId == id).FirstOrDefault();
                 if (user != null)
@@ -515,7 +515,7 @@ namespace DataService.DataAccessLayer
         }
         public UserInfoDTO GetUserByPostId(int id)
         {
-            using (var db2 = new SOVAContext())
+            using (var db2 = new SovaContext())
             {
                 var post = db2.Posts.Where(i => i.Id == id).FirstOrDefault();
                 var user = db2.UserInfo.Where(u => u.OwnerUserId == post.OwnerUserId).FirstOrDefault();
@@ -531,7 +531,7 @@ namespace DataService.DataAccessLayer
 
         public UserInfoDTO GetUserByCommentId(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var comment = db.Comments.FirstOrDefault(c => c.CommentId == id);
 
@@ -544,7 +544,7 @@ namespace DataService.DataAccessLayer
 
         public int CountUsers()
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 return db.UserInfo.Count();
             }
@@ -555,7 +555,7 @@ namespace DataService.DataAccessLayer
 
         public bool AddMarking(int postId)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
 
                 var conn = (MySqlConnection)db.Database.GetDbConnection();
@@ -577,7 +577,7 @@ namespace DataService.DataAccessLayer
         }
         public bool AddMarkingWithAnnotation(int postId, string text)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
 
                 var conn = (MySqlConnection)db.Database.GetDbConnection();
@@ -600,9 +600,47 @@ namespace DataService.DataAccessLayer
         }
         public bool RemoveMarking(int id)
         {
-            throw new NotImplementedException();
-        }
+            using (var db = new SovaContext())
+            {
+                var marking = db.Markings.FirstOrDefault(m => m.MarkedPostId == id);
+               if (marking != null)
+                {
+                    DeleteAnnotation(id);
+                    db.Markings.Remove(marking);
 
+                    db.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+        }
+       public MarkingDTO GetMarkingById(int id)
+        {
+            using (var db = new SovaContext())
+            {
+                var marking = db.Markings.FirstOrDefault(m => m.MarkedPostId == id);
+                if (marking != null) { 
+                return new MarkingDTO(marking.MarkedPostId, marking.MarkingDate, GetAnnotationById(id));
+                } return null;
+            }
+
+        }
+       public ICollection<MarkingDTO> GetMarkings()
+        {
+
+            using (var db = new SovaContext())
+            {
+                var markings = db.Markings.ToList();
+                List<MarkingDTO> markingsDTO = new List<MarkingDTO>();
+                foreach (var item in markings)
+                {
+                    MarkingDTO newMarking = new MarkingDTO(item.MarkedPostId, item.MarkingDate, GetAnnotationById(item.MarkedPostId));
+                    markingsDTO.Add(newMarking);
+                }
+                return markingsDTO;
+
+            }
+        }
 
         ////////////////Annotations
 
@@ -610,7 +648,7 @@ namespace DataService.DataAccessLayer
         public Annotations AddAnnotation(int primaryKey, string text)
         {
 
-            using (var db = new SOVAContext()) {
+            using (var db = new SovaContext()) {
                 Annotations a = new Annotations();
                 a.MarkedPostId = primaryKey;
                 a.Annotation = text;
@@ -623,7 +661,7 @@ namespace DataService.DataAccessLayer
 
         public bool EditAnnotation(int id, string EditedText)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var annotation = db.Annotations.FirstOrDefault(x => x.MarkedPostId == id);
                 if (annotation != null)
@@ -639,7 +677,7 @@ namespace DataService.DataAccessLayer
 
         public bool DeleteAnnotation(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var annotation = db.Annotations.FirstOrDefault(x => x.MarkedPostId == id);
                 if (annotation != null)
@@ -655,7 +693,7 @@ namespace DataService.DataAccessLayer
 
         public AnnotationsDTO GetAnnotationById(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var annotation = db.Annotations.Where(i => i.MarkedPostId == id).FirstOrDefault();
                 if (annotation != null)
@@ -668,7 +706,7 @@ namespace DataService.DataAccessLayer
 
         public ICollection<AnnotationsDTO> GetAnnotations()
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var annotations = db.Annotations.ToList();
                 if (annotations != null)
@@ -692,7 +730,7 @@ namespace DataService.DataAccessLayer
 
         public int CountAnnotations()
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 return db.Annotations.Count();
             }
@@ -701,7 +739,7 @@ namespace DataService.DataAccessLayer
 
         public ICollection<CustomePostsDTO> DoSearch(string searchText)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var result = db.Posts.FromSql("call searching({0})", searchText);
                 List<CustomePostsDTO> ResultsDTO = new List<CustomePostsDTO>();
@@ -720,7 +758,7 @@ namespace DataService.DataAccessLayer
 
         public void AddSearchHistory(string SearchText)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
 
                 var conn = (MySqlConnection)db.Database.GetDbConnection();
@@ -740,7 +778,7 @@ namespace DataService.DataAccessLayer
 
         public bool RemoveSearchHistory(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var searchedItem = db.SearchHistory.Where(i => i.Id == id).FirstOrDefault();
                 if (searchedItem != null)
@@ -759,7 +797,7 @@ namespace DataService.DataAccessLayer
 
         public SearchHistoryDTO GetSearchHistoryById(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var s = db.SearchHistory.Where(i => i.Id == id).FirstOrDefault();
                 return new SearchHistoryDTO(s.Id, s.SearchContent, s.SearchDate);
@@ -770,7 +808,7 @@ namespace DataService.DataAccessLayer
 
         public ICollection<SearchHistoryDTO> GetSearchHistories()
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
 
                 var searchHistories = db.SearchHistory.ToList();
@@ -789,7 +827,7 @@ namespace DataService.DataAccessLayer
 
         public int GetNumberOfSearches()
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var number = db.SearchHistory.Count();
                 return number;
@@ -815,7 +853,7 @@ namespace DataService.DataAccessLayer
         public ICollection<FavoriteTagsDTO> GetFavoriteTagsByCustomeId(int id)
         {
 
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var FavTags = db.FavoriteTags.Where(i => i.UserCustomeFieldId == id);
                 List<FavoriteTagsDTO> FavTagsDTO = new List<FavoriteTagsDTO>();
@@ -832,7 +870,7 @@ namespace DataService.DataAccessLayer
 
         public int CountFavoriteTags()
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 return db.FavoriteTags.Count();
             }
@@ -842,7 +880,7 @@ namespace DataService.DataAccessLayer
 
         public void AddUserCustomeField(int postLimit, string tags)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
 
                 var conn = (MySqlConnection)db.Database.GetDbConnection();
@@ -866,7 +904,7 @@ namespace DataService.DataAccessLayer
 
         public bool DeleteUserCustomeField(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var customeField = db.UserCustomeField.Where(i => i.Id == id).FirstOrDefault();
 
@@ -889,7 +927,7 @@ namespace DataService.DataAccessLayer
 
         public UserCustomeFieldDTO GetUserCustomeFieldById(int id)
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var u = db.UserCustomeField.Where(i => i.Id == id).FirstOrDefault();
 
@@ -900,7 +938,7 @@ namespace DataService.DataAccessLayer
 
         public ICollection<UserCustomeFieldDTO> GetUserCustomeFields()
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var CustomeFields = db.UserCustomeField.ToList();
                 List<UserCustomeFieldDTO> CustomeFieldsDTO = new List<UserCustomeFieldDTO>();
@@ -917,7 +955,7 @@ namespace DataService.DataAccessLayer
 
         public int CountUserCustomeFields()
         {
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 return db.UserCustomeField.Count();
             }
@@ -926,7 +964,7 @@ namespace DataService.DataAccessLayer
         //RecommendedPosts
         public ICollection<CustomePostsDTO> ShowCustomePosts(){
 
-            using (var db = new SOVAContext())
+            using (var db = new SovaContext())
             {
                 var result = db.Posts.FromSql("call selectUserCustomePosts()");
                 List<CustomePostsDTO> ResultsDTO = new List<CustomePostsDTO>();

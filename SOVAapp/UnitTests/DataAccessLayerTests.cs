@@ -43,7 +43,7 @@ namespace UnitTests
         public void Comments_GetCommentsByPostId()
         {
             var db = new RepositoryBody();
-            var Comments = db.GetCommentsByPostId(52002,20,20);
+            var Comments = db.GetCommentsByPostId(52002,0,20);
             Assert.Equal(9, Comments.Count());
             Assert.Equal("A man, a plan, a canal, Panama", Comments.First().Body);
             Assert.Equal(15, Comments.First().Score);
@@ -109,37 +109,6 @@ namespace UnitTests
             Assert.Equal(3, Ftag.FavoriteTags.Count());
         }
 
-
-        [Fact]
-
-        public void GetAnnotation_GetAnnotations()
-
-        {
-            var db = new RepositoryBody();
-
-            var TotalAnnotation = db.GetAnnotations();
-
-            Assert.Equal(0, TotalAnnotation.Count());
-            
-
-        }
-
-
-        [Fact]
-
-        public void GetAnnotation_GetAnnotationById()
-
-        {
-            var db = new RepositoryBody();
-
-            var GetAnnotation = db.GetAnnotationById(86513);
-
-            Assert.Equal(0,GetAnnotation.MarkedPostId);
-
-
-        }
-
-
         [Fact]
 
         public void FavoriteTag_GetFavoriteTagsByCustomeId()
@@ -156,46 +125,7 @@ namespace UnitTests
             Assert.Equal(2726, FavtTag.First().TagId);
 
         }
-
-        [Fact]
-
-        public void CountAnnotations_CountAnnotations()
-
-        {
-            var db = new RepositoryBody();
-
-            var CountAnnotations = db.CountAnnotations();
-
-           Assert.Equal(0,CountAnnotations);
-
-           
-
-        }
-
-        [Fact]
-
-        public void CustomField_GetUserCustomeFields()
-        {
-            var db = new RepositoryBody();
-
-            var CountCustomField = db.GetUserCustomeFields().Count;
-                        
-            Assert.Equal(2, CountCustomField);
-
-           
-        }
-
         
-        [Fact]
-
-        public void AnswerbyQuestionid_GetAllAnswersByQuestionId()
-        {
-            var db = new RepositoryBody();
-            var Answers = db.GetAllAnswersByQuestionId(1,20,20).Count;
-            Assert.Equal(0, Answers);
-
-   
-        }
 
         [Fact]
 
@@ -206,10 +136,48 @@ namespace UnitTests
             Assert.Equal(foundTitle, "What is the copy-and-swap idiom?");
 
         }
-       
+
+        [Fact]
+
+        public void AddMarking_AddsAnnotation_AndRemove()
+        {
+            
+            var db = new RepositoryBody();
+           Assert.Equal(db.AddMarkingWithAnnotation(531, "This post was great"),true);
+           Assert.Equal(db.GetMarkingById(531).Annotations.Annotation, "This post was great");
+           Assert.Equal(db.RemoveMarking(531), true);
+           Assert.Equal(db.GetMarkingById(531), null);
+
+        }
+
+        [Fact]
+        public void AddCustomeField_Adds_FavoriteTags()
+        {
+
+            var db = new RepositoryBody();
+            db.AddUserCustomeField(11, "assembly, robots");
+            var id = db.GetUserCustomeFields().Last().Id;
+            var favoriteTags = db.GetFavoriteTagsByCustomeId(id);
+            Assert.Equal(favoriteTags.First().Tag.Tag, "assembly");
+            Assert.Equal(db.DeleteUserCustomeField(id), true);
+            Assert.Empty(db.GetFavoriteTagsByCustomeId(id));  
+
+        }
+
+        [Fact]
+        public void Custome_FieldMakes_CustomPostLimit()
+        {
+            var db = new RepositoryBody();
+            db.AddUserCustomeField(5, "C#, java");
+            var id = db.GetUserCustomeFields().Last().Id;
+            var CustomePost = db.ShowCustomePosts();
+            Assert.Equal(CustomePost.Count(), 5);
+            Assert.Equal(db.DeleteUserCustomeField(id), true);
+        }
+
 
     }
-    
-    
-    }
+
+
+}
 

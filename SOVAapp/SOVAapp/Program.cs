@@ -25,7 +25,7 @@ namespace DataService
             var rep = new RepositoryBody();
 
            // rep.AddSearchHistory("whats your name");
-            Console.WriteLine(rep.ShowCustomePosts().First().Body);
+            Console.WriteLine(rep.RemoveMarking(9033));
             Console.WriteLine("done");
             Console.ReadLine();
         }

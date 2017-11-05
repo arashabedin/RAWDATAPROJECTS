@@ -6,7 +6,7 @@ using DataService.DomainModel;
 namespace DataService
 {
 
-    public class SOVAContext : DbContext
+    public class SovaContext : DbContext
     {
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Post> Posts { get; set; }
@@ -15,14 +15,16 @@ namespace DataService
         public DbSet<Tags> Tags { get; set; }
         public DbSet<PostTag> PostTags { get; set; }
         public DbSet<SearchHistory> SearchHistory { get; set; }
+        public DbSet<Marking> Markings { get; set; }
         public DbSet<Annotations> Annotations { get; set; }
         public DbSet<FavoriteTags> FavoriteTags { get; set; }
         public DbSet<UserCustomeField> UserCustomeField { get; set; }
 
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            // optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=raw5;uid=raw5;pwd=raw5");
+            //    optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=raw5;uid=raw5;pwd=raw5");
             optionsBuilder.UseMySql("server=localhost;database=raw5;uid=root;");
         }
 
@@ -82,7 +84,7 @@ namespace DataService
 
             // Table Marking
             modelBuilder.Entity<Marking>().ToTable("marking");
-            modelBuilder.Entity<Marking>().Property(x => x.MarkedPostId).HasColumnName("markedpostid");
+            modelBuilder.Entity<Marking>().Property(m => m.MarkedPostId).HasColumnName("markedpostid");
             modelBuilder.Entity<Marking>().Property(x => x.MarkingDate).HasColumnName("markingdate");
 
             // Table Annotation
