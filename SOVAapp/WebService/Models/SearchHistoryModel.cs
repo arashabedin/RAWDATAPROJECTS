@@ -10,5 +10,6 @@ namespace WebService.Models
         public string SearchHistoryUrl { get; set; }
         public string SearchText { get; set; }
         public DateTime SearchDate { get; set; }
+        public string RemoveHistory { get; set; }
     }
 }

@@ -42,9 +42,9 @@ namespace WebService.Controllers
                 {
                     SearchHistoryUrl = Url.Link(nameof(GetSearchHistoryById), new { Sid = x.Id }),
                     SearchText = x.SearchContent,
-                    SearchDate = x.SearchDate
-
-                });
+                    SearchDate = x.SearchDate,
+                    RemoveHistory = Url.Link(nameof(DeleteSearchHistory), new { Sid = x.Id })
+        });
 
             var result = new
             {
@@ -69,10 +69,27 @@ namespace WebService.Controllers
                 model.SearchHistoryUrl = Url.Link(nameof(GetSearchHistoryById), new {Sid = s.Id });
                 model.SearchText = s.SearchContent;
                 model.SearchDate = s.SearchDate;
+                model.RemoveHistory = Url.Link(nameof(DeleteSearchHistory), new { Sid = s.Id });
                 return Ok(model);
 
             }
             return NotFound();
+
+        }
+        [HttpDelete("{Sid}", Name = nameof(DeleteSearchHistory))]
+
+        public IActionResult DeleteSearchHistory(int Sid)
+        {
+            if(_repository.GetSearchHistoryById(Sid)!= null)
+            {
+                _repository.RemoveSearchHistory(Sid);
+                return Ok("Removed the history");
+
+            }
+            else
+            {
+                return NotFound("There's not search history with the inserted ID");
+            }
 
         }
 
