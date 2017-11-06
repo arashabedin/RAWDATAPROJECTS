@@ -34,7 +34,7 @@ namespace WebService.Controllers
             annotationModel.AnnotationText = annot.Annotation;
             annotationModel.EditAnnotation = Url.Link(nameof(AnnotationController.EditAnnotation), new { Pid = annot.MarkedPostId, text = "Edited_Annotation" });
             annotationModel.RemoveAnnotation = Url.Link(nameof(AnnotationController.RemoveAnnotation), new { Pid = annot.MarkedPostId });
-            return Ok(annotationModel);
+            return Ok( annotationModel);
 
 
         }
@@ -48,7 +48,7 @@ namespace WebService.Controllers
                 annotationModel.AnnotationText = addedAnnotation.Annotation;
                 annotationModel.EditAnnotation = Url.Link(nameof(AnnotationController.EditAnnotation), new { Pid = addedAnnotation.MarkedPostId, text = "Edited_Annotation" });
                 annotationModel.RemoveAnnotation = Url.Link(nameof(AnnotationController.RemoveAnnotation), new { Pid = addedAnnotation.MarkedPostId });
-                return Ok(annotationModel);
+                return Created($"api/marking/{Pid}/annotation", annotationModel);
             } else
             {
                 return NotFound("Annotation is already set");

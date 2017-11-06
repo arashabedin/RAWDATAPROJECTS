@@ -109,7 +109,7 @@ namespace WebService.Controllers
             newMarkingModel.AddAnnotation = _repository.GetAnnotationById(markedPost.MarkedPostId).Annotation == "Empty" ?
            Url.Link(nameof(AnnotationController.AddAnnotation), new { Pid = markedPost.MarkedPostId, text = "New_Annotation" }) :
            "Already added";
-            return Created($"api/categories/{Pid}", newMarkingModel);
+            return Created($"api/marking/{Pid}", newMarkingModel);
 
         }
 
@@ -119,7 +119,8 @@ namespace WebService.Controllers
                     _repository.AddMarkingWithAnnotation(Pid, annotation);
                     var markedPost = _repository.GetMarkingById(Pid);
                     var newMarkingModel = new MarkingModel();
-                    // Checking whether the post is an answer or question to give it the correct link
+            // Checking whether the post is an answer or question to give it the correct link
+                    newMarkingModel.MarkingUrl = Url.Link(nameof(GetMarking), new { Pid = markedPost.MarkedPostId});
                     newMarkingModel.PostUrl = _repository.GetPostById(markedPost.MarkedPostId).PostTypeId == 2 ?
                              Url.Link(nameof(AnswerController.GetAnswerById), new { Qid = _repository.GetPostById(markedPost.MarkedPostId).ParentId, Aid = markedPost.MarkedPostId }) :
                              Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = markedPost.MarkedPostId });
@@ -131,7 +132,7 @@ namespace WebService.Controllers
                     newMarkingModel.AddAnnotation = _repository.GetAnnotationById(markedPost.MarkedPostId).Annotation == "Empty" ?
                              Url.Link(nameof(AnnotationController.AddAnnotation), new { Pid = markedPost.MarkedPostId, text = "New_Annotation" }) :
                              "Already added";
-            return Created($"api/categories/{Pid}", newMarkingModel);
+            return Created($"api/marking/{Pid}/{annotation}", newMarkingModel);
 
                 }
                 

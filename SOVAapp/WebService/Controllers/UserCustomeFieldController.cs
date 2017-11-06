@@ -51,7 +51,7 @@ namespace WebService.Controllers
         public IActionResult NewUserCustomeField(int postlimit, string tags)
         {
             _repository.AddUserCustomeField(postlimit, tags);
-            return Ok("Updated the new Customization");
+            return Created($"api/customization","Updated the new Customization");
 
         }
 
