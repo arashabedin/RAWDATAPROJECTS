@@ -12,7 +12,6 @@ using System.Data;
 namespace DataService.DataAccessLayer
 {
     public class RepositoryBody : IRepository
-
     {
 
         //////////////// Posts

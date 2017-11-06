@@ -43,7 +43,7 @@ namespace WebService.Controllers
             var data = _repository.GetUsers(page, pageSize)
                 .Select(x => new UserInfoModel
                 {
-                    Url = Url.Link(nameof(GetUsers), new { id = x.Id }),
+                    Url = Url.Link(nameof(GetUserByUserId), new { Uid = x.Id }),
                     DisplayName = x.DisplayName,
                     CreateDate = x.CreationDate,
                     Location = x.Location,
