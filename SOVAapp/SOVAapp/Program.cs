@@ -5,7 +5,7 @@ namespace DataService
 {
     public class Program 
     {
-        private const string QuestionsApi = "http://localhost:5001/api/question/19";
+        private const string QuestionsApi = "http://localhost:5001/api/question";
         private const string UsersApi = "http://localhost:5001/api/user";
         static void Main(string[] args)
         {
@@ -30,13 +30,15 @@ namespace DataService
 
             // Assert.Equal(HttpStatusCode.OK, statusCode);
             //      Assert.Equal(7, data.Count);
-            Console.WriteLine(data["url"]);
-          
-       //     Assert.Equal(164, data.First()["score"]);
-       //     Assert.Equal("Anton", data.Last()["userName"]);
-       //     Console.WriteLine(rep.RemoveMarking(9033));
-      //      Console.WriteLine("done");
-       //     Console.ReadLine();
+            Console.WriteLine(data["data"].Count());
+            Console.WriteLine( data["data"][0]["userName"]);
+            Console.WriteLine( data["data"][1]["tags"].Count());
+
+            //     Assert.Equal(164, data.First()["score"]);
+            //     Assert.Equal("Anton", data.Last()["userName"]);
+            //     Console.WriteLine(rep.RemoveMarking(9033));
+            //      Console.WriteLine("done");
+            //     Console.ReadLine();
 
             var rep = new RepositoryBody();
 
