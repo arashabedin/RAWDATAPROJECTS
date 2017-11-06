@@ -87,16 +87,7 @@ namespace UnitTests
 
         }
 
-        [Fact]
 
-        public void GetSearchHistories_returns_SearchContent()
-        {
-            var db = new RepositoryBody();
-
-            var searchHistory = db.GetSearchHistories(0,20);
-
-            Assert.Equal("How to create variables in Python?", searchHistory.First().SearchContent);
-        }
 
          
        [Fact]
@@ -129,12 +120,13 @@ namespace UnitTests
 
         [Fact]
 
-        public void DoSearch_MustReturnValidValues()
+        public void DoSearch_MustReturnValidValues_andSavedHistory()
         {
             var db = new RepositoryBody();
-            var foundTitle = db.DoSearch("different between C# and java",0,20).First().Title;
+            var foundTitle = db.DoSearch("different between C# and java",0,3).First().Title;
             Assert.Equal(foundTitle, "What is the copy-and-swap idiom?");
-
+            var searchHistory = db.GetSearchHistories(0, 3);
+            Assert.Equal("different between C# and java", searchHistory.First().SearchContent);
         }
 
         [Fact]
