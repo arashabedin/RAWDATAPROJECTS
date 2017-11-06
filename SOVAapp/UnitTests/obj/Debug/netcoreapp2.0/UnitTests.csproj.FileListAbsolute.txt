@@ -48,3 +48,5 @@ C:\Users\Arash\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\UnitTests\obj\Debug\netc
 C:\Users\Arash\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\UnitTests\obj\Debug\netcoreapp2.0\UnitTests.AssemblyInfo.cs
 C:\Users\Arash\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\UnitTests\obj\Debug\netcoreapp2.0\UnitTests.dll
 C:\Users\Arash\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\UnitTests\obj\Debug\netcoreapp2.0\UnitTests.pdb
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\UnitTests\bin\Debug\netcoreapp2.0\WebService.dll
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\UnitTests\bin\Debug\netcoreapp2.0\WebService.pdb

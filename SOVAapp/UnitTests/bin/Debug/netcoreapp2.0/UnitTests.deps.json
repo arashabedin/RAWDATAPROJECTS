@@ -10,7 +10,6 @@
         "dependencies": {
           "DataService": "1.0.0",
           "Microsoft.NET.Test.Sdk": "15.3.0-preview-20170628-02",
-          "Moq": "4.7.142",
           "WebService": "1.0.0",
           "xunit": "2.2.0",
           "xunit.runner.visualstudio": "2.2.0"
