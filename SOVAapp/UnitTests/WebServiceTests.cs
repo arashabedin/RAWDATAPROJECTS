@@ -42,8 +42,18 @@ namespace UnitTests
 
         }
 
+        [Fact]
+        public void ApiUser_InvalidId_NotFound()
+        {
+            string UserApi = "http://localhost:5001/api/user";
+
+            var (user, statusCode) = GetObject($"{UserApi}/0");
+
+            Assert.Equal(HttpStatusCode.NotFound, statusCode);
+
+        }
 
 
-       
+
     }
 }

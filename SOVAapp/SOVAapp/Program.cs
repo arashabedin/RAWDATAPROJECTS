@@ -6,7 +6,7 @@ namespace DataService
     public class Program 
     {
         private const string QuestionsApi = "http://localhost:5001/api/question";
-        private const string UsersApi = "http://localhost:5001/api/user";
+        private const string UserApi = "http://localhost:5001/api/user";
         static void Main(string[] args)
         {
             /*  using (var db = new SOVAContext())
@@ -25,18 +25,11 @@ namespace DataService
                   }
               }*/
             Helpers helper = new Helpers();
-            var (data, statusCode) = helper.GetObject(QuestionsApi);
- 
+           // var (data, statusCode) = helper.GetObject(QuestionsApi);
+            var (user, statusCode) = helper.GetObject($"{UserApi}/0");
 
-            // Assert.Equal(HttpStatusCode.OK, statusCode);
-            //      Assert.Equal(7, data.Count);
-            Console.WriteLine(data["data"].Count());
-            Console.WriteLine( data["data"][0]["userName"]);
-            Console.WriteLine( data["data"][1]["tags"].Count());
-
-            //     Assert.Equal(164, data.First()["score"]);
-            //     Assert.Equal("Anton", data.Last()["userName"]);
-            //     Console.WriteLine(rep.RemoveMarking(9033));
+         
+               Console.WriteLine(statusCode);
             //      Console.WriteLine("done");
             //     Console.ReadLine();
 
