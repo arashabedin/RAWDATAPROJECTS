@@ -15,14 +15,12 @@ namespace UnitTests
 {
     public class WebServiceTest: Helpers
     {
-        private const string UsersApi = "http://localhost:5001/api/user/1";
+      
         [Fact]
         public void ApiGetAllQuestions_ReturnListOfQuestions_withValues()
         {
             string QuestionsApi = "http://localhost:5001/api/question";
-
             var (data, statusCode) = GetObject(QuestionsApi);
-
             Assert.Equal(HttpStatusCode.OK, statusCode);
             Assert.Equal(2237, data["total"]);
             Assert.Equal("Chris Jester-Young", data["data"][0]["userName"]);
@@ -47,9 +45,7 @@ namespace UnitTests
         public void ApiUser_InvalidId_NotFound()
         {
             string UserApi = "http://localhost:5001/api/user";
-
             var (user, statusCode) = GetObject($"{UserApi}/0");
-
             Assert.Equal(HttpStatusCode.NotFound, statusCode);
 
         }
@@ -70,6 +66,8 @@ namespace UnitTests
             Assert.Equal(5, data2["recommendedQuestions"].Count());
 
         }
+
+
 
 
 
