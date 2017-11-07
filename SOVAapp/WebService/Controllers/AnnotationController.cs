@@ -32,8 +32,8 @@ namespace WebService.Controllers
             var annotationModel = new AnnotationModel();
             annotationModel.MarkingLink = Url.Link(nameof(MarkingController.GetMarking), new { Pid = annot.MarkedPostId });
             annotationModel.AnnotationText = annot.Annotation;
-            annotationModel.EditAnnotation = Url.Link(nameof(AnnotationController.EditAnnotation), new { Pid = annot.MarkedPostId, text = "Edited_Annotation" });
-            annotationModel.RemoveAnnotation = Url.Link(nameof(AnnotationController.RemoveAnnotation), new { Pid = annot.MarkedPostId });
+            annotationModel.EditAnnotation = Url.Link(nameof(AnnotationController.EditAnnotation), new { AnnotId = annot.Annotationid, text = annot.Annotation });
+            annotationModel.RemoveAnnotation = Url.Link(nameof(AnnotationController.RemoveAnnotation), new { AnnotId = annot.Annotationid });
             return Ok( annotationModel);
 
 
@@ -48,8 +48,8 @@ namespace WebService.Controllers
                 annotationModel.AnnotationText = addedAnnotation.Annotation;
                 annotationModel.From = addedAnnotation.From;
                 annotationModel.To = addedAnnotation.To;
-                annotationModel.EditAnnotation = Url.Link(nameof(AnnotationController.EditAnnotation), new { Pid = addedAnnotation.MarkedPostId, text = "Edited_Annotation" });
-                annotationModel.RemoveAnnotation = Url.Link(nameof(AnnotationController.RemoveAnnotation), new { Pid = addedAnnotation.MarkedPostId });
+                annotationModel.EditAnnotation = Url.Link(nameof(AnnotationController.EditAnnotation), new { AnnotId = addedAnnotation.Annotationid, text = addedAnnotation.Annotation });
+                annotationModel.RemoveAnnotation = Url.Link(nameof(AnnotationController.RemoveAnnotation), new { AnnotId = addedAnnotation.Annotationid });
                 return Created($"api/marking/{Pid}/annotation", annotationModel);
         
         }
@@ -86,8 +86,10 @@ namespace WebService.Controllers
                 var annotationModel = new AnnotationModel();
                 annotationModel.MarkingLink = Url.Link(nameof(MarkingController.GetMarking), new { Pid = editedAnnotation.MarkedPostId });
                 annotationModel.AnnotationText = editedAnnotation.Annotation;
-                annotationModel.EditAnnotation = Url.Link(nameof(AnnotationController.EditAnnotation), new { AnnotId = editedAnnotation.Annotationid, text = "Edited_Annotation" });
-                annotationModel.RemoveAnnotation = Url.Link(nameof(AnnotationController.RemoveAnnotation), new { Pid = editedAnnotation.MarkedPostId });
+                annotationModel.From = editedAnnotation.From;
+                annotationModel.To = editedAnnotation.To;
+                annotationModel.EditAnnotation = Url.Link(nameof(AnnotationController.EditAnnotation), new { AnnotId = editedAnnotation.Annotationid, text = editedAnnotation.Annotation });
+                annotationModel.RemoveAnnotation = Url.Link(nameof(AnnotationController.RemoveAnnotation), new { AnnotId = editedAnnotation.Annotationid });
                 return Ok(annotationModel);
 
             }

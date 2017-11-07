@@ -678,6 +678,7 @@ namespace DataService.DataAccessLayer
                 if (annotation != null)
                 {
                     annotation.Annotation = EditedText;
+                   
                     db.SaveChanges();
                     return new AnnotationsDTO ( annotation.AnnotationId,annotation.MarkedPostId, annotation.Annotation ,null, annotation.From, annotation.To);
                 }

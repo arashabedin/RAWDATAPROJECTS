@@ -76,16 +76,16 @@ namespace WebService.Controllers
                         AnnotationText = a.Annotation,
                         From = a.From,
                         To = a.To,
-                        EditAnnotation = Url.Link(nameof(AnnotationController.EditAnnotation), new { AnnotId = a.Annotationid, text = a.Annotation }),
-                        RemoveAnnotation = Url.Link(nameof(AnnotationController.RemoveAnnotation), new { AnnotId = a.Annotationid })
+                        EditAnnotation = Url.Link(nameof(AnnotationController.EditAnnotation), new {Pid=a.MarkedPostId, AnnotId = a.Annotationid, text = a.Annotation }),
+                        RemoveAnnotation = Url.Link(nameof(AnnotationController.RemoveAnnotation), new { Pid = a.MarkedPostId, AnnotId = a.Annotationid })
 
                     }).ToList(),
 
 
 
-                   
-                      
-                    PostBody = _repository.GetPostById(x.MarkedPostId).Body,
+
+
+            PostBody = _repository.GetPostById(x.MarkedPostId).Body,
                 MarkedDate = x.MarkingDate,
                  AddAnnotation = Url.Link(nameof(AnnotationController.AddAnnotation), new { Pid = x.MarkedPostId, text = "NewAnnotation", from = 0, to = 0 })
 
@@ -132,7 +132,7 @@ namespace WebService.Controllers
             }).ToList();
             newMarkingModel.MarkedDate = markedPost.MarkingDate;
 
-            newMarkingModel.AddAnnotation = Url.Link(nameof(AnnotationController.AddAnnotation), new { Pid = markedPost.MarkedPostId, text = "New_Annotation", from = 0, to = 0 });
+            newMarkingModel.AddAnnotation = Url.Link(nameof(AnnotationController.AddAnnotation), new { Pid = markedPost.MarkedPostId, text = "NewAnnotation", from = 0, to = 0 });
 
             return Created($"api/marking/{Pid}", newMarkingModel);
 
