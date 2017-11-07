@@ -68,7 +68,41 @@ namespace UnitTests
         }
 
 
+ [Fact]
+        public void ApiGetAllMarking_ReturnListOfMarking_withValues()
+        {
+            string MarkingApi = "http://localhost:5001/api/Marking";
+            var (data, statusCode) = GetObject(MarkingApi);
+            Assert.Equal(HttpStatusCode.OK, statusCode);
+            Assert.Equal(6, data["total"]);
+            Assert.Equal("http://localhost:5001/api/marking/86513", data["data"][0]["markingUrl"]);
 
+        }
+
+        public void ApiGetsearchHistory_ReturnListOfSearchHistory_withValues()
+        {
+            string SearchHistoryApi = "http://localhost:5001/api/searchhistory";
+            var (data, statusCode) = GetObject(SearchHistoryApi);
+            Assert.Equal(HttpStatusCode.OK, statusCode);
+            Assert.Equal(337, data["total"]);
+            Assert.Equal("angular", data["data"][1]["searchText"]);
+
+        }
+
+
+        public void ApiGetUser_ReturnListOfUsers()
+        {
+            string UserApi = "http://localhost:5001/api/user";
+            var (data, statusCode) = GetObject(UserApi);
+            Assert.Equal(HttpStatusCode.OK, statusCode);
+            Assert.Equal(11392, data["total"]);
+            Assert.Equal("Jeff Atwood", data["data"][0]["displayName"]);
+            String UserId = "http://localhost:5001/api/user/3";
+            var (data2, StatusCode) = GetObject(UserId);
+            Assert.Equal("New York, NY", data2["data"][1]["location"]);
+
+
+        }
 
 
 
