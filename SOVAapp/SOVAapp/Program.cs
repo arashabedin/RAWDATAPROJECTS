@@ -1,7 +1,16 @@
 ﻿using System;
 using DataService.DataAccessLayer;
-
+using System.Net.Http;
 using System.Linq;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 namespace DataService
 {
     public class Program 
@@ -26,11 +35,12 @@ namespace DataService
                   }
               }*/
             Helpers helper = new Helpers();
-           // var (data, statusCode) = helper.GetObject(QuestionsApi);
-            var (user, statusCode) = helper.GetObject($"{UserApi}/0");
+            // var (data, statusCode) = helper.GetObject(QuestionsApi);
+            string CustomeApi = "http://localhost:5001/api";
+            var (data, statusCode) = helper.GetObject(CustomeApi);
 
-         
-               Console.WriteLine(statusCode);
+
+            Console.WriteLine(data["recommendedQuestions"].Count());
             //      Console.WriteLine("done");
             //     Console.ReadLine();
 

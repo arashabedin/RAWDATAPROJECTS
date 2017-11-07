@@ -54,6 +54,24 @@ namespace UnitTests
 
         }
 
+        [Fact]
+        public void ApiCustomeField_AddNewCustomeField()
+        {
+
+            var client = new HttpClient();
+            var response = client.PostAsync("http://localhost:5001/api/customization/5_sql,wordpress,jumla", null).Result;
+            Assert.Equal(true , response.IsSuccessStatusCode);
+            string CustomeApi = "http://localhost:5001/api/customization";
+            var (data, statusCode) = GetObject(CustomeApi);
+            Assert.Equal("jumla", data["favortieTags"][2]);
+            //Checking that the postlimit of Recommended questions according to our favorite tags equals 5
+            string HomeApi = "http://localhost:5001/api";
+            var (data2, statusCode2) = GetObject(HomeApi);
+            Assert.Equal(5, data2["recommendedQuestions"].Count());
+
+        }
+
+
 
 
     }
