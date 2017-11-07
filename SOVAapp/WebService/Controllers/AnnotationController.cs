@@ -38,56 +38,55 @@ namespace WebService.Controllers
 
 
         }
-        [HttpPost("{text}", Name = nameof(AddAnnotation))]
-        public IActionResult AddAnnotation(int Pid, string text) {
+        [HttpPost("{text}_{from}_{to}", Name = nameof(AddAnnotation))]
+        public IActionResult AddAnnotation(int Pid, string text, int from, int to) {
 
-            if (_repository.GetAnnotationById(Pid).Annotation == "Empty") {
-               var addedAnnotation =  _repository.AddAnnotation(Pid, text);
+          
+               var addedAnnotation =  _repository.AddAnnotation(Pid, text, from, to);
                 var annotationModel = new AnnotationModel();
                 annotationModel.MarkingLink = Url.Link(nameof(MarkingController.GetMarking), new { Pid = addedAnnotation.MarkedPostId });
                 annotationModel.AnnotationText = addedAnnotation.Annotation;
+                annotationModel.From = addedAnnotation.From;
+                annotationModel.To = addedAnnotation.To;
                 annotationModel.EditAnnotation = Url.Link(nameof(AnnotationController.EditAnnotation), new { Pid = addedAnnotation.MarkedPostId, text = "Edited_Annotation" });
                 annotationModel.RemoveAnnotation = Url.Link(nameof(AnnotationController.RemoveAnnotation), new { Pid = addedAnnotation.MarkedPostId });
                 return Created($"api/marking/{Pid}/annotation", annotationModel);
-            } else
-            {
-                return NotFound("Annotation is already set");
-            }
+        
         }
 
 
-        [HttpDelete(Name = nameof(RemoveAnnotation))]
-        public IActionResult RemoveAnnotation(int Pid)
+        [HttpDelete("{AnnotId}", Name = nameof(RemoveAnnotation))]
+        public IActionResult RemoveAnnotation(int AnnotId)
         {
 
-            if (_repository.GetAnnotationById(Pid).Annotation == "Empty")
+            if (_repository.GetAnnotationById(AnnotId).Annotation == "Empty")
             {
                 return NotFound("There's no annotation to delete");
             }
             else
             {
-                _repository.DeleteAnnotation(Pid);
+                _repository.DeleteAnnotation(AnnotId);
                 return Ok("Annotation has been deleted");
                 
             }
 
         }
 
-        [HttpPut("{text}", Name = nameof(EditAnnotation))]
-        public IActionResult EditAnnotation(int Pid, string text)
+        [HttpPut("{AnnotId}/{text}", Name = nameof(EditAnnotation))]
+        public IActionResult EditAnnotation(int AnnotId, string text)
         {
 
-            if (_repository.GetAnnotationById(Pid).Annotation == "Empty")
+            if (_repository.GetAnnotationById(AnnotId).Annotation == "Empty")
             {
                 return NotFound("There's no annotation to Edit");
             }
             else
             {
-               var editedAnnotation = _repository.EditAnnotation(Pid, text);
+               var editedAnnotation = _repository.EditAnnotation(AnnotId, text);
                 var annotationModel = new AnnotationModel();
                 annotationModel.MarkingLink = Url.Link(nameof(MarkingController.GetMarking), new { Pid = editedAnnotation.MarkedPostId });
                 annotationModel.AnnotationText = editedAnnotation.Annotation;
-                annotationModel.EditAnnotation = Url.Link(nameof(AnnotationController.EditAnnotation), new { Pid = editedAnnotation.MarkedPostId, text = "Edited_Annotation" });
+                annotationModel.EditAnnotation = Url.Link(nameof(AnnotationController.EditAnnotation), new { AnnotId = editedAnnotation.Annotationid, text = "Edited_Annotation" });
                 annotationModel.RemoveAnnotation = Url.Link(nameof(AnnotationController.RemoveAnnotation), new { Pid = editedAnnotation.MarkedPostId });
                 return Ok(annotationModel);
 

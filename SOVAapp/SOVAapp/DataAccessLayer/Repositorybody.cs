@@ -574,7 +574,7 @@ namespace DataService.DataAccessLayer
             }
 
         }
-        public bool AddMarkingWithAnnotation(int postId, string text)
+        public bool AddMarkingWithAnnotation(int postId, string text, int from, int to)
         {
             using (var db = new SovaContext())
             {
@@ -590,7 +590,7 @@ namespace DataService.DataAccessLayer
                 cmd.Parameters["@1"].Value = postId;
                 cmd.CommandText = "call updateMarking(@1)";
                 var executer = cmd.ExecuteNonQuery();
-                AddAnnotation(postId, text);
+                AddAnnotation(postId, text,from , to);
                 return true;
 
 
@@ -653,17 +653,19 @@ namespace DataService.DataAccessLayer
         ////////////////Annotations
 
 
-        public AnnotationsDTO AddAnnotation(int primaryKey, string text)
+        public AnnotationsDTO AddAnnotation(int primaryKey, string text, int from, int to)
         {
 
             using (var db = new SovaContext()) {
                 Annotations a = new Annotations();
                 a.MarkedPostId = primaryKey;
                 a.Annotation = text;
+                a.From = from;
+                a.To = to;
                 db.Add(a);
                 db.SaveChanges();
 
-                return new AnnotationsDTO(a.MarkedPostId, a.Annotation,null);
+                return new AnnotationsDTO(a.AnnotationId,a.MarkedPostId, a.Annotation,null, a.From, a.To);
             }
 
         }
@@ -672,12 +674,12 @@ namespace DataService.DataAccessLayer
         {
             using (var db = new SovaContext())
             {
-                var annotation = db.Annotations.FirstOrDefault(x => x.MarkedPostId == id);
+                var annotation = db.Annotations.FirstOrDefault(x => x.AnnotationId == id);
                 if (annotation != null)
                 {
                     annotation.Annotation = EditedText;
                     db.SaveChanges();
-                    return new AnnotationsDTO ( annotation.MarkedPostId, annotation.Annotation ,null);
+                    return new AnnotationsDTO ( annotation.AnnotationId,annotation.MarkedPostId, annotation.Annotation ,null, annotation.From, annotation.To);
                 }
                 return null;
             }
@@ -688,7 +690,7 @@ namespace DataService.DataAccessLayer
         {
             using (var db = new SovaContext())
             {
-                var annotation = db.Annotations.FirstOrDefault(x => x.MarkedPostId == id);
+                var annotation = db.Annotations.FirstOrDefault(x => x.AnnotationId == id);
                 if (annotation != null)
                 {
                     db.Annotations.Remove(annotation);
@@ -704,14 +706,36 @@ namespace DataService.DataAccessLayer
         {
             using (var db = new SovaContext())
             {
-                var annotation = db.Annotations.Where(i => i.MarkedPostId == id).FirstOrDefault();
+                var annotation = db.Annotations.Where(i => i.AnnotationId == id).FirstOrDefault();
                 if (annotation != null)
                 {
-                    return new AnnotationsDTO(annotation.MarkedPostId, annotation.Annotation, annotation.Marking);
+                    return new AnnotationsDTO(annotation.AnnotationId, annotation.MarkedPostId, annotation.Annotation, annotation.Marking, annotation.From, annotation.To);
                 }
-                return new AnnotationsDTO(id, "Empty", null);
+                return new AnnotationsDTO(0, 0, "Empty", null, 0, 0);
             }
         }
+
+        public ICollection<AnnotationsDTO> GetAnnotationsByMarkingId(int id)
+        {
+            using (var db = new SovaContext())
+            {
+                var annotation = db.Annotations.Where(i => i.MarkedPostId == id).ToList();
+                List<AnnotationsDTO> annotationsDTO = new List<AnnotationsDTO>();
+
+                foreach (var item in annotation)
+                {
+
+                    var newAnntoation = new AnnotationsDTO(item.AnnotationId, item.MarkedPostId, item.Annotation, item.Marking, item.From, item.To);
+                    annotationsDTO.Add(newAnntoation);
+                }
+
+
+                return annotationsDTO;
+            }
+        }
+
+
+
 
         public ICollection<AnnotationsDTO> GetAnnotations()
         {
@@ -723,7 +747,7 @@ namespace DataService.DataAccessLayer
                     List<AnnotationsDTO> AnnotationsDTO = new List<AnnotationsDTO>();
                     foreach (var annotation in annotations)
                     {
-                        var newAnn = new AnnotationsDTO(annotation.MarkedPostId, annotation.Annotation, annotation.Marking);
+                        var newAnn = new AnnotationsDTO(annotation.AnnotationId,annotation.MarkedPostId, annotation.Annotation, annotation.Marking, annotation.From, annotation.To);
                         AnnotationsDTO.Add(newAnn);
 
                     }

@@ -34,22 +34,13 @@ namespace DataService
 
                   }
               }*/
-            Helpers helper = new Helpers();
-            // var (data, statusCode) = helper.GetObject(QuestionsApi);
-            string CustomeApi = "http://localhost:5001/api";
-            var (data, statusCode) = helper.GetObject(CustomeApi);
-
-
-            Console.WriteLine(data["recommendedQuestions"].Count());
-            //      Console.WriteLine("done");
-            //     Console.ReadLine();
 
             var rep = new RepositoryBody();
 
            // rep.AddSearchHistory("whats your name");
 
          //   Console.WriteLine(rep.RemoveMarking(9033));
-            Console.WriteLine("done");
+            Console.WriteLine(rep.GetAnnotationsByMarkingId(372865).ToList().Last().To);
             Console.ReadLine();
         }
     }

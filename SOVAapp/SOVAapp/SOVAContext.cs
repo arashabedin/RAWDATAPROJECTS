@@ -24,9 +24,9 @@ namespace DataService
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            //  optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=raw5;uid=raw5;pwd=raw5");
-            // optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=aabedin;uid=aabedin;pwd=aMyVAMyt");
-             optionsBuilder.UseMySql("server=localhost;database=raw5;uid=root;");
+          //    optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=raw5;uid=raw5;pwd=raw5");
+             optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=aabedin;uid=aabedin;pwd=aMyVAMyt");
+          //   optionsBuilder.UseMySql("server=localhost;database=raw5;uid=root;");
 
         }
 
@@ -91,8 +91,12 @@ namespace DataService
 
             // Table Annotation
             modelBuilder.Entity<Annotations>().ToTable("annotations");
+            modelBuilder.Entity<Annotations>().Property(x => x.AnnotationId).HasColumnName("annotationid");
             modelBuilder.Entity<Annotations>().Property(x => x.MarkedPostId).HasColumnName("markedpostid");
             modelBuilder.Entity<Annotations>().Property(x => x.Annotation).HasColumnName("annotation");
+            modelBuilder.Entity<Annotations>().Property(x => x.From).HasColumnName("from");
+            modelBuilder.Entity<Annotations>().Property(x => x.To).HasColumnName("to");
+
 
 
             // Table UserCustomeField

@@ -50,7 +50,7 @@ namespace WebService.Controllers
                     AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByQuestionId), new { Qid = x.Id }),
                     CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = x.Id }),
                     MarkThisPost = _repository.GetMarkingById(x.Id)== null?
-                    Url.Link(nameof(MarkingController.AddMarkingWithAnnotation),new {Pid= x.Id , annotation= "empty-text"}):
+                    Url.Link(nameof(MarkingController.AddMarking),new {Pid= x.Id }):
                     "Already marked"
                    
                 });
@@ -88,7 +88,7 @@ namespace WebService.Controllers
         model.AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByQuestionId), new { Qid = Question.Id });
         model.CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = Question.Id });
         model.MarkThisPost = _repository.GetMarkingById(Question.Id) == null ?
-              Url.Link(nameof(MarkingController.AddMarkingWithAnnotation), new { Pid = Question.Id, annotation = "empty-text" }) :
+              Url.Link(nameof(MarkingController.AddMarking), new { Pid = Question.Id }) :
               "Already marked";
 
 
@@ -119,7 +119,7 @@ namespace WebService.Controllers
                     AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByQuestionId), new { Qid = x.Id }),
                     CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = x.Id }),
                     MarkThisPost = _repository.GetMarkingById(x.Id) == null ?
-                      Url.Link(nameof(MarkingController.AddMarkingWithAnnotation), new { Pid = x.Id, annotation = "empty-text" }) :
+                      Url.Link(nameof(MarkingController.AddMarking), new { Pid = x.Id}) :
                       "Already marked",
 
         });

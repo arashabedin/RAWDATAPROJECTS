@@ -8,6 +8,7 @@ namespace DataService.DTO
     public class MarkingDTO
     {
         public int MarkedPostId { get; set; }
+      
         public DateTime MarkingDate { get; set; }
         public  AnnotationsDTO Annotations;
 
@@ -16,8 +17,7 @@ namespace DataService.DTO
             this.MarkedPostId = MarkedPostId;
             this.MarkingDate = MarkingDate;
             this.Annotations = Annotations;
-
-
+       
         }
 
     }

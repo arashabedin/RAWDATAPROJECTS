@@ -70,17 +70,18 @@ namespace DataService.DataAccessLayer
 
         //Markings
         Boolean AddMarking(int postId);
-        bool AddMarkingWithAnnotation(int postId, string text);
+        bool AddMarkingWithAnnotation(int postId, string text, int from, int to);
         Boolean RemoveMarking(int id);
         MarkingDTO GetMarkingById(int id);
         ICollection<MarkingDTO> GetMarkings(int page, int pageSize);
         int CountMarkings();
 
         //Annotations
-        AnnotationsDTO AddAnnotation(int primaryKey, string text);
+        AnnotationsDTO AddAnnotation(int primaryKey, string text,int from, int to);
         AnnotationsDTO EditAnnotation(int id, string EditedText);
         Boolean DeleteAnnotation(int id);
         AnnotationsDTO GetAnnotationById(int id);
+        ICollection<AnnotationsDTO> GetAnnotationsByMarkingId(int id);
         ICollection<AnnotationsDTO> GetAnnotations();
         int CountAnnotations();
 
