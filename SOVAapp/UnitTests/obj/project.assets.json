@@ -14496,8 +14496,8 @@
     },
     "DataService/1.0.0": {
       "type": "project",
-      "path": "../SOVAapp/DataService.csproj",
-      "msbuildProject": "../SOVAapp/DataService.csproj"
+      "path": "../DataService/DataService.csproj",
+      "msbuildProject": "../DataService/DataService.csproj"
     },
     "WebService/1.0.0": {
       "type": "project",
@@ -14552,8 +14552,8 @@
             "C:\\Users\\Arash\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\WebService\\WebService.csproj": {
               "projectPath": "C:\\Users\\Arash\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\WebService\\WebService.csproj"
             },
-            "C:\\Users\\Arash\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\SOVAapp\\DataService.csproj": {
-              "projectPath": "C:\\Users\\Arash\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\SOVAapp\\DataService.csproj"
+            "C:\\Users\\Arash\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\DataService\\DataService.csproj": {
+              "projectPath": "C:\\Users\\Arash\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\DataService\\DataService.csproj"
             }
           }
         }

@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SOVAapp\DataService.csproj" />
+    <ProjectReference Include="..\DataService\DataService.csproj" />
   </ItemGroup>
 
 </Project>

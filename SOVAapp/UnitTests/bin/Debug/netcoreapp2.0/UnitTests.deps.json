@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "9fdaafd35fddd5a056182248bc87062c38d095aa"
+    "signature": "0aa40e40e39b8c6e867bd936ef8efcfd7d35e5bd"
   },
   "compilationOptions": {},
   "targets": {
@@ -10,6 +10,7 @@
         "dependencies": {
           "DataService": "1.0.0",
           "Microsoft.NET.Test.Sdk": "15.3.0-preview-20170628-02",
+          "Moq": "4.7.145",
           "WebService": "1.0.0",
           "xunit": "2.2.0",
           "xunit.runner.visualstudio": "2.2.0"
@@ -2238,7 +2239,7 @@
           }
         }
       },
-      "Moq/4.7.142": {
+      "Moq/4.7.145": {
         "dependencies": {
           "Castle.Core": "4.2.1",
           "System.Linq.Queryable": "4.3.0",
@@ -3927,7 +3928,7 @@
       },
       "DataService/1.0.0": {
         "dependencies": {
-          "Moq": "4.7.142",
+          "Moq": "4.7.145",
           "Pomelo.EntityFrameworkCore.MySql": "2.0.0.1"
         },
         "runtime": {
@@ -3943,7 +3944,7 @@
           "LessJie.System.Web.Http": "1.0.0",
           "Microsoft.AspNetCore.All": "2.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.0",
-          "Moq": "4.7.142"
+          "Moq": "4.7.145"
         },
         "runtime": {
           "WebService.dll": {}
@@ -5231,12 +5232,12 @@
       "path": "microsoft.win32.registry/4.4.0",
       "hashPath": "microsoft.win32.registry.4.4.0.nupkg.sha512"
     },
-    "Moq/4.7.142": {
+    "Moq/4.7.145": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-LeQTESlgZJMYWpyLX/jQLkIx2Uf9CLTu9WfO2o/W0gl+qduhTRDqviVGPlP36RHfCwhNMDf42WSNhIFWbyj8aQ==",
-      "path": "moq/4.7.142",
-      "hashPath": "moq.4.7.142.nupkg.sha512"
+      "sha512": "sha512-GeYAyZPx+9RZxSQYNj0Vh3nmO/Oq/dGdHfy0UxGLSo657fGNLhUWYyqLsb2pf7yHmkc3WfYkTbzFKPTR9lk5Vw==",
+      "path": "moq/4.7.145",
+      "hashPath": "moq.4.7.145.nupkg.sha512"
     },
     "MySqlConnector/0.29.2": {
       "type": "package",
