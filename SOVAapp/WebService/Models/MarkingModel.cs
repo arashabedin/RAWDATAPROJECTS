@@ -8,6 +8,7 @@ namespace WebService.Models
     public class MarkingModel
     {
         public string MarkingUrl { get; set; }
+        public string RemoveMarking { get; set; }
         public string PostUrl { get; set; }
         public string PostBody { get; set; }
         public ICollection<AnnotationModel> MarkingAnnotation { get; set; }

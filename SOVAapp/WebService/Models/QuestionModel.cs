@@ -19,6 +19,7 @@ namespace WebService.Models
         public string AnswersUrl { get; set; }
         public string CommentsUrl { get; set; }
         public string MarkThisPost { get; set; }
+        public string UnMarkPost { get; set; }
 
     }
 }

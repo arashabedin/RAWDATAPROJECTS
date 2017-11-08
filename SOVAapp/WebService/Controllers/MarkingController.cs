@@ -31,6 +31,8 @@ namespace WebService.Controllers
             newMarkingModel.PostUrl = _repository.GetPostById(markedPost.MarkedPostId).PostTypeId == 2 ?
                   Url.Link(nameof(AnswerController.GetAnswerById), new { Qid = _repository.GetPostById(markedPost.MarkedPostId).ParentId, Aid = markedPost.MarkedPostId }) :
                   Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = markedPost.MarkedPostId });
+            newMarkingModel.RemoveMarking = Url.Link(nameof(RemoveMarking), new { Pid = markedPost.MarkedPostId });
+
             // Checking whether there's annotation or not
             newMarkingModel.MarkingAnnotation = _repository.GetAnnotationsByMarkingId(markedPost.MarkedPostId).ToList().Select(a => new AnnotationModel
             {
@@ -69,6 +71,7 @@ namespace WebService.Controllers
                     PostUrl = _repository.GetPostById(x.MarkedPostId).PostTypeId == 2 ?
                       Url.Link(nameof(AnswerController.GetAnswerById), new { Qid = _repository.GetPostById(x.MarkedPostId).ParentId, Aid = x.MarkedPostId }) :
                       Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = x.MarkedPostId }),
+                    RemoveMarking = Url.Link(nameof(RemoveMarking), new {Pid =x.MarkedPostId }),
                     // Checking whether there's annotation or not
                     MarkingAnnotation = _repository.GetAnnotationsByMarkingId(x.MarkedPostId).ToList().Select(a => new AnnotationModel
                     {

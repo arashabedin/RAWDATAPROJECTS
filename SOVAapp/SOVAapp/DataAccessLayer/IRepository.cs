@@ -80,6 +80,7 @@ namespace DataService.DataAccessLayer
         AnnotationsDTO AddAnnotation(int primaryKey, string text,int from, int to);
         AnnotationsDTO EditAnnotation(int id, string EditedText);
         Boolean DeleteAnnotation(int id);
+        Boolean DeleteAnnotationsByMarkingId(int id);
         AnnotationsDTO GetAnnotationById(int id);
         ICollection<AnnotationsDTO> GetAnnotationsByMarkingId(int id);
         ICollection<AnnotationsDTO> GetAnnotations();

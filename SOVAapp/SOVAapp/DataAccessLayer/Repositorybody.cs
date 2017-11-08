@@ -604,7 +604,7 @@ namespace DataService.DataAccessLayer
                 var marking = db.Markings.FirstOrDefault(m => m.MarkedPostId == id);
                if (marking != null)
                 {
-                    DeleteAnnotation(id);
+                    DeleteAnnotationsByMarkingId(id);
                     db.Markings.Remove(marking);
 
                     db.SaveChanges();
@@ -699,6 +699,21 @@ namespace DataService.DataAccessLayer
                     return true;
                 }
                 return false;
+            }
+        }
+
+
+        public bool DeleteAnnotationsByMarkingId(int id)
+        {
+            using (var db = new SovaContext())
+            {
+                var annotation = db.Annotations.Where(x => x.MarkedPostId == id);
+                foreach (var item in annotation)
+                {
+                    db.Annotations.Remove(item);
+                }
+                db.SaveChanges();
+                return true;
             }
         }
 

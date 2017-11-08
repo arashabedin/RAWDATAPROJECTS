@@ -51,8 +51,11 @@ namespace WebService.Controllers
                     CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = x.Id }),
                     MarkThisPost = _repository.GetMarkingById(x.Id)== null?
                     Url.Link(nameof(MarkingController.AddMarking),new {Pid= x.Id }):
-                    "Already marked"
-                   
+                    "Already marked",
+                    UnMarkPost = _repository.GetMarkingById(x.Id) == null ?
+                    "Not marked yet" 
+                    : Url.Link(nameof(MarkingController.RemoveMarking), new { Pid = x.Id }),
+
                 });
 
             var result = new
@@ -90,6 +93,9 @@ namespace WebService.Controllers
         model.MarkThisPost = _repository.GetMarkingById(Question.Id) == null ?
               Url.Link(nameof(MarkingController.AddMarking), new { Pid = Question.Id }) :
               "Already marked";
+        model.UnMarkPost = _repository.GetMarkingById(Question.Id) == null ?
+              "Not marked yet"
+              : Url.Link(nameof(MarkingController.RemoveMarking), new { Pid = Question.Id });
 
 
         return Ok(model);
