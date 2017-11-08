@@ -10,6 +10,10 @@ using Newtonsoft.Json.Linq;
 using Xunit;
 using System.Diagnostics;
 using DataService.DataAccessLayer;
+using Moq;
+using AutoMapper;
+using WebService.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace UnitTests
 {
@@ -104,6 +108,17 @@ namespace UnitTests
 
         }
 
+        [Fact]
+        public void GetQuestionById_InvalidId_ReturnsNotFund()
+        {
+            var dataServviceMock = new Mock<IRepository>();
+            var imapperMock = new Mock<IMapper>();
+
+            var ctrl = new QuestionController(dataServviceMock.Object, imapperMock.Object);
+
+            var response = ctrl.GetQuestionById(1);
+            Assert.IsType<NotFoundResult>(response);
+        }
 
 
     }

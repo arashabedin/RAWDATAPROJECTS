@@ -3173,7 +3173,7 @@
           }
         }
       },
-      "Moq/4.7.142": {
+      "Moq/4.7.145": {
         "type": "package",
         "dependencies": {
           "Castle.Core": "4.2.1",
@@ -8758,10 +8758,10 @@
         "version.txt"
       ]
     },
-    "Moq/4.7.142": {
-      "sha512": "LeQTESlgZJMYWpyLX/jQLkIx2Uf9CLTu9WfO2o/W0gl+qduhTRDqviVGPlP36RHfCwhNMDf42WSNhIFWbyj8aQ==",
+    "Moq/4.7.145": {
+      "sha512": "GeYAyZPx+9RZxSQYNj0Vh3nmO/Oq/dGdHfy0UxGLSo657fGNLhUWYyqLsb2pf7yHmkc3WfYkTbzFKPTR9lk5Vw==",
       "type": "package",
-      "path": "moq/4.7.142",
+      "path": "moq/4.7.145",
       "files": [
         "lib/net45/Moq.dll",
         "lib/net45/Moq.pdb",
@@ -8769,7 +8769,7 @@
         "lib/netstandard1.3/Moq.dll",
         "lib/netstandard1.3/Moq.pdb",
         "lib/netstandard1.3/Moq.xml",
-        "moq.4.7.142.nupkg.sha512",
+        "moq.4.7.145.nupkg.sha512",
         "moq.nuspec"
       ]
     },
@@ -14510,13 +14510,14 @@
       "DataService >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 15.3.0-preview-20170628-02",
       "Microsoft.NETCore.App >= 2.0.0",
+      "Moq >= 4.7.145",
       "WebService >= 1.0.0",
       "xunit >= 2.2.0",
       "xunit.runner.visualstudio >= 2.2.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Arash\\.nuget\\packages\\": {},
+    "C:\\Users\\aabedin\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -14525,17 +14526,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Arash\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\UnitTests\\UnitTests.csproj",
+      "projectUniqueName": "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\UnitTests\\UnitTests.csproj",
       "projectName": "UnitTests",
-      "projectPath": "C:\\Users\\Arash\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\UnitTests\\UnitTests.csproj",
-      "packagesPath": "C:\\Users\\Arash\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Arash\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\UnitTests\\obj\\",
+      "projectPath": "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\UnitTests\\UnitTests.csproj",
+      "packagesPath": "C:\\Users\\aabedin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\UnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Arash\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\aabedin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -14548,11 +14549,11 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Users\\Arash\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\WebService\\WebService.csproj": {
-              "projectPath": "C:\\Users\\Arash\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\WebService\\WebService.csproj"
+            "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\WebService\\WebService.csproj": {
+              "projectPath": "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\WebService\\WebService.csproj"
             },
-            "C:\\Users\\Arash\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\SOVAapp\\DataService.csproj": {
-              "projectPath": "C:\\Users\\Arash\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\SOVAapp\\DataService.csproj"
+            "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\SOVAapp\\DataService.csproj": {
+              "projectPath": "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\SOVAapp\\DataService.csproj"
             }
           }
         }
@@ -14569,6 +14570,10 @@
           "xunit.runner.visualstudio": {
             "target": "Package",
             "version": "2.2.0"
+          },
+          "Moq": {
+            "target": "Package",
+            "version": "4.7.145"
           },
           "Microsoft.NETCore.App": {
             "target": "Package",
