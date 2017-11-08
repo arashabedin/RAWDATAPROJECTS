@@ -120,6 +120,47 @@ namespace UnitTests
             Assert.IsType<NotFoundResult>(response);
         }
 
+        [Fact]
+        public void ApiGetQuestionCommentById_ReturnListofComments_withValues()
+        {
+            string CommentApi = "http://localhost:5001/api/comment";
+            var (data, statusCode) = GetObject(CommentApi);
+            Assert.Equal(HttpStatusCode.NotFound, statusCode);
+            var CommentId = "http://localhost:5001/api/question/652788/answer/652802/comment/466139";
+            var (data2, statusCode2) = GetObject(CommentId);
+            Assert.Equal("Joel Spolsky", data2["userName"]);
+            Assert.Equal("only if you're a valley girl", data2["body"]);
+        }
 
+        [Fact]
+        public void ApiGetUserInfobyAnswerId_Returninfo_withValues()
+        {
+            string AnswerIdApi = "http://localhost:5001/api/question/5323/answer/5345";
+            var (data, statusCode) = GetObject(AnswerIdApi);
+            Assert.Equal(HttpStatusCode.OK, statusCode);
+            Assert.Equal("Joel Spolsky", data["userName"]);
+            Assert.Equal(8, data["score"]);
+            Assert.Equal("only if you're a valley girl", data["body"]);
+            Assert.Equal(5, data.Count);
+        }
+
+        [Fact]
+        public void ApiGetAnswersbyUserId_ReturnAnswer_withValues()
+        {
+            string AnswerApi = "http://localhost:5001/api/user/5/answer";
+            var (data, statusCode) = GetObject(AnswerApi);
+            Assert.Equal(HttpStatusCode.OK, statusCode);
+            Assert.Equal("Jon Galloway", data[0]["userName"]);
+            Assert.Equal("http://localhost:5001/api/user/5?id=5", data[0]["userUrl"]);
+            Assert.Equal(4, data[1]["score"]);
+        }
+
+       [Fact]
+        public void ApiAnnotations_InvalidId_NotFound()
+        {
+            string AnnotationsApi = "http://localhost:5001/api/marking/19/annotation/NewAnnotation_0_0";
+            var (Annotations, statusCode) = GetObject($"{AnnotationsApi }/0");
+            Assert.Equal(HttpStatusCode.NotFound, statusCode);
+        }
     }
 }
