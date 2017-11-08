@@ -129,18 +129,7 @@ namespace UnitTests
             Assert.Equal("different between C# and java", searchHistory.First().SearchContent);
         }
 
-        [Fact]
-
-        public void AddMarking_AddsAnnotation_AndRemove()
-        {
-            
-            var db = new RepositoryBody();
-           Assert.Equal(db.AddMarkingWithAnnotation(531, "This post was great"),true);
-           Assert.Equal(db.GetMarkingById(531).Annotations.Annotation, "This post was great");
-           Assert.Equal(db.RemoveMarking(531), true);
-           Assert.Equal(db.GetMarkingById(531), null);
-
-        }
+      
 
         [Fact]
         public void AddCustomeField_Adds_FavoriteTags()
