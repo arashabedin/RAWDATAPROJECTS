@@ -100,7 +100,7 @@ namespace WebService.Controllers
                     Score = x.Score,
                     Body = x.Body,
                     QuestionUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = x.ParentId }),
-                    UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { id = x.OwneruserId }),
+                    UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = x.OwneruserId }),
                     CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByAnswerId), new { Qid = x.ParentId, Aid = x.Id }),
                 });
 

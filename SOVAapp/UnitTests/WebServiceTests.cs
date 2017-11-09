@@ -41,7 +41,7 @@ namespace UnitTests
 
             Assert.Equal(HttpStatusCode.OK, statusCode);
             Assert.Equal("http://localhost:5001/api/question/19", data["url"]);
-            Assert.Equal(12, data.Count);
+            Assert.Equal(13, data.Count);
 
         }
 
@@ -74,12 +74,20 @@ namespace UnitTests
 
  [Fact]
         public void ApiGetAllMarking_ReturnListOfMarking_withValues()
+
         {
+
+            var client = new HttpClient();
+            var response = client.PostAsync("http://localhost:5001/api/marking/1667278", null).Result;
             string MarkingApi = "http://localhost:5001/api/Marking";
             var (data, statusCode) = GetObject(MarkingApi);
             Assert.Equal(HttpStatusCode.OK, statusCode);
-            Assert.Equal(6, data["total"]);
-            Assert.Equal("http://localhost:5001/api/marking/86513", data["data"][0]["markingUrl"]);
+            Assert.Equal(data["data"].Count(),5);
+            int totalPages = (int)data["pages"];
+            var newUrl = "http://localhost:5001/api/marking?page="+(totalPages-1)+"&pageSize=5";
+            var (data2, statusCode2) = GetObject(newUrl);
+            Assert.Equal("http://localhost:5001/api/marking/1667278", data2["data"].Last["markingUrl"]);
+            response = client.DeleteAsync("http://localhost:5001/api/marking/1667278").Result;
 
         }
 
@@ -138,21 +146,21 @@ namespace UnitTests
             string AnswerIdApi = "http://localhost:5001/api/question/5323/answer/5345";
             var (data, statusCode) = GetObject(AnswerIdApi);
             Assert.Equal(HttpStatusCode.OK, statusCode);
-            Assert.Equal("Joel Spolsky", data["userName"]);
+            Assert.Equal("Jon Galloway", data["userName"]);
             Assert.Equal(8, data["score"]);
-            Assert.Equal("only if you're a valley girl", data["body"]);
-            Assert.Equal(5, data.Count);
+            Assert.Equal("http://localhost:5001/api/question/5323/answer/5345/comment", data["commentsUrl"]);
+            Assert.Equal(8, data.Count);
         }
 
         [Fact]
         public void ApiGetAnswersbyUserId_ReturnAnswer_withValues()
         {
-            string AnswerApi = "http://localhost:5001/api/user/5/answer";
-            var (data, statusCode) = GetObject(AnswerApi);
+            string AnswerwithUserIdApi = "http://localhost:5001/api/user/3/answer";
+            var (data, statusCode) = GetObject(AnswerwithUserIdApi);
             Assert.Equal(HttpStatusCode.OK, statusCode);
-            Assert.Equal("Jon Galloway", data[0]["userName"]);
-            Assert.Equal("http://localhost:5001/api/user/5?id=5", data[0]["userUrl"]);
-            Assert.Equal(4, data[1]["score"]);
+            Assert.Equal("Jarrod Dixon", data["data"][0]["userName"]);
+            Assert.Equal("http://localhost:5001/api/user/3", data["data"][0]["userUrl"]);
+            Assert.Equal(19, data["data"][0]["score"]);
         }
 
        [Fact]
