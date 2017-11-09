@@ -123,10 +123,10 @@ namespace UnitTests
         public void DoSearch_MustReturnValidValues_andSavedHistory()
         {
             var db = new RepositoryBody();
-            var foundTitle = db.DoSearch("different between C# and java",0,3).First().Title;
-            Assert.Equal(foundTitle, "What is the copy-and-swap idiom?");
+            var foundTitle = db.DoSearch("Functional vs Object Oriented", 0,3).First().Title;
+            Assert.Equal(foundTitle, "Functional programming vs Object Oriented programming");
             var searchHistory = db.GetSearchHistories(0, 3);
-            Assert.Equal("different between C# and java", searchHistory.First().SearchContent);
+            Assert.Equal("Functional vs Object Oriented", searchHistory.First().SearchContent);
         }
 
       
