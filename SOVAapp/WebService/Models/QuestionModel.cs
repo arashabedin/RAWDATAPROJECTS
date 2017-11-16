@@ -14,6 +14,7 @@ namespace WebService.Models
         public string Title { get; set; }
         public string Body { get; set; }
         public List<String> Tags;
+        public List<LinkedPostsModel> LinkedPosts;
         public string UserUrl { get; set; }
         public string AcceptedAnswerUrl { get; set; }
         public string AnswersUrl { get; set; }

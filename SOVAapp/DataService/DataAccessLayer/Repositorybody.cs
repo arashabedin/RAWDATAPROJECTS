@@ -193,6 +193,22 @@ namespace DataService.DataAccessLayer
 
         }
 
+        ////////////////LinkedPosts
+       public ICollection<QuestionDTO> GetLinkedPosts(int id)
+        {
+            using (var db = new SovaContext())
+            {
+                var linkedposts = db.Posts.Where(i => i.LinkPostId == id);
+                List<QuestionDTO> LinkedPostsDto = new List<QuestionDTO>();
+                foreach (var item in linkedposts)
+                {
+                   var newLinked = GetQuestionById(item.Id);
+                    LinkedPostsDto.Add(newLinked);
+     
+                }
+                return LinkedPostsDto;
+            }
+            }
 
         ////////////////Questions
 
@@ -205,7 +221,7 @@ namespace DataService.DataAccessLayer
                 if (post.PostTypeId == 1)
                 {
                     return new QuestionDTO(post.Id, post.AcceptedAnswerId, post.OwnerUserId, post.Body, post.Title, post.Score, post.CreationDate,
-                      post.ClosedDate, null, null, null, GetUserByPostId(post.Id));
+                      post.ClosedDate, null, null, null, GetUserByPostId(post.Id), GetLinkedPosts(post.Id));
                 }
                 return null;
 
@@ -222,7 +238,7 @@ namespace DataService.DataAccessLayer
                 var answersOfq = db.Posts.Where(i => i.ParentId == q.Id).ToList();
 
                 return new QuestionDTO(q.Id, q.AcceptedAnswerId, q.OwnerUserId, q.Body, q.Title, q.Score, q.CreationDate,
-                                       q.ClosedDate, null, answersOfq, GetPostTagsByPostId(q.Id), GetUserByPostId(q.Id));
+                                       q.ClosedDate, null, answersOfq, GetPostTagsByPostId(q.Id), GetUserByPostId(q.Id), GetLinkedPosts(q.Id));
 
             }
         }
@@ -259,7 +275,7 @@ namespace DataService.DataAccessLayer
                 {
                     var answerCollection = db.Posts.Where(p => p.ParentId == post.Id).ToList();
                     var question = new QuestionDTO(post.Id, post.AcceptedAnswerId, post.OwnerUserId, post.Body, post.Title, post.Score, post.CreationDate,
-    post.ClosedDate, null, answerCollection, GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
+    post.ClosedDate, null, answerCollection, GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id), GetLinkedPosts(post.Id));
                     questionDTO.Add(question);
                 }
                 return questionDTO.OrderBy(x => x.Id)

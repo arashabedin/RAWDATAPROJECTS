@@ -45,6 +45,11 @@ namespace WebService.Controllers
                     Title = x.Title,
                     Body = x.Body,
                     Tags = _repository.GetPostTagsByPostId(x.Id).Select(t =>  t.Tag.Tag ).ToList(),
+                    LinkedPosts = _repository.GetLinkedPosts(x.Id).Select(l => new LinkedPostsModel
+                    {
+                        LinkedPostUrl = Url.Link(nameof(GetQuestionById), new { Qid = l.Id }),
+                        PostTitle = l.Title
+                    }).ToList(),
                     UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = x.OwnerUserId }),
                     AcceptedAnswerUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { Qid = x.Id, Aid = x.AcceptedAnswerId }),
                     AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByQuestionId), new { Qid = x.Id }),
@@ -85,6 +90,10 @@ namespace WebService.Controllers
         var model = _mapper.Map<QuestionModel>(Question);
         model.UserName = Question.UserInfo.DisplayName;
         model.Tags = _repository.GetPostTagsByPostId(Qid).Select(t => t.Tag.Tag).ToList();
+        model.LinkedPosts = Question.LinkedPosts.Select(l => new LinkedPostsModel {
+                LinkedPostUrl = Url.Link(nameof(GetQuestionById), new { Qid = l.Id }),
+                PostTitle = l.Title
+        }).ToList();
         model.Url = Url.Link(nameof(GetQuestionById), new { Qid = Question.Id });
         model.UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = Question.OwneruserId });
         model.AcceptedAnswerUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { id = Question.AcceptedAnswerId });
@@ -120,7 +129,12 @@ namespace WebService.Controllers
                     Title = x.Title,
                     Body = x.Body,
                     Tags = _repository.GetPostTagsByPostId(x.Id).Select(t => t.Tag.Tag).ToList(),
-                    UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = x.OwneruserId }),
+                    LinkedPosts = x.LinkedPosts.Select(l => new LinkedPostsModel
+                    {
+                        LinkedPostUrl = Url.Link(nameof(GetQuestionById), new { Qid = l.Id }),
+                        PostTitle = l.Title
+                    }).ToList(),
+            UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = x.OwneruserId }),
                     AcceptedAnswerUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { id = x.AcceptedAnswerId }),
                     AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByQuestionId), new { Qid = x.Id }),
                     CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = x.Id }),

@@ -52,7 +52,8 @@ namespace WebService
                     .ReverseMap();
                 cfg.CreateMap<UserInfoDTO, UserInfoModel>()
                   .ReverseMap();
-                cfg.CreateMap<QuestionDTO, QuestionModel>()
+                cfg.CreateMap<QuestionDTO, QuestionModel>().
+                ForMember(c => c.LinkedPosts, option => option.Ignore())
               .ReverseMap();
                  cfg.CreateMap<CommentDTO, CommentModel>()
              .ReverseMap();

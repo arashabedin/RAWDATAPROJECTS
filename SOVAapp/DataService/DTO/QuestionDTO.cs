@@ -18,12 +18,13 @@ namespace DataService.DTO
 
         public ICollection<CommentDTO> Comments;
         public ICollection<Post> Answers;
+        public ICollection<QuestionDTO> LinkedPosts;
         public ICollection<PostTagsDTO> PostTags;
         public virtual UserInfoDTO UserInfo { get; set; }
 
 
         public QuestionDTO(int Id, int? AcceptedAnswerId, int OwneruserId, String Body, String Title, int Score, DateTime CreationDate, DateTime? ClosedDate
-            , ICollection<CommentDTO> Comments, ICollection<Post> Asnwers, ICollection<PostTagsDTO> PostTags, UserInfoDTO UserInfo)
+            , ICollection<CommentDTO> Comments, ICollection<Post> Asnwers, ICollection<PostTagsDTO> PostTags, UserInfoDTO UserInfo, ICollection<QuestionDTO> LinkedPosts)
         {
             this.Id = Id;
             this.OwneruserId = OwneruserId;
@@ -37,8 +38,9 @@ namespace DataService.DTO
             this.Answers = Asnwers;
             this.PostTags = PostTags;
             this.UserInfo = UserInfo;
+            this.LinkedPosts =  LinkedPosts;
 
-        }
+    }
 
 
     }

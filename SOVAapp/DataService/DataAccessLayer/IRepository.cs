@@ -30,7 +30,8 @@ namespace DataService.DataAccessLayer
         int CountAnswers();
         int CountAnswersByUserId(int id);
         int CountAnswersByQuestionId(int id);
-
+        //LinkedPosts
+        ICollection<QuestionDTO> GetLinkedPosts(int id);
         //Question
         QuestionDTO GetQuestionById(int id);
         QuestionDTO GetQuestionByAnswerId(int id);
