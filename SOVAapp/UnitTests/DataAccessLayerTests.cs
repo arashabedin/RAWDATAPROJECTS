@@ -123,7 +123,7 @@ namespace UnitTests
         public void DoSearch_MustReturnValidValues_andSavedHistory()
         {
             var db = new RepositoryBody();
-            var foundTitle = db.DoSearch("Functional vs Object Oriented", 0,3).First().Title;
+            var foundTitle = db.KeySearch("Functional vs Object Oriented", 0,3).First().Title;
             Assert.Equal(foundTitle, "Functional programming vs Object Oriented programming");
             var searchHistory = db.GetSearchHistories(0, 3);
             Assert.Equal("Functional vs Object Oriented", searchHistory.First().SearchContent);

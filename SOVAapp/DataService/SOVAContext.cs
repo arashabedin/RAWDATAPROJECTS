@@ -19,13 +19,16 @@ namespace DataService
         public DbSet<Annotations> Annotations { get; set; }
         public DbSet<FavoriteTags> FavoriteTags { get; set; }
         public DbSet<UserCustomeField> UserCustomeField { get; set; }
+        public DbSet<TermScore> TermScore { get; set; }
+        public DbSet<CoOccurrence> CoOccurrence { get; set; }
+        public DbSet<SearchResult> SearchResult { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-          //    optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=raw5;uid=raw5;pwd=raw5");
-             optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=aabedin;uid=aabedin;pwd=aMyVAMyt");
+              optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=raw5;uid=raw5;pwd=raw5");
+           //  optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=aabedin;uid=aabedin;pwd=aMyVAMyt");
           //   optionsBuilder.UseMySql("server=localhost;database=raw5;uid=root;");
 
         }
@@ -125,6 +128,26 @@ namespace DataService
             modelBuilder.Entity<PostType>().Property(x => x.Type).HasColumnName("posttype");
 
 
+            // Table TermScore
+            modelBuilder.Entity<TermScore>().ToTable("termscore");
+            modelBuilder.Entity<TermScore>().Property(x => x.Id).HasColumnName("id");
+            modelBuilder.Entity<TermScore>().Property(x => x.Word).HasColumnName("word");
+            modelBuilder.Entity<TermScore>().Property(x => x.Tf).HasColumnName("tf");
+            modelBuilder.Entity<TermScore>().Property(x => x.Idf).HasColumnName("idf");
+            modelBuilder.Entity<TermScore>().Property(x => x.TfIdf).HasColumnName("tfidf");
+
+            // Table CoOccurrence
+            modelBuilder.Entity<CoOccurrence>().ToTable("co_occurrence");
+            modelBuilder.Entity<CoOccurrence>().Property(t => t.Word).HasColumnName("word");
+            modelBuilder.Entity<CoOccurrence>().Property(x => x.Word2).HasColumnName("word2");
+            modelBuilder.Entity<CoOccurrence>().Property(x => x.Grade).HasColumnName("grade");
+           
+            // SearchResults
+            //modelBuilder.Entity<SearchResult>().ToTable("posts");
+            modelBuilder.Entity<SearchResult>().Property(x => x.Id).HasColumnName("id");
+             modelBuilder.Entity<SearchResult>().Property(x => x.Title).HasColumnName("title");
+             modelBuilder.Entity<SearchResult>().Property(x => x.Body).HasColumnName("body");
+             modelBuilder.Entity<SearchResult>().Property(x => x.Rank).HasColumnName("rank");
 
 
         }

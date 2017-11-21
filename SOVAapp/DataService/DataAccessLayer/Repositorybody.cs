@@ -802,20 +802,21 @@ namespace DataService.DataAccessLayer
         }
         ////////////////Searching
 
-        public ICollection<CustomePostsDTO> DoSearch(string searchText, int page, int pageSize)
+        public ICollection<SearchResultDTO> KeySearch(string keywords, int page, int pageSize)
         {
             using (var db = new SovaContext())
             {
-                var result = db.Posts.FromSql("call searching({0})", searchText);
-                List<CustomePostsDTO> ResultsDTO = new List<CustomePostsDTO>();
-                foreach (var FoundItem in result)
+               // var result = db.Posts.FromSql("call keysearch({0})", keywords);
+                var result2 = db.SearchResult.FromSql("call keysearch({0})", keywords);
+                List <SearchResultDTO> ResultsDTO = new List<SearchResultDTO>();
+                foreach (var FoundItem in result2)
                 {
-                    var newItemDTO = new CustomePostsDTO(FoundItem.Id, FoundItem.Title, FoundItem.Body, FoundItem.OwnerUserId, FoundItem.PostTypeId);
+                    var newItemDTO = new SearchResultDTO(FoundItem.Id, FoundItem.Title, FoundItem.Body, FoundItem.Rank);
+                 
+                    newItemDTO.totalResults = result2.Count();
                     ResultsDTO.Add(newItemDTO);
-                    newItemDTO.Score = FoundItem.Score;
-                    newItemDTO.totalResults = result.Count();
                 }
-                return ResultsDTO.OrderByDescending(x => x.Score)
+                return ResultsDTO.OrderByDescending(x => x.Rank)
                     .Skip(page * pageSize)
                     .Take(pageSize)
                     .ToList();
@@ -1060,6 +1061,50 @@ namespace DataService.DataAccessLayer
 
             }
         }
+
+
+
+
+        //Co_Occurrent
+        public ICollection<CoOccurrenceDTO> ShowCoOccurrences()
+        {
+            using (var db = new SovaContext())
+            {
+                var CoOccurrent = db.CoOccurrence.ToList();
+                List<CoOccurrenceDTO> coOccurrenceDTO = new List<CoOccurrenceDTO>();
+                    foreach(var item in CoOccurrent)
+                {
+                    var newItem = new CoOccurrenceDTO(item.Word, item.Word2 , item.Grade);
+                    coOccurrenceDTO.Add(newItem);
+                }
+                return coOccurrenceDTO;
+
+
+        }
+        }
+
+
+        public ICollection<CoOccurrenceDTO> ShowCoOccurrencesByWord(string word)
+        {
+            using (var db = new SovaContext())
+            {
+                var CoOccurrent = db.CoOccurrence.Where(i => i.Word == word).ToList();
+                List<CoOccurrenceDTO> coOccurrenceDTO = new List<CoOccurrenceDTO>();
+                foreach (var item in CoOccurrent)
+                {
+                    var newItem = new CoOccurrenceDTO(item.Word, item.Word2, item.Grade);
+                    coOccurrenceDTO.Add(newItem);
+                }
+                return coOccurrenceDTO;
+
+
+            }
+
+        }
+
+
+
+
 
     }
 }

@@ -88,7 +88,7 @@ namespace DataService.DataAccessLayer
         int CountAnnotations();
 
         //Searching
-        ICollection<CustomePostsDTO> DoSearch(string searchText,int page, int pageSize);
+        ICollection<SearchResultDTO> KeySearch(string searchText,int page, int pageSize);
 
         //SearchHistory
         void AddSearchHistory(String SearchText);
@@ -113,8 +113,14 @@ namespace DataService.DataAccessLayer
 
         //RecommendedPosts
         ICollection<CustomePostsDTO> ShowCustomePosts();
-     
-      
+
+
+        //Co_Occurrent
+        ICollection<CoOccurrenceDTO> ShowCoOccurrences();
+        ICollection<CoOccurrenceDTO> ShowCoOccurrencesByWord(string word);
+
+
+
 
 
     }

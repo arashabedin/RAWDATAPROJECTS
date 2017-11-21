@@ -8,10 +8,10 @@ namespace WebService.Models
     public class SearchModel
     {
         public string SearchText;
-        public string PostTitle;
         public string PostUrl;
-        public string User;
-        public int? Score;
+        public string PostTitle;
+        public string PostBody;
+        //public double? Score;
          
     }
 }

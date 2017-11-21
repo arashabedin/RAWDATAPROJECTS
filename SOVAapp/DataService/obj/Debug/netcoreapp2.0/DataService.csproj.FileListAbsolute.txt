@@ -42,3 +42,14 @@ C:\Users\Arash\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\DataService\obj\Debug\ne
 C:\Users\Arash\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\DataService\obj\Debug\netcoreapp2.0\DataService.AssemblyInfo.cs
 C:\Users\Arash\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\DataService\obj\Debug\netcoreapp2.0\DataService.dll
 C:\Users\Arash\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\DataService\obj\Debug\netcoreapp2.0\DataService.pdb
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\DataService\bin\Debug\netcoreapp2.0\DataService.deps.json
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\DataService\bin\Debug\netcoreapp2.0\DataService.runtimeconfig.json
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\DataService\bin\Debug\netcoreapp2.0\DataService.runtimeconfig.dev.json
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\DataService\bin\Debug\netcoreapp2.0\DataService.dll
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\DataService\bin\Debug\netcoreapp2.0\DataService.pdb
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\DataService\obj\Debug\netcoreapp2.0\DataService.csprojResolveAssemblyReference.cache
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\DataService\obj\Debug\netcoreapp2.0\DataService.csproj.CoreCompileInputs.cache
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\DataService\obj\Debug\netcoreapp2.0\DataService.AssemblyInfoInputs.cache
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\DataService\obj\Debug\netcoreapp2.0\DataService.AssemblyInfo.cs
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\DataService\obj\Debug\netcoreapp2.0\DataService.dll
+C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECTS\SOVAapp\DataService\obj\Debug\netcoreapp2.0\DataService.pdb

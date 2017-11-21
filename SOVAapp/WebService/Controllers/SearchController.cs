@@ -38,7 +38,7 @@ namespace WebService.Controllers
             CheckPageSize(ref pageSize);
 
 
-            var searches = _repository.DoSearch(SearchText, page, pageSize);
+            var searches = _repository.KeySearch(SearchText, page, pageSize);
             if (searches.Count == 0)
             {
                 return NotFound("No results have been found");
@@ -47,12 +47,9 @@ namespace WebService.Controllers
             {
                 SearchText = SearchText,
                 PostTitle = x.Title,
-                // Checking whether the post is an answer or question to give it the correct link
-                PostUrl = _repository.GetPostById(x.PostId).PostTypeId == 2 ?
-                     Url.Link(nameof(AnswerController.GetAnswerById), new { Qid = _repository.GetPostById(x.PostId).ParentId, Aid = x.PostId }) :
-                     Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = x.PostId }),
-                Score = x.Score,
-                User = _repository.GetUserById(x.UserId).DisplayName                
+                PostUrl =  Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = x.Id }),
+                PostBody = x.Body
+               
 
             });
             var total = searches.First().totalResults;
