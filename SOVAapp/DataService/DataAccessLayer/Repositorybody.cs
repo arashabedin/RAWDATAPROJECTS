@@ -1066,7 +1066,7 @@ namespace DataService.DataAccessLayer
 
 
         //Co_Occurrent
-        public ICollection<CoOccurrenceDTO> ShowCoOccurrences()
+        public ICollection<CoOccurrenceDTO> GetCoOccurrences(int page, int pageSize)
         {
             using (var db = new SovaContext())
             {
@@ -1077,14 +1077,17 @@ namespace DataService.DataAccessLayer
                     var newItem = new CoOccurrenceDTO(item.Word, item.Word2 , item.Grade);
                     coOccurrenceDTO.Add(newItem);
                 }
-                return coOccurrenceDTO;
+                return coOccurrenceDTO.OrderByDescending(x => x.Grade)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList(); 
 
 
         }
         }
 
 
-        public ICollection<CoOccurrenceDTO> ShowCoOccurrencesByWord(string word)
+        public ICollection<CoOccurrenceDTO> GetCoOccurrencesByWord(string word, int page, int pageSize)
         {
             using (var db = new SovaContext())
             {
@@ -1095,9 +1098,28 @@ namespace DataService.DataAccessLayer
                     var newItem = new CoOccurrenceDTO(item.Word, item.Word2, item.Grade);
                     coOccurrenceDTO.Add(newItem);
                 }
-                return coOccurrenceDTO;
+                return coOccurrenceDTO.OrderByDescending(x => x.Grade)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList();
 
 
+            }
+
+        }
+
+        public int CountCoOccurrences()
+        {
+            using (var db = new SovaContext())
+            {
+                return db.CoOccurrence.Count();
+            }
+        }
+        public  int CountCoOccurrencesByWord(string word)
+        {
+            using (var db = new SovaContext())
+            {
+                return db.CoOccurrence.Where(x=> x.Word == word).Count();
             }
 
         }

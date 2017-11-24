@@ -9,6 +9,7 @@ namespace DataService.DomainModel
     {
         [Key]
         public string Word { get; set; }
+        [Key]
         public string Word2 { get; set; }
         public int Grade { get; set; }
 

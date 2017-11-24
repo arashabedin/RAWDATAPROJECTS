@@ -141,7 +141,8 @@ namespace DataService
             modelBuilder.Entity<CoOccurrence>().Property(t => t.Word).HasColumnName("word");
             modelBuilder.Entity<CoOccurrence>().Property(x => x.Word2).HasColumnName("word2");
             modelBuilder.Entity<CoOccurrence>().Property(x => x.Grade).HasColumnName("grade");
-           
+            modelBuilder.Entity<CoOccurrence>()
+           .HasKey(c => new { c.Word, c.Word2 });
             // SearchResults
             //modelBuilder.Entity<SearchResult>().ToTable("posts");
             modelBuilder.Entity<SearchResult>().Property(x => x.Id).HasColumnName("id");

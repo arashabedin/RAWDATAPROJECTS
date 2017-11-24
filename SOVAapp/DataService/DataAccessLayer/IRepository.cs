@@ -116,9 +116,10 @@ namespace DataService.DataAccessLayer
 
 
         //Co_Occurrent
-        ICollection<CoOccurrenceDTO> ShowCoOccurrences();
-        ICollection<CoOccurrenceDTO> ShowCoOccurrencesByWord(string word);
-
+        ICollection<CoOccurrenceDTO> GetCoOccurrences(int page, int pageSize);
+        ICollection<CoOccurrenceDTO> GetCoOccurrencesByWord(string word, int page, int pageSize);
+        int CountCoOccurrences();
+        int CountCoOccurrencesByWord(string word);
 
 
 
