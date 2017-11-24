@@ -138,7 +138,7 @@ namespace DataService
 
             // Table CoOccurrence
             modelBuilder.Entity<CoOccurrence>().ToTable("co_occurrence");
-            modelBuilder.Entity<CoOccurrence>().Property(t => t.Word).HasColumnName("word");
+            modelBuilder.Entity<CoOccurrence>().Property(t => t.Word).HasColumnName("word1");
             modelBuilder.Entity<CoOccurrence>().Property(x => x.Word2).HasColumnName("word2");
             modelBuilder.Entity<CoOccurrence>().Property(x => x.Grade).HasColumnName("grade");
             modelBuilder.Entity<CoOccurrence>()
