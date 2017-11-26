@@ -88,7 +88,7 @@ namespace DataService.DataAccessLayer
         int CountAnnotations();
 
         //Searching
-        ICollection<SearchResultDTO> KeySearch(string searchText,int page, int pageSize);
+        ICollection<SearchResultDTO> Search(string searchText,int page, int pageSize);
 
         //SearchHistory
         void AddSearchHistory(String SearchText);
@@ -120,6 +120,11 @@ namespace DataService.DataAccessLayer
         ICollection<CoOccurrenceDTO> GetCoOccurrencesByWord(string word, int page, int pageSize);
         int CountCoOccurrences();
         int CountCoOccurrencesByWord(string word);
+
+        //Term_As_Result
+        int CountTermsAsResult(string text);
+        ICollection<TermAsResultDTO> GetTermsAsResult(string text , int page, int pageSize);
+
 
 
 

@@ -37,11 +37,13 @@ namespace WebService.Controllers
                     Title = i.Title,
                     Body = i.Body,
                     QuestionUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = i.PostId }),
-                    UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = _repository.GetUserByPostId(i.PostId).Id })                  
+                    UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = _repository.GetUserByPostId(i.PostId).Id })
 
                 }).ToList(),
                 MarkingsUrl = Url.Link(nameof(MarkingController.GetMarkings), new { }),
-                Search = Url.Link(nameof(SearchController.DoSearch), new { SearchText = "Search_Text_Here"}),
+                Search = Url.Link(nameof(SearchController.DoSearch), new { SearchText = "Search_Text_Here" }),
+                TermAsSearchResult = Url.Link(nameof(TermAsResultController.SearchTermAsResult), new { SearchText = "Search_Text_Here" }),
+                TermNetwrok = Url.Link(nameof(Co_OccurrenceController.GetCoOccurrencesByWord), new { word = "Term_Here" }),
                 SearchHistoryUrl = Url.Link(nameof(SearchHistoryController.GetSearchHistories), new { }),
                 CustomeFieldUrl = Url.Link(nameof(UserCustomeFieldController.GetUserCustomeField), new { })
 

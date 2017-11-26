@@ -41,7 +41,7 @@ namespace UnitTests
 
             Assert.Equal(HttpStatusCode.OK, statusCode);
             Assert.Equal("http://localhost:5001/api/question/19", data["url"]);
-            Assert.Equal(13, data.Count);
+            Assert.Equal(14, data.Count);
 
         }
 
@@ -170,5 +170,65 @@ namespace UnitTests
             var (Annotations, statusCode) = GetObject($"{AnnotationsApi }/0");
             Assert.Equal(HttpStatusCode.NotFound, statusCode);
         }
+
+
+        // IR tests
+
+        [Fact]
+        public void Search_MustReturn_Valid_Results()
+        {
+            //Search text = what is functional programming
+            string Searching = "http://localhost:5001/api/search/what%20is%20functional%20programming";
+            var (data, statusCode) = GetObject(Searching);
+            Assert.Equal(HttpStatusCode.OK, statusCode);
+            var totalResults = (int)data["total"];
+            Assert.Equal(15, totalResults);
+            string postTitle = (string)data["data"][1]["postTitle"];
+            Assert.Equal("Pure Functional Language: Haskell", postTitle);     
+        }
+
+        [Fact]
+        public void Search_MustReturn_Valid_Url()
+        {
+            //Search text = What is parallel programming
+            string Searching = "http://localhost:5001/api/search/what%20is%20parallel%20programming";
+            var (data, statusCode) = GetObject(Searching);
+            string postUrl =  (string)data["data"][0]["postUrl"];
+            Assert.Equal("http://localhost:5001/api/question/194812", postUrl);
+            var (data2, statusCode2) = GetObject(postUrl);
+            var user = data2["userName"];
+            Assert.Equal("Karan", user);
+            var creationDate = data2["creationDate"];
+            Assert.Equal(creationDate, "2008-10-11T23:17:54");
+        }
+
+
+
+        [Fact]
+        public void CoOccurrenceUrl_must_return_valid_values()
+        {
+            string url = "http://localhost:5001/api/cooccurrence/java";
+            var (data, statusCode) = GetObject(url);
+            Assert.Equal(HttpStatusCode.OK, statusCode);
+            Assert.Equal( 232, (int)data["total"]);
+            Assert.Equal("Java", (string)data["data"][2]["word1"]);
+            Assert.Equal("String", (string)data["data"][0]["word2"]);
+        }
+
+
+        [Fact]
+        public void TermAsResult_must_return_valid_values()
+        {
+            //Search text = How to change background color
+             string searching = "http://localhost:5001/api/termasresult/how%20to%20change%20background%20color";
+             var (data, statusCode) = GetObject(searching);
+             Assert.Equal(HttpStatusCode.OK, statusCode);
+             Assert.Equal(15, (int)data["total"]);
+             Assert.Equal("attribute", (string)data["data"][0]["word"]);
+        }
+
+
+
+
     }
 }

@@ -118,17 +118,7 @@ namespace UnitTests
         }
         
 
-        [Fact]
-
-        public void DoSearch_MustReturnValidValues_andSavedHistory()
-        {
-            var db = new RepositoryBody();
-            var foundTitle = db.KeySearch("Functional vs Object Oriented", 0,3).First().Title;
-            Assert.Equal(foundTitle, "Functional programming vs Object Oriented programming");
-            var searchHistory = db.GetSearchHistories(0, 3);
-            Assert.Equal("Functional vs Object Oriented", searchHistory.First().SearchContent);
-        }
-
+   
       
 
         [Fact]
@@ -155,6 +145,48 @@ namespace UnitTests
             Assert.Equal(CustomePost.Count(), 5);
             Assert.Equal(db.DeleteUserCustomeField(id), true);
         }
+
+
+
+
+        // IR tests
+
+        [Fact]
+        public void Search_MustReturnValidValues_andSavedHistory()
+        {
+            var db = new RepositoryBody();
+            var foundTitle = db.Search("best gtk programming ide", 0, 5).Last().Title;
+            Assert.Equal(foundTitle, "The best ide for gtk+ programming");
+            var searchHistory = db.GetSearchHistories(0, 3);
+            Assert.Equal("best gtk programming ide", searchHistory.First().SearchContent);
+        }
+
+        [Fact]
+        public void Search_MustBeOrdered_By_Rank()
+        {
+            var db = new RepositoryBody();
+            string searchString = "the best most common design patterns used for games";
+            var FirstPostScore = db.Search(searchString, 0, 5).First().Rank;
+            var LastPostScore = db.Search(searchString, 0, 5).Last().Rank;
+            Assert.True(FirstPostScore > LastPostScore);
+        }
+
+        [Fact]
+        public void CoOccurrence_ShouldReturn_ValidValues()
+        {
+            var db = new RepositoryBody();
+            var CoOccur = db.GetCoOccurrencesByWord("class", 0, 3).First();
+            var word1 = CoOccur.Word;
+            var word2 = CoOccur.Word2;
+            var grade = CoOccur.Grade;
+            Assert.Equal(word1,  "class");
+            Assert.Equal(word2, "public");
+            Assert.Equal(81, grade);
+        }
+
+
+
+
 
 
     }

@@ -19,28 +19,24 @@ namespace DataService
         private const string UserApi = "http://localhost:5001/api/user";
         static void Main(string[] args)
         {
-            /*  using (var db = new SOVAContext())
+            using (var db = new SovaContext())
               {
-                  int x = 1;
-                  foreach (var item in db.UserInfo)
-                  {
+                
 
 
-                      db.Entry(item).Reload();
-                      db.SaveChanges();
+            }
+       
 
-                      Console.WriteLine("done with" + x);
-                      x++;
-
-                  }
-              }*/
 
             var rep = new RepositoryBody();
 
-           // rep.AddSearchHistory("whats your name");
+            // rep.AddSearchHistory("whats your name");
 
-         //   Console.WriteLine(rep.RemoveMarking(9033));
-            Console.WriteLine(rep.GetAnnotationsByMarkingId(372865).ToList().Last().To);
+            //   Console.WriteLine(rep.RemoveMarking(9033));
+            Console.WriteLine(rep.Search("best gtk programming ide", 0, 5).Last().Title);
+            Console.ReadLine();
+
+            Console.WriteLine();
             Console.ReadLine();
         }
     }

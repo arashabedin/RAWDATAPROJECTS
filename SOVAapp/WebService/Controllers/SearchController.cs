@@ -38,7 +38,7 @@ namespace WebService.Controllers
             CheckPageSize(ref pageSize);
 
 
-            var searches = _repository.KeySearch(SearchText, page, pageSize);
+            var searches = _repository.Search(SearchText, page, pageSize);
             if (searches.Count == 0)
             {
                 return NotFound("No results have been found");

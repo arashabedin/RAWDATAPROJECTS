@@ -11,6 +11,8 @@ namespace WebService.Models
         public string UsersUrl { get; set; }
         public string MarkingsUrl { get; set; }
         public string Search { get; set; }
+        public string TermAsSearchResult { get; set; }
+        public string TermNetwrok { get; set; }
         public string SearchHistoryUrl { get; set; }
         public string CustomeFieldUrl { get; set; }
 

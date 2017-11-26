@@ -802,12 +802,12 @@ namespace DataService.DataAccessLayer
         }
         ////////////////Searching
 
-        public ICollection<SearchResultDTO> KeySearch(string keywords, int page, int pageSize)
+        public ICollection<SearchResultDTO> Search(string keywords, int page, int pageSize)
         {
             using (var db = new SovaContext())
             {
                // var result = db.Posts.FromSql("call keysearch({0})", keywords);
-                var result2 = db.SearchResult.FromSql("call keysearch({0})", keywords);
+                var result2 = db.SearchResult.FromSql("call SentenceSearch({0})", keywords);
                 List <SearchResultDTO> ResultsDTO = new List<SearchResultDTO>();
                 foreach (var FoundItem in result2)
                 {
@@ -1124,7 +1124,40 @@ namespace DataService.DataAccessLayer
 
         }
 
+        ///////////Term_As_Result
 
+        public int CountTermsAsResult(string text)
+        {
+            using (var db = new SovaContext())
+            {
+                return db.TermAsResult.FromSql("call bestmatch_terms({0})", text).Count();
+
+            }
+        }
+
+        public ICollection<TermAsResultDTO> GetTermsAsResult(string text, int page, int pageSize)
+        {
+            using (var db = new SovaContext())
+            {
+                var terms = db.TermAsResult.FromSql("call bestmatch_terms({0})", text);
+
+                List<TermAsResultDTO> termDto = new List<TermAsResultDTO>();
+
+                foreach (var item in terms)
+                {
+                    var newItem = new TermAsResultDTO(item.Word, item.TfIdf);
+                    termDto.Add(newItem);
+
+                }
+
+                return termDto.OrderByDescending(x => x.TfIdf)
+                   .Skip(page * pageSize)
+                   .Take(pageSize)
+                   .ToList();
+
+            }
+
+        }
 
 
 
