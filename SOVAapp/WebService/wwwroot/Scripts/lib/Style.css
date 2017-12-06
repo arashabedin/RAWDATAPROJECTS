@@ -9,7 +9,7 @@ body {
 
 @font-face {
     font-family: logofont;
-    src: url(../../fonts/logofont.otf);
+    src: url(../../fonts/logofont.ttf);
 }
 
 
@@ -17,30 +17,33 @@ body {
     font-size: 30px;
 }
 
-#title:after {
-    font-size: 20px;
-    color: gray;
-    content: " Question";
-}
-
-#score {
-    color: grey;
+.answerscore {
     font-size: 25px;
     margin-top: 15px;
     align-content: center;
+    position: relative;
+    float: right;
+    bottom: 81px;
+}
+.answer_body {
+    background: white;
+    display: block;
+    color: black;
+    padding: 10px;
+    border-radius: 3px;
 }
 
 #date {
     font-size: 10px;
-    color: blue;
-    margin-bottom: 20px;
+    margin-left: 10px;
+    position: relative;
+    bottom: 6px;
 }
 
-#date:before {
-    content: "Creation date: ";
-    color: black;
+#annotation_text_field {
+    margin-bottom: 15px;
+    height: 70px;
 }
-
 
 #url {
     color: darkblue;
@@ -52,7 +55,7 @@ body {
 .navbar-brand {
     float: left;
     height: 50px;
-    padding: 11px 15px;
+    padding: 12px 15px;
     font-size: 42px;
     line-height: 20px;
     font-family: logofont;
@@ -76,7 +79,7 @@ body {
 }
 
 #answer {
-    margin-left: 60px;
+    margin-left: 0px;
 }
 
 
@@ -131,11 +134,12 @@ body {
 .questions_title {
     font-size: 15px;
     padding-bottom: 9px;
+    border-bottom: 1px solid #f2f2f2;
 }
 .questions_user {
     width: 100%;
     padding-left: 4px;
-    border-top: 1px solid #f2f2f2;
+    
 }
 .page_button {
     background-color: #0057ff;
@@ -169,6 +173,19 @@ body {
     display: inline-block;
     background-size: cover;
     margin-top: 7px;
+}
+#score {
+    float: left;
+    font-size: 25px;
+}
+.time_icon {
+    background-image: url(../img/calendar.png);
+    width: 28px;
+    height: 28px;
+    display: inline-block;
+    background-size: cover;
+    margin-top: 0px;
+    margin-left: 4px;
 }
 .questions_user_name {
     position: relative;
@@ -211,3 +228,28 @@ body {
     bottom: 0;
 }
 
+#annotation_box {
+    position: fixed;
+    background: white;
+    z-index: 1;
+    width: 222px;
+    min-height: 153px;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    padding-top: 20px;
+    border: 1px solid grey;
+}
+.each_answer {
+    display: block;
+    background: #0057ff;
+    color: white;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+}
+#question_date {
+    display: inline-block;
+    position: relative;
+    bottom: 7px;
+}

@@ -2,14 +2,14 @@
     <link rel="stylesheet" type="text/css" href="scripts/lib/StyleSheet1.css">
 </head>
 
-
+<h3>Answers</h3>
 <div data-bind="foreach: answers">
-    <h3>Answer</h3>
-    <span data-bind="text: creationDate" id="date"></span>
-
-    <span data-bind="text: score" id="score"></span>
-
-    <span data-bind="html: body" id="body"></span>
-
+    <div class="each_answer">
+        <div class="questions_user"><span class="user_icon"></span><span class="questions_user_name" data-bind="text: userName"></span></div>
+        <br />
+        <span class="time_icon"></span><span data-bind="text: creationDate" id="date"></span>
+        <span data-bind="text: score" class="answerscore"></span>
+        <span class="answer_body" data-bind="html: body" id="body"></span>
+    </div>
 
   </div>

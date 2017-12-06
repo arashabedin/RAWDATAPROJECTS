@@ -11,10 +11,39 @@
         var annotationBody = ko.observable();
         var isNewAnnotation = ko.observable(false);
 
+        //from and to 
        
+        $('#questionContainer').click(function () {
+            getSelectionPosition();
+        });
+
+        var pos1 = null;
+        var pos2 = null;
+        var readyToAnnotate = false;
+        function getSelectionPosition() {
+            var selection = window.getSelection();
+            if ((pos1 == null) || (pos1 != null && pos2 != null)) {
+                pos1 = selection.focusOffset;
+                readyToAnnotate = false;
+                isNewAnnotation(false);
+                pos2 = null;
+            } else {
+                pos2 = selection.focusOffset;
+                readyToAnnotate = true;
+                isNewAnnotation(true);
+            }
+            console.log("from: " + pos1);
+            console.log("to: " + pos2);
+        }
+
+
+
+
 
         document.onmouseup = function () {
-            isNewAnnotation(true);
+            if (!readyToAnnotate) {
+                isNewAnnotation(false);
+            }
         };
 
         dataservice.getQuestion(url(), function (data) {
@@ -40,8 +69,8 @@
               
                 Pid: question().id,
                 Text: annotationBody(),
-                From: 0, //data.markingStart,
-                To: 10 //data.markingEnd,
+                From: pos1, //data.markingStart,
+                To: pos2 //data.markingEnd,
              
             });
             dataservice.postData(NewAnotationUrl, newAnnotation);

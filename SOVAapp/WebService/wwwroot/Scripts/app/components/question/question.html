@@ -1,18 +1,16 @@
 ﻿<head>
     <link rel="stylesheet" type="text/css" href="scripts/lib/StyleSheet1.css">
 </head>
-
-
-<section data-bind="if: isNewAnnotation">
-    <div><textarea data-bind="textInput: annotationBody"></textarea></div>
-    <button data-bind="click: createAnnotation.bind($data, annotationBody)">Create Annotation</button>
-</section>
-<button data-bind="click: goback">Go Back</button>
-
-
+  <div data-bind="if: isNewAnnotation">
+    <section id="annotation_box">
+        <div><textarea id="annotation_text_field" data-bind="textInput: annotationBody"></textarea></div>
+        <button class="page_button" data-bind="click: createAnnotation.bind($data, annotationBody)">Create Annotation</button>
+    </section>
+</div>
+<button class="page_button" data-bind="click: goback">&lt;&lt; Back</button>
 
 <div class="container-fluid">
-<div data-bind="with: question">
+<div id="questionContainer" data-bind="with: question">
 
         <!--Header-->
         <div class="row">
@@ -25,7 +23,7 @@
         <div class="row">
             <div class="col-xs-1"></div>
             <div class="col-xs-12 col-md-11">
-    <div data-bind="text: creationDate" id="date"></div>
+                <span class="time_icon"></span> <div id ="question_date" data-bind="text: creationDate"></div>
             </div>
         </div>
 
@@ -33,7 +31,7 @@
         <div class="row">
             <!--Score-->
             <div class="col-xs-1">
-                <div data-bind="text: score" id="score" style="float: left"></div>
+                <div data-bind="text: score" id="score"></div>
             </div>
             <!--Body-->
             <div class="col-xs-11">
@@ -60,8 +58,6 @@
             </div>
         </div>
 
-    
-   <div data-bind="text: answersUrl" id="url"></div>
 
     </div>
 </div>
