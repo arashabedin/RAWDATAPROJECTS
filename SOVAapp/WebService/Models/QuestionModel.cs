@@ -7,6 +7,7 @@ namespace WebService.Models
 {
     public class QuestionModel
     {
+        public int PostId { get; set; }
         public string Url { get; set; }
         public string UserName { get; set; }
         public DateTime CreationDate { get; set; }

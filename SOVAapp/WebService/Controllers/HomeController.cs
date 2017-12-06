@@ -37,7 +37,10 @@ namespace WebService.Controllers
                     Title = i.Title,
                     Body = i.Body,
                     QuestionUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = i.PostId }),
-                    UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = _repository.GetUserByPostId(i.PostId).Id })
+                    User = _repository.GetUserById(i.UserId).DisplayName,
+                    Tags = _repository.GetPostTagsByPostId(i.PostId).Select(t => t.Tag.Tag).ToList()
+
+
 
                 }).ToList(),
                 MarkingsUrl = Url.Link(nameof(MarkingController.GetMarkings), new { }),

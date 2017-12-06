@@ -28,7 +28,7 @@ namespace WebService.Controllers
     }
         //Get All Questions
         [HttpGet("question", Name = nameof(GetQuestions))]
-        public IActionResult GetQuestions(int page = 0, int pageSize = 5)
+        public IActionResult GetQuestions(int page = 0, int pageSize = 12)
         {
             CheckPageSize(ref pageSize);
 
@@ -38,22 +38,24 @@ namespace WebService.Controllers
             var data = _repository.GetQuestions(page, pageSize)
                 .Select(x => new QuestionModel
                 {
+                    PostId = x.Id,
                     Url = Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = x.Id }),
                     UserName = x.UserInfo.OwnerUserDisplayName,
                     CreationDate = x.CreationDate,
                     Score = x.Score,
                     Title = x.Title,
-                    Body = x.Body,
+                    // We comment some of the following since delivery of these data in this part is not necessary
+                  //  Body = x.Body,
                     Tags = _repository.GetPostTagsByPostId(x.Id).Select(t =>  t.Tag.Tag ).ToList(),
-                    LinkedPosts = _repository.GetLinkedPosts(x.Id).Select(l => new LinkedPostsModel
+                   /* LinkedPosts = _repository.GetLinkedPosts(x.Id).Select(l => new LinkedPostsModel
                     {
                         LinkedPostUrl = Url.Link(nameof(GetQuestionById), new { Qid = l.Id }),
                         PostTitle = l.Title
-                    }).ToList(),
+                    }).ToList(), */
                     UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = x.OwnerUserId }),
-                    AcceptedAnswerUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { Qid = x.Id, Aid = x.AcceptedAnswerId }),
-                    AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByQuestionId), new { Qid = x.Id }),
-                    CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = x.Id }),
+                 //   AcceptedAnswerUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { Qid = x.Id, Aid = x.AcceptedAnswerId }),
+                    //AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByQuestionId), new { Qid = x.Id }),
+                   // CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByQuestionId), new { Qid = x.Id }),
                     MarkThisPost = _repository.GetMarkingById(x.Id)== null?
                     Url.Link(nameof(MarkingController.AddMarking),new {Pid= x.Id }):
                     "Already marked",
@@ -94,6 +96,7 @@ namespace WebService.Controllers
                 LinkedPostUrl = Url.Link(nameof(GetQuestionById), new { Qid = l.Id }),
                 PostTitle = l.Title
         }).ToList();
+        model.PostId = Question.Id;
         model.Url = Url.Link(nameof(GetQuestionById), new { Qid = Question.Id });
         model.UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = Question.OwneruserId });
         model.AcceptedAnswerUrl = Url.Link(nameof(AnswerController.GetAnswerById), new { id = Question.AcceptedAnswerId });
@@ -122,6 +125,7 @@ namespace WebService.Controllers
             var data = _repository.GetQuestionsByUserID(Uid, page, pageSize)
                 .Select(x => new QuestionModel
                 {
+                    PostId = x.Id,
                     Url = Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = x.Id }),
                     UserName = x.UserInfo.DisplayName,
                     CreationDate = x.CreationDate,

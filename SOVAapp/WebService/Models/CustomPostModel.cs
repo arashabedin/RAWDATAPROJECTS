@@ -10,7 +10,8 @@ namespace WebService.Models
         public string Title { get; set; }
         public string Body { get; set; }
         public string QuestionUrl { get; set; }
-        public string UserUrl { get; set; }
+        public string User { get; set; }
+        public ICollection<string> Tags;
 
 
     }

@@ -41,7 +41,7 @@ namespace WebService
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseFileServer();
             app.UseMvc();
         }
         public IMapper CreateMapper()
