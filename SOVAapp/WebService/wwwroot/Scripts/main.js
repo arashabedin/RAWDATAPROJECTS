@@ -17,7 +17,7 @@
 })();
 
 
-var ns = ns || {};
+var ns = {};
 
 ns.postbox = {
     subscribers: [],

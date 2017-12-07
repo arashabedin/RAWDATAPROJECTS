@@ -1,7 +1,7 @@
 ﻿define([], function () {
     var server = 'http://localhost:5001/';
 
-    var frontEndVersion = "/api/";
+    var api = "/api/";
 
     var applicationName = "SOVA";
 
@@ -28,11 +28,11 @@
 
     return {
         // back-end routes
-        HomeUrl: server + frontEndVersion,
-        questionsUrl: server + frontEndVersion + menuElements[1].toLowerCase(),
-        markingsUrl: server + frontEndVersion + "marking/",
-        searchusersurl: server + frontEndVersion + "searchusers/",
-        searchUrl: server + frontEndVersion + "search?searchstring=",
+        HomeUrl: server + api,
+        questionsUrl: server + api + menuElements[1].toLowerCase(),
+        markingsUrl: server + api + "marking/",
+        searchusersurl: server + api + "searchusers/",
+        searchUrl: server + api + "search?searchstring=",
 
         
         // menu
