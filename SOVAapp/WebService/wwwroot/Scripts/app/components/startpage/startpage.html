@@ -1,11 +1,7 @@
 ﻿<!DOCTYPE html>
 <body>
 
-<p id="errormsg" data-bind="visible: searchContentLength() > 1000">Error! Your input exceeds the maximum capacity (1000). Beep boop, shutting down.</p>
-<p data-bind="visible: showDebugStats">Window height: <span data-bind="text: windowHeight"></span></p>
-<p data-bind="visible: showDebugStats">Window width: <span data-bind="text: windowWidth"></span></p>
-<p data-bind="visible: showDebugStats">Input length: <span data-bind="text: searchContentLength"></span></p>
-<p data-bind="visible: showDebugStats">Value: <span data-bind="text: searchString"></span></p>
+
 
 	<section>
 
@@ -15,7 +11,7 @@
           <div class="question_container" data-bind="click: $parent.gotoquestion.bind($parent, questionUrl, $root)">
                 <div class="questions_title"><span data-bind="text: title"></span></div>
                 <div class="questions_user"><span class="user_icon"></span><span class="questions_user_name" data-bind="text: user"></span></div>
-               <span class="tags_icon"></span></span> <div class="questions_tags_container" data-bind="foreach:tags"><span class="questions_tags" data-bind="text:$data"></span></div>
+               <span class="tags_icon"></span><div class="questions_tags_container" data-bind="foreach:tags"><span class="questions_tags" data-bind="text:$data"></span></div>
             </div></div>
        
         

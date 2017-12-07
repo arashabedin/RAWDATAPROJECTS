@@ -19,8 +19,8 @@
         var searchContentLength = ko.observable();
 
         ns.postbox.subscribe(function(data) {
-            searchString(data);
-            searchContentLength(data.length);
+          //  searchString(data);
+          //  searchContentLength(data.length);
         }, "searchBarContent", "startPageContext");
 
         var callback = function (data) {

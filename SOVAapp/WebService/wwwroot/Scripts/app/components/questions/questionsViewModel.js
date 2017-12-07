@@ -37,8 +37,8 @@
             next: questionsnext,
             total: questionstotal,
             pageNumber: questionspage,
-           gotoquestion: gotoquestion,
-           questionComponent: questionComponent,
+            gotoquestion: gotoquestion,
+            questionComponent: questionComponent,
             data: questionsdata
         }
     };

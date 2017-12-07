@@ -8,17 +8,13 @@
         
         ns.postbox.subscribe(function (value) {
             currentComponent(value.component);
-            paramsData({ url: value.url, prevComponent: value.prevComponent, searchUserId: value.searchUserId, searchBarContent: value.searchBarContent });
+            paramsData({ url: value.url, prevComponent: value.prevComponent});
         }, "currentComponent");
-
-        ns.postbox.subscribe(function () {
-        }, "searchBarContent");
 
         return {
             currentComponent: currentComponent,
             menuComponent: config.menuComponent,
             paramsData: paramsData,
-            searchBarComponent: config.searchBarComponent,
             startPageComponent: config.startPageComponent
         }   
     });

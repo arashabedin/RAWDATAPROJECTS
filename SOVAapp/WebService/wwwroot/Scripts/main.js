@@ -19,6 +19,7 @@
 
 var ns = {};
 
+
 ns.postbox = {
     subscribers: [],
     subscribe: function (callback, topic, source) {
@@ -27,10 +28,14 @@ ns.postbox = {
             if (this.subscribers[i].source === source && this.subscribers[i].topic === topic) {
                 found = true;
                 this.subscribers[i].callback = callback;
+                console.log("getting  the subescribe");
+                console.log("call back: " + this.subscribers[i].callback + " source: " + this.subscribers[i].source.value + " topic: " + this.subscribers[i].topic);
             }
         }
         if (!found) {
             this.subscribers.push({ topic: topic, callback: callback, source: source });
+            console.log("pushing the subescribe");
+            console.log("call back: " + this.subscribers[0].callback + " source: " + this.subscribers[0].source + " topic: " + this.subscribers[0].topic);
         }
     },
     notify: function (value, topic) {
