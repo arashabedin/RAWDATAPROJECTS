@@ -23,7 +23,7 @@
             var newCustome = ko.toJS({
 
                 postLimit: newPostlimit(),
-                favortieTags: ["java","android"]
+                
            
            
             });
