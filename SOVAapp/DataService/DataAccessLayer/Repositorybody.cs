@@ -202,9 +202,9 @@ namespace DataService.DataAccessLayer
                 List<QuestionDTO> LinkedPostsDto = new List<QuestionDTO>();
                 foreach (var item in linkedposts)
                 {
-                   var newLinked = GetQuestionById(item.Id);
+                    var newLinked = new QuestionDTO(item.Id, null, item.OwnerUserId, item.Body, item.Title, item.Score, item.CreationDate
+                        ,null, null, null, null, null, null);
                     LinkedPostsDto.Add(newLinked);
-     
                 }
                 return LinkedPostsDto;
             }
