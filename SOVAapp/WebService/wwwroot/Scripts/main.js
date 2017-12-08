@@ -106,5 +106,10 @@ require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap'],
             viewModel: { require: 'app/components/customization/customizationViewModel' },
             template: { require: 'text!app/components/customization/customization.html' }
         });
+        // Users page
+        ko.components.register(config.usersComponent, {
+            viewModel: { require: 'app/components/users/usersViewModel' },
+            template: { require: 'text!app/components/users/users.html' }
+        });
         ko.applyBindings(viewmodel);
     });

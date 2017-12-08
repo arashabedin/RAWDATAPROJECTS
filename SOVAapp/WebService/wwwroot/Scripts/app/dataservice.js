@@ -51,6 +51,15 @@
                 callback(data);
             });
         },
+        getUsers: function (url, callback) {
+            if (callback == undefined) {
+                callback = url;
+                url = conf.usersUrl;
+            }
+            $.getJSON(url, function (data) {
+                callback(data);
+            });
+        },
         getFavoriteQuestions: function (url, callback) {
             if (callback == undefined) {
                 callback = url;

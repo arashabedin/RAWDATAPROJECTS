@@ -7,9 +7,10 @@
 
     var menuElements = [
         "Search",                          // 0
-        "Question",                        // 1  
-        "Markings",                        // 2
-        "Customization"                    // 3
+        "Question",                        // 1
+        "Users",                           // 2
+        "Markings",                        // 3
+        "Customization"                    // 4
     ];
 
     var nonMenuComponentElements = [
@@ -28,7 +29,8 @@
         questionsUrl: server + api + menuElements[1].toLowerCase(),
         markingsUrl: server + api + "marking/",
         searchUrl: server + api + "search?searchstring=",
-        customizationUrl: server + api + menuElements[3].toLowerCase(),
+        usersUrl: server + api + "user",
+        customizationUrl: server + api + menuElements[4].toLowerCase(),
 
         
         // menu
@@ -39,8 +41,10 @@
         menuComponent: "topbarmenu",
         searchpagesComponent: menuElements[0].toLowerCase(),
         questionsComponent: menuElements[1].toLowerCase(),
-        markingsComponent: menuElements[2].toLowerCase(),
-        customizationComponent: menuElements[3].toLowerCase(),
+        usersComponent: menuElements[2].toLowerCase(),
+        markingsComponent: menuElements[3].toLowerCase(),
+        customizationComponent: menuElements[4].toLowerCase(),
+
         questionComponent: nonMenuComponentElements[0].toLowerCase(),
         commentsComponent: nonMenuComponentElements[1].toLowerCase(),
         answersComponent: nonMenuComponentElements[2].toLowerCase(),
