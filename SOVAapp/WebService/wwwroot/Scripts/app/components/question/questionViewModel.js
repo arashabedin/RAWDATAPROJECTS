@@ -10,9 +10,9 @@
         var prevComponent = ko.observable(params.prevComponent);
         var annotationBody = ko.observable();
         var isNewAnnotation = ko.observable(false);
-
+ 
         //from and to 
-       
+   
         $('#questionContainer').click(function () {
             getSelectionPosition();
         });
@@ -50,6 +50,7 @@
             question(data);
             body(data.body);
             url(data.url);
+        
           
         });
    
@@ -59,7 +60,7 @@
         }
 
 
-  
+
         var createAnnotation = function () {
             var NewAnotationUrl = config.markingsUrl.concat(question().postId, "/annotation/text_0_0");
             console.log("Body: " + annotationBody() + " questionId: " + question().postId);
@@ -78,7 +79,7 @@
         ns.postbox.subscribe(function (data) {
             annotationUrl(data);
         }, "annotationUrl");
-
+   
         return {
             question: question,
             body: body,
@@ -88,7 +89,10 @@
             goback: goback,
             annotationBody: annotationBody,
             isNewAnnotation: isNewAnnotation,
-            createAnnotation: createAnnotation
+            createAnnotation: createAnnotation,
+           
+       
+        
         }
     };
 });

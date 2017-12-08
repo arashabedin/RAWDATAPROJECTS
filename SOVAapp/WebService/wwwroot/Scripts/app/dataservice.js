@@ -10,6 +10,15 @@
                 callback(data);
             });
         },
+        getCustomefield: function (url, callback) {
+            if (callback == undefined) {
+                callback = url;
+                url = conf.customizationUrl;
+            }
+            $.getJSON(url, function (data) {
+                callback(data);
+            });
+        },
         getComments: function (url, callback) {
             if (url === undefined) {
                 return;

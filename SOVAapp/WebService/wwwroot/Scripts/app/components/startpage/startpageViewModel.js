@@ -2,9 +2,9 @@
     return function () {
 
      
-        var favquestionsdata = ko.observableArray();
+        var recommendedQuestions = ko.observableArray();
         var callback = function (data) {
-            favquestionsdata(data.recommendedQuestions);
+            recommendedQuestions(data.recommendedQuestions);
         };
 
         dataservice.getFavoriteQuestions(callback);
@@ -15,7 +15,7 @@
         return {
            
             gotoquestion: gotoquestion,
-            favquestionsdata: favquestionsdata
+            recommendedQuestions: recommendedQuestions
 
         }
     }

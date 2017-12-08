@@ -267,18 +267,19 @@ body {
     background-color: black;
     color: white;
     padding: 10px;
-    cursor:pointer;
+    cursor: pointer;
+    height: 53px;
 }
 #comment_h1 {
     display: inline-block;
-    line-height: 10px;
+    line-height: 0px;
 }
 #triangle_down {
     font-size: 20px;
     float: right;
     position: relative;
-    right: 10px;
-    top: 14px;
+    right: 5px;
+    top: 8px;
 }
 .question_score_sign {
     display: inline-block;
@@ -293,4 +294,44 @@ body {
     margin-right: 6px;
     position: relative;
     bottom: 1px;
+}
+.linked_posts {
+    display: block;
+    width: 300px;
+    background: #0057ff;
+    color: white;
+    float:right;
+  
+}
+.linked_posts_title{
+    margin:10px;
+}
+.linked_posts_title:hover {
+background-color:white;
+color:black!important;
+cursor:pointer;
+}
+#linkposts_button{
+   width:100%;
+   display:block;
+   background:black;
+   cursor:pointer;
+}
+    #linkposts_button h2 {
+        display: inline-block;
+        line-height: 2px;
+        margin-left:5px;
+    }
+    #linkposts_button span {
+        position: relative;
+        top: 8px;
+        float: right;
+        font-size: 18px;
+        right:5px;
+        
+    }
+.customefieldtitle {
+    font-weight: 600;
+    font-size: 16px;
+    color: #0057ff;
 }

@@ -101,6 +101,10 @@ require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap'],
             viewModel: { require: 'app/components/searchpage/searchpageViewModel' },
             template: { require: 'text!app/components/searchpage/searchpage.html' }
         });
-
+       // Customization page
+        ko.components.register(config.customizationComponent, {
+            viewModel: { require: 'app/components/customization/customizationViewModel' },
+            template: { require: 'text!app/components/customization/customization.html' }
+        });
         ko.applyBindings(viewmodel);
     });

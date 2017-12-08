@@ -7,7 +7,7 @@
 
         <!-- Favourite Questions-->
         <h1>Suggested Questions</h1>
-        <div class="questions_container" data-bind="foreach: favquestionsdata">
+        <div class="questions_container" data-bind="foreach: recommendedQuestions">
           <div class="question_container" data-bind="click: $parent.gotoquestion.bind($parent, questionUrl, $root)">
                 <div class="questions_title"><span data-bind="text: title"></span></div>
                 <div class="questions_user"><span class="user_icon"></span><span class="questions_user_name" data-bind="text: user"></span></div>
