@@ -175,8 +175,8 @@ body {
     margin-top: 7px;
 }
 #score {
-    float: left;
-    font-size: 25px;
+    display: inline-block;
+    font-size: 21px;
 }
 .time_icon {
     background-image: url(../img/calendar.png);
@@ -252,4 +252,45 @@ body {
     display: inline-block;
     position: relative;
     bottom: 7px;
+}
+.comments_block {
+    display: block;
+    border: 1px solid #0057ff;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background:white;
+    color:black;
+}
+.comments_opener {
+    display: block;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    cursor:pointer;
+}
+#comment_h1 {
+    display: inline-block;
+    line-height: 10px;
+}
+#triangle_down {
+    font-size: 20px;
+    float: right;
+    position: relative;
+    right: 10px;
+    top: 14px;
+}
+.question_score_sign {
+    display: inline-block;
+    font-size: 29px;
+    margin-right: 6px;
+}
+.score_sign {
+    margin-right: 8px;
+}
+.comments_total {
+    font-size: 21px;
+    margin-right: 6px;
+    position: relative;
+    bottom: 1px;
 }

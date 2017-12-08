@@ -20,18 +20,12 @@
 
     ];
 
-    var searchuserid = 1;
-
-    ns.postbox.subscribe(function(value) {
-        searchuserid(value);
-    }, "SearchUserId");
 
     return {
         // back-end routes
         HomeUrl: server + api,
         questionsUrl: server + api + menuElements[1].toLowerCase(),
         markingsUrl: server + api + "marking/",
-        searchusersurl: server + api + "searchusers/",
         searchUrl: server + api + "search?searchstring=",
 
         
