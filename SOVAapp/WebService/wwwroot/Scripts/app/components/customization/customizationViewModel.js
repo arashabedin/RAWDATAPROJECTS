@@ -14,24 +14,25 @@
 
         dataservice.getCustomefield(callback);
 
-      
+        
 
         var saveCustomeField = function () {
             
             var NewCustomeUrl = config.customizationUrl +"/"+ newPostlimit() +"_"+newCustomeTags();
             console.log(NewCustomeUrl);
             var newCustome = ko.toJS({
-
                 postLimit: newPostlimit(),
-                
-           
-           
             });
             dataservice.postData(NewCustomeUrl, newCustome);
-          
-        }
-        
+            dataservice.getCustomefield(callback);
 
+        }
+       
+     
+        ns.postbox.subscribe(function (data) {
+            customizationUrl(data);
+        }, "customizationUrl");
+        
         return {
             postlimit: postlimit,
             creationdate: creationdate,
