@@ -14,7 +14,7 @@
         <span id="linkposts_button" data-toggle="collapse" data-target="#links"><h2 data-bind="text:myLinkedPosts().length"></h2> <h2>Linked Posts</h2><span>&#9660;</span></span>
         <div id="links" class="collapse">
             <div data-bind="foreach:myLinkedPosts">
-                <div data-bind="click:$parent.goToLinkedPost.bind($data,linkedPostUrl)" class="linked_posts_title">Title: <div data-bind="text:postTitle"></div> </div>
+                <div data-toggle="collapse" data-target="#links"  data-bind="click:$parent.goToLinkedPost.bind($data,linkedPostUrl)" class="linked_posts_title">Title: <div data-bind="text:postTitle"></div> </div>
 
             </div>
         </div>

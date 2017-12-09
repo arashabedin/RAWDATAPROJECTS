@@ -6,7 +6,7 @@
         var searchnext = ko.observable();
         var searchtotal = ko.observable();
         var searchpage = ko.observable();
-
+        var searchhistory = ko.observableArray();
         var callback = function (data) {
             searchData(data.data);
             searchpage(data.page);
@@ -14,14 +14,27 @@
             searchnext(data.next);
             searchtotal(data.total);
         }
-
+        dataservice.getSearchHistory(function (data) {
+            searchhistory(data.data);
+        });
 
         var startSearching = function () {
             console.log(searchText());
             var url = config.searchUrl + searchText();
             dataservice.getSearchResult(url, callback);
+            dataservice.getSearchHistory(function (data) {
+                searchhistory(data.data);
+            });
         }
-           
+
+        var searchItAgain = function (searchText) {
+            console.log(searchText);
+            var url = config.searchUrl + searchText;
+            dataservice.getSearchResult(url, callback);
+            dataservice.getSearchHistory(function (data) {
+                searchhistory(data.data);
+            });
+        }
         var prevClick = function () {
             dataservice.getSearchResult(searchprev(), callback);
             console.log(searchprev());
@@ -46,7 +59,9 @@
             prev: searchprev,
             next: searchnext,
             total: searchtotal,
-            gotoquestion: gotoquestion
+            gotoquestion: gotoquestion,
+            searchhistory: searchhistory,
+            searchItAgain: searchItAgain
         }
     }
 });

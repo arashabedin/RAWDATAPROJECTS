@@ -57,6 +57,16 @@
                 callback(data);
             });
         },
+        getSearchHistory: function (url, callback) {
+
+            if (callback == undefined) {
+                callback = url;
+                url = conf.searchHistoryUrl;
+            }
+            $.getJSON(url, function (data) {
+                callback(data);
+            });
+        },
        
         getUsers: function (url, callback) {
             if (callback == undefined) {

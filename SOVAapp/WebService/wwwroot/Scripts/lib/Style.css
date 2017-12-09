@@ -353,3 +353,6 @@ cursor:pointer;
     background: #ff4a14;
     color: white;
 }
+.my_searchbar_th {
+    border-bottom: 0 !important;
+}

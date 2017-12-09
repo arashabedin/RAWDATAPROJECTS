@@ -30,7 +30,7 @@ namespace WebService.Controllers
         }
 
         [HttpGet(Name = nameof(GetSearchHistories))]
-        public IActionResult GetSearchHistories(int page = 0, int pageSize = 5)
+        public IActionResult GetSearchHistories(int page = 0, int pageSize = 100)
         {
             CheckPageSize(ref pageSize);
 

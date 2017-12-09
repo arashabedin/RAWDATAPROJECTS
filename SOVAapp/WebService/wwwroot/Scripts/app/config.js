@@ -7,14 +7,14 @@
 
     var menuElements = [
         "Search",                          // 0
-        "Question",                        // 1
+        "Questions",                        // 1
         "Users",                           // 2
         "Markings",                        // 3
         "Customization"                    // 4
     ];
 
     var nonMenuComponentElements = [
-        "Questions",                        // 0 
+        "Question",                        // 0 
         "Comments",                         // 1
         "Answers",                          // 2
         "SearchBar",                        // 3
@@ -26,12 +26,12 @@
     return {
         // back-end routes
         HomeUrl: server + api,
-        questionsUrl: server + api + menuElements[1].toLowerCase(),
+        questionsUrl: server + api + "question",
         markingsUrl: server + api + "marking/",
         searchUrl: server + api + "search/",
         usersUrl: server + api + "user",
         customizationUrl: server + api + menuElements[4].toLowerCase(),
-
+        searchHistoryUrl: server + api + "searchhistory",
         
         // menu
         menuElements: menuElements,
