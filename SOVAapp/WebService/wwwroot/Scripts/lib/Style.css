@@ -348,3 +348,8 @@ cursor:pointer;
     width: 100%;
     height: 34px;
 }
+.searchTR:hover {
+    cursor: pointer;
+    background: #ff4a14;
+    color: white;
+}

@@ -20,7 +20,7 @@
         </table>
 
 
-        <table class="table table-striped">
+        <table class="table">
             <thead>
                 <tr>
                  
@@ -29,7 +29,7 @@
                 </tr>
             </thead>
             <tbody data-bind="foreach:searchData">
-                <tr>
+                <tr class="searchTR" data-bind="click: $parent.gotoquestion.bind($data, postUrl, $root)">
                   
                     <td data-bind="text:postTitle"></td>
                     <td><span class="tags_icon"></span><div class="questions_tags_container" data-bind="foreach:tags"><span class="questions_tags" data-bind="text:$data"></span></div></td>

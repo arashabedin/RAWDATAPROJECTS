@@ -31,7 +31,9 @@
             console.log(searchnext());
         };
          
-      
+        var gotoquestion = function (questionUrl, root) {
+            ns.postbox.notify({ component: config.questionComponent, url: questionUrl, prevComponent: root.currentComponent() }, "currentComponent");
+        };
       
 
         return {
@@ -43,7 +45,8 @@
             pageNumber: searchpage ,
             prev: searchprev,
             next: searchnext,
-            total: searchtotal
+            total: searchtotal,
+            gotoquestion: gotoquestion
         }
     }
 });
