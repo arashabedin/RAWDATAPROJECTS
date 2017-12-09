@@ -9,15 +9,15 @@ namespace DataService.DTO
 
         public int Id;
         public string Title;
-        public string Body;
         public double Rank;
         public int? totalResults { get; set; }
-        public SearchResultDTO(int Id, string Title, string Body, double Rank )
+        public ICollection<PostTagsDTO> Tags;
+        public SearchResultDTO(int Id, string Title, double Rank , ICollection<PostTagsDTO> Tags)
         {
             this.Id = Id;
             this.Title = Title;
-            this.Body = Body;
             this.Rank = Rank;
+            this.Tags = Tags;
         }
     }
 }

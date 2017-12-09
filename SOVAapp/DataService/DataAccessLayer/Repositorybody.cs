@@ -806,16 +806,20 @@ namespace DataService.DataAccessLayer
         {
             using (var db = new SovaContext())
             {
-               // var result = db.Posts.FromSql("call keysearch({0})", keywords);
+              //  var result = db.Posts.FromSql("call keysearch({0})", keywords);
                 var result2 = db.SearchResult.FromSql("call SentenceSearch({0})", keywords);
                 List <SearchResultDTO> ResultsDTO = new List<SearchResultDTO>();
+                var totalResults= result2.Count(); 
                 foreach (var FoundItem in result2)
                 {
-                    var newItemDTO = new SearchResultDTO(FoundItem.Id, FoundItem.Title, FoundItem.Body, FoundItem.Rank);
-                 
-                    newItemDTO.totalResults = result2.Count();
+                    var posttags = GetPostTagsByPostId(FoundItem.Id);
+                    
+                    var newItemDTO = new SearchResultDTO(FoundItem.Id, FoundItem.Title, FoundItem.Rank, posttags);
+
+                    newItemDTO.totalResults = totalResults;
                     ResultsDTO.Add(newItemDTO);
                 }
+                
                 return ResultsDTO.OrderByDescending(x => x.Rank)
                     .Skip(page * pageSize)
                     .Take(pageSize)

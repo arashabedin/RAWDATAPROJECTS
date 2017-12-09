@@ -1,5 +1,6 @@
 ﻿define(['knockout', 'app/dataservice', 'app/config'], function (ko, dataservice, config) {
     return function () {
+       
         var postlimit = ko.observable();
         var creationdate = ko.observable();
         var favortietags = ko.observableArray();
@@ -11,9 +12,11 @@
             creationdate(data.creationDate);
             favortietags(data.favortieTags);
         }
-
+      
+          
         dataservice.getCustomefield(callback);
-
+            
+      
         
 
         var saveCustomeField = function () {
@@ -21,18 +24,17 @@
             var NewCustomeUrl = config.customizationUrl +"/"+ newPostlimit() +"_"+newCustomeTags();
             console.log(NewCustomeUrl);
             var newCustome = ko.toJS({
-                postLimit: newPostlimit(),
+               // postLimit: newPostlimit(),
             });
-            dataservice.postData(NewCustomeUrl, newCustome);
-            dataservice.getCustomefield(callback);
-
-        }
-       
-     
-        ns.postbox.subscribe(function (data) {
-            customizationUrl(data);
-        }, "customizationUrl");
         
+            postlimit(newPostlimit());
+            favortietags(newCustomeTags().split(','));
+            creationdate(new Date());
+            dataservice.postData(NewCustomeUrl, newCustome);
+         
+        }
+
+      
         return {
             postlimit: postlimit,
             creationdate: creationdate,

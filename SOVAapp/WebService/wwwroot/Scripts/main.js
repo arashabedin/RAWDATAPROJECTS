@@ -85,12 +85,6 @@ require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap'],
             template: { require: 'text!app/components/answers/answers.html' }
         });
 
-        // Search bar
-        ko.components.register(config.searchBarComponent, {
-            viewModel: { require: 'app/components/searchbar/searchbarViewModel' },
-            template: { require: 'text!app/components/searchbar/searchbar.html' }
-        });
-
         // Start page
         ko.components.register(config.startPageComponent, {
             viewModel: { require: 'app/components/startpage/startpageViewModel' },

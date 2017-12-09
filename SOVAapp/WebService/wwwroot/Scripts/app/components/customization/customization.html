@@ -21,7 +21,7 @@
          <span class="customefieldtitle">Created on: </span><span data-bind="text:creationdate"></span>
      </div>
 
-     <form>
+     <form data-bind="submit:saveCustomeField">
          <!--
          <div class="form-group">
              <label for="exampleSelect1">Post Limit</label>
@@ -42,19 +42,19 @@
              </select>
          </div>
              -->
-         <div class="form-group">
-             <label for="usr">Post Limit:</label>
-             <input type="text" class="form-control" data-bind="textInput: newPostlimit" id="usr">
-         </div>
+        
+             <div class="form-group">
+                 <label for="usr">Post Limit:</label>
+                 <input type="text" class="form-control" data-bind="textInput: newPostlimit" id="usr">
+             </div>
 
-         <div class="form-group">
-             <label for="exampleTextarea">Tags</label> Seperate each tag by comma ','
-             <textarea class="form-control" id="exampleTextarea" rows="3"  data-bind="textInput: newCustomeTags"></textarea>
-         </div>
+             <div class="form-group">
+                 <label for="exampleTextarea" required>Tags</label> Seperate each tag by comma ','
+                 <textarea class="form-control" id="exampleTextarea" rows="3" data-bind="textInput: newCustomeTags" required></textarea>
+             </div>
 
 
-
-         <button id="submit" type="submit" class="btn btn-primary" data-bind="click: saveCustomeField.bind($data, newCustomeTags, newPostlimit)">Save changes</button>
+         <button id="submit"  type="submit"  class="btn btn-primary" >Save changes</button>
      </form>
 
 

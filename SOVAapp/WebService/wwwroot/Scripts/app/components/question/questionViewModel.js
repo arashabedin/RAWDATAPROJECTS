@@ -10,7 +10,8 @@
         var prevComponent = ko.observable(params.prevComponent);
         var annotationBody = ko.observable();
         var isNewAnnotation = ko.observable(false);
- 
+        var linkedPosts = ko.observableArray();
+    
         //from and to 
    
         $('#questionContainer').click(function () {
@@ -36,7 +37,7 @@
             console.log("to: " + pos2);
         }
 
-
+   
 
 
 
@@ -45,16 +46,21 @@
                 isNewAnnotation(false);
             }
         };
-
-        dataservice.getQuestion(url(), function (data) {
+        var callback = function (data) {
             question(data);
             body(data.body);
             url(data.url);
-        
-          
-        });
-   
+            linkedPosts(data.linkedPosts);
+        }
 
+        dataservice.getQuestion(url(), callback);
+
+        
+        var goToLinkedPost = function(url) {
+            console.log("ok");
+            dataservice.getQuestion(url, callback);
+        }
+        
         var goback = function () {
             ns.postbox.notify({ component: prevComponent() }, "currentComponent");
         }
@@ -90,6 +96,10 @@
             annotationBody: annotationBody,
             isNewAnnotation: isNewAnnotation,
             createAnnotation: createAnnotation,
+            myLinkedPosts: linkedPosts,
+            goToLinkedPost: goToLinkedPost,
+       
+            
            
        
         

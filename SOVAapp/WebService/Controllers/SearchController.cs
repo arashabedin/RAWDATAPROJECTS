@@ -33,7 +33,7 @@ namespace WebService.Controllers
 
         [HttpGet("{SearchText}", Name = nameof(DoSearch))]
 
-        public IActionResult DoSearch(string SearchText,int page = 0, int pageSize = 5)
+        public IActionResult DoSearch(string SearchText,int page = 0, int pageSize = 7)
         {
             CheckPageSize(ref pageSize);
 
@@ -47,8 +47,9 @@ namespace WebService.Controllers
             {
                 SearchText = SearchText,
                 PostTitle = x.Title,
-                PostUrl =  Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = x.Id }),
-                PostBody = x.Body
+                PostUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = x.Id }),
+                //  PostBody = x.Body
+                Tags = x.Tags.Select(a => a.Tag.Tag).ToList()
                
 
             });

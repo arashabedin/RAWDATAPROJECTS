@@ -340,4 +340,11 @@ cursor:pointer;
     background-color: #0057ff;
     border-color: #0057ff;
 }
+#thsearchbar {
+    width: 90%;
+}
 
+#mySearchBar {
+    width: 100%;
+    height: 34px;
+}

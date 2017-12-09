@@ -10,18 +10,18 @@
 <button class="page_button" data-bind="click: goback">&lt;&lt; Back</button>
 
 <div class="container-fluid">
-
-<div id="questionContainer" data-bind="with: question">
-    <!--LinkPosts-->
     <div class="linked_posts">
-        <span id="linkposts_button" data-toggle="collapse" data-target="#links"> <h2>Linked Posts</h2><span>&#9660;</span></span>
+        <span id="linkposts_button" data-toggle="collapse" data-target="#links"><h2 data-bind="text:myLinkedPosts().length"></h2> <h2>Linked Posts</h2><span>&#9660;</span></span>
         <div id="links" class="collapse">
-            <div data-bind="foreach:linkedPosts">
-                <div class="linked_posts_title">Title: <div data-bind="text:postTitle"></div> </div>
+            <div data-bind="foreach:myLinkedPosts">
+                <div data-bind="click:$parent.goToLinkedPost.bind($data,linkedPostUrl)" class="linked_posts_title">Title: <div data-bind="text:postTitle"></div> </div>
 
             </div>
         </div>
     </div>
+<div id="questionContainer" data-bind="with: question">
+    <!--LinkPosts-->
+
         <!--Header-->
         <div class="row">
             <div class="col-xs-12">

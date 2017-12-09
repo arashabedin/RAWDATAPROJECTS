@@ -28,7 +28,7 @@
         HomeUrl: server + api,
         questionsUrl: server + api + menuElements[1].toLowerCase(),
         markingsUrl: server + api + "marking/",
-        searchUrl: server + api + "search?searchstring=",
+        searchUrl: server + api + "search/",
         usersUrl: server + api + "user",
         customizationUrl: server + api + menuElements[4].toLowerCase(),
 

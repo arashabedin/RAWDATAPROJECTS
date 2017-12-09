@@ -51,6 +51,13 @@
                 callback(data);
             });
         },
+        getSearchResult: function (url, callback) {
+
+            $.getJSON(url, function (data) {
+                callback(data);
+            });
+        },
+       
         getUsers: function (url, callback) {
             if (callback == undefined) {
                 callback = url;

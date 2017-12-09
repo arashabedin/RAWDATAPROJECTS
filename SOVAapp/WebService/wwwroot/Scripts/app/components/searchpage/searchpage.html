@@ -1,45 +1,47 @@
 ﻿<!DOCTYPE html>
 <body>
 
-<p id="errormsg" data-bind="visible: searchContentLength() > 1000">Error! Your input exceeds the maximum capacity (1000). Beep boop, shutting down.</p>
-<p data-bind="visible: showDebugStats">Window height: <span data-bind="text: windowHeight"></span></p>
-<p data-bind="visible: showDebugStats">Window width: <span data-bind="text: windowWidth"></span></p>
-<p data-bind="visible: showDebugStats">Input length: <span data-bind="text: searchContentLength"></span></p>
-<p data-bind="visible: showDebugStats">Value: <span data-bind="text: searchString"></span></p>
+    
 
-	<section>
-		<div id="desktopSearchElement" class="container-fluid">
-			<div data-bind="component: searchBarComponent"></div>
-		</div>
+ 
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th id="thsearchbar">
+
+                    <input id ="mySearchBar" type="text" data-bind="textInput:searchText" name="FirstName" value="Mickey">
+                </th>
+                <th>
+                    <button id="submit" data-bind="click:startSearching" type="submit" class="btn btn-primary">GO!</button>
+                </th>
+            </tr>
+        </thead>
+        </table>
 
 
-        
-            
-            <table data-bind="if: searchString, visible: searchContentLength() < 1000" class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Word</th>
-                        <th>Title</th>
-                        <th>Body</th>
-                    </tr>
-                </thead>
-                <tbody data-bind="foreach: data">
-                    <tr data-bind="click: $parent.gotoquestion.bind($parent, url, $root)">
-                        <td data-bind="text: rank"></td>
-                        <td data-bind="text: word"></td>
-                        <td data-bind="text: title"></td>
-                        <td data-bind="text: body"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <div data-bind="visible: searchContentLength() > 0 && searchContentLength() < 1000">
-                <span>Total: </span>
-                <span data-bind="text: total"></span>
-                <span>Page: </span>
-                <span data-bind="text: pageNumber"></span>
-                <span data-bind="if: prev"><button data-bind="click: prevClick">Prev</button></span>
-                <span data-bind="if: next"><button data-bind="click: nextClick">Next</button></span>
-            </div>
-</section>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                 
+                    <th>Title</th>
+                    <th>Tags</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach:searchData">
+                <tr>
+                  
+                    <td data-bind="text:postTitle"></td>
+                    <td><span class="tags_icon"></span><div class="questions_tags_container" data-bind="foreach:tags"><span class="questions_tags" data-bind="text:$data"></span></div></td>
+                </tr>
+
+            </tbody>
+        </table>
+    <span class="page_status">Total: </span>
+    <span data-bind="text: total"></span>
+    <span class="page_status">Page: </span>
+    <span data-bind="text: pageNumber"></span><br><br>
+    <span data-bind="if: prev"><button class="page_button" data-bind="click: prevClick"><span style="font-size:11px;">&#9668;</span>&nbsp  Prev</button></span>
+    <span data-bind="if: next"><button class="page_button" data-bind="click: nextClick">Next  &nbsp<span style="font-size:11px;"> &#9658;</span></button></span>
+    <br /><br />
 </body>

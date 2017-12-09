@@ -156,7 +156,7 @@ namespace DataService
             //modelBuilder.Entity<SearchResult>().ToTable("posts");
             modelBuilder.Entity<SearchResult>().Property(x => x.Id).HasColumnName("id");
             modelBuilder.Entity<SearchResult>().Property(x => x.Title).HasColumnName("title");
-            modelBuilder.Entity<SearchResult>().Property(x => x.Body).HasColumnName("body");
+        //    modelBuilder.Entity<SearchResult>().Property(x => x.Body).HasColumnName("body");
             modelBuilder.Entity<SearchResult>().Property(x => x.Rank).HasColumnName("rank");
 
 
