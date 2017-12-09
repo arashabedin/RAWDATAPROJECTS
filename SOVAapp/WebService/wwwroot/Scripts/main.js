@@ -6,16 +6,40 @@
             jquery: 'lib/jquery-2.2.3.min',
             text: 'lib/text',
             bootstrap: 'lib/bootstrap.min',
-            modernizer: 'lib/modernizr-2.8.3'
+            modernizer: 'lib/modernizr-2.8.3',
+            jqcloud: 'lib/jqcloud2/dist/jqcloud.min'
         },
 
         // Explicitly specify that bootstrap is dependant on jquery to avoid dependency errors
         shim: {
-            "bootstrap": { "deps": ['jquery'] }
+            "bootstrap": { "deps": ['jquery'] },
+            jqcloud: { deps: ['jquery'] }
+
         }
     });
 })();
 
+require(['knockout', 'jquery', 'jqcloud'], function (ko, $) {
+    ko.bindingHandlers.cloud = {
+        init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+            // This will be called when the binding is first applied to an element
+            // Set up any initial state, event handlers, etc. here
+            var words = allBindings.get('cloud').words;
+            if (words && ko.isObservable(words)) {
+                words.subscribe(function () {
+                    $(element).jQCloud('update', ko.unwrap(words));
+                });
+            }
+        },
+        update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+            // This will be called once when the binding is first applied to an element,
+            // and again whenever any observables/computeds that are accessed change
+            // Update the DOM element based on the supplied values here.
+            var words = ko.unwrap(allBindings.get('cloud').words) || [];
+            $(element).jQCloud(words);
+        }
+    };
+}); 
 
 var ns = ns || {};
 
@@ -104,6 +128,12 @@ require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap'],
         ko.components.register(config.usersComponent, {
             viewModel: { require: 'app/components/users/usersViewModel' },
             template: { require: 'text!app/components/users/users.html' }
+        });
+
+        // JCloud page
+        ko.components.register(config.jcloudComponent, {
+            viewModel: { require: 'app/components/jcloud/jcloudViewModel' },
+            template: { require: 'text!app/components/jcloud/jcloud.html' }
         });
         ko.applyBindings(viewmodel);
     });

@@ -10,7 +10,8 @@
         "Questions",                       // 1
         "Users",                           // 2
         "Markings",                        // 3
-        "Customization"                    // 4
+        "Customization",                   // 4
+        "jCloud"
     ];
 
     var nonMenuComponentElements = [
@@ -32,6 +33,7 @@
         usersUrl: server + api + "user",
         customizationUrl: server + api + menuElements[4].toLowerCase(),
         searchHistoryUrl: server + api + "searchhistory",
+
         
         // menu
         menuElements: menuElements,
@@ -50,7 +52,9 @@
         answersComponent: nonMenuComponentElements[2].toLowerCase(),
         searchBarComponent: nonMenuComponentElements[3].toLowerCase(),
         startPageComponent: nonMenuComponentElements[4].toLowerCase(),
+        jcloudComponent: "jcloud",
         applicationName: applicationName,
+       
       
     }
 });

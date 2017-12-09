@@ -137,12 +137,13 @@ namespace DataService
             modelBuilder.Entity<TermScore>().Property(x => x.Tf).HasColumnName("tf");
             modelBuilder.Entity<TermScore>().Property(x => x.Idf).HasColumnName("idf");
             modelBuilder.Entity<TermScore>().Property(x => x.TfIdf).HasColumnName("tfidf");
+            modelBuilder.Entity<TermScore>().HasKey(x => new { x.Id, x.Word });
 
 
             // TermAsResult
 
             modelBuilder.Entity<TermAsResult>().Property(x => x.Word).HasColumnName("word");
-            modelBuilder.Entity<TermAsResult>().Property(x => x.TfIdf).HasColumnName("tfidf");
+            modelBuilder.Entity<TermAsResult>().Property(x => x.Score).HasColumnName("tfidf");
 
 
             // Table CoOccurrence

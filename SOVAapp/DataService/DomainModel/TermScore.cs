@@ -7,13 +7,13 @@ namespace DataService.DomainModel
 {
     public class TermScore
     {
-        [Key]
+
         public int Id { get; set; }
 
         public string Word { get; set; }
-        public int Tf { get; set; }
-        public int Idf { get; set; }
-        public int TfIdf { get; set; }
+        public decimal Tf { get; set; }
+        public double Idf { get; set; }
+        public double TfIdf { get; set; }
 
     }
 }

@@ -8,12 +8,12 @@ namespace DataService.DTO
     {
 
         public string Word { get; set; }
-        public double TfIdf { get; set; }
-        public TermAsResultDTO( string Word , double TfIdf)
+        public decimal Score { get; set; }
+        public TermAsResultDTO( string Word , decimal score)
         {
             
             this.Word = Word;
-            this.TfIdf = TfIdf;
+            this.Score = score;
         }
 
     }

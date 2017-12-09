@@ -123,7 +123,8 @@ namespace DataService.DataAccessLayer
 
         //Term_As_Result
         int CountTermsAsResult(string text);
-        ICollection<TermAsResultDTO> GetTermsAsResult(string text , int page, int pageSize);
+      //  ICollection<TermAsResultDTO> GetTermsAsResult(string text , int page, int pageSize);
+        ICollection<TermAsResultDTO> GetTermsByPostId(int id);
 
 
 

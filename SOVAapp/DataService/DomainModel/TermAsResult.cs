@@ -9,6 +9,6 @@ namespace DataService.DomainModel
     {
         [Key]
         public string Word { get; set; }
-        public double TfIdf { get; set; }
+        public decimal Score { get; set; }
     }
 }

@@ -31,6 +31,33 @@ namespace WebService.Controllers
         }
 
 
+        [HttpGet("{Pid}", Name = nameof(GetTermByPost))]
+
+        public IActionResult GetTermByPost(int Pid)
+        {
+            
+
+
+            var Terms = _repository.GetTermsByPostId(Pid);
+            if (Terms.Count == 0)
+            {
+                return NotFound("No results have been found");
+            }
+            var data = Terms.Select(x => new TermAsResultModel
+            {
+                word = x.Word,
+                tf = x.Score
+
+
+            });
+          
+         
+            return Ok(data);
+        }
+
+
+
+/*
         [HttpGet("{SearchText}", Name = nameof(SearchTermAsResult))]
 
         public IActionResult SearchTermAsResult(string SearchText, int page = 0, int pageSize = 5)
@@ -45,7 +72,8 @@ namespace WebService.Controllers
             }
             var data = Terms.Select(x => new TermAsResultModel
             {
-                word = x.Word
+                word = x.Word,
+                tf = x.Score
 
 
             });
@@ -65,6 +93,8 @@ namespace WebService.Controllers
 
             return Ok(result);
         }
+        */
+
 
     }
 }

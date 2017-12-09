@@ -45,7 +45,7 @@ namespace WebService.Controllers
                 }).ToList(),
                 MarkingsUrl = Url.Link(nameof(MarkingController.GetMarkings), new { }),
                 Search = Url.Link(nameof(SearchController.DoSearch), new { SearchText = "Search_Text_Here" }),
-                TermAsSearchResult = Url.Link(nameof(TermAsResultController.SearchTermAsResult), new { SearchText = "Search_Text_Here" }),
+                TermsByPostId = Url.Link(nameof(TermAsResultController.GetTermByPost), new { Pid = 19 }),
                 TermNetwrok = Url.Link(nameof(Co_OccurrenceController.GetCoOccurrencesByWord), new { word = "Term_Here" }),
                 SearchHistoryUrl = Url.Link(nameof(SearchHistoryController.GetSearchHistories), new { }),
                 CustomeFieldUrl = Url.Link(nameof(UserCustomeFieldController.GetUserCustomeField), new { })

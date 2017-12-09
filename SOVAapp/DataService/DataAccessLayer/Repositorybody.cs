@@ -1139,7 +1139,7 @@ namespace DataService.DataAccessLayer
             }
         }
 
-        public ICollection<TermAsResultDTO> GetTermsAsResult(string text, int page, int pageSize)
+       /* public ICollection<TermAsResultDTO> GetTermsAsResult(string text, int page, int pageSize)
         {
             using (var db = new SovaContext())
             {
@@ -1149,18 +1149,36 @@ namespace DataService.DataAccessLayer
 
                 foreach (var item in terms)
                 {
-                    var newItem = new TermAsResultDTO(item.Word, item.TfIdf);
+                    var newItem = new TermAsResultDTO(item.Word, item.Score);
                     termDto.Add(newItem);
 
                 }
 
-                return termDto.OrderByDescending(x => x.TfIdf)
+                return termDto.OrderByDescending(x => x.Score)
                    .Skip(page * pageSize)
                    .Take(pageSize)
                    .ToList();
 
             }
 
+        } */
+
+       public ICollection<TermAsResultDTO> GetTermsByPostId(int id)
+        {
+            using (var db = new SovaContext())
+            {
+                var terms = db.TermScore.Where(x => x.Id == id).ToList();
+                List<TermAsResultDTO> termsDto = new List<TermAsResultDTO>();
+                foreach (var item in terms)
+                {
+                    var newTerm = new TermAsResultDTO(item.Word, item.Tf);
+                    Console.WriteLine(item.Word);
+                    termsDto.Add(newTerm);
+
+                }
+                return termsDto;
+
+            }
         }
 
 
