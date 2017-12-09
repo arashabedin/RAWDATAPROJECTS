@@ -7,6 +7,7 @@
         var searchtotal = ko.observable();
         var searchpage = ko.observable();
         var searchhistory = ko.observableArray();
+        var jcloudComponent = ko.observable(config.jcloudComponent);  
         var callback = function (data) {
             searchData(data.data);
             searchpage(data.page);
@@ -34,6 +35,7 @@
             dataservice.getSearchHistory(function (data) {
                 searchhistory(data.data);
             });
+             
         }
         var prevClick = function () {
             dataservice.getSearchResult(searchprev(), callback);
@@ -61,7 +63,8 @@
             total: searchtotal,
             gotoquestion: gotoquestion,
             searchhistory: searchhistory,
-            searchItAgain: searchItAgain
+            searchItAgain: searchItAgain,
+            jcloudComponent: jcloudComponent
         }
     }
 });

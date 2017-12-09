@@ -45,8 +45,8 @@ namespace WebService.Controllers
             }
             var data = Terms.Select(x => new TermAsResultModel
             {
-                word = x.Word,
-                tf = x.Score
+                text = x.Word,
+                weight = x.Score
 
 
             });

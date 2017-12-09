@@ -7,7 +7,7 @@ namespace WebService.Models
 {
     public class TermAsResultModel
     {
-        public string word;
-        public decimal tf;
+        public string text;
+        public decimal weight;
     }
 }

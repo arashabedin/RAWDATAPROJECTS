@@ -49,6 +49,8 @@ namespace WebService.Controllers
                 PostTitle = x.Title,
                 PostUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = x.Id }),
                 //  PostBody = x.Body
+                jCloudUrl = Url.Link(nameof(TermAsResultController.GetTermByPost), new {Pid = x.Id }),
+            
                 Tags = x.Tags.Select(a => a.Tag.Tag).ToList()
                
 

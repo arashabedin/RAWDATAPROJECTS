@@ -350,9 +350,13 @@ cursor:pointer;
 }
 .searchTR:hover {
     cursor: pointer;
-    background: #ff4a14;
-    color: white;
+    background: #e2e2e2;
 }
 .my_searchbar_th {
     border-bottom: 0 !important;
+}
+
+.searchedTitel {
+    padding-top: 20px !important;
+    font-size: 16px;
 }

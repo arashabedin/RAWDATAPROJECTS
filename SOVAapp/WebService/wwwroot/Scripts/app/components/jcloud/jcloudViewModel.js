@@ -1,7 +1,14 @@
-﻿define(['knockout'], function (ko) {
+﻿define(['knockout', 'app/dataservice', 'app/config'], function (ko, dataservice, config) {
     return function (params) {
-        var title = ko.observable();
-
+       
+        var words = ko.observableArray();
+        var jCloudUrl = params.jCloudUrl;
+        var callback = function (data) {
+            words(data);
+        }
+        dataservice.getTermsByPost(jCloudUrl, callback);
+        /*
+    
         var words = ko.observableArray([
             { text: "Lorem", weight: 0.02 },
             { text: "Ipsum", weight: 0.05 },
@@ -11,10 +18,10 @@
             { text: "Consectetur", weight: 0.005 },
             { text: "Adipiscing", weight: 0.05 },
         ]);
-
-
+        
+        */
         return {
-            title,
+        
             words
             
         };

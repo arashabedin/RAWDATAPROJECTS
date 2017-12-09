@@ -37,31 +37,35 @@
         </table>
 
 
-
+    <div class="table-responsive">
         <table class="table">
             <thead>
                 <tr>
-                 
+                    <th>Word Cloud</th>
                     <th>Title</th>
                     <th>Tags</th>
                 </tr>
             </thead>
             <tbody data-bind="foreach:searchData">
                 <tr class="searchTR" data-bind="click: $parent.gotoquestion.bind($data, postUrl, $root)">
-                  
-                    <td data-bind="text:postTitle"></td>
+                    <td>
+                        <!--WordCloud -->
+                        <div data-bind="component: {name: $parent.jcloudComponent , params:{jCloudUrl:jCloudUrl}}" id="answer"></div>
+                    </td>
+
+                    <td class="searchedTitel" data-bind="text:postTitle"></td>
                     <td><span class="tags_icon"></span><div class="questions_tags_container" data-bind="foreach:tags"><span class="questions_tags" data-bind="text:$data"></span></div></td>
                 </tr>
 
             </tbody>
         </table>
 
-
-    <span class="page_status">Total: </span>
-    <span data-bind="text: total"></span>
-    <span class="page_status">Page: </span>
-    <span data-bind="text: pageNumber"></span><br><br>
-    <span data-bind="if: prev"><button class="page_button" data-bind="click: prevClick"><span style="font-size:11px;">&#9668;</span>&nbsp  Prev</button></span>
-    <span data-bind="if: next"><button class="page_button" data-bind="click: nextClick">Next  &nbsp<span style="font-size:11px;"> &#9658;</span></button></span>
-    <br /><br />
+        </div>
+        <span class="page_status">Total: </span>
+        <span data-bind="text: total"></span>
+        <span class="page_status">Page: </span>
+        <span data-bind="text: pageNumber"></span><br><br>
+        <span data-bind="if: prev"><button class="page_button" data-bind="click: prevClick"><span style="font-size:11px;">&#9668;</span>&nbsp  Prev</button></span>
+        <span data-bind="if: next"><button class="page_button" data-bind="click: nextClick">Next  &nbsp<span style="font-size:11px;"> &#9658;</span></button></span>
+        <br /><br />
 </body>

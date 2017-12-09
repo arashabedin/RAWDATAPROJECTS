@@ -8,6 +8,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
 using System.Data;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace DataService.DataAccessLayer
 {
@@ -885,7 +886,7 @@ namespace DataService.DataAccessLayer
             using (var db = new SovaContext())
             {
 
-                var searchHistories = db.SearchHistory.ToList();
+                var searchHistories = db.SearchHistory.GroupBy(x => x.SearchContent).Select(g => g.First());
                 List<SearchHistoryDTO> SearchHistoriesDTO = new List<SearchHistoryDTO>();
 
                 foreach (var s in searchHistories)

@@ -11,7 +11,6 @@
         "Users",                           // 2
         "Markings",                        // 3
         "Customization",                   // 4
-        "jCloud"
     ];
 
     var nonMenuComponentElements = [

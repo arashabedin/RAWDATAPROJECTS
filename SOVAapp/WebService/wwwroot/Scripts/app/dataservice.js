@@ -41,7 +41,12 @@
                 callback(data);
             });
         },
-      
+        getTermsByPost: function (url, callback) {
+            $.getJSON(url, function (data) {
+                callback(data);
+            });
+        },
+        
         getQuestions: function (url, callback) {
             if (callback == undefined) {
                 callback = url;
