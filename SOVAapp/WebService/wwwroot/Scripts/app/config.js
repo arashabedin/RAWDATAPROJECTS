@@ -7,14 +7,14 @@
 
     var menuElements = [
         "Search",                          // 0
-        "Questions",                        // 1
+        "Questions",                       // 1
         "Users",                           // 2
         "Markings",                        // 3
         "Customization"                    // 4
     ];
 
     var nonMenuComponentElements = [
-        "Question",                        // 0 
+        "Question",                         // 0 
         "Comments",                         // 1
         "Answers",                          // 2
         "SearchBar",                        // 3
