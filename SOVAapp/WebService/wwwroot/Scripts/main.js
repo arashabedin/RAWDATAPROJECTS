@@ -43,7 +43,7 @@ require(['knockout', 'jquery', 'jqcloud'], function (ko, $) {
     };
 }); 
 
-var ns = ns || {};
+var ns = {};
 
 ns.postbox = {
     subscribers: [],
@@ -69,7 +69,7 @@ ns.postbox = {
 };
 
 require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap'],
-    function (ko, viewmodel, config, $, bs) {
+    function (ko, viewmodel, config, $) {
 
         // Top bar menu
         ko.components.register(config.menuComponent, {
