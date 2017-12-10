@@ -5,11 +5,10 @@
 <div>
 
     <div class="users_container" data-bind="foreach: data">
-        <div class="User_container" data-bind="click: $parent.gotouser.bind($parent, url, $root)">
-            <div class="users_title"><span data-bind="text: title"></span></div>
-            <div class="users_displayname"><span class="user_icon"></span><span class="users_displayname" data-bind="text: displayname"></span></div>
-            <span class="location"></span> <div class="users_location" data-bind="foreach:location"><span class="users_location" 
-                                                                                                          data-bind="text:$data"></span></div>
+        <div class="User_container" data-bind="">
+         
+            <div class="users_displayname"><span class="user_icon"></span><span class="users_displayname" data-bind="text: displayName"></span></div>
+          
         </div>
 
     </div>

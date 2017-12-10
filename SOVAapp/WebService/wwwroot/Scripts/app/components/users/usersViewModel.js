@@ -6,7 +6,6 @@
         var usersnext = ko.observable();
         var userstotal = ko.observable();
         var userspage = ko.observable();
-        var userComponent = ko.observable(config.userComponent);
 
         var callback = function (data) {
 
@@ -17,17 +16,13 @@
             usersdata(data.data);
         };
 
-        dataservice.getusers(callback);
+        dataservice.getUsers(callback);
 
         var prevClick = function () {
-            dataservice.getusers(usersprev(), callback);
+            dataservice.getUsers(usersprev(), callback);
         };
         var nextClick = function () {
-            dataservice.getusers(usersnext(), callback);
-        };
-
-        var gotouser = function (userUrl, root) {
-            ns.postbox.notify({ component: config.userComponent, url: userUrl, prevComponent: root.currentComponent() }, "currentComponent");
+            dataservice.getUsers(usersnext(), callback);
         };
 
 
@@ -39,8 +34,6 @@
             next: usersnext,
             total: userstotal,
             pageNumber: userspage,
-            gotouser: gotouser,
-            userComponent: userComponent,
             data: usersdata
 
 
