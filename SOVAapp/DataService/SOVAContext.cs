@@ -23,8 +23,9 @@ namespace DataService
         public DbSet<CoOccurrence> CoOccurrence { get; set; }
         public DbSet<SearchResult> SearchResult { get; set; }
         public DbSet<TermAsResult> TermAsResult { get; set; }
+        public DbSet<TermNetworkMaker> TermNetworkMaker { get; set; }
 
-        
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -146,6 +147,11 @@ namespace DataService
             modelBuilder.Entity<TermAsResult>().Property(x => x.Score).HasColumnName("tfidf");
 
 
+            // TermNetworkMaker
+
+            modelBuilder.Entity<TermNetworkMaker>().Property(x => x.Raw).HasColumnName("raw");
+            
+
             // Table CoOccurrence
             modelBuilder.Entity<CoOccurrence>().ToTable("co_occurrence");
             modelBuilder.Entity<CoOccurrence>().Property(t => t.Word).HasColumnName("word1");
@@ -154,10 +160,10 @@ namespace DataService
             modelBuilder.Entity<CoOccurrence>()
            .HasKey(c => new { c.Word, c.Word2 });
             // SearchResults
-            //modelBuilder.Entity<SearchResult>().ToTable("posts");
+            
             modelBuilder.Entity<SearchResult>().Property(x => x.Id).HasColumnName("id");
             modelBuilder.Entity<SearchResult>().Property(x => x.Title).HasColumnName("title");
-        //    modelBuilder.Entity<SearchResult>().Property(x => x.Body).HasColumnName("body");
+          //modelBuilder.Entity<SearchResult>().Property(x => x.Body).HasColumnName("body");
             modelBuilder.Entity<SearchResult>().Property(x => x.Rank).HasColumnName("rank");
 
 

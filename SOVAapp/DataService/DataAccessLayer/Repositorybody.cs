@@ -1182,6 +1182,24 @@ namespace DataService.DataAccessLayer
             }
         }
 
+       public TermNetworkMakerDTO GenerateTermNetworkCode(string word)
+        {
+            using (var db = new SovaContext())
+            {
+                var result = db.TermNetworkMaker.FromSql("call term_network({0})", word);
+                TermNetworkMakerDTO resultDTO = new TermNetworkMakerDTO();
+
+                foreach (var item in result)
+                {
+                    resultDTO.Code += item.Raw;
+                    resultDTO.Code += " ";
+                }
+                return resultDTO;
+
+            }
+        }
+
+
 
 
     }

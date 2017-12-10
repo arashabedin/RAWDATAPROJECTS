@@ -7,7 +7,9 @@
             text: 'lib/text',
             bootstrap: 'lib/bootstrap.min',
             modernizer: 'lib/modernizr-2.8.3',
-            jqcloud: 'lib/jqcloud2/dist/jqcloud.min'
+            jqcloud: 'lib/jqcloud2/dist/jqcloud.min',
+            d3: 'lib/d3js'
+
         },
 
         // Explicitly specify that bootstrap is dependant on jquery to avoid dependency errors
@@ -135,5 +137,12 @@ require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap'],
             viewModel: { require: 'app/components/jcloud/jcloudViewModel' },
             template: { require: 'text!app/components/jcloud/jcloud.html' }
         });
+        // termnetwork page
+        ko.components.register(config.concurrentsComponent, {
+            viewModel: { require: 'app/components/concurrents/concurrentsViewModel' },
+            template: { require: 'text!app/components/concurrents/concurrents.html' }
+        });
+
+        
         ko.applyBindings(viewmodel);
     });
