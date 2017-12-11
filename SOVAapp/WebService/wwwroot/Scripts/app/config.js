@@ -1,5 +1,5 @@
 ﻿define([], function () {
-    var server = 'http://localhost:5001/';
+    var server = 'http://localhost:5001';
 
     var api = "/api/";
 
@@ -31,7 +31,7 @@
         markingsUrl: server + api + "marking/",
         searchUrl: server + api + "search/",
         usersUrl: server + api + "user",
-        customizationUrl: server + api + menuElements[4].toLowerCase(),
+        customizationUrl: server + api + menuElements[5].toLowerCase(),
         searchHistoryUrl: server + api + "searchhistory",
         concurrentsUrl: server + api + "termnetwork/",
         

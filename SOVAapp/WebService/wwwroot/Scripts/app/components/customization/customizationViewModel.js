@@ -21,7 +21,7 @@
 
         var saveCustomeField = function () {
             
-            var NewCustomeUrl = config.customizationUrl +"/"+ newPostlimit() +"_"+newCustomeTags();
+            var NewCustomeUrl = config.customizationUrl +"/"+ newPostlimit() +"_"+ encodeURIComponent(newCustomeTags());
             console.log(NewCustomeUrl);
             var newCustome = ko.toJS({
                // postLimit: newPostlimit(),

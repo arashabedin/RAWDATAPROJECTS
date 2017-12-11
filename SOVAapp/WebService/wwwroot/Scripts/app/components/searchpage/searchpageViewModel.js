@@ -39,7 +39,8 @@
             //loadingHint();//function is available in helpers
             searchData([]);
             isSearching(true); 
-            var url = config.searchUrl + ' ' + searchText() ;
+            var url = config.searchUrl + ' ' + searchText();
+            console.log(url);
             dataservice.getSearchResult(url, callback);
             dataservice.getSearchHistory(function (data) {
             searchhistory(data.data);
