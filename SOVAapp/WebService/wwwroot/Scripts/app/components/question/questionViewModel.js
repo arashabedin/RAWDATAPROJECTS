@@ -15,6 +15,11 @@
         var isMarked = ko.computed(function () {
             return markingStatus() === "Already marked";
         });
+        var containsElements = ko.computed(function () {
+
+            return linkedPosts().length !== 0;
+
+        });
      
         var myTrue = true;
         //from and to 
@@ -128,7 +133,8 @@
             markThis,
             markingStatus,
             unMarkThis,
-            isMarked
+            isMarked,
+            containsElements
        
        
        

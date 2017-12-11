@@ -3,6 +3,11 @@
         var comments = ko.observableArray();
         var commentsUrl = params.commentsUrl;
         var total = ko.observable();
+        var containsElements = ko.computed(function () {
+         
+            return comments().length !== 0;
+           
+        });
     
         collapseComments();//function is available in helpers
 
@@ -16,7 +21,8 @@
        
         return {
             comments: comments,
-            total: total
+            total: total,
+            containsElements
         }
     };
 });

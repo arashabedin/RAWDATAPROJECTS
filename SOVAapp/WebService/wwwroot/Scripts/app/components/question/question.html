@@ -14,11 +14,11 @@
 </div>
 
 <div id="UnMarkButton"  data-bind="click: unMarkThis, visible: isMarked">
-    <span>&#9644;</span>
+    <span>&#x2718;</span>
 
 </div>
 <div class="container-fluid">
-    <div class="linked_posts">
+    <div class="linked_posts" data-bind="visible:containsElements">
         <span id="linkposts_button" data-toggle="collapse" data-target="#links"><h2 data-bind="text:myLinkedPosts().length"></h2> <h2>Linked Posts</h2><span>&#9660;</span></span>
         <div id="links" class="collapse">
             <div data-bind="foreach:myLinkedPosts">
@@ -75,7 +75,7 @@
                 <div data-bind="component: {name: $parent.answersComponent, params: {answersUrl: answersUrl}}" id="answer"></div>
             </div>
         </div>
-
-
+    <br />
+    <br />
     </div>
 </div>
