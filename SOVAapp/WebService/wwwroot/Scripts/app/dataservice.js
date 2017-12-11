@@ -115,6 +115,14 @@
 
             });
         },
+        deleteData: function (url, data) {
+            $.ajax({
+                type: 'Delete',
+                url: url,
+                data: data
+
+            });
+        },
         postData: function (url, data) {
             $.ajax({
                 type: 'POST',

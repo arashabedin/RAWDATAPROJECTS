@@ -8,12 +8,12 @@
 
 <button class="page_button" data-bind="click: goback">&lt;&lt; Back</button>
 
-<div id="MarkButton" data-bind="click: markThis">
+<div id="MarkButton" data-bind="click: markThis, , visible: !isMarked()">
 <span>&#9733;</span>
 
 </div>
 
-<div id="UnMarkButton">
+<div id="UnMarkButton"  data-bind="click: unMarkThis, visible: isMarked">
     <span>&#9644;</span>
 
 </div>

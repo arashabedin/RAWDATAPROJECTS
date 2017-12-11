@@ -11,7 +11,12 @@
         var annotationBody = ko.observable();
         var isNewAnnotation = ko.observable(false);
         var linkedPosts = ko.observableArray();
-    
+        var markingStatus = ko.observable();
+        var isMarked = ko.computed(function () {
+            return markingStatus() === "Already marked";
+        });
+     
+        var myTrue = true;
         //from and to 
    
         $('#questionContainer').click(function () {
@@ -53,15 +58,25 @@
             body(data.body);
             url(data.url);
             linkedPosts(data.linkedPosts);
+            markingStatus(data.markThisPost);
         }
 
         var markThis = function () {
 
             var AddMarkingUrl = config.markingsUrl.concat(question().postId);
-            var markingObjsect = ko.toJS({
+            var markingObject = ko.toJS({
             });
-            dataservice.postData(AddMarkingUrl, markingObjsect);
-            alert("succesfully marked");
+            dataservice.postData(AddMarkingUrl, markingObject);
+            markingStatus("Already marked");
+            
+        }
+        var unMarkThis = function () {
+
+            var deleteMarkingUrl = config.markingsUrl.concat(question().postId);
+            var markingObject = ko.toJS({
+            });
+            dataservice.deleteData(deleteMarkingUrl, markingObject); 
+            markingStatus("Deleted marking");
         }
 
 
@@ -110,10 +125,12 @@
             createAnnotation: createAnnotation,
             myLinkedPosts: linkedPosts,
             goToLinkedPost: goToLinkedPost,
-            markThis
+            markThis,
+            markingStatus,
+            unMarkThis,
+            isMarked
        
-            
-           
+       
        
         
         }
