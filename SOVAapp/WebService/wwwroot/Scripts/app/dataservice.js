@@ -61,6 +61,17 @@
                 callback(data);
             });
         },
+
+        getMarkings: function (url, callback) {
+            if (callback == undefined) {
+                callback = url;
+                url = "http://localhost:5001/api/marking";
+            }
+            $.getJSON(url, function (data) {
+                callback(data);
+            });
+        },
+
         getSearchResult: function (url, callback) {
 
             $.getJSON(url, function (data) {

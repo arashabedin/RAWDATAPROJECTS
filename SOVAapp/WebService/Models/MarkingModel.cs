@@ -10,7 +10,7 @@ namespace WebService.Models
         public string MarkingUrl { get; set; }
         public string RemoveMarking { get; set; }
         public string PostUrl { get; set; }
-        public string PostBody { get; set; }
+        public string PostTitle { get; set; }
         public ICollection<AnnotationModel> MarkingAnnotation { get; set; }
         public DateTime MarkedDate { get; set; }
 

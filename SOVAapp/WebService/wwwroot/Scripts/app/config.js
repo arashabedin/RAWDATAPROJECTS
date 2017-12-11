@@ -18,7 +18,8 @@
         "Question",                         // 0 
         "Comments",                         // 1
         "Answers",                          // 2
-        "StartPage"                         // 4
+        "StartPage",                        // 4
+        "Marking"                           // 5
 
     ];
 
@@ -51,6 +52,8 @@
         commentsComponent: nonMenuComponentElements[1].toLowerCase(),
         answersComponent: nonMenuComponentElements[2].toLowerCase(),
         startPageComponent: nonMenuComponentElements[3].toLowerCase(),
+        markingComponent: nonMenuComponentElements[4].toLowerCase(),
+
         jcloudComponent: "jcloud",
         applicationName: applicationName
        

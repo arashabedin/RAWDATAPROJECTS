@@ -425,3 +425,27 @@ cursor:pointer;
 svg {
     display: none;
 }
+.marking_container {
+    width: 220px;
+    min-height: 127px;
+    padding: 10px;
+    display: inline-block;
+    float: left;
+    margin: 14px;
+    box-shadow: 0 1px 2px rgba(25,25,25,0.2);
+    border-radius: 2px;
+    background-color: white;
+
+}
+.marking_container:hover {
+    background-image: url("../img/pageflip.jpg");
+    background-size: 65px;
+    background-repeat: no-repeat;
+    background-position: 161px 67px;
+    cursor: pointer;
+}
+.marking_title {
+    font-size: 16px;
+    padding-bottom: 9px;
+}
+

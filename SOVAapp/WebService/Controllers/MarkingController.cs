@@ -45,7 +45,7 @@ namespace WebService.Controllers
 
             }).ToList();
 
-            newMarkingModel.PostBody = _repository.GetPostById(markedPost.MarkedPostId).Body;
+            newMarkingModel.PostTitle = _repository.GetPostById(markedPost.MarkedPostId).Title;
             newMarkingModel.MarkedDate = markedPost.MarkingDate;
             newMarkingModel.AddAnnotation = Url.Link(nameof(AnnotationController.AddAnnotation), new { Pid = markedPost.MarkedPostId, text = "NewAnnotation", from = 0, to = 0 });
 
@@ -88,7 +88,7 @@ namespace WebService.Controllers
 
 
 
-            PostBody = _repository.GetPostById(x.MarkedPostId).Body,
+            PostTitle = _repository.GetPostById(x.MarkedPostId).Title,
                 MarkedDate = x.MarkingDate,
                  AddAnnotation = Url.Link(nameof(AnnotationController.AddAnnotation), new { Pid = x.MarkedPostId, text = "NewAnnotation", from = 0, to = 0 })
 

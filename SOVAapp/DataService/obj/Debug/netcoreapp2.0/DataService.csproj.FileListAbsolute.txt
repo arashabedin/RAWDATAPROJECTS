@@ -75,3 +75,14 @@ C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECT\SOVAapp\DataService\obj\Debug\n
 C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECT\SOVAapp\DataService\obj\Debug\netcoreapp2.0\DataService.AssemblyInfo.cs
 C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECT\SOVAapp\DataService\obj\Debug\netcoreapp2.0\DataService.dll
 C:\Users\aabedin\Documents\GitHub\RAWDATAPROJECT\SOVAapp\DataService\obj\Debug\netcoreapp2.0\DataService.pdb
+C:\Users\aabedin\Source\Repos\RAWDATAPROJECTS2\SOVAapp\DataService\bin\Debug\netcoreapp2.0\DataService.deps.json
+C:\Users\aabedin\Source\Repos\RAWDATAPROJECTS2\SOVAapp\DataService\bin\Debug\netcoreapp2.0\DataService.runtimeconfig.json
+C:\Users\aabedin\Source\Repos\RAWDATAPROJECTS2\SOVAapp\DataService\bin\Debug\netcoreapp2.0\DataService.runtimeconfig.dev.json
+C:\Users\aabedin\Source\Repos\RAWDATAPROJECTS2\SOVAapp\DataService\bin\Debug\netcoreapp2.0\DataService.dll
+C:\Users\aabedin\Source\Repos\RAWDATAPROJECTS2\SOVAapp\DataService\bin\Debug\netcoreapp2.0\DataService.pdb
+C:\Users\aabedin\Source\Repos\RAWDATAPROJECTS2\SOVAapp\DataService\obj\Debug\netcoreapp2.0\DataService.csprojResolveAssemblyReference.cache
+C:\Users\aabedin\Source\Repos\RAWDATAPROJECTS2\SOVAapp\DataService\obj\Debug\netcoreapp2.0\DataService.csproj.CoreCompileInputs.cache
+C:\Users\aabedin\Source\Repos\RAWDATAPROJECTS2\SOVAapp\DataService\obj\Debug\netcoreapp2.0\DataService.AssemblyInfoInputs.cache
+C:\Users\aabedin\Source\Repos\RAWDATAPROJECTS2\SOVAapp\DataService\obj\Debug\netcoreapp2.0\DataService.AssemblyInfo.cs
+C:\Users\aabedin\Source\Repos\RAWDATAPROJECTS2\SOVAapp\DataService\obj\Debug\netcoreapp2.0\DataService.dll
+C:\Users\aabedin\Source\Repos\RAWDATAPROJECTS2\SOVAapp\DataService\obj\Debug\netcoreapp2.0\DataService.pdb

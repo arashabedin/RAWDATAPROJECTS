@@ -77,12 +77,17 @@ require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap'],
             template: { require: 'text!app/components/topbarmenu/topbarmenu.html' }
         });
 
-        // Annotations
-        ko.components.register(config.markingComponent, {
+        // Markings
+        ko.components.register(config.markingsComponent, {
             viewModel: { require: 'app/components/markings/markingsViewModel' },
             template: { require: 'text!app/components/markings/markings.html' }
         });
 
+        // Marking
+        ko.components.register(config.markingComponent, {
+            viewModel: { require: 'app/components/marking/markingViewModel' },
+            template: { require: 'text!app/components/marking/marking.html' }
+        });
 
 
         // Questions
