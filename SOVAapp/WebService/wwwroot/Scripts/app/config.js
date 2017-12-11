@@ -6,20 +6,20 @@
     var applicationName = "SOVA";
 
     var menuElements = [
-        "Search",                          // 0
-        "Questions",                       // 1
-        "Users",                           // 2
-        "Markings",                        // 3
-        "Customization",                   // 4
-        "Concurrents"                      // 5
+        "Home",                            // 0
+        "Search",                          // 1
+        "Questions",                       // 2
+        "Users",                           // 3
+        "Markings",                        // 4
+        "Customization",                   // 5
+        "Concurrents"                      // 6
     ];
 
     var nonMenuComponentElements = [
         "Question",                         // 0 
         "Comments",                         // 1
         "Answers",                          // 2
-        "StartPage",                        // 4
-        "Marking"                           // 5
+        
 
     ];
 
@@ -37,22 +37,21 @@
         
         // menu
         menuElements: menuElements,
-        defaultMenuItem: nonMenuComponentElements[3].toLowerCase(),        
+        defaultMenuItem: menuElements[0].toLowerCase(),       
 
         // components
         menuComponent: "topbarmenu",
-        searchpagesComponent: menuElements[0].toLowerCase(),
-        questionsComponent: menuElements[1].toLowerCase(),
-        usersComponent: menuElements[2].toLowerCase(),
-        markingsComponent: menuElements[3].toLowerCase(),
-        customizationComponent: menuElements[4].toLowerCase(),
-        concurrentsComponent: menuElements[5].toLowerCase(),
+        homeComponent: menuElements[0].toLowerCase(),
+        searchpagesComponent: menuElements[1].toLowerCase(),
+        questionsComponent: menuElements[2].toLowerCase(),
+        usersComponent: menuElements[3].toLowerCase(),
+        markingsComponent: menuElements[4].toLowerCase(),
+        customizationComponent: menuElements[5].toLowerCase(),
+        concurrentsComponent: menuElements[6].toLowerCase(),
 
         questionComponent: nonMenuComponentElements[0].toLowerCase(),
         commentsComponent: nonMenuComponentElements[1].toLowerCase(),
         answersComponent: nonMenuComponentElements[2].toLowerCase(),
-        startPageComponent: nonMenuComponentElements[3].toLowerCase(),
-        markingComponent: nonMenuComponentElements[4].toLowerCase(),
 
         jcloudComponent: "jcloud",
         applicationName: applicationName

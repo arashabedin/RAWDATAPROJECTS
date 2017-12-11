@@ -145,11 +145,10 @@ namespace DataService.DataAccessLayer
 
             using (var db = new SovaContext())
             {
-                var answers = db.Posts.Where(i => i.PostTypeId == 2).Skip(page * pageSize)
+                var answers = db.Posts.Where(u => u.ParentId == id).Skip(page * pageSize)
                     .Take(pageSize).ToList();
-                var answersByUserId = answers.Where(u => u.ParentId == id);
                 List<AnswerDTO> answersDTO = new List<AnswerDTO>();
-                foreach (var post in answersByUserId)
+                foreach (var post in answers)
                 {
                     var answer = new AnswerDTO(post.Id, (int)post.ParentId, post.OwnerUserId, post.Body, post.Title, post.Score, post.CreationDate,
     post.ClosedDate, null, null, GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));

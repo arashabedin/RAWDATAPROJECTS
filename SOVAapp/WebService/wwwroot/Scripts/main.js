@@ -86,13 +86,6 @@ require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap'],
             template: { require: 'text!app/components/markings/markings.html' }
         });
 
-        // Marking
-        ko.components.register(config.markingComponent, {
-            viewModel: { require: 'app/components/marking/markingViewModel' },
-            template: { require: 'text!app/components/marking/marking.html' }
-        });
-
-
         // Questions
         ko.components.register(config.questionsComponent, {
             viewModel: { require: 'app/components/questions/questionsViewModel' },
@@ -119,10 +112,10 @@ require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap'],
             template: { require: 'text!app/components/answers/answers.html' }
         });
 
-        // Start page
-        ko.components.register(config.startPageComponent, {
-            viewModel: { require: 'app/components/startpage/startpageViewModel' },
-            template: { require: 'text!app/components/startpage/startpage.html' }
+        // homepage page
+        ko.components.register(config.homeComponent, {
+            viewModel: { require: 'app/components/homepage/homepageViewModel' },
+            template: { require: 'text!app/components/homepage/homepage.html' }
         });
         // Search page
         ko.components.register(config.searchpagesComponent, {
