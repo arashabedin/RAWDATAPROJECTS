@@ -449,3 +449,22 @@ svg {
     padding-bottom: 9px;
 }
 
+#loading {
+    width: 20%;
+    height: 60px;
+    position: fixed;
+    top: 30%;
+    left: 40%;
+    background: blue;
+    z-index: 1;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+}
+
+#loading span {
+
+  
+    position:relative;
+    top:20px;
+}
