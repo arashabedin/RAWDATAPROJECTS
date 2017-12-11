@@ -5,7 +5,7 @@
         var questionsnext = ko.observable();
         var questionstotal = ko.observable();
         var questionspage = ko.observable();
-        var markingComponent = ko.observable(config.markingComponent);
+        var questionComponent = ko.observable(config.questionComponent);
         var noElements = ko.computed(function () {
             return questionsdata().length === 0;
         });
@@ -27,8 +27,8 @@
             dataservice.getQuestions(questionsnext(), callback);
         };
 
-        var gotoMarking = function (markingUrl, root) {
-            ns.postbox.notify({ component: config.markingComponent, url: markingUrl, prevComponent: root.currentComponent() }, "currentComponent");
+        var gotoQuestion = function (postUrl, root) {
+            ns.postbox.notify({ component: config.questionComponent, url: postUrl, prevComponent: root.currentComponent() }, "currentComponent");
         };
     
         return {
@@ -39,8 +39,8 @@
             next: questionsnext,
             total: questionstotal,
             pageNumber: questionspage,
-            gotoMarking: gotoMarking,
-            markingComponent: markingComponent,
+            gotoQuestion: gotoQuestion,
+            questionComponent: questionComponent,
             data: questionsdata,
             noElements
         

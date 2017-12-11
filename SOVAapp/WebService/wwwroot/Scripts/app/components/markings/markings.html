@@ -9,7 +9,7 @@
 
     <div class="questions_container" data-bind="foreach: data">
     
-        <div class="marking_container"  data-bind="click: $parent.gotoMarking.bind($parent, markingUrl, $root)">
+        <div class="marking_container"  data-bind="click: $parent.gotoQuestion.bind($parent, postUrl, $root)">
             <div class="marking_title"><span data-bind="text:postTitle"></span></div>
         </div>
 
