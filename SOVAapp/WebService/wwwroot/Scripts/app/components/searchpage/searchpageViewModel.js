@@ -6,8 +6,12 @@
         var searchnext = ko.observable();
         var searchtotal = ko.observable();
         var searchpage = ko.observable();
+        var loadingStatus = ko.observable("Please wait until the content is loaded. It might take time for the results to emerged, but we promise you intresting results...");
         var searchhistory = ko.observableArray();
         var jcloudComponent = ko.observable(config.jcloudComponent);  
+        var noElements = ko.computed(function () {
+            return searchData().length === 0;
+        });
         var callback = function (data) {
             searchData(data.data);
             searchpage(data.page);
@@ -21,7 +25,7 @@
      
 
         var startSearching = function () {
-            loadingHint();//function is available in helpers
+            //loadingHint();//function is available in helpers
                 console.log(searchText());
             var url = config.searchUrl + searchText();
             dataservice.getSearchResult(url, callback);
@@ -30,10 +34,11 @@
             });
         }
 
-        var searchItAgain = function (searchText) {
-            loadingHint();//function is available in helpers
-            console.log(searchText);
-            var url = config.searchUrl + searchText;
+        var searchItAgain = function (search) {
+            //loadingHint();//function is available in helpers
+            console.log(search);
+            var url = config.searchUrl + search;
+            searchText(search);
             dataservice.getSearchResult(url, callback);
             dataservice.getSearchHistory(function (data) {
                 searchhistory(data.data);
@@ -68,6 +73,8 @@
             searchhistory: searchhistory,
             searchItAgain: searchItAgain,
             jcloudComponent: jcloudComponent,
+            loadingStatus,
+            noElements
             
         }
     }

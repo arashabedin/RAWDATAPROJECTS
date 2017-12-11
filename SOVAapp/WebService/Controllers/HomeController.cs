@@ -35,7 +35,7 @@ namespace WebService.Controllers
                 RecommendedQuestions = _repository.ShowCustomePosts().Select(i => new CustomPostModel
                 {
                     Title = i.Title,
-                    Body = i.Body,
+                   // Body = i.Body,
                     QuestionUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = i.PostId }),
                     User = _repository.GetUserById(i.UserId).DisplayName,
                     Tags = _repository.GetPostTagsByPostId(i.PostId).Select(t => t.Tag.Tag).ToList()

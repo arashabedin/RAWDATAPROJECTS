@@ -250,15 +250,13 @@ namespace DataService.DataAccessLayer
 
             using (var db = new SovaContext())
             {
-                var questions = db.Posts.Where(i => i.PostTypeId == 1).ToList();
-                foreach (var item in questions)
-                {
-                    item.UserInfo = db.UserInfo.Where(i => i.OwnerUserId == item.OwnerUserId).FirstOrDefault();
-                }
-                return questions.OrderBy(x => x.Id)
-                    .Skip(page * pageSize)
-                    .Take(pageSize)
-                    .ToList();
+                var questions = db.Posts.Include(x => x.UserInfo).Where(i => i.PostTypeId == 1).Skip(page * pageSize)
+                    .Take(pageSize).ToList();
+                //foreach (var item in questions)
+                //{
+                //    item.UserInfo = db.UserInfo.Where(i => i.OwnerUserId == item.OwnerUserId).FirstOrDefault();
+                //}
+                return questions.OrderBy(x => x.Id).ToList();
 
 
             }
