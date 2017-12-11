@@ -6,7 +6,6 @@
         var searchnext = ko.observable();
         var searchtotal = ko.observable();
         var searchpage = ko.observable();
-        var loadingStatus = ko.observable("Please wait until the content is loaded. It might take time for the results to emerged, but we promise you intresting results...");
 
         var searchhistory = ko.observableArray();
         var jcloudComponent = ko.observable(config.jcloudComponent);  
@@ -31,6 +30,7 @@
 
         var startSearching = function () {
             //loadingHint();//function is available in helpers
+            searchData([]);
             isSearching(true);
                 console.log(searchText());
             var url = config.searchUrl + searchText();
@@ -42,6 +42,7 @@
 
         var searchItAgain = function (search) {
             //loadingHint();//function is available in helpers
+            searchData([]);
             isSearching(true);
             console.log(search);
             var url = config.searchUrl + search;
@@ -80,7 +81,6 @@
             searchhistory: searchhistory,
             searchItAgain: searchItAgain,
             jcloudComponent: jcloudComponent,
-            loadingStatus,
             noElements
             
         }
