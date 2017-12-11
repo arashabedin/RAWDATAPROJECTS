@@ -514,3 +514,8 @@ svg {
         position: relative;
         bottom: 3px;
     }
+
+    .jqcloud {
+        font-family: logofont;
+        font: 6px "logofont", "Arial", sans-serif;
+    }
