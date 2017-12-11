@@ -145,7 +145,8 @@ namespace DataService.DataAccessLayer
 
             using (var db = new SovaContext())
             {
-                var answers = db.Posts.Where(i => i.PostTypeId == 2).ToList();
+                var answers = db.Posts.Where(i => i.PostTypeId == 2).Skip(page * pageSize)
+                    .Take(pageSize).ToList();
                 var answersByUserId = answers.Where(u => u.ParentId == id);
                 List<AnswerDTO> answersDTO = new List<AnswerDTO>();
                 foreach (var post in answersByUserId)
@@ -154,10 +155,7 @@ namespace DataService.DataAccessLayer
     post.ClosedDate, null, null, GetPostTypeByPostId(post.Id), GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id));
                     answersDTO.Add(answer);
                 }
-                return answersDTO.OrderBy(x => x.Id)
-                    .Skip(page * pageSize)
-                    .Take(pageSize)
-                    .ToList();
+                return answersDTO.OrderBy(x => x.Id).ToList();
 
             }
         }
@@ -502,17 +500,15 @@ namespace DataService.DataAccessLayer
         {
             using (var db = new SovaContext())
             {
-                var users = db.UserInfo.ToList();
+                var users = db.UserInfo.Skip(page * pageSize)
+                    .Take(pageSize).ToList();
                 List<UserInfoDTO> UsersDTO = new List<UserInfoDTO>();
                 foreach (var i in users)
                 {
                     var newUser = new UserInfoDTO(i.OwnerUserId, i.OwnerUserAge, i.OwnerUserDisplayName, i.CreationDate, i.OwnerUserLocation);
                     UsersDTO.Add(newUser);
                 }
-                return UsersDTO.OrderBy(x => x.Id)
-                    .Skip(page * pageSize)
-                    .Take(pageSize)
-                    .ToList();
+                return UsersDTO.OrderBy(x => x.Id).ToList();
             }
         }
         public UserInfoDTO GetUserById(int id)
@@ -644,17 +640,15 @@ namespace DataService.DataAccessLayer
 
             using (var db = new SovaContext())
             {
-                var markings = db.Markings.ToList();
+                var markings = db.Markings.Skip(page * pageSize)
+                    .Take(pageSize).ToList();
                 List<MarkingDTO> markingsDTO = new List<MarkingDTO>();
                 foreach (var item in markings)
                 {
                     MarkingDTO newMarking = new MarkingDTO(item.MarkedPostId, item.MarkingDate, GetAnnotationById(item.MarkedPostId));
                     markingsDTO.Add(newMarking);
                 }
-                return markingsDTO.OrderBy(x => x.MarkingDate)
-                    .Skip(page * pageSize)
-                    .Take(pageSize)
-                    .ToList();
+                return markingsDTO.OrderBy(x => x.MarkingDate).ToList();
 
             }
         }

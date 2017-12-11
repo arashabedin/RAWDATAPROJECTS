@@ -29,7 +29,7 @@ namespace WebService.Controllers
         }
 
         [HttpGet("question/{Qid}/answer", Name = nameof(GetAnswersByQuestionId))]
-        public IActionResult GetAnswersByQuestionId(int Qid, int page = 0, int pageSize = 5)
+        public IActionResult GetAnswersByQuestionId(int Qid, int page = 0, int pageSize = 500)
         {
             CheckPageSize(ref pageSize);
 
