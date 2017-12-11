@@ -8,14 +8,17 @@
             bootstrap: 'lib/bootstrap.min',
             modernizer: 'lib/modernizr-2.8.3',
             jqcloud: 'lib/jqcloud2/dist/jqcloud.min',
-            d3: 'lib/d3js'
+            d3: 'lib/d3js',
+            helpers: 'lib/helpers'
 
         },
 
         // Explicitly specify that bootstrap is dependant on jquery to avoid dependency errors
         shim: {
             "bootstrap": { "deps": ['jquery'] },
-            jqcloud: { deps: ['jquery'] }
+            jqcloud: { deps: ['jquery'] },
+            helpers: { deps: ['jquery'] }
+
 
         }
     });

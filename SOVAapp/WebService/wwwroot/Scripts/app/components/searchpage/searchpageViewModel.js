@@ -1,4 +1,4 @@
-﻿define(['knockout', 'app/dataservice', 'app/config'], function (ko, dataservice, config) {
+﻿define(['knockout', 'app/dataservice', 'app/config','helpers'], function (ko, dataservice, config) {
     return function () {
         var searchData = ko.observableArray();
         var searchText = ko.observable();
@@ -18,13 +18,11 @@
         dataservice.getSearchHistory(function (data) {
             searchhistory(data.data);
         });
+     
 
         var startSearching = function () {
-            if ($('#mySearchData').is(':empty')) {
-                //do something
-                $("#loading").text("Please wait until the content is loaded. It might take time for the results to emerged, but we promise you intresting results...");
-            }
-            console.log(searchText());
+            loadingHint();//function is available in helpers
+                console.log(searchText());
             var url = config.searchUrl + searchText();
             dataservice.getSearchResult(url, callback);
             dataservice.getSearchHistory(function (data) {
@@ -33,10 +31,7 @@
         }
 
         var searchItAgain = function (searchText) {
-            if ($('#mySearchData').is(':empty')) {
-                //do something
-                $("#loading").text("Please wait until the content is loaded. It might take time for the results to emerged, but we promise you intresting results...");
-            }
+            loadingHint();//function is available in helpers
             console.log(searchText);
             var url = config.searchUrl + searchText;
             dataservice.getSearchResult(url, callback);
