@@ -5,7 +5,13 @@
         var searchprev = ko.observable();
         var searchnext = ko.observable();
         var searchtotal = ko.observable();
-        var searchpage = ko.observable();
+        var searchpage = ko.observable('null');
+        var pagenumber = ko.computed(function () {
+            if (searchpage()!=='null'){
+                return searchpage() + 1;
+            } return '';
+        });
+        var totalPages = ko.observable();
 
         var searchhistory = ko.observableArray();
         var jcloudComponent = ko.observable(config.jcloudComponent);  
@@ -22,6 +28,7 @@
             searchprev(data.prev);
             searchnext(data.next);
             searchtotal(data.total);
+            totalPages(data.pages);
         }
         dataservice.getSearchHistory(function (data) {
             searchhistory(data.data);
@@ -31,9 +38,8 @@
         var startSearching = function () {
             //loadingHint();//function is available in helpers
             searchData([]);
-            isSearching(true);
-                console.log(searchText());
-            var url = config.searchUrl + searchText();
+            isSearching(true); 
+            var url = config.searchUrl + ' ' + searchText() ;
             dataservice.getSearchResult(url, callback);
             dataservice.getSearchHistory(function (data) {
             searchhistory(data.data);
@@ -44,8 +50,7 @@
             //loadingHint();//function is available in helpers
             searchData([]);
             isSearching(true);
-            console.log(search);
-            var url = config.searchUrl + search;
+            var url = config.searchUrl + ' ' +  search;
             searchText(search);
             dataservice.getSearchResult(url, callback);
             dataservice.getSearchHistory(function (data) {
@@ -73,7 +78,7 @@
             searchData:searchData,
             searchText: searchText,
             startSearching: startSearching,
-            pageNumber: searchpage ,
+            pageNumber: pagenumber,
             prev: searchprev,
             next: searchnext,
             total: searchtotal,
@@ -81,7 +86,8 @@
             searchhistory: searchhistory,
             searchItAgain: searchItAgain,
             jcloudComponent: jcloudComponent,
-            noElements
+            noElements,
+            totalPages
             
         }
     }

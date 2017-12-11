@@ -647,7 +647,7 @@ namespace DataService.DataAccessLayer
                     MarkingDTO newMarking = new MarkingDTO(item.MarkedPostId, item.MarkingDate, GetAnnotationById(item.MarkedPostId));
                     markingsDTO.Add(newMarking);
                 }
-                return markingsDTO.OrderBy(x => x.MarkingDate).ToList();
+                return markingsDTO.OrderByDescending(x => x.MarkingDate).ToList();
 
             }
         }
@@ -886,7 +886,7 @@ namespace DataService.DataAccessLayer
                     SearchHistoriesDTO.Add(newSearchHistory);
 
                 }
-                return SearchHistoriesDTO.OrderByDescending(x => x.Id)
+                return SearchHistoriesDTO.OrderByDescending(x => x.SearchDate)
                     .Skip(page * pageSize)
                     .Take(pageSize)
                     .ToList();

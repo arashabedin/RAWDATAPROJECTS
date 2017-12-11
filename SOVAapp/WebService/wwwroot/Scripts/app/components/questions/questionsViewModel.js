@@ -4,7 +4,13 @@
         var questionsprev = ko.observable();
         var questionsnext = ko.observable();
         var questionstotal = ko.observable();
-        var questionspage = ko.observable();
+        var questionspage = ko.observable('null');
+        var pagenumber = ko.computed(function () {
+            if (questionspage() !== 'null') {
+                return questionspage() + 1;
+            } return '';
+        });
+        var totalPages = ko.observable();
         var questionComponent = ko.observable(config.questionComponent);
         var noElements = ko.computed(function () {
             return questionsdata().length === 0;
@@ -16,6 +22,7 @@
             questionsnext(data.next);
             questionstotal(data.total);
             questionsdata(data.data);
+            totalPages(data.pages);
         };
 
         dataservice.getQuestions(callback);
@@ -38,11 +45,12 @@
             prev: questionsprev,
             next: questionsnext,
             total: questionstotal,
-            pageNumber: questionspage,
+            pageNumber: pagenumber,
             gotoquestion: gotoquestion,
             questionComponent: questionComponent,
             data: questionsdata,
-            noElements
+            noElements,
+            totalPages
         }
     };
 });

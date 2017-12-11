@@ -5,7 +5,13 @@
         var usersprev = ko.observable();
         var usersnext = ko.observable();
         var userstotal = ko.observable();
-        var userspage = ko.observable();
+        var userspage = ko.observable('null');
+        var pagenumber = ko.computed(function () {
+            if (userspage() !== 'null') {
+                return userspage() + 1;
+            } return '';
+        });
+        var totalPages = ko.observable();
         var noElements = ko.computed(function () {
             return usersdata().length === 0;
         });
@@ -16,6 +22,7 @@
             usersnext(data.next);
             userstotal(data.total);
             usersdata(data.data);
+            totalPages(data.pages);
         };
 
         dataservice.getUsers(callback);
@@ -35,9 +42,10 @@
             prev: usersprev,
             next: usersnext,
             total: userstotal,
-            pageNumber: userspage,
+            pageNumber: pagenumber,
             data: usersdata,
-            noElements
+            noElements,
+            totalPages
 
 
         }
