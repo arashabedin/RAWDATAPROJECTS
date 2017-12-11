@@ -2,6 +2,9 @@
 <h1>Questions</h1>
 <div>
 
+    <div id="loading" data-bind="visible: noElements">
+        <span>Loading...</span>
+    </div>
 
     <div class ="questions_container" data-bind="foreach: data">
         <div class="question_container" data-bind="click: $parent.gotoquestion.bind($parent, url, $root)">

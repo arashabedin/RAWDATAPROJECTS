@@ -6,7 +6,9 @@
         var questionstotal = ko.observable();
         var questionspage = ko.observable();
         var markingComponent = ko.observable(config.markingComponent);
-        
+        var noElements = ko.computed(function () {
+            return questionsdata().length === 0;
+        });
         var callback = function (data) {
 
             questionspage(data.page);
@@ -39,7 +41,8 @@
             pageNumber: questionspage,
             gotoMarking: gotoMarking,
             markingComponent: markingComponent,
-            data: questionsdata 
+            data: questionsdata,
+            noElements
         
         }
     };

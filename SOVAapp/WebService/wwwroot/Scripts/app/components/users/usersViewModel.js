@@ -6,7 +6,9 @@
         var usersnext = ko.observable();
         var userstotal = ko.observable();
         var userspage = ko.observable();
-
+        var noElements = ko.computed(function () {
+            return usersdata().length === 0;
+        });
         var callback = function (data) {
 
             userspage(data.page);
@@ -34,7 +36,8 @@
             next: usersnext,
             total: userstotal,
             pageNumber: userspage,
-            data: usersdata
+            data: usersdata,
+            noElements
 
 
         }
