@@ -5,8 +5,18 @@
         <button class="page_button" data-bind="click: createAnnotation.bind($data, annotationBody)">Create Annotation</button>
     </section>
 </div>
+
 <button class="page_button" data-bind="click: goback">&lt;&lt; Back</button>
 
+<div id="MarkButton" data-bind="click: markThis">
+<span>&#9733;</span>
+
+</div>
+
+<div id="UnMarkButton">
+    <span>&#9644;</span>
+
+</div>
 <div class="container-fluid">
     <div class="linked_posts">
         <span id="linkposts_button" data-toggle="collapse" data-target="#links"><h2 data-bind="text:myLinkedPosts().length"></h2> <h2>Linked Posts</h2><span>&#9660;</span></span>
@@ -17,6 +27,7 @@
             </div>
         </div>
     </div>
+
 <div id="questionContainer" data-bind="with: question">
     <!--LinkPosts-->
 

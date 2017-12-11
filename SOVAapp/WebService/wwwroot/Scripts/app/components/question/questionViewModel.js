@@ -18,7 +18,7 @@
             getSelectionPosition();
         });
 
-        var pos1 = null;
+       /* var pos1 = null;
         var pos2 = null;
         var readyToAnnotate = false;
         function getSelectionPosition() {
@@ -45,13 +45,25 @@
             if (!readyToAnnotate) {
                 isNewAnnotation(false);
             }
-        };
+        };*/
+
+
         var callback = function (data) {
             question(data);
             body(data.body);
             url(data.url);
             linkedPosts(data.linkedPosts);
         }
+
+        var markThis = function () {
+
+            var AddMarkingUrl = config.markingsUrl.concat(question().postId);
+            var markingObjsect = ko.toJS({
+            });
+            dataservice.postData(AddMarkingUrl, markingObjsect);
+            alert("succesfully marked");
+        }
+
 
         dataservice.getQuestion(url(), callback);
 
@@ -98,6 +110,7 @@
             createAnnotation: createAnnotation,
             myLinkedPosts: linkedPosts,
             goToLinkedPost: goToLinkedPost,
+            markThis
        
             
            
