@@ -34,6 +34,7 @@ namespace WebService.Controllers
                 UsersUrl = Url.Link(nameof(UserController.GetUsers), new { }),
                 RecommendedQuestions = _repository.ShowCustomePosts().Select(i => new CustomPostModel
                 {
+                    PostId = i.PostId,
                     Title = i.Title,
                    // Body = i.Body,
                     QuestionUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = i.PostId }),

@@ -5,15 +5,19 @@
         var userComponent = ko.observable(config.userComponent);
         var commentsComponent = ko.observable(config.commentsComponent);
         var answersComponent = ko.observable(config.answersComponent);
+        var annotationsComponent = ko.observable(config.annotationsComponent);
         var searchUserId = ko.observable(params.searchUserId);
         var body = ko.observable();
         var prevComponent = ko.observable(params.prevComponent);
-        var annotationBody = ko.observable();
-        var isNewAnnotation = ko.observable(false);
+      
         var linkedPosts = ko.observableArray();
-        var annotations = ko.observableArray();
         var markingStatus = ko.observable();
         var myPostId = ko.observable(params.url);
+        var myAnnotationUrl = config.markingsUrl + myPostId(); 
+        var doneMarking = ko.computed(function () {
+            return markingStatus() === "Already marked";
+        });
+
         
         
         var isMarked = ko.computed(function () {
@@ -44,14 +48,10 @@
         dataservice.getQuestion(QuestionUrl, callback);
       
 
-        var callback_annot = function (data) {
-            annotations(data.markingAnnotation);
-        }
-
+    
         console.log(myPostId());
-        var myAnnotationUrl = config.markingsUrl + myPostId(); 
-       dataservice.getAnnotations(myAnnotationUrl, callback_annot);
-           
+
+      
         
         
         var markThis = function () {
@@ -60,7 +60,7 @@
             var markingObject = ko.toJS({
             });
             dataservice.postData(AddMarkingUrl, markingObject);
-            markingStatus("Already marked");
+            dataservice.getQuestion(QuestionUrl, callback);
             
         }
         var unMarkThis = function () {
@@ -70,12 +70,10 @@
             });
             dataservice.deleteData(deleteMarkingUrl, markingObject); 
             markingStatus("Deleted marking");
+  
         }
 
-        addAnottation = function () {
-            isNewAnnotation(true);
-         
-        }
+       
        
         
         var goToLinkedPost = function(url) {
@@ -89,20 +87,6 @@
 
        
 
-        var createAnnotation = function () {
-            var NewAnotationUrl = config.markingsUrl.concat(question().postId, "/annotation/text_0_0");
-            console.log("Body: " + annotationBody() + " questionId: " + question().postId);
-            var newAnnotation = ko.toJS({
-              
-                Pid: question().id,
-                Text: annotationBody(),
-                From: 0, //data.markingStart,
-                To: 0 //data.markingEnd,
-             
-            });
-            dataservice.postData(NewAnotationUrl, newAnnotation);
-            isNewAnnotation(false);
-        }
         
         ns.postbox.subscribe(function (data) {
             annotationUrl(data);
@@ -113,11 +97,10 @@
             body: body,
             commentsComponent: commentsComponent,
             answersComponent: answersComponent,
+            annotationsComponent: annotationsComponent,
             url: url,
             goback: goback,
-            annotationBody: annotationBody,
-            isNewAnnotation: isNewAnnotation,
-            createAnnotation: createAnnotation,
+
             myLinkedPosts: linkedPosts,
             goToLinkedPost: goToLinkedPost,
             markThis,
@@ -125,9 +108,9 @@
             unMarkThis,
             isMarked,
             containsElements,
-            addAnottation,
-            annotations,
-            myPostId
+            
+            myPostId,
+            myAnnotationUrl
        
        
        

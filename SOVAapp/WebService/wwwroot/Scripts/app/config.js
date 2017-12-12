@@ -19,6 +19,7 @@
         "Question",                         // 0 
         "Comments",                         // 1
         "Answers",                          // 2
+        "Annotations"                       // 3
         
 
     ];
@@ -52,6 +53,7 @@
         questionComponent: nonMenuComponentElements[0].toLowerCase(),
         commentsComponent: nonMenuComponentElements[1].toLowerCase(),
         answersComponent: nonMenuComponentElements[2].toLowerCase(),
+        annotationsComponent: nonMenuComponentElements[3].toLowerCase(),
 
         jcloudComponent: "jcloud",
         applicationName: applicationName

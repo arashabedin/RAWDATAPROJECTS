@@ -143,7 +143,12 @@ require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap'],
             viewModel: { require: 'app/components/concurrents/concurrentsViewModel' },
             template: { require: 'text!app/components/concurrents/concurrents.html' }
         });
-
+        // annotations page
+        ko.components.register(config.annotationsComponent, {
+            viewModel: { require: 'app/components/annotations/annotationsViewModel' },
+            template: { require: 'text!app/components/annotations/annotations.html' }
+        });
+        
         
         ko.applyBindings(viewmodel);
     });
