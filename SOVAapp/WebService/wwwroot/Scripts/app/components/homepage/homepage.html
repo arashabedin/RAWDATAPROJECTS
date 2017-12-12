@@ -2,7 +2,12 @@
 <body>
 
     <div id="loading" data-bind="visible: noElements">
-        <span>Loading...</span>
+        <span>Loading</span>
+        <div class="dotsContainer">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
     </div>
 
 	<section>
@@ -16,8 +21,8 @@
                <span class="tags_icon"></span><div class="questions_tags_container" data-bind="foreach:tags"><span class="questions_tags" data-bind="text:$data"></span></div>
             </div></div>
        
-        
-            
+       
+            <div class="spacer"></div>
        
        
 </section>

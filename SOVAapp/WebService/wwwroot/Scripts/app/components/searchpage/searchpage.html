@@ -3,7 +3,12 @@
 
      
     <div id="loading" data-bind= "visible: noElements">
-       <span>Loading...</span> 
+       <span>Loading</span> 
+        <div class="dotsContainer">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
     </div>
     <table class="table table-striped">
         <thead>
@@ -71,5 +76,5 @@
         <span data-bind="text: pageNumber"></span><br><br>
         <span data-bind="if: prev"><button class="page_button" data-bind="click: prevClick"><span style="font-size:11px;">&#9668;</span>&nbsp  Prev</button></span>
         <span data-bind="if: next"><button class="page_button" data-bind="click: nextClick">Next  &nbsp<span style="font-size:11px;"> &#9658;</span></button></span>
-        <br /><br />
+        <div class="spacer"></div>
 </body>
