@@ -1,7 +1,7 @@
 ﻿define(['knockout', 'app/dataservice', 'app/config'], function (ko, dataservice, config) {
     return function (params) {
         var question = ko.observable();
-        var url = ko.observable(params.url);
+        var url = ko.observable();
         var userComponent = ko.observable(config.userComponent);
         var commentsComponent = ko.observable(config.commentsComponent);
         var answersComponent = ko.observable(config.answersComponent);
@@ -11,7 +11,11 @@
         var annotationBody = ko.observable();
         var isNewAnnotation = ko.observable(false);
         var linkedPosts = ko.observableArray();
+        var annotations = ko.observableArray();
         var markingStatus = ko.observable();
+        var myPostId = ko.observable(params.url);
+        
+        
         var isMarked = ko.computed(function () {
             return markingStatus() === "Already marked";
         });
@@ -20,42 +24,11 @@
             return linkedPosts().length !== 0;
 
         });
+    
      
-        var myTrue = true;
-        //from and to 
-   
-        $('#questionContainer').click(function () {
-            getSelectionPosition();
-        });
+        var QuestionUrl = config.questionsUrl + "/" + params.url;
 
-       /* var pos1 = null;
-        var pos2 = null;
-        var readyToAnnotate = false;
-        function getSelectionPosition() {
-            var selection = window.getSelection();
-            if ((pos1 == null) || (pos1 != null && pos2 != null)) {
-                pos1 = selection.focusOffset;
-                readyToAnnotate = false;
-                isNewAnnotation(false);
-                pos2 = null;
-            } else {
-                pos2 = selection.focusOffset;
-                readyToAnnotate = true;
-                isNewAnnotation(true);
-            }
-            console.log("from: " + pos1);
-            console.log("to: " + pos2);
-        }
-
-   
-
-
-
-        document.onmouseup = function () {
-            if (!readyToAnnotate) {
-                isNewAnnotation(false);
-            }
-        };*/
+        console.log(QuestionUrl);
 
 
         var callback = function (data) {
@@ -64,8 +37,23 @@
             url(data.url);
             linkedPosts(data.linkedPosts);
             markingStatus(data.markThisPost);
+          
+
+           
+        }
+        dataservice.getQuestion(QuestionUrl, callback);
+      
+
+        var callback_annot = function (data) {
+            annotations(data.markingAnnotation);
         }
 
+        console.log(myPostId());
+        var myAnnotationUrl = config.markingsUrl + myPostId(); 
+       dataservice.getAnnotations(myAnnotationUrl, callback_annot);
+           
+        
+        
         var markThis = function () {
 
             var AddMarkingUrl = config.markingsUrl.concat(question().postId);
@@ -84,9 +72,11 @@
             markingStatus("Deleted marking");
         }
 
-
-        dataservice.getQuestion(url(), callback);
-
+        addAnottation = function () {
+            isNewAnnotation(true);
+         
+        }
+       
         
         var goToLinkedPost = function(url) {
             console.log("ok");
@@ -97,7 +87,7 @@
             ns.postbox.notify({ component: prevComponent() }, "currentComponent");
         }
 
-
+       
 
         var createAnnotation = function () {
             var NewAnotationUrl = config.markingsUrl.concat(question().postId, "/annotation/text_0_0");
@@ -106,8 +96,8 @@
               
                 Pid: question().id,
                 Text: annotationBody(),
-                From: pos1, //data.markingStart,
-                To: pos2 //data.markingEnd,
+                From: 0, //data.markingStart,
+                To: 0 //data.markingEnd,
              
             });
             dataservice.postData(NewAnotationUrl, newAnnotation);
@@ -134,7 +124,10 @@
             markingStatus,
             unMarkThis,
             isMarked,
-            containsElements
+            containsElements,
+            addAnottation,
+            annotations,
+            myPostId
        
        
        

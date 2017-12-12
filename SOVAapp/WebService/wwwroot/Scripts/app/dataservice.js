@@ -78,6 +78,13 @@
                 callback(data);
             });
         },
+
+        getAnnotations: function (url, callback) {
+
+            $.getJSON(url, function (data) {
+                callback(data);
+            });
+        },
         getSearchHistory: function (url, callback) {
 
             if (callback == undefined) {

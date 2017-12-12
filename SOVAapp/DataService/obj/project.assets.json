@@ -6494,11 +6494,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mohammad Mosiur Rahm\\Desktop\\GitHub1\\RAWDATAPROJECTS1\\SOVAapp\\DataService\\DataService.csproj",
+      "projectUniqueName": "C:\\Users\\Mohammad Mosiur Rahm\\Desktop\\GitHub1\\RAWDATAPROJECTS\\SOVAapp\\DataService\\DataService.csproj",
       "projectName": "DataService",
-      "projectPath": "C:\\Users\\Mohammad Mosiur Rahm\\Desktop\\GitHub1\\RAWDATAPROJECTS1\\SOVAapp\\DataService\\DataService.csproj",
+      "projectPath": "C:\\Users\\Mohammad Mosiur Rahm\\Desktop\\GitHub1\\RAWDATAPROJECTS\\SOVAapp\\DataService\\DataService.csproj",
       "packagesPath": "C:\\Users\\Mohammad Mosiur Rahm\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mohammad Mosiur Rahm\\Desktop\\GitHub1\\RAWDATAPROJECTS1\\SOVAapp\\DataService\\obj\\",
+      "outputPath": "C:\\Users\\Mohammad Mosiur Rahm\\Desktop\\GitHub1\\RAWDATAPROJECTS\\SOVAapp\\DataService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -26,13 +26,14 @@ namespace WebService.Controllers
         public IActionResult GetMarking(int Pid) {
             var markedPost = _repository.GetMarkingById(Pid);
             var newMarkingModel = new MarkingModel();
+            newMarkingModel.PostId = Pid;
             newMarkingModel.MarkingUrl = Url.Link(nameof(GetMarking), new { Pid = markedPost.MarkedPostId });
             // Checking whether the post is an answer or question to give it the correct link
             newMarkingModel.PostUrl = _repository.GetPostById(markedPost.MarkedPostId).PostTypeId == 2 ?
                   Url.Link(nameof(AnswerController.GetAnswerById), new { Qid = _repository.GetPostById(markedPost.MarkedPostId).ParentId, Aid = markedPost.MarkedPostId }) :
                   Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = markedPost.MarkedPostId });
             newMarkingModel.RemoveMarking = Url.Link(nameof(RemoveMarking), new { Pid = markedPost.MarkedPostId });
-
+          
             // Checking whether there's annotation or not
             newMarkingModel.MarkingAnnotation = _repository.GetAnnotationsByMarkingId(markedPost.MarkedPostId).ToList().Select(a => new AnnotationModel
             {
@@ -65,7 +66,7 @@ namespace WebService.Controllers
             var data = _repository.GetMarkings(page, pageSize)
                 .Select(x => new MarkingModel
                 {
-
+                   PostId = x.MarkedPostId,
                     MarkingUrl = Url.Link(nameof(GetMarking), new { Pid = x.MarkedPostId }),
                     // Checking whether the post is an answer or question to give it the correct link
                     PostUrl = _repository.GetPostById(x.MarkedPostId).PostTypeId == 2 ?
@@ -117,6 +118,7 @@ namespace WebService.Controllers
             _repository.AddMarking(Pid);
             var markedPost = _repository.GetMarkingById(Pid);
             var newMarkingModel = new MarkingModel();
+            newMarkingModel.PostId = Pid;
             newMarkingModel.MarkingUrl = Url.Link(nameof(GetMarking), new { Pid = markedPost.MarkedPostId });
             // Checking whether the post is an answer or question to give it the correct link
             newMarkingModel.PostUrl = _repository.GetPostById(markedPost.MarkedPostId).PostTypeId == 2 ?
@@ -147,8 +149,9 @@ namespace WebService.Controllers
                     _repository.AddMarkingWithAnnotation(Pid, annotation,0,0);
                     var markedPost = _repository.GetMarkingById(Pid);
                     var newMarkingModel = new MarkingModel();
+            newMarkingModel.PostId = Pid;
             // Checking whether the post is an answer or question to give it the correct link
-                    newMarkingModel.MarkingUrl = Url.Link(nameof(GetMarking), new { Pid = markedPost.MarkedPostId});
+            newMarkingModel.MarkingUrl = Url.Link(nameof(GetMarking), new { Pid = markedPost.MarkedPostId});
                     newMarkingModel.PostUrl = _repository.GetPostById(markedPost.MarkedPostId).PostTypeId == 2 ?
                              Url.Link(nameof(AnswerController.GetAnswerById), new { Qid = _repository.GetPostById(markedPost.MarkedPostId).ParentId, Aid = markedPost.MarkedPostId }) :
                              Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = markedPost.MarkedPostId });

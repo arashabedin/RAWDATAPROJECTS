@@ -8,6 +8,7 @@ namespace WebService.Models
     public class SearchModel
     {
         public string SearchText;
+        public int PostId;
         public string PostUrl;
         public string PostTitle;
         public string jCloudUrl;

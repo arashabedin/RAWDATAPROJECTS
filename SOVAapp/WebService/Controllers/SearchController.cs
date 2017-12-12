@@ -48,6 +48,7 @@ namespace WebService.Controllers
                 SearchText = SearchText,
                 PostTitle = x.Title,
                 PostUrl = Url.Link(nameof(QuestionController.GetQuestionById), new { Qid = x.Id }),
+                PostId = x.Id,
                 //  PostBody = x.Body
                 jCloudUrl = Url.Link(nameof(TermAsResultController.GetTermByPost), new {Pid = x.Id }),
             

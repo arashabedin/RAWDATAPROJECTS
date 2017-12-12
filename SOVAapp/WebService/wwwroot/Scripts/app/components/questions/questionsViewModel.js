@@ -34,8 +34,8 @@
             dataservice.getQuestions(questionsnext(), callback);
         };
 
-        var gotoquestion = function (questionUrl, root) {
-            ns.postbox.notify({ component: config.questionComponent, url: questionUrl, prevComponent: root.currentComponent() }, "currentComponent");
+        var gotoquestion = function (postId, root) {
+            ns.postbox.notify({ component: config.questionComponent, url: postId, prevComponent: root.currentComponent() }, "currentComponent");
         };
 
         return {

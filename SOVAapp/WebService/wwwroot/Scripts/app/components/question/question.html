@@ -17,7 +17,25 @@
     <span>&#x2718;</span>
 
 </div>
+
+
+<div id="AnnotButton" data-bind="click: addAnottation, visible: isMarked">
+    <span>&#9998;</span>
+
+</div>
+
 <div class="container-fluid">
+
+    <div id="annotations_box" class="linked_posts" >
+        <span id="annotations_box_button" data-toggle="collapse" data-target="#Anott"><h2 data-bind="text:annotations().length"></h2> <h2>Annotations</h2><span>&#9660;</span></span>
+        <div id="Anott" class="collapse">
+            <div data-bind="foreach:annotations">
+                <div data-toggle="collapse" data-target="#Anott" class="annotations_text">Note: <div data-bind="text:annotationText"></div> </div>
+
+            </div>
+        </div>
+    </div>
+
     <div class="linked_posts" data-bind="visible:containsElements">
         <span id="linkposts_button" data-toggle="collapse" data-target="#links"><h2 data-bind="text:myLinkedPosts().length"></h2> <h2>Linked Posts</h2><span>&#9660;</span></span>
         <div id="links" class="collapse">

@@ -54,7 +54,7 @@
                 </tr>
             </thead>
             <tbody id="mySearchData" data-bind="foreach:searchData">
-                <tr class="searchTR" data-bind="click: $parent.gotoquestion.bind($data, postUrl, $root)">
+                <tr class="searchTR" data-bind="click: $parent.gotoquestion.bind($data, postId, $root)">
                     <td>
                         <!--WordCloud -->
                         <div data-bind="component: {name: $parent.jcloudComponent , params:{jCloudUrl:jCloudUrl}}" id="answer"></div>

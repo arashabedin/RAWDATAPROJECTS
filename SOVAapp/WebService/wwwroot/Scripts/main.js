@@ -46,9 +46,9 @@ require(['knockout', 'jquery', 'jqcloud'], function (ko, $) {
     };
 }); 
 
-var ns = {};
+var ns = {
 
-ns.postbox = {
+postbox: {
     subscribers: [],
     subscribe: function (callback, topic, source) {
         var found = false;
@@ -69,7 +69,7 @@ ns.postbox = {
             }
         }
     }
-};
+    }};
 
 require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap'],
     function (ko, viewmodel, config, $) {

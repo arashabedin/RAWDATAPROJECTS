@@ -301,6 +301,7 @@ body {
     background: #0057ff;
     color: white;
     float: right;
+    clear: both;
 }
 .linked_posts_title{
     margin:10px;
@@ -310,25 +311,35 @@ background-color:white;
 color:black!important;
 cursor:pointer;
 }
-#linkposts_button{
-   width:100%;
-   display:block;
-   background:black;
-   cursor:pointer;
+
+.annotations_text {
+    margin: 10px;
+} 
+
+#linkposts_button {
+    width: 100%;
+    display: block;
+    background: black;
+    cursor: pointer;
 }
-    #linkposts_button h2 {
+#annotations_box_button {
+    width: 100%;
+    display: block;
+    background: #74badc;
+    cursor: pointer;
+}
+    #linkposts_button h2, #annotations_box_button h2 {
         display: inline-block;
         line-height: 2px;
-        margin-left:5px;
-        font-size:26px;
+        margin-left: 5px;
+        font-size: 26px;
     }
-    #linkposts_button span {
+    #linkposts_button span, #annotations_box_button span {
         position: relative;
         top: 8px;
         float: right;
         font-size: 18px;
-        right:5px;
-        
+        right: 5px;
     }
 .customefieldtitle {
     font-weight: 600;
@@ -495,7 +506,7 @@ svg {
 
 #MarkButton span {
     position: relative;
-    bottom: 4px;
+    bottom: 5px;
 }
 #UnMarkButton {
     width: 30px;
@@ -515,11 +526,34 @@ svg {
     box-shadow: 0px 2px 41px -5px #fb5300;
 }
 
+
     #UnMarkButton span {
         position: relative;
         bottom: 2px;
     }
 
+#AnnotButton {
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    top: 63px;
+    right: 48px;
+    z-index: 100;
+    border-radius: 100%;
+    background: #63a3c1;
+    color: white;
+    font-size: 23px;
+    text-align: center;
+    cursor: pointer;
+    -webkit-box-shadow: 0px 2px 41px -5px #63a3c1;
+    -moz-box-shadow: 0px 2px 41px -5px #63a3c1;
+    box-shadow: 0px 2px 41px -5px #63a3c1;
+}
+
+    #AnnotButton span {
+        position: relative;
+        bottom: 2px;
+    }
     .jqcloud {
         font-family: logofont;
         font: 6px "logofont", "Arial", sans-serif;
@@ -606,15 +640,34 @@ svg {
 /* PreLoader Animation Ends*/
 
 
+
+
+#annotations_box {
+    display: block;
+    width: 100%;
+    background: #0057ff;
+    color: white;
+    float: right;
+}
+
+
 /*Media Queries Mobile First*/
 @media screen and (min-width: 480px) {
     .linked_posts {
         width: 300px;
     }
+    #annotations_box {
+        width: 300px;
+    }
+
     #linkposts_button h2 {
         font-size: 30px;
     }
-
+    #annotations_box_button h2 {
+        font-size: 30px;
+    }
+    
+    
     .col-xs-offset-1 {
         margin-left: 8.33333333%;
     }
