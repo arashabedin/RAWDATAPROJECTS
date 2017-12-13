@@ -37,7 +37,7 @@ namespace WebService.Controllers
         {
             CheckPageSize(ref pageSize);
 
-            var total = _repository.CountAnswers();
+            var total = _repository.CountUsers();
             var totalPages = GetTotalPages(pageSize, total);
 
             var data = _repository.GetUsers(page, pageSize)
@@ -48,7 +48,7 @@ namespace WebService.Controllers
                     CreateDate = x.CreationDate,
                     Location = x.Location,
                     QuestionsUrl = 
-                    (_repository.GetQuestionsByUserID(x.Id,0,10).Count ==0)? null :
+                    (_repository.GetQuestionsByUserID(x.Id,0,1).Count ==0)? null :
                     Url.Link(nameof(QuestionController.GetQuestionsByUserId), new { Uid = x.Id}) ,
                     AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByUserId), new { Uid = x.Id }),
                     CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByUserId), new { Uid = x.Id }),

@@ -5,19 +5,24 @@
         var questionsnext = ko.observable();
         var questionstotal = ko.observable();
         var questionspage = ko.observable('null');
+
         var pagenumber = ko.computed(function () {
             if (questionspage() !== 'null') {
                 return questionspage() + 1;
             } return '';
         });
+
         var totalPages = ko.observable();
         var questionComponent = ko.observable(config.questionComponent);
+
         var noElements = ko.computed(function () {
             return questionsdata().length === 0;
         });
+
         var url = params.url;
         var myPrevComponent = params.prevComponent;
         console.log(myPrevComponent);
+
         var isTherePrev = function () {
             if (myPrevComponent === undefined) {
                 return false;
@@ -38,9 +43,11 @@
         dataservice.getQuestions(url,callback);
 
         var prevClick = function () {
+            questionsdata([]);
             dataservice.getQuestions(questionsprev(), callback);
         };
-        var nextClick = function() {
+        var nextClick = function () {
+            questionsdata([]);
             dataservice.getQuestions(questionsnext(), callback);
         };
 
@@ -52,7 +59,6 @@
         }
 
         return {
-      
             prevClick: prevClick,
             nextClick: nextClick,
             prev: questionsprev,

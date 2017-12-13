@@ -22,6 +22,17 @@
             } 
             return false;
         });
+
+        var updateTheLastHistory = ko.computed(function () {
+            if (searchData().length!==0)
+         
+                dataservice.getSearchHistory(function (data) {
+                    searchhistory(data.data);
+                });
+            
+            return "updated";
+
+        });
         var callback = function (data) {
             searchData(data.data);
             searchpage(data.page);
@@ -36,34 +47,28 @@
      
 
         var startSearching = function () {
-            //loadingHint();//function is available in helpers
             searchData([]);
             isSearching(true); 
             var url = config.searchUrl + ' ' + searchText();
             console.log(url);
             dataservice.getSearchResult(url, callback);
-            dataservice.getSearchHistory(function (data) {
-            searchhistory(data.data);
-            });
         }
 
         var searchItAgain = function (search) {
-            //loadingHint();//function is available in helpers
             searchData([]);
             isSearching(true);
             var url = config.searchUrl + ' ' +  search;
             searchText(search);
             dataservice.getSearchResult(url, callback);
-            dataservice.getSearchHistory(function (data) {
-                searchhistory(data.data);
-            });
              
         }
         var prevClick = function () {
+            searchData([]);
             dataservice.getSearchResult(searchprev(), callback);
             console.log(searchprev());
         };
         var nextClick = function () {
+            searchData([]);
             dataservice.getSearchResult(searchnext(), callback);
             console.log(searchnext());
         };

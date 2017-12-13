@@ -2,15 +2,19 @@
     return function (params) {
         var annotations = ko.observableArray();
         var url = ko.observable(params.myAnnotationUrl);
+
         var isThereAnnotation = ko.computed(function () {
             return annotations().length > 0;
         });
+
         var isNewAnnotation = ko.observable(false);
         var annotationBody = ko.observable();
         var postId = ko.observable();
+
         var isElements = ko.computed(function () {
           return  annotations().length > 0;
         }); 
+
         var annotationsLength = ko.computed(function () {
             if (annotations().length > 0) {
                 return annotations().length;
@@ -22,9 +26,7 @@
         var currentEdit = ko.observable('null');
 
         var startEditing = function (editAnnotation) {
-
             currentEdit(editAnnotation);
-            console.log(currentEdit());
         }
    
 
@@ -53,6 +55,8 @@
 
                 Pid: postId(),
                 Text: annotationBody(),
+                //The following properties are going to be set to zero since the functionality for creating annotation
+                //on each specific line is not implemented yet due to lack of time.
                 From: 0, //data.markingStart,
                 To: 0 //data.markingEnd,
 
@@ -70,8 +74,8 @@
 
                 Pid: postId(),
                 Text: myEditedText,
-                From: 0, //data.markingStart,
-                To: 0 //data.markingEnd,
+                From: 0,  
+                To: 0 
 
             });
 
@@ -88,7 +92,6 @@
 
             dataservice.deleteData(deleteAnotationUrl, newAnnotation);
             setTimeout(function () { dataservice.getAnnotations(url(), callback); }, 200);
-          //  isEdit(false);
         }
 
      
