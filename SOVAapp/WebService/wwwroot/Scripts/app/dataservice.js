@@ -1,7 +1,7 @@
 ﻿define(['jquery', 'app/config'], function ($, conf) {
     return {
-      
-       
+
+
         getAnswers: function (url, callback) {
             if (url === undefined) {
                 return;
@@ -35,7 +35,7 @@
                 callback(data);
             });
         },
-   
+
         getQuestion: function (url, callback) {
             $.getJSON(url, function (data) {
                 callback(data);
@@ -95,7 +95,7 @@
                 callback(data);
             });
         },
-       
+
         getUsers: function (url, callback) {
             if (callback == undefined) {
                 callback = url;
@@ -130,6 +130,15 @@
 
             });
         },
+        deleteDataAndSync: function (url, data, retrieve) {
+            $.ajax({
+                type: 'Delete',
+                url: url,
+                data: data
+
+            }).success(retrieve);
+        },
+
         postData: function (url, data) {
             $.ajax({
                 type: 'POST',
@@ -138,7 +147,7 @@
 
             });
         },
-        postDataAndGet: function (url, data, retrieve) {
+        postDataAndSync: function (url, data, retrieve) {
             $.ajax({
                 type: 'POST',
                 url: url,

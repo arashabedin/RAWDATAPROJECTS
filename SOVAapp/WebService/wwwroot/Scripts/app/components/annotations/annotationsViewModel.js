@@ -11,6 +11,12 @@
         var isElements = ko.computed(function () {
           return  annotations().length > 0;
         }); 
+        var annotationsLength = ko.computed(function () {
+            if (annotations().length > 0) {
+                return annotations().length;
+            }
+            return "No";
+        });
         var callback = function (data) {
             annotations(data.markingAnnotation);
             postId(data.postId);
@@ -37,10 +43,19 @@
 
             });
 
-            dataservice.postDataAndGet(NewAnotationUrl, newAnnotation, dataservice.getAnnotations(url(), callback))
-      
+            dataservice.postData(NewAnotationUrl, newAnnotation)
+            setTimeout(function () { dataservice.getAnnotations(url(), callback); }, 200);
             isNewAnnotation(false);
 
+        }
+
+        var deleteAnnotation = function (removeAnnotation) {
+            var deleteAnotationUrl = removeAnnotation;
+            var newAnnotation = ko.toJS({
+            });
+
+            dataservice.deleteData(deleteAnotationUrl, newAnnotation);
+            setTimeout(function () { dataservice.getAnnotations(url(), callback); }, 200);
         }
         
 
@@ -51,7 +66,9 @@
             isNewAnnotation: isNewAnnotation,
             createAnnotation: createAnnotation,
             annotationBody: annotationBody,
-            isElements
+            isElements,
+            annotationsLength,
+            deleteAnnotation
 
            
         }

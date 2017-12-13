@@ -582,6 +582,12 @@ svg {
     display: block;
     clear: both;
 }
+.annot_text {
+    background-color: white;
+    color: #0057ff;
+    padding: 5px;
+    border-radius: 1px;
+}
 
 /* PreLoader Animation Starts*/
 .dotsContainer {
@@ -650,7 +656,24 @@ svg {
     float: right;
 }
 
+#annotation_submit_button {
+  background-color: #63a3c1;
+}
 
+.edit_annot {
+    color: #B4DEF2;
+    float: right;
+    margin-right: 9px;
+    text-decoration: underline;
+    cursor:pointer;
+}
+
+.delete_annot {
+    color: #B4DEF2;
+    float: right;
+    text-decoration: underline;
+    cursor: pointer;
+}
 /*Media Queries Mobile First*/
 @media screen and (min-width: 480px) {
     .linked_posts {

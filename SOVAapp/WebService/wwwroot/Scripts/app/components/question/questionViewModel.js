@@ -7,7 +7,6 @@
         var annotationsComponent = ko.observable(config.annotationsComponent);
         var body = ko.observable();
         var prevComponent = ko.observable(params.prevComponent);
-      
         var linkedPosts = ko.observableArray();
         var markingStatus = ko.observable();
         var myPostId = ko.observable(params.url);
@@ -100,7 +99,6 @@
             annotationsComponent: annotationsComponent,
             url: url,
             goback: goback,
-
             myLinkedPosts: linkedPosts,
             goToLinkedPost: goToLinkedPost,
             markThis,
@@ -108,7 +106,6 @@
             unMarkThis,
             isMarked,
             containsElements,
-            
             myPostId,
             myAnnotationUrl
        
