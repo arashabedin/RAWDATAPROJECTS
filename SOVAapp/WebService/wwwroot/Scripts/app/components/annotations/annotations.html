@@ -4,7 +4,11 @@
     <span id="annotations_box_button" data-toggle="collapse" data-target="#Anott"><h2 data-bind="text:annotationsLength"></h2> <h2>Annotations</h2><span>&#9660;</span></span>
     <div id="Anott" class="collapse">
         <div data-bind="foreach:annotations">
-            <div data-toggle="collapse" class="annotations_text">Note: <div class="annot_text" data-bind="text:annotationText"></div>  <span class="delete_annot" data-bind="click: $parent.deleteAnnotation.bind($data, removeAnnotation)">Delete</span> <span class="edit_annot">Edit</span></div>
+            <div data-toggle="collapse" class="annotations_text">Note: <div class="annot_text" data-bind="visible:!$parent.isEdit(),text:annotationText"></div>  
+            
+                <textarea data-bind="visible:$parent.isEdit, textInput:annotationText "class="form-control myForm" rows="5" id="comment"></textarea>
+
+            <span class="delete_annot" data-bind="click: $parent.deleteAnnotation.bind($data, removeAnnotation)">Delete</span> <span data-bind="click:$parent.startEditing" class="edit_annot">Edit</span></div>
 
         </div>
     </div>

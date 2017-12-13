@@ -674,6 +674,10 @@ svg {
     text-decoration: underline;
     cursor: pointer;
 }
+
+.myForm {
+    color: #0057ff;
+}
 /*Media Queries Mobile First*/
 @media screen and (min-width: 480px) {
     .linked_posts {

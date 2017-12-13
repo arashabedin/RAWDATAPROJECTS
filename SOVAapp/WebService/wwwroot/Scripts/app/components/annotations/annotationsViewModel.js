@@ -17,6 +17,12 @@
             }
             return "No";
         });
+        var isEdit = ko.observable(false);
+        var startEditing = function () {
+            isEdit(true);
+        }
+     
+
         var callback = function (data) {
             annotations(data.markingAnnotation);
             postId(data.postId);
@@ -68,7 +74,9 @@
             annotationBody: annotationBody,
             isElements,
             annotationsLength,
-            deleteAnnotation
+            deleteAnnotation,
+            startEditing,
+            isEdit
 
            
         }
