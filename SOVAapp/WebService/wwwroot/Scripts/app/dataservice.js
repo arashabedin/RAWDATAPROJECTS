@@ -13,7 +13,7 @@
         getCustomefield: function (url, callback) {
             if (callback == undefined) {
                 callback = url;
-                url = conf.customizationUrl;
+              url = conf.customizationUrl;
             }
             $.getJSON(url, function (data) {
                 callback(data);
@@ -53,8 +53,8 @@
         },
 
         getQuestions: function (url, callback) {
-            if (callback == undefined) {
-                callback = url;
+
+             if (url == undefined) {
                 url = conf.questionsUrl;
             }
             $.getJSON(url, function (data) {

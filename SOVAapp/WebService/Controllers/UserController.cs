@@ -33,7 +33,7 @@ namespace WebService.Controllers
 
 
         [HttpGet(Name = nameof(GetUsers))]
-        public IActionResult GetUsers(int page = 0, int pageSize = 5)
+        public IActionResult GetUsers(int page = 0, int pageSize = 8)
         {
             CheckPageSize(ref pageSize);
 
@@ -47,8 +47,9 @@ namespace WebService.Controllers
                     DisplayName = x.DisplayName,
                     CreateDate = x.CreationDate,
                     Location = x.Location,
-                    Age = x.Age,
-                    QuestionsUrl = Url.Link(nameof(QuestionController.GetQuestionsByUserId), new { Uid = x.Id}),
+                    QuestionsUrl = 
+                    (_repository.GetQuestionsByUserID(x.Id,0,10).Count ==0)? null :
+                    Url.Link(nameof(QuestionController.GetQuestionsByUserId), new { Uid = x.Id}) ,
                     AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByUserId), new { Uid = x.Id }),
                     CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByUserId), new { Uid = x.Id }),
                 });

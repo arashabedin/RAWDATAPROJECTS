@@ -56,7 +56,7 @@ namespace WebService.Controllers
 
         // Get All Markings
         [HttpGet( Name = nameof(GetMarkings))]
-        public IActionResult GetMarkings(int page = 0, int pageSize = 5)
+        public IActionResult GetMarkings(int page = 0, int pageSize = 8)
         {
             CheckPageSize(ref pageSize);
 

@@ -1,5 +1,5 @@
 ﻿define(['knockout', 'app/dataservice', 'app/config'], function (ko, dataservice, config) {
-    return function () {
+    return function (params) {
         var questionsdata = ko.observableArray();
         var questionsprev = ko.observable();
         var questionsnext = ko.observable();
@@ -15,6 +15,16 @@
         var noElements = ko.computed(function () {
             return questionsdata().length === 0;
         });
+        var url = params.url;
+        var myPrevComponent = params.prevComponent;
+        console.log(myPrevComponent);
+        var isTherePrev = function () {
+            if (myPrevComponent === undefined) {
+                return false;
+            }
+            return true;
+        }
+     
         var callback = function (data) {
 
             questionspage(data.page);
@@ -25,7 +35,7 @@
             totalPages(data.pages);
         };
 
-        dataservice.getQuestions(callback);
+        dataservice.getQuestions(url,callback);
 
         var prevClick = function () {
             dataservice.getQuestions(questionsprev(), callback);
@@ -37,6 +47,9 @@
         var gotoquestion = function (postId, root) {
             ns.postbox.notify({ component: config.questionComponent, url: postId, prevComponent: root.currentComponent() }, "currentComponent");
         };
+        var goback = function () {
+            ns.postbox.notify({ component: myPrevComponent }, "currentComponent");
+        }
 
         return {
       
@@ -50,7 +63,9 @@
             questionComponent: questionComponent,
             data: questionsdata,
             noElements,
-            totalPages
+            totalPages, 
+            goback,
+            isTherePrev
         }
     };
 });

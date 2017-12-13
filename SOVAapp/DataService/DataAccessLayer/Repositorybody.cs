@@ -504,7 +504,7 @@ namespace DataService.DataAccessLayer
                 List<UserInfoDTO> UsersDTO = new List<UserInfoDTO>();
                 foreach (var i in users)
                 {
-                    var newUser = new UserInfoDTO(i.OwnerUserId, i.OwnerUserAge, i.OwnerUserDisplayName, i.CreationDate, i.OwnerUserLocation);
+                    var newUser = new UserInfoDTO(i.OwnerUserId, i.OwnerUserDisplayName, i.CreationDate, i.OwnerUserLocation);
                     UsersDTO.Add(newUser);
                 }
                 return UsersDTO.OrderBy(x => x.Id).ToList();
@@ -517,7 +517,7 @@ namespace DataService.DataAccessLayer
                 var user = db.UserInfo.Where(i => i.OwnerUserId == id).FirstOrDefault();
                 if (user != null)
                 {
-                    return new UserInfoDTO(user.OwnerUserId, user.OwnerUserId, user.OwnerUserDisplayName, user.CreationDate, user.OwnerUserLocation);
+                    return new UserInfoDTO(user.OwnerUserId, user.OwnerUserDisplayName, user.CreationDate, user.OwnerUserLocation);
                 }
                 return null;
             }
@@ -530,7 +530,7 @@ namespace DataService.DataAccessLayer
                 var user = db2.UserInfo.Where(u => u.OwnerUserId == post.OwnerUserId).FirstOrDefault();
                 if (user != null)
                 {
-                    var userDTO = new UserInfoDTO(user.OwnerUserId, user.OwnerUserAge, user.OwnerUserDisplayName, user.CreationDate, user.OwnerUserLocation);
+                    var userDTO = new UserInfoDTO(user.OwnerUserId, user.OwnerUserDisplayName, user.CreationDate, user.OwnerUserLocation);
                     return userDTO;
                 }
                 return null;
@@ -545,7 +545,7 @@ namespace DataService.DataAccessLayer
                 var comment = db.Comments.FirstOrDefault(c => c.CommentId == id);
 
                 var user = db.UserInfo.FirstOrDefault(i => i.OwnerUserId == comment.OwnerUserId);
-                return new UserInfoDTO(user.OwnerUserId, user.OwnerUserAge, user.OwnerUserDisplayName, user.CreationDate, user.OwnerUserLocation);
+                return new UserInfoDTO(user.OwnerUserId, user.OwnerUserDisplayName, user.CreationDate, user.OwnerUserLocation);
             }
 
         }
@@ -639,7 +639,7 @@ namespace DataService.DataAccessLayer
 
             using (var db = new SovaContext())
             {
-                var markings = db.Markings.Skip(page * pageSize)
+                var markings = db.Markings.OrderByDescending(x => x.MarkingDate).Skip(page * pageSize)
                     .Take(pageSize).ToList();
                 List<MarkingDTO> markingsDTO = new List<MarkingDTO>();
                 foreach (var item in markings)
@@ -647,7 +647,7 @@ namespace DataService.DataAccessLayer
                     MarkingDTO newMarking = new MarkingDTO(item.MarkedPostId, item.MarkingDate, GetAnnotationById(item.MarkedPostId));
                     markingsDTO.Add(newMarking);
                 }
-                return markingsDTO.OrderByDescending(x => x.MarkingDate).ToList();
+                return markingsDTO.ToList();
 
             }
         }

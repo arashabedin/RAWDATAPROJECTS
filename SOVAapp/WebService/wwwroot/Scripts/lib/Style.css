@@ -691,7 +691,50 @@ svg {
 }
 #triangle{
     display:none;
-} 
+}
+
+.user_container {
+    width: 220px;
+    min-height: 220px;
+    padding: 10px;
+    padding-top: 39px;
+    display: inline-block;
+    float: left;
+    margin: 14px;
+    box-shadow: 0 1px 2px rgba(25,25,25,0.2);
+    border-radius: 2px;
+    background-color: white;
+}
+
+.user_icon_users{
+
+    display:block;
+    margin:auto;
+}
+.users_displayname_users {
+    text-align: center;
+    display: block;
+}
+.location_icon {
+    background-image: url(../img/location.png);
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 25px;
+    display: inline-block;
+    background-size: cover;
+    margin-right: 2px;
+}
+.location_container {
+    text-align: center;
+    display: block;
+    margin-top: 14px;
+}
+.users_see_questions {
+    margin-top: 10px;
+    color: #0057ff;
+    text-decoration: underline;
+    cursor: pointer;
+}
 /*Media Queries Mobile First*/
 @media screen and (min-width: 480px) {
     #annotation_box {

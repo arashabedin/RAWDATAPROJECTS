@@ -34,7 +34,9 @@
             dataservice.getUsers(usersnext(), callback);
         };
 
-
+        var gotoquestions = function (url, root) {
+            ns.postbox.notify({ component: config.questionsComponent, url: url, prevComponent: root.currentComponent() }, "currentComponent");
+        };
 
         return {
             prevClick: prevClick,
@@ -45,7 +47,8 @@
             pageNumber: pagenumber,
             data: usersdata,
             noElements,
-            totalPages
+            totalPages,
+            gotoquestions
 
 
         }
