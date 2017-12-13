@@ -6,7 +6,10 @@
         var favortietags = ko.observableArray();
         var newCustomeTags = ko.observable();
         var newPostlimit = ko.observable();
-
+        var isPosting = ko.observable(false);
+        var startLoading = ko.computed(function () {
+            return isPosting();
+        });
         var callback = function (data) {
             postlimit(data.postLimit);
             creationdate(data.creationDate);
@@ -15,18 +18,16 @@
       
           
         dataservice.getCustomefield(callback);
-            
       
-        
 
         var saveCustomeField = function () {
-            
             var NewCustomeUrl = config.customizationUrl +"/"+ newPostlimit() +"_"+ encodeURIComponent(newCustomeTags());
             var newCustome = ko.toJS({
                // postLimit: newPostlimit(),
             });
+            isPosting(true);
             dataservice.postData(NewCustomeUrl, newCustome);
-
+          
 
             //postlimit(newPostlimit());
             //favortietags(newCustomeTags().split(','));
@@ -44,7 +45,9 @@
             console.log(newTagsArray.length);
             setTimeout(function () {
                 dataservice.getCustomefield(callback);
+                isPosting(false);
             }, newTagsArray.length * 100);
+           
 
          
         }
@@ -56,7 +59,8 @@
             favortietags: favortietags,
             saveCustomeField: saveCustomeField,
             newCustomeTags: newCustomeTags,
-            newPostlimit: newPostlimit
+            newPostlimit: newPostlimit,
+            startLoading
         }
     };
 });
