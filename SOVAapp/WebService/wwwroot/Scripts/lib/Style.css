@@ -43,6 +43,7 @@ body {
 #annotation_text_field {
     margin-bottom: 15px;
     height: 70px;
+    width: 210px;
 }
 
 #url {
@@ -232,14 +233,24 @@ body {
     position: fixed;
     background: white;
     z-index: 1;
-    width: 222px;
+    width: 100%;
     min-height: 153px;
-    bottom: 0;
-    right: 0;
+    right: 0px;
     text-align: center;
     padding-top: 20px;
     border: 1px solid grey;
 }
+#cancelAnnot {
+
+    position: relative;
+    left: 9px;
+    bottom: 16px;
+    float: left;
+    font-size: 22px;
+    margin-right: -20px;
+    cursor: pointer;
+}
+
 .each_answer {
     display: block;
     background: #0057ff;
@@ -678,8 +689,36 @@ svg {
 .myForm {
     color: #0057ff;
 }
+#triangle{
+    display:none;
+} 
 /*Media Queries Mobile First*/
 @media screen and (min-width: 480px) {
+    #annotation_box {
+        position: fixed;
+        background: white;
+        z-index: 1;
+        width: 358px;
+        min-height: 153px;
+        top: 144px;
+        right: 63px;
+        text-align: center;
+        padding-top: 20px;
+        border: 1px solid grey;
+    }
+    #triangle {
+        display:block;
+        height: 50px;
+        width: 30px;
+        position: relative;
+        margin-top: -50px;
+        top: -16px;
+        left: 327px;
+        background-image: url(../img/triangle.png);
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+
     .linked_posts {
         width: 300px;
     }

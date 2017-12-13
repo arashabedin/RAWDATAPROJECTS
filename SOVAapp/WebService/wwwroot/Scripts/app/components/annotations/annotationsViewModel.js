@@ -17,26 +17,35 @@
             }
             return "No";
         });
-        var isEdit = ko.observable(false);
-        var startEditing = function () {
-            isEdit(true);
+      
+
+        var currentEdit = ko.observable('null');
+
+        var startEditing = function (editAnnotation) {
+
+            currentEdit(editAnnotation);
+            console.log(currentEdit());
         }
-     
+   
 
         var callback = function (data) {
             annotations(data.markingAnnotation);
             postId(data.postId);
 
         }
+        
 
         dataservice.getAnnotations(url(), callback);
 
 
-        addAnottation = function () {
+        var addAnottation = function () {
             annotationBody('');
             isNewAnnotation(true);
         }
-
+        var abortAnnotation = function () {
+            annotationBody('');
+            isNewAnnotation(false);
+        }
 
         var createAnnotation = function () {
             var NewAnotationUrl = url().concat( "/annotation/text_0_0");
@@ -55,6 +64,23 @@
 
         }
 
+        var editAnnotation = function (myEditedText, editUrl) {
+           
+            var editedAnnotation = ko.toJS({
+
+                Pid: postId(),
+                Text: myEditedText,
+                From: 0, //data.markingStart,
+                To: 0 //data.markingEnd,
+
+            });
+
+            dataservice.updateData(editUrl, editedAnnotation)
+            setTimeout(function () { dataservice.getAnnotations(url(), callback); }, 200);
+            isNewAnnotation(false);
+
+        }
+
         var deleteAnnotation = function (removeAnnotation) {
             var deleteAnotationUrl = removeAnnotation;
             var newAnnotation = ko.toJS({
@@ -62,9 +88,11 @@
 
             dataservice.deleteData(deleteAnotationUrl, newAnnotation);
             setTimeout(function () { dataservice.getAnnotations(url(), callback); }, 200);
+          //  isEdit(false);
         }
-        
 
+     
+   
 
         return {
             annotations,
@@ -75,8 +103,10 @@
             isElements,
             annotationsLength,
             deleteAnnotation,
+            currentEdit,
             startEditing,
-            isEdit
+            editAnnotation,
+            abortAnnotation
 
            
         }
