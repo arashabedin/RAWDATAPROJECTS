@@ -138,10 +138,13 @@
 
             });
         },
-        search: function (url, callback) {
-            $.getJSON(url, function (data) {
-                callback(data);
-            });
+        postDataAndGet: function (url, data, retrieve) {
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: data
+
+            }).success(retrieve);
         }
     }
 });

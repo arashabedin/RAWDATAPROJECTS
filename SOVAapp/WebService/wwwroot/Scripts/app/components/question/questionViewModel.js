@@ -2,11 +2,9 @@
     return function (params) {
         var question = ko.observable();
         var url = ko.observable();
-        var userComponent = ko.observable(config.userComponent);
         var commentsComponent = ko.observable(config.commentsComponent);
         var answersComponent = ko.observable(config.answersComponent);
         var annotationsComponent = ko.observable(config.annotationsComponent);
-        var searchUserId = ko.observable(params.searchUserId);
         var body = ko.observable();
         var prevComponent = ko.observable(params.prevComponent);
       
@@ -30,7 +28,7 @@
         });
     
      
-        var QuestionUrl = config.questionsUrl + "/" + params.url;
+        var QuestionUrl = config.questionsUrl + "/" + myPostId();
 
         console.log(QuestionUrl);
 
@@ -60,7 +58,9 @@
             var markingObject = ko.toJS({
             });
             dataservice.postData(AddMarkingUrl, markingObject);
-            dataservice.getQuestion(QuestionUrl, callback);
+            dataservice.getQuestion(QuestionUrl, function (data) {
+                markingStatus(data.markThisPost);
+            });
             
         }
         var unMarkThis = function () {

@@ -36,11 +36,9 @@
                 To: 0 //data.markingEnd,
 
             });
-          
-            $.when(dataservice.postData(NewAnotationUrl, newAnnotation)).done(function () {
-                dataservice.getAnnotations(url(), callback);
 
-            });
+            dataservice.postDataAndGet(NewAnotationUrl, newAnnotation, dataservice.getAnnotations(url(), callback))
+      
             isNewAnnotation(false);
 
         }
