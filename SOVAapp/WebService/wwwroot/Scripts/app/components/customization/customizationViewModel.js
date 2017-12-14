@@ -25,7 +25,7 @@
             var newCustome = ko.toJS({
                // postLimit: newPostlimit(),
             });
-            isPosting(true);
+           // isPosting(true);
             dataservice.postData(NewCustomeUrl, newCustome);
           
 
@@ -48,7 +48,7 @@
                 isPosting(false);
             }, newTagsArray.length * 100);
            
-
+            
          
         }
 
