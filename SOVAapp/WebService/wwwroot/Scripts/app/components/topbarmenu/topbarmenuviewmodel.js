@@ -12,7 +12,7 @@
         var changeContent = function (content) {
             if (content !== undefined) {
                     currentComponent(content.toLowerCase());
-                    ns.postbox.notify({ component: content.toLowerCase() }, "currentComponent");
+                    ns.postman.notify({ component: content.toLowerCase() }, "currentComponent");
             }
         };
 
@@ -20,7 +20,7 @@
 
         var searchBarContents = ko.observable("");
 
-        ns.postbox.subscribe(function (value) {
+        ns.postman.subscribe(function (value) {
             searchBarContents(value);
         }, "searchBarContent","topBarContext");
         var searchContentLength = ko.computed(function () {
@@ -46,7 +46,7 @@
                 }); 
             }
 
-            ns.postbox.notify(searchBarContents(), "searchBarContent");
+            ns.postman.notify(searchBarContents(), "searchBarContent");
 
             return searchBarContents().length;
         });

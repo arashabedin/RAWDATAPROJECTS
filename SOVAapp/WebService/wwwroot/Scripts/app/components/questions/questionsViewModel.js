@@ -52,10 +52,10 @@
         };
 
         var gotoquestion = function (postId, root) {
-            ns.postbox.notify({ component: config.questionComponent, url: postId, prevComponent: root.currentComponent() }, "currentComponent");
+            ns.postman.notify({ component: config.questionComponent, url: postId, prevComponent: root.currentComponent() }, "currentComponent");
         };
         var goback = function () {
-            ns.postbox.notify({ component: myPrevComponent }, "currentComponent");
+            ns.postman.notify({ component: myPrevComponent }, "currentComponent");
         }
 
         return {

@@ -3,10 +3,10 @@
         var currentComponent = ko.observable(config.defaultMenuItem);
         var paramsData = ko.observable();
 
-        ns.postbox.notify(currentComponent, "currentComponent");
+        ns.postman.notify(currentComponent, "currentComponent");
 
         
-        ns.postbox.subscribe(function (value) {
+        ns.postman.subscribe(function (value) {
             currentComponent(value.component);
             paramsData({ url: value.url, prevComponent: value.prevComponent});
         }, "currentComponent");

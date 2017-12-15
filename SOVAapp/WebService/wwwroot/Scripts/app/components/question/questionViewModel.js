@@ -61,13 +61,13 @@
         }
         
         var goback = function () {
-            ns.postbox.notify({ component: prevComponent() }, "currentComponent");
+            ns.postman.notify({ component: prevComponent() }, "currentComponent");
         }
 
        
 
         
-        ns.postbox.subscribe(function (data) {
+        ns.postman.subscribe(function (data) {
             annotationUrl(data);
         }, "annotationUrl");
    

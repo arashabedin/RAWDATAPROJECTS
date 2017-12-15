@@ -48,7 +48,7 @@ require(['knockout', 'jquery', 'jqcloud'], function (ko, $) {
 
 var ns = {
 
-postbox: {
+postman: {
     subscribers: [],
     subscribe: function (callback, topic, source) {
         var found = false;

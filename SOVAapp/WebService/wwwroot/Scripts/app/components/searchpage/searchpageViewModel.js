@@ -74,7 +74,7 @@
         };
          
         var gotoquestion = function (questionUrl, root) {
-            ns.postbox.notify({ component: config.questionComponent, url: questionUrl, prevComponent: root.currentComponent() }, "currentComponent");
+            ns.postman.notify({ component: config.questionComponent, url: questionUrl, prevComponent: root.currentComponent() }, "currentComponent");
         };
       
   
