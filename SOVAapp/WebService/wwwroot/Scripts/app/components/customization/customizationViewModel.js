@@ -15,7 +15,8 @@
             creationdate(data.creationDate);
             favortietags(data.favortieTags);
         }
-      
+        var startedEditingLimit = false; 
+        var startedEditingTags = false; 
           
         dataservice.getCustomefield(callback);
       
@@ -27,15 +28,22 @@
             dataservice.postData(NewCustomeUrl, {}, function (data) {
                 dataservice.getCustomefield(callback);
                 isPosting(false);
+          
             });
         }
 
         var currentTagsToedit = function () {
-            newCustomeTags(favortietags().join(','));
+            if (!startedEditingTags){
+                newCustomeTags(favortietags().join(','));
+                startedEditingTags = true;
+            }
         }
 
         var currentpostLimitToedit = function () {
-            newPostlimit(postlimit());
+            if (!startedEditingLimit){
+                newPostlimit(postlimit());
+                startedEditingLimit = true;
+            }
         }
 
       
