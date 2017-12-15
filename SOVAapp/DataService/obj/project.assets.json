@@ -6485,7 +6485,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mohammad Mosiur Rahm\\.nuget\\packages\\": {},
+    "C:\\Users\\aabedin\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -6494,17 +6494,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mohammad Mosiur Rahm\\Desktop\\githubNew\\SOVAapp\\DataService\\DataService.csproj",
+      "projectUniqueName": "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\DataService\\DataService.csproj",
       "projectName": "DataService",
-      "projectPath": "C:\\Users\\Mohammad Mosiur Rahm\\Desktop\\githubNew\\SOVAapp\\DataService\\DataService.csproj",
-      "packagesPath": "C:\\Users\\Mohammad Mosiur Rahm\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mohammad Mosiur Rahm\\Desktop\\githubNew\\SOVAapp\\DataService\\obj\\",
+      "projectPath": "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\DataService\\DataService.csproj",
+      "packagesPath": "C:\\Users\\aabedin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\aabedin\\Documents\\GitHub\\RAWDATAPROJECTS\\SOVAapp\\DataService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Mohammad Mosiur Rahm\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\aabedin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
