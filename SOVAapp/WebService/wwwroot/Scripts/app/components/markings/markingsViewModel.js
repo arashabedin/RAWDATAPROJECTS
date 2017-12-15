@@ -36,7 +36,7 @@
         };
 
         var gotoQuestion = function (postUrl, root) {
-            ns.postman.notify({ component: config.questionComponent, url: postUrl, prevComponent: root.currentComponent() }, "currentComponent");
+            postman.notify({ component: config.questionComponent, url: postUrl, prevComponent: root.currentComponent() }, "currentComponent");
         };
     
         return {

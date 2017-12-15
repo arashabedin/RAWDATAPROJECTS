@@ -46,9 +46,9 @@ require(['knockout', 'jquery', 'jqcloud'], function (ko, $) {
     };
 }); 
 
-var ns = {
 
-postman: {
+
+postman = {
     subscribers: [],
     subscribe: function (callback, topic, source) {
         var found = false;
@@ -69,7 +69,7 @@ postman: {
             }
         }
     }
-    }};
+};
 
 require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap'],
     function (ko, viewmodel, config, $) {
@@ -97,8 +97,6 @@ require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap'],
             viewModel: { require: 'app/components/question/questionViewModel' },
             template: { require: 'text!app/components/question/question.html' }
         });
-
-
 
         // Comments
         ko.components.register(config.commentsComponent, {

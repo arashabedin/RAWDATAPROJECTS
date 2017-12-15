@@ -61,16 +61,11 @@
         }
         
         var goback = function () {
-            ns.postman.notify({ component: prevComponent() }, "currentComponent");
+            postman.notify({ component: prevComponent() }, "currentComponent");
         }
 
        
 
-        
-        ns.postman.subscribe(function (data) {
-            annotationUrl(data);
-        }, "annotationUrl");
-   
         return {
             question: question,
             body: body,

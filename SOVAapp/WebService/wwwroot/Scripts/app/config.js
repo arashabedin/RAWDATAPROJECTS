@@ -20,8 +20,6 @@
         "Comments",                         // 1
         "Answers",                          // 2
         "Annotations"                       // 3
-        
-
     ];
 
 
