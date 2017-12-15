@@ -62,9 +62,10 @@
 
             });
 
-            dataservice.postData(NewAnotationUrl, newAnnotation)
-            setTimeout(function () { dataservice.getAnnotations(url(), callback); }, 200);
-            isNewAnnotation(false);
+            dataservice.postData(NewAnotationUrl, newAnnotation, function (data) {
+                dataservice.getAnnotations(url(), callback);
+                isNewAnnotation(false);
+            });
 
         }
 
@@ -79,9 +80,10 @@
 
             });
 
-            dataservice.updateData(editUrl, editedAnnotation)
-            setTimeout(function () { dataservice.getAnnotations(url(), callback); }, 200);
-            isNewAnnotation(false);
+            dataservice.updateData(editUrl, editedAnnotation, function (data) {
+                dataservice.getAnnotations(url(), callback);
+                isNewAnnotation(false);
+            });
 
         }
 
@@ -90,8 +92,11 @@
             var newAnnotation = ko.toJS({
             });
 
-            dataservice.deleteData(deleteAnotationUrl, newAnnotation);
-            setTimeout(function () { dataservice.getAnnotations(url(), callback); }, 200);
+            dataservice.deleteData(deleteAnotationUrl, newAnnotation, function (data) {
+                dataservice.getAnnotations(url(), callback);
+                isNewAnnotation(false);
+            });
+
         }
 
      

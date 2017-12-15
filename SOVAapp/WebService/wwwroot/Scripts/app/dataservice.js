@@ -114,46 +114,35 @@
                 callback(data);
             });
         },
-        updateData: function (url, data) {
+        updateData: function (url, data, callback) {
             $.ajax({
                 type: 'PUT',
                 url: url,
-                data: data
+                data: data,
+                success: callback
 
             });
         },
-        deleteData: function (url, data) {
+        deleteData: function (url, data, callback) {
             $.ajax({
                 type: 'Delete',
                 url: url,
-                data: data
+                data: data,
+                success: callback
 
             });
         },
-        deleteDataAndSync: function (url, data, retrieve) {
-            $.ajax({
-                type: 'Delete',
-                url: url,
-                data: data
+     
 
-            }).success(retrieve);
-        },
-
-        postData: function (url, data) {
+        postData: function (url, data, callback) {
             $.ajax({
                 type: 'POST',
                 url: url,
-                data: data
+                data: data,
+                success: callback
 
             });
-        },
-        postDataAndSync: function (url, data, retrieve) {
-            $.ajax({
-                type: 'POST',
-                url: url,
-                data: data
-
-            }).success(retrieve);
         }
-    }
+        }
+    
 });
