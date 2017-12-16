@@ -17,6 +17,7 @@ namespace DataService.DataAccessLayer
         ICollection<PostDTO> GetPosts();
         ICollection<PostDTO> GetAllPostsByUserId(int id);
         int CountPosts();
+        int GetScoreByPostId(int id);
 
         //PostType
         PostTypeDTO GetPostTypeByPostId(int id);

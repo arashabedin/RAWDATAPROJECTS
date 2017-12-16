@@ -12,8 +12,14 @@ body {
     font-family: logofont;
     src: url(../../fonts/logofont.ttf);
 }
-
-
+.navbar-form {
+    box-shadow: none;
+    border-top: none;
+    border-bottom: none;
+}
+#Home_title {
+    font-size: 34px;
+}
 #title{
     font-size: 30px;
 }
@@ -143,6 +149,9 @@ body {
     width: 100%;
     padding-left: 4px;
     
+}
+.Questions_score_block {
+    margin-left: 4px;
 }
 .page_button {
     background-color: #0057ff;

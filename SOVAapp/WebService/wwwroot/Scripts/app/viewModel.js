@@ -15,7 +15,6 @@
             currentComponent: currentComponent,
             menuComponent: config.menuComponent,
             paramsData: paramsData,
-            homeComponent: config.homeComponent
         }   
     });
 });

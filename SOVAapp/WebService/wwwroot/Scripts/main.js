@@ -15,7 +15,7 @@
 
         // Explicitly specify that bootstrap is dependant on jquery to avoid dependency errors
         shim: {
-            "bootstrap": { "deps": ['jquery'] },
+            bootstrap: { deps: ['jquery'] },
             jqcloud: { deps: ['jquery'] },
             helpers: { deps: ['jquery'] }
 

@@ -83,6 +83,13 @@ namespace DataService.DataAccessLayer
             }
         }
 
+        public int GetScoreByPostId(int id) {
+            using (var db = new SovaContext())
+            {
+                return db.Posts.Where(i => i.Id == id).First().Score;
+                 
+            }
+        }
         ////////////////Answers
         public ICollection<Post> GetAnswers(int page, int pageSize)
         {

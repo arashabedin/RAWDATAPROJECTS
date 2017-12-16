@@ -12,6 +12,7 @@ namespace WebService.Models
         public string Body { get; set; }
         public string QuestionUrl { get; set; }
         public string User { get; set; }
+        public int? Score { get; set; }
         public ICollection<string> Tags;
 
 
