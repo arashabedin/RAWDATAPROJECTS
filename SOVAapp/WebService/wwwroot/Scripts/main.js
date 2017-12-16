@@ -76,75 +76,75 @@ require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap'],
 
         // Top bar menu
         ko.components.register(config.menuComponent, {
-            viewModel: { require: 'app/components/topbarmenu/topbarmenuViewModel' },
-            template: { require: 'text!app/components/topbarmenu/topbarmenu.html' }
+            viewModel: { require: 'app/components/topbarmenu/topbarmenu' },
+            template: { require: 'text!app/components/topbarmenu/topbarmenuView.html' }
         });
 
         // Markings
         ko.components.register(config.markingsComponent, {
-            viewModel: { require: 'app/components/markings/markingsViewModel' },
-            template: { require: 'text!app/components/markings/markings.html' }
+            viewModel: { require: 'app/components/markings/markings' },
+            template: { require: 'text!app/components/markings/markingsView.html' }
         });
 
         // Questions
         ko.components.register(config.questionsComponent, {
-            viewModel: { require: 'app/components/questions/questionsViewModel' },
-            template: { require: 'text!app/components/questions/questions.html' }
+            viewModel: { require: 'app/components/questions/questions' },
+            template: { require: 'text!app/components/questions/questionsView.html' }
         });
 
         // Question
         ko.components.register(config.questionComponent, {
-            viewModel: { require: 'app/components/question/questionViewModel' },
-            template: { require: 'text!app/components/question/question.html' }
+            viewModel: { require: 'app/components/question/question' },
+            template: { require: 'text!app/components/question/questionView.html' }
         });
 
         // Comments
         ko.components.register(config.commentsComponent, {
-            viewModel: { require: 'app/components/comments/commentsViewModel' },
-            template: { require: 'text!app/components/comments/comments.html' }
+            viewModel: { require: 'app/components/comments/comments' },
+            template: { require: 'text!app/components/comments/commentsView.html' }
         });
 
         // Answers
         ko.components.register(config.answersComponent, {
-            viewModel: { require: 'app/components/answers/answersViewModel' },
-            template: { require: 'text!app/components/answers/answers.html' }
+            viewModel: { require: 'app/components/answers/answers' },
+            template: { require: 'text!app/components/answers/answersView.html' }
         });
 
         // homepage page
         ko.components.register(config.homeComponent, {
-            viewModel: { require: 'app/components/homepage/homepageViewModel' },
-            template: { require: 'text!app/components/homepage/homepage.html' }
+            viewModel: { require: 'app/components/homepage/homepage' },
+            template: { require: 'text!app/components/homepage/homepageView.html' }
         });
         // Search page
         ko.components.register(config.searchpagesComponent, {
-            viewModel: { require: 'app/components/searchpage/searchpageViewModel' },
-            template: { require: 'text!app/components/searchpage/searchpage.html' }
+            viewModel: { require: 'app/components/searchpage/searchpage' },
+            template: { require: 'text!app/components/searchpage/searchpageView.html' }
         });
        // Customization page
         ko.components.register(config.customizationComponent, {
-            viewModel: { require: 'app/components/customization/customizationViewModel' },
-            template: { require: 'text!app/components/customization/customization.html' }
+            viewModel: { require: 'app/components/customization/customization' },
+            template: { require: 'text!app/components/customization/customizationView.html' }
         });
         // Users page
         ko.components.register(config.usersComponent, {
-            viewModel: { require: 'app/components/users/usersViewModel' },
-            template: { require: 'text!app/components/users/users.html' }
+            viewModel: { require: 'app/components/users/users' },
+            template: { require: 'text!app/components/users/usersView.html' }
         });
 
         // JCloud page
         ko.components.register(config.jcloudComponent, {
-            viewModel: { require: 'app/components/jcloud/jcloudViewModel' },
-            template: { require: 'text!app/components/jcloud/jcloud.html' }
+            viewModel: { require: 'app/components/jcloud/jcloud' },
+            template: { require: 'text!app/components/jcloud/jcloudView.html' }
         });
         // termnetwork page
         ko.components.register(config.concurrentsComponent, {
-            viewModel: { require: 'app/components/concurrents/concurrentsViewModel' },
-            template: { require: 'text!app/components/concurrents/concurrents.html' }
+            viewModel: { require: 'app/components/concurrents/concurrents' },
+            template: { require: 'text!app/components/concurrents/concurrentsView.html' }
         });
         // annotations page
         ko.components.register(config.annotationsComponent, {
-            viewModel: { require: 'app/components/annotations/annotationsViewModel' },
-            template: { require: 'text!app/components/annotations/annotations.html' }
+            viewModel: { require: 'app/components/annotations/annotations' },
+            template: { require: 'text!app/components/annotations/annotationsView.html' }
         });
         
         
