@@ -83,11 +83,19 @@ namespace DataService.DataAccessLayer
             }
         }
 
-        public int GetScoreByPostId(int id) {
+        public int? GetScoreByPostId(int id) {
             using (var db = new SovaContext())
             {
+                try { 
                 return db.Posts.Where(i => i.Id == id).First().Score;
-                 
+                }
+                catch
+                {
+                    return null;
+                }
+
+
+
             }
         }
         ////////////////Answers
@@ -1054,10 +1062,21 @@ namespace DataService.DataAccessLayer
             {
                 var result = db.Posts.FromSql("call selectUserCustomePosts()");
                 List<CustomePostsDTO> ResultsDTO = new List<CustomePostsDTO>();
+
+                try{ 
                 foreach (var FoundItem in result)
                 {
                     var newItemDTO = new CustomePostsDTO(FoundItem.Id, FoundItem.Title, FoundItem.Body,FoundItem.OwnerUserId, FoundItem.PostTypeId);
                     ResultsDTO.Add(newItemDTO);
+
+                }
+                }
+                catch
+                {
+                    var notFoundValue = new CustomePostsDTO(0, "not found", "not found", 1, 1);
+                    var notFoundList = new List<CustomePostsDTO>();
+                    notFoundList.Add(notFoundValue);
+                    return notFoundList;
 
                 }
                 return ResultsDTO;

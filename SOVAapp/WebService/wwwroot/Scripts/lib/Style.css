@@ -23,7 +23,10 @@ body {
 #title{
     font-size: 30px;
 }
-
+#no_matching_post {
+    font-size: 16px;
+    padding-top: 44px;
+}
 .answerscore {
     font-size: 25px;
     margin-top: 15px;
@@ -121,7 +124,7 @@ body {
 
 .question_container {
     width: 220px;
-    min-height: 260px;
+    min-height: 277px;
     padding: 10px;
     display: inline-block;
     float: left;
@@ -129,7 +132,6 @@ body {
     box-shadow: 0 1px 2px rgba(25,25,25,0.2);
     border-radius: 2px;
     background-color: white;
-
 }
     .question_container:hover {
         background-image: url("../img/pageflip.jpg");

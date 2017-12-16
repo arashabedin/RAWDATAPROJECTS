@@ -8,20 +8,21 @@
             return recommendedQuestions().length === 0;
         });
 
-
         var callback = function (data) {
+            postlimit(data.postLimit);
+            favortietags(data.favortieTags);
+        }
+
+        var callback2 = function (data) {
             recommendedQuestions(data.recommendedQuestions);
         };
 
 
-        var callback2 = function (data) {
-            postlimit(data.postLimit);
-            favortietags(data.favortieTags);
-        }
-        dataservice.getCustomefield(callback2);
+    
+        dataservice.getCustomefield(callback);
 
 
-        dataservice.getFavoriteQuestions(callback);
+        dataservice.getFavoriteQuestions(callback2);
         var gotoquestion = function (PostId, root) {
             postman.notify({ component: config.questionComponent, url: PostId, prevComponent: root.currentComponent() }, "currentComponent");
         };
