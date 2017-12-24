@@ -1,0 +1,34 @@
+
+<div class="container-fluid">
+
+    <div id="questionContainer">
+
+        <!--Header-->
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="title">{{question.title}}</div>
+            </div>
+        </div>
+
+        <!--Creation date-->
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-12 col-md-11">
+                <span class="time_icon"></span> <div id="question_date">{{question.creationDate}}</div>
+            </div>
+        </div>
+
+        <!--Score & body-->
+        <div class="row">
+            <!--Score-->
+            <div class="col-xs-1">
+                <span class="question_score_sign">&#x270C;</span><div id="score">{{question.score}}</div>
+            </div>
+            <!--Body-->
+            <div class="col-xs-11">
+                <div id="body" style="float: left" [innerHtml]="question.body"></div>
+            </div>
+
+        </div>
+    </div>
+    </div>

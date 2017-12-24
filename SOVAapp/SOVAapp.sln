@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebService", "WebService\We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataService", "DataService\DataService.csproj", "{4088546A-26D3-4CFA-9BA7-DEEC73390531}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebService_Angular", "WebService_Angular\WebService_Angular.csproj", "{13A42063-2201-4123-9BA2-C861E31A2432}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{4088546A-26D3-4CFA-9BA7-DEEC73390531}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4088546A-26D3-4CFA-9BA7-DEEC73390531}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4088546A-26D3-4CFA-9BA7-DEEC73390531}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13A42063-2201-4123-9BA2-C861E31A2432}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13A42063-2201-4123-9BA2-C861E31A2432}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13A42063-2201-4123-9BA2-C861E31A2432}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13A42063-2201-4123-9BA2-C861E31A2432}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
