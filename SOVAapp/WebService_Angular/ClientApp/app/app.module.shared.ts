@@ -26,7 +26,7 @@ import { QuestionComponent } from './components/question/question.component';
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'question/:id', component: QuestionComponent },
-            { path: 'questions/page/:page', component: QuestionsComponent },
+            { path: 'questions', component: QuestionsComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

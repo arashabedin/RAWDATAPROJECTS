@@ -40,8 +40,8 @@
     <span>{{questions.pages}}</span>
     <span class="page_status">Page: </span>
     <span>{{questions.page + 1}}</span><br><br>
-    <span *ngIf="questions.prev"><button class="page_button" (click)="goTopage(questions.prev)"><span style="font-size:11px;">&#9668;</span>&nbsp;  Prev</button></span>
-    <span *ngIf="questions.next"><button class="page_button" (click)="goTopage(questions.next)">Next &nbsp;<span style="font-size:11px;"> &#9658;</span></button></span>
+    <span *ngIf="questions.prev"><button class="page_button" (click)="goToPrevPage(questions.prev,questions.page)"><span style="font-size:11px;">&#9668;</span>&nbsp;  Prev</button></span>
+    <span *ngIf="questions.next"><button class="page_button" (click)="goToNextPage(questions.next,questions.page)">Next &nbsp;<span style="font-size:11px;"> &#9658;</span></button></span>
     <div class="spacer"></div>
 
     <div class="spacer"></div>

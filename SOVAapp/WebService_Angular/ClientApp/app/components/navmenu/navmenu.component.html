@@ -22,7 +22,7 @@
                 </li>
           
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/questions/page',0]">
+                    <a [routerLink]="['/questions']" [queryParams]="{ page:0 }">
                        Questions
                     </a>
                 </li>
