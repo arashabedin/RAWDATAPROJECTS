@@ -9,6 +9,7 @@ import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { QuestionsComponent } from './components/questions/questions.component';
 import { QuestionComponent } from './components/question/question.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { QuestionComponent } from './components/question/question.component';
         NavMenuComponent,
         QuestionComponent,
         QuestionsComponent,
-        HomeComponent
+        HomeComponent,
+        CommentsComponent
     ],
     imports: [
         CommonModule,

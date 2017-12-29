@@ -10,9 +10,28 @@
     <link rel="stylesheet" href="~/dist/style.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
 
-
 </head>
+
 <body>
+    <script type="text/javascript">
+        //Comments Collapsing
+ 
+        $(document).ready(function () {
+
+            window.alert("heyy2");
+            console.log("heyyyyyyyyyyyyyy2");
+
+        });
+            $('.accordion-group').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', function () {
+                var $target = $(this).parent().next()
+                $target.data('collapse') ? $target.collapse('toggle') : $target.collapse('toggle')
+            });
+       
+
+
+
+    </script>
+
     @RenderBody()
 
     @RenderSection("scripts", required: false)
