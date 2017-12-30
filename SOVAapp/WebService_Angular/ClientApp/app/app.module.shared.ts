@@ -28,7 +28,7 @@ import { CommentsComponent } from './components/comments/comments.component';
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'question/:id', component: QuestionComponent },
-            { path: 'questions', component: QuestionsComponent },
+            { path: 'questions/page/:page', component: QuestionsComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]
