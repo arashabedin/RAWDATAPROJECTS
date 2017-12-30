@@ -5,35 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WebApplication1</title>
     <base href="~/" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Style.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
-
 </head>
 
 <body>
-    <script type="text/javascript">
-        //Comments Collapsing
- 
-        $(document).ready(function () {
-
-            window.alert("heyy2");
-            console.log("heyyyyyyyyyyyyyy2");
-
-        });
-            $('.accordion-group').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', function () {
-                var $target = $(this).parent().next()
-                $target.data('collapse') ? $target.collapse('toggle') : $target.collapse('toggle')
-            });
-       
-
-
-
-    </script>
+   
 
     @RenderBody()
 
     @RenderSection("scripts", required: false)
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        //Comments Collapsing
+
+        $(document).ready(function () {
+
+
+            $(this).on('click.collapse-next.data-api', '[data-toggle=collapse-next]', function () {
+                var $target = $(this).parent().next()
+                $target.data('collapse') ? $target.collapse('toggle') : $target.collapse('toggle')
+            });
+        });
+
+    </script>
+
 </body>
 </html>
