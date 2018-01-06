@@ -1,6 +1,25 @@
 
 <div class="container-fluid">
 
+
+
+
+    <!--LinkedPosts Box-->
+
+    <div class="linked_posts" *ngIf="question.linkedPosts.length">
+        <div>
+            <span id="linkposts_button" class="accordion-toggle" data-toggle="collapse-next"><h2>{{question.linkedPosts.length}}</h2> <h2>Linked Posts</h2><span>&#9660;</span></span>
+        </div>  
+        <div id="links" class="accordion-body collapse out  ">
+            <div *ngFor="let l of question.linkedPosts">
+                <div data-toggle="collapse" data-target="#links"  (click)="goToQuestion(l.id)"  class="linked_posts_title">Title: <div>{{l.postTitle}}</div> </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
     <div id="questionContainer">
 
         <!--Header-->

@@ -91,7 +91,8 @@ namespace WebService.Controllers
         var model = _mapper.Map<QuestionModel>(Question);
         model.UserName = Question.UserInfo.DisplayName;
         model.Tags = _repository.GetPostTagsByPostId(Qid).Select(t => t.Tag.Tag).ToList();
-        model.LinkedPosts = Question.LinkedPosts.Select(l => new LinkedPostsModel {
+            model.LinkedPosts = Question.LinkedPosts.Select(l => new LinkedPostsModel {
+                Id = l.Id,
                 LinkedPostUrl = Url.Link(nameof(GetQuestionById), new { Qid = l.Id }),
                 PostTitle = l.Title
         }).ToList();
