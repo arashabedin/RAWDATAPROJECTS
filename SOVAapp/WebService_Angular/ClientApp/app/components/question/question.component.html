@@ -1,8 +1,23 @@
+<div id="loading" *ngIf="!questionReady">
+    <span>Loading</span>
+    <div class="dotsContainer">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+</div>
+
+<div id="MarkButton"  *ngIf="question.unMarkPost=='Not marked yet'" (click)="markThis()">
+    <span>&#9733;</span>
+
+</div>
+
+<div id="UnMarkButton" *ngIf="question.unMarkPost!='Not marked yet'"  (click)="unMarkThis()">
+    <span>&#x2718;</span>
+
+</div>
 
 <div class="container-fluid">
-
-
-
 
     <!--LinkedPosts Box-->
 

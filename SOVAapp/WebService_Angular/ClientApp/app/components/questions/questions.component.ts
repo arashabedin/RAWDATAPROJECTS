@@ -10,7 +10,7 @@ export class QuestionsComponent {
     public questions: GetQuestions;
 
     url = 'api/question?page=' + this.route.snapshot.queryParams["page"] + "&pageSize=12";
-
+    markingStatus: string;
 
 
 
@@ -22,14 +22,14 @@ export class QuestionsComponent {
 
         router.events
             .subscribe((event) => {
-                
+
                 if (event instanceof NavigationEnd) {
-                     var pageNumber = this.route.snapshot.queryParams["page"];
-                     console.log(pageNumber);
-                     http.get(baseUrl + 'api/question?page=' + pageNumber + "&pageSize=12"
-                     ).subscribe(result => {
-                         this.questions = result.json() as GetQuestions;
-                     }, error => console.error(error));
+                    var pageNumber = this.route.snapshot.queryParams["page"];
+                    console.log(pageNumber);
+                    http.get(baseUrl + 'api/question?page=' + pageNumber + "&pageSize=12"
+                    ).subscribe(result => {
+                        this.questions = result.json() as GetQuestions;
+                    }, error => console.error(error));
                 }
 
             });
@@ -38,23 +38,23 @@ export class QuestionsComponent {
 
 
 
-    public goToNextPage(url: string,pageNum:number) {
+    public goToNextPage(url: string, pageNum: number) {
         this.url = url;
-        this.router.navigate(['/questions'], { queryParams: { page: pageNum + 1} });
+        this.router.navigate(['/questions'], { queryParams: { page: pageNum + 1 } });
     }
 
     public goToPrevPage(url: string, pageNum: number) {
         this.url = url;
         this.router.navigate(['/questions'], { queryParams: { page: pageNum - 1 } });
     }
-    
-    public goToQuestion(id:number) {
-        this.router.navigate(['/question', id]);     
+
+    public goToQuestion(id: number) {
+        this.router.navigate(['/question', id]);
     }
 
+    body: string = "";
 
 }
-
 
 interface GetQuestions {
     page: number;

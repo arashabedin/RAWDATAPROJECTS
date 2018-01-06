@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class QuestionComponent implements OnInit{
+    questionReady: boolean = false;
     public question: GetQuestion[];
    // public sampleData: any;
 
@@ -36,7 +37,10 @@ export class QuestionComponent implements OnInit{
                 if (event instanceof NavigationEnd) {
                     http.get(baseUrl + this.url
                     ).subscribe(result => {
-                            this.question = result.json() as GetQuestion[];
+
+                        this.question = result.json() as GetQuestion[];
+                        this.questionReady = true;
+
                         }, error => console.error(error));
                 }
 
@@ -57,6 +61,45 @@ ngOnInit() {
 
 }
 
+
+    public markThis() {
+        var AddMarkingUrl = "/api/marking/" + this.route.snapshot.paramMap.get('id');
+        var body = "";
+        this.http
+            .post(AddMarkingUrl,
+            body)
+            .subscribe(data => {
+
+                this.http.get(this.baseUrl + this.url
+                ).subscribe(result => {
+                    this.question = result.json() as GetQuestion[];
+                    }, error => console.error(error));
+
+            }, error => {
+                console.log(JSON.stringify(error.json()));
+            });
+
+
+    }
+
+    public unMarkThis() {
+        var deleteMarkingUrl = "/api/marking/" + this.route.snapshot.paramMap.get('id');
+        var body = "";
+        this.http
+            .delete(deleteMarkingUrl,
+            body)
+            .subscribe(data => {
+                this.http.get(this.baseUrl + this.url
+                ).subscribe(result => {
+                    this.question = result.json() as GetQuestion[];
+                }, error => console.error(error));
+
+            }, error => {
+                console.log(JSON.stringify(error.json()));
+            });
+
+
+    }
 
 
 }

@@ -11,6 +11,7 @@ import { QuestionsComponent } from './components/questions/questions.component';
 import { QuestionComponent } from './components/question/question.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { AnswersComponent } from './components/answers/answers.component';
+import { MarkingsComponent } from './components/markings/markings.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AnswersComponent } from './components/answers/answers.component';
         QuestionsComponent,
         HomeComponent,
         CommentsComponent,
-        AnswersComponent
+        AnswersComponent,
+        MarkingsComponent
 
     ],
     imports: [
@@ -33,6 +35,7 @@ import { AnswersComponent } from './components/answers/answers.component';
             { path: 'home', component: HomeComponent },
             { path: 'question/:id', component: QuestionComponent },
             { path: 'questions', component: QuestionsComponent },
+            { path: 'markings', component: MarkingsComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

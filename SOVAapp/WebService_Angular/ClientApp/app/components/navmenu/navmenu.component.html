@@ -26,6 +26,12 @@
                        Questions
                     </a>
                 </li>
+
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/markings']" [queryParams]="{ page:0 }">
+                        Markings
+                    </a>
+                </li>
             </ul>
         </div>
 
