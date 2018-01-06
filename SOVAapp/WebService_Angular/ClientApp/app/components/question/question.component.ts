@@ -2,6 +2,7 @@ import { Component, Inject, NgModule, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Routes, ActivatedRoute } from '@angular/router';
 import { CommentsComponent } from '../comments/comments.component';
+import { AnswersComponent } from '../answers/answers.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 @NgModule({

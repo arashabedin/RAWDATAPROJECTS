@@ -13,7 +13,7 @@
         dataservice.getAnswers(answersUrl, callback);
 
         return {
-            answers: answers,
+           answers: answers,
            commentsComponent: commentsComponent
         }
     };

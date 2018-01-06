@@ -10,6 +10,8 @@ import { HomeComponent } from './components/home/home.component';
 import { QuestionsComponent } from './components/questions/questions.component';
 import { QuestionComponent } from './components/question/question.component';
 import { CommentsComponent } from './components/comments/comments.component';
+import { AnswersComponent } from './components/answers/answers.component';
+
 
 @NgModule({
     declarations: [
@@ -18,7 +20,9 @@ import { CommentsComponent } from './components/comments/comments.component';
         QuestionComponent,
         QuestionsComponent,
         HomeComponent,
-        CommentsComponent
+        CommentsComponent,
+        AnswersComponent
+
     ],
     imports: [
         CommonModule,
