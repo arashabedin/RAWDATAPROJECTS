@@ -1,22 +1,23 @@
-import { Component, Inject } from '@angular/core';
-import { NgModule } from '@angular/core';
+import { Component, Inject, NgModule, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
-import { Routes } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { Routes, ActivatedRoute } from '@angular/router';
 import { CommentsComponent } from '../comments/comments.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
-
+@NgModule({
+    declarations: [QuestionComponent, CommentsComponent],
+    bootstrap: [QuestionComponent]
+})
 
 @Component({
     selector: 'question',
     templateUrl: './question.component.html',
-    
+
 })
 
-export class QuestionComponent {
+export class QuestionComponent implements OnInit{
     public question: GetQuestion[];
+   // public sampleData: any;
 
     url = 'api/question/' + this.route.snapshot.paramMap.get('id');
     
@@ -24,11 +25,17 @@ export class QuestionComponent {
 
         http.get(baseUrl + this.url).subscribe(result => {
             this.question = result.json() as GetQuestion[];
+         //   this.sampleData = result.json().commentsUrl;
         }, error => console.error(error));
-    }
-
 
     }
+
+ngOnInit() {
+
+}
+
+}
 
 interface GetQuestion {
+    commentsUrl: string
 }

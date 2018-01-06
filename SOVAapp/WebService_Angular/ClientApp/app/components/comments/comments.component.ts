@@ -1,5 +1,4 @@
-import { Component, Inject } from '@angular/core';
-import { NgModule } from '@angular/core';
+import { NgModule, Input, Inject, Component, OnInit} from '@angular/core';
 import { Http } from '@angular/http';
 import { Routes } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
@@ -9,23 +8,43 @@ import { FormsModule } from '@angular/forms';
 
 //npm install --save jquery
 //npm install - D @types/jquery
+@NgModule({
+    declarations: [CommentsComponent],
+    bootstrap: [CommentsComponent]
 
+})
 @Component({
     selector: 'comments',
     templateUrl: './comments.component.html'
 })
-export class CommentsComponent {
+export class CommentsComponent implements OnInit {
+    @Input('parentdata') parentdata:string ;
+
     public comments: GetComments[];
+    _greetMessage: string; 
 
-    url = "api/question/19/comment";
+    //url = "api/question/19/comment";
 
-    constructor(private http: Http, @Inject('BASE_URL') private baseUrl: string, private route: ActivatedRoute) {
+    mylink: string;
 
-        http.get(baseUrl + this.url).subscribe(result => {
+    constructor(private http:Http,@Inject('BASE_URL') private baseUrl: string, private route: ActivatedRoute) {
+    }
+
+
+
+     
+
+    ngOnInit() {
+        this.getCommentsData().subscribe(result => {
             this.comments = result.json() as GetComments[];
         }, error => console.error(error));
-
     }
+    getCommentsData() {
+
+        const url = 'assets/mock-posts.json';
+        return this.http.get(this.parentdata);
+    }
+
 
 
 }
