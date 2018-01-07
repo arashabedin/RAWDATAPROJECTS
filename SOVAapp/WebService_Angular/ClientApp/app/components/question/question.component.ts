@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 
 export class QuestionComponent implements OnInit{
     questionReady: boolean = false;
+    isMarked: boolean = false;
     public question: GetQuestion[];
    // public sampleData: any;
 
@@ -25,21 +26,21 @@ export class QuestionComponent implements OnInit{
     newId:number = 0;
     constructor(private http: Http, @Inject('BASE_URL') private baseUrl: string, private route: ActivatedRoute, private router: Router) {
 
-        http.get(baseUrl + this.url).subscribe(result => {
-            this.question = result.json() as GetQuestion[];
-         //   this.sampleData = result.json().commentsUrl;
-        }, error => console.error(error));
+  
 
 
         router.events
             .subscribe((event) => {
 
                 if (event instanceof NavigationEnd) {
+                    this.questionReady = false;
+
                     http.get(baseUrl + this.url
                     ).subscribe(result => {
 
                         this.question = result.json() as GetQuestion[];
                         this.questionReady = true;
+                        this.isMarked = result.json().unMarkPost != "Not marked yet";
 
                         }, error => console.error(error));
                 }
@@ -70,10 +71,7 @@ ngOnInit() {
             body)
             .subscribe(data => {
 
-                this.http.get(this.baseUrl + this.url
-                ).subscribe(result => {
-                    this.question = result.json() as GetQuestion[];
-                    }, error => console.error(error));
+                this.isMarked = true;
 
             }, error => {
                 console.log(JSON.stringify(error.json()));
@@ -89,10 +87,7 @@ ngOnInit() {
             .delete(deleteMarkingUrl,
             body)
             .subscribe(data => {
-                this.http.get(this.baseUrl + this.url
-                ).subscribe(result => {
-                    this.question = result.json() as GetQuestion[];
-                }, error => console.error(error));
+                this.isMarked = false;
 
             }, error => {
                 console.log(JSON.stringify(error.json()));

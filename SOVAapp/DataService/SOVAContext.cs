@@ -30,7 +30,7 @@ namespace DataService
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-             optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=raw5;uid=raw5;pwd=raw5");
+              optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=raw5;uid=raw5;pwd=raw5");
             // optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=aabedin;uid=aabedin;pwd=aMyVAMyt");
              // optionsBuilder.UseMySql("server=localhost;database=raw5;uid=root;");
 

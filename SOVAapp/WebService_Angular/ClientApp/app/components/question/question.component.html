@@ -6,13 +6,13 @@
         <div class="dot"></div>
     </div>
 </div>
-
-<div id="MarkButton"  *ngIf="question.unMarkPost=='Not marked yet'" (click)="markThis()">
+<br/><br /><br />
+<div id="MarkButton"  *ngIf="!isMarked && questionReady" (click)="markThis()">
     <span>&#9733;</span>
 
 </div>
 
-<div id="UnMarkButton" *ngIf="question.unMarkPost!='Not marked yet'"  (click)="unMarkThis()">
+<div id="UnMarkButton" *ngIf="isMarked && questionReady"  (click)="unMarkThis()">
     <span>&#x2718;</span>
 
 </div>
