@@ -15,6 +15,7 @@ import { UsersComponent } from './components/users/users.component';
 import { MarkingsComponent } from './components/markings/markings.component';
 import { AnnotationsComponent } from './components/annotations/annotations.component';
 import { CustomizationComponent } from './components/customization/customization.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 
@@ -27,6 +28,7 @@ import { CustomizationComponent } from './components/customization/customization
         QuestionComponent,
         QuestionsComponent,
         HomeComponent,
+        SearchComponent,
         CommentsComponent,
         AnswersComponent,
         MarkingsComponent,
@@ -42,6 +44,7 @@ import { CustomizationComponent } from './components/customization/customization
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'question/:id', component: QuestionComponent },
+            { path: 'search', component: SearchComponent },
             { path: 'questions', component: QuestionsComponent },
             { path: 'users', component: UsersComponent },
             { path: 'markings', component: MarkingsComponent },

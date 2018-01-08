@@ -21,7 +21,11 @@
                         Home
                     </a>
                 </li>
-          
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/search']" [queryParams]="{}">
+                        Search
+                    </a>
+                </li>
                 <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/questions']" [queryParams]="{ page:0, url:questionsUrl }">
                        Questions
