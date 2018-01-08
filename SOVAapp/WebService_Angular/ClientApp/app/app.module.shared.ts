@@ -11,6 +11,7 @@ import { QuestionsComponent } from './components/questions/questions.component';
 import { QuestionComponent } from './components/question/question.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { AnswersComponent } from './components/answers/answers.component';
+import { UsersComponent } from './components/users/users.component';
 import { MarkingsComponent } from './components/markings/markings.component';
 import { AnnotationsComponent } from './components/annotations/annotations.component';
 import { CustomizationComponent } from './components/customization/customization.component';
@@ -30,7 +31,8 @@ import { CustomizationComponent } from './components/customization/customization
         AnswersComponent,
         MarkingsComponent,
         AnnotationsComponent,
-        CustomizationComponent
+        CustomizationComponent,
+        UsersComponent
     ],
     imports: [
         CommonModule,
@@ -41,6 +43,7 @@ import { CustomizationComponent } from './components/customization/customization
             { path: 'home', component: HomeComponent },
             { path: 'question/:id', component: QuestionComponent },
             { path: 'questions', component: QuestionsComponent },
+            { path: 'users', component: UsersComponent },
             { path: 'markings', component: MarkingsComponent },
             { path: 'customization', component: CustomizationComponent },
             { path: '**', redirectTo: 'home' }
