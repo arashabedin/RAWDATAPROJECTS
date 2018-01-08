@@ -31,7 +31,6 @@ import { CustomizationComponent } from './components/customization/customization
         MarkingsComponent,
         AnnotationsComponent,
         CustomizationComponent
-
     ],
     imports: [
         CommonModule,
