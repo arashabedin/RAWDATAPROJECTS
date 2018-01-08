@@ -12,7 +12,9 @@ import { QuestionComponent } from './components/question/question.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { AnswersComponent } from './components/answers/answers.component';
 import { MarkingsComponent } from './components/markings/markings.component';
-import { AnnotationsComponent } from './components/Annotations/Annotations.component';
+import { AnnotationsComponent } from './components/annotations/annotations.component';
+import { CustomizationComponent } from './components/customization/customization.component';
+
 
 
 
@@ -27,7 +29,8 @@ import { AnnotationsComponent } from './components/Annotations/Annotations.compo
         CommentsComponent,
         AnswersComponent,
         MarkingsComponent,
-        AnnotationsComponent
+        AnnotationsComponent,
+        CustomizationComponent
 
     ],
     imports: [
@@ -40,6 +43,7 @@ import { AnnotationsComponent } from './components/Annotations/Annotations.compo
             { path: 'question/:id', component: QuestionComponent },
             { path: 'questions', component: QuestionsComponent },
             { path: 'markings', component: MarkingsComponent },
+            { path: 'customization', component: CustomizationComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

@@ -40,16 +40,21 @@ namespace WebService.Controllers
                 model.postLimit = c.Postlimit;
                 model.FavortieTags = c.FavoriteTags.Select(x => x.Tag.Tag).ToList();
                 model.CreationDate = c.CreationDate;
-                model.MakeNewCustomization = Url.Link(nameof(NewUserCustomeField), new { postlimit = 5, tags = "java,php,laravel" });
+                model.MakeNewCustomization = Url.Link(nameof(NewUserCustomeField), new {});
                 return Ok(model);
             }
             return NotFound();
         }
 
-        [HttpPost("{postlimit}_{tags}", Name = nameof(NewUserCustomeField))]
-        public IActionResult NewUserCustomeField(int postlimit, string tags)
+        [HttpPost( Name = nameof(NewUserCustomeField))]
+        public IActionResult NewUserCustomeField([FromBody] UserCustomeFieldModel obj)
         {
-            _repository.AddUserCustomeField(postlimit, tags);
+            var tagsToString = "";
+            foreach (var item in obj.FavortieTags)
+            {
+                tagsToString += item + ",";
+            }
+            _repository.AddUserCustomeField(obj.postLimit, tagsToString);
             return Created($"api/customization","Updated the new Customization");
 
         }
