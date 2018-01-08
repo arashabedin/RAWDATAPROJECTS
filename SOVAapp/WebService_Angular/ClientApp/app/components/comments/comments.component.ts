@@ -21,9 +21,6 @@ export class CommentsComponent implements OnInit {
     @Input('parentdata') parentdata:string ;
 
     public comments: GetComments[];
-    _greetMessage: string; 
-
-    //url = "api/question/19/comment";
 
     mylink: string;
 
@@ -41,7 +38,6 @@ export class CommentsComponent implements OnInit {
     }
     getCommentsData() {
 
-        const url = 'assets/mock-posts.json';
         return this.http.get(this.parentdata);
     }
 

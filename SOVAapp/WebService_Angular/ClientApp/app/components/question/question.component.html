@@ -18,6 +18,11 @@
 </div>
 
 <div class="container-fluid">
+    <!--Annotation Box-->
+
+    <div *ngIf="isMarked && questionReady">
+        <annotations *ngIf="myAnnotationUrl" [parentdata]="myAnnotationUrl"></annotations>
+    </div>
 
     <!--LinkedPosts Box-->
 

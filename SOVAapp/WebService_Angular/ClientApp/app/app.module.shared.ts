@@ -12,6 +12,9 @@ import { QuestionComponent } from './components/question/question.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { AnswersComponent } from './components/answers/answers.component';
 import { MarkingsComponent } from './components/markings/markings.component';
+import { AnnotationsComponent } from './components/Annotations/Annotations.component';
+
+
 
 
 @NgModule({
@@ -23,7 +26,8 @@ import { MarkingsComponent } from './components/markings/markings.component';
         HomeComponent,
         CommentsComponent,
         AnswersComponent,
-        MarkingsComponent
+        MarkingsComponent,
+        AnnotationsComponent
 
     ],
     imports: [

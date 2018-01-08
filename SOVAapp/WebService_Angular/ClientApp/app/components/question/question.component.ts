@@ -3,10 +3,11 @@ import { Http } from '@angular/http';
 import { Routes, ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import { CommentsComponent } from '../comments/comments.component';
 import { AnswersComponent } from '../answers/answers.component';
+import { AnnotationsComponent } from '../Annotations/Annotations.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 @NgModule({
-    declarations: [QuestionComponent, CommentsComponent],
+    declarations: [QuestionComponent, CommentsComponent, AnswersComponent, AnnotationsComponent],
     bootstrap: [QuestionComponent]
 })
 
@@ -19,6 +20,8 @@ import { FormsModule } from '@angular/forms';
 export class QuestionComponent implements OnInit{
     questionReady: boolean = false;
     isMarked: boolean = false;
+    myAnnotationUrl: string;
+
     public question: GetQuestion[];
    // public sampleData: any;
 
@@ -26,8 +29,7 @@ export class QuestionComponent implements OnInit{
     newId:number = 0;
     constructor(private http: Http, @Inject('BASE_URL') private baseUrl: string, private route: ActivatedRoute, private router: Router) {
 
-  
-
+        this.myAnnotationUrl = baseUrl + 'api/marking/' + this.route.snapshot.paramMap.get('id');
 
         router.events
             .subscribe((event) => {

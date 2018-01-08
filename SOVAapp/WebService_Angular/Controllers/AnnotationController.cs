@@ -24,7 +24,7 @@ namespace WebService.Controllers
             this._mapper = mapper;
         }
 
-        [HttpGet( Name = nameof(GetAnnotration))]
+        [HttpGet(Name = nameof(GetAnnotration))]
         public IActionResult GetAnnotration(int Pid)
         {
             var annot = _repository.GetAnnotationById(Pid);
@@ -33,20 +33,20 @@ namespace WebService.Controllers
             annotationModel.AnnotationText = annot.Annotation;
             annotationModel.EditAnnotation = Url.Link(nameof(AnnotationController.EditAnnotation), new { AnnotId = annot.Annotationid, text = annot.Annotation });
             annotationModel.RemoveAnnotation = Url.Link(nameof(AnnotationController.RemoveAnnotation), new { AnnotId = annot.Annotationid });
-            return Ok( annotationModel);
+            return Ok(annotationModel);
 
 
         }
-        [HttpPost("{text}_{from}_{to}", Name = nameof(AddAnnotation))]
-        public IActionResult AddAnnotation(int Pid, string text, int from, int to) {
+        [HttpPost("", Name = nameof(AddAnnotation))]
+        public IActionResult AddAnnotation(int Pid ,[FromBody] AnnotationModel obj) {
 
           
-               var addedAnnotation =  _repository.AddAnnotation(Pid, text, from, to);
+               var addedAnnotation =  _repository.AddAnnotation(Pid, obj.AnnotationText,(int)obj.From, (int)obj.To);
                 var annotationModel = new AnnotationModel();
                 annotationModel.MarkingLink = Url.Link(nameof(MarkingController.GetMarking), new { Pid = addedAnnotation.MarkedPostId });
                 annotationModel.AnnotationText = addedAnnotation.Annotation;
-                annotationModel.From = addedAnnotation.From;
-                annotationModel.To = addedAnnotation.To;
+                annotationModel.From = obj.From;
+                annotationModel.To = obj.To;
                 annotationModel.EditAnnotation = Url.Link(nameof(AnnotationController.EditAnnotation), new { AnnotId = addedAnnotation.Annotationid, text = addedAnnotation.Annotation });
                 annotationModel.RemoveAnnotation = Url.Link(nameof(AnnotationController.RemoveAnnotation), new { AnnotId = addedAnnotation.Annotationid });
                 return Created($"api/marking/{Pid}/annotation", annotationModel);
@@ -71,8 +71,8 @@ namespace WebService.Controllers
 
         }
 
-        [HttpPut("{AnnotId}/{text}", Name = nameof(EditAnnotation))]
-        public IActionResult EditAnnotation(int AnnotId, string text)
+        [HttpPut("{AnnotId}", Name = nameof(EditAnnotation))]
+        public IActionResult EditAnnotation(int AnnotId, [FromBody] AnnotationModel myObject )
         {
 
             if (_repository.GetAnnotationById(AnnotId).Annotation == "Empty")
@@ -81,13 +81,13 @@ namespace WebService.Controllers
             }
             else
             {
-               var editedAnnotation = _repository.EditAnnotation(AnnotId, text);
+               var editedAnnotation = _repository.EditAnnotation(AnnotId, myObject.AnnotationText);
                 var annotationModel = new AnnotationModel();
                 annotationModel.MarkingLink = Url.Link(nameof(MarkingController.GetMarking), new { Pid = editedAnnotation.MarkedPostId });
                 annotationModel.AnnotationText = editedAnnotation.Annotation;
                 annotationModel.From = editedAnnotation.From;
                 annotationModel.To = editedAnnotation.To;
-                annotationModel.EditAnnotation = Url.Link(nameof(AnnotationController.EditAnnotation), new { AnnotId = editedAnnotation.Annotationid, text = editedAnnotation.Annotation });
+                annotationModel.EditAnnotation = Url.Link(nameof(AnnotationController.EditAnnotation), new { AnnotId = editedAnnotation.Annotationid});
                 annotationModel.RemoveAnnotation = Url.Link(nameof(AnnotationController.RemoveAnnotation), new { AnnotId = editedAnnotation.Annotationid });
                 return Ok(annotationModel);
 
