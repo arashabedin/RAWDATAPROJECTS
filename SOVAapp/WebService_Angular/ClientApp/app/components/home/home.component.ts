@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
     customizationUrl = 'api/customization';
     markingStatus: string;
     postId: number = 1;
-
+    QNotloaded: boolean=true;
 
     constructor(private http: Http, @Inject('BASE_URL') private baseUrl: string, private route: ActivatedRoute, private router: Router) {
 
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
         this.http.get(this.baseUrl + this.suggestedQurl).subscribe(result => {
             this.suggestedQuestions = result.json().recommendedQuestions as GetsuggestedQuestions;
-
+            this.QNotloaded = false;
         }, error => console.error(error));
 
         this.http.get(this.baseUrl + this.customizationUrl).subscribe(result => {

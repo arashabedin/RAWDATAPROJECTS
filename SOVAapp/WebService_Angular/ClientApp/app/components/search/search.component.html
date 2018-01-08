@@ -27,12 +27,12 @@
 
     <div class="linked_posts">
         <div>
-            <span id="linkposts_button" data-toggle="collapse-next" data-target="#links"><h2> {{searchHistory.data.length}}</h2> <h2>Search history </h2><span>&#9660;</span></span>
+            <span id="linkposts_button"  data-target="#links"><h2> {{searchHistory.data.length}}</h2> <h2>Search history </h2><span>&#9660;</span></span>
         </div>
             <div id="links" class="collapse">
             <div  *ngFor="let sh of searchHistory.data">
 
-                <div data-toggle="collapse" data-target="#links" (click)="searchItAgain(sh.searchText) " class="linked_posts_title"><div>{{sh.searchText}}</div> </div>
+                <div data-toggle="collapse-next" data-target="#links" (click)="searchItAgain(sh.searchText) " class="linked_posts_title"><div>{{sh.searchText}}</div> </div>
 
             </div>
         </div>
@@ -45,8 +45,7 @@
                 <div class="searchTR" (click)="goToQuestion(s.postId)">
 
                     <!--WordCloud -->
-
-
+                    <jcloud [parentdata]="s.jCloudUrl"></jcloud>
                     <div class="searchedTitel">{{s.postTitle}}</div>
                     <span class="tags_icon"></span><div class="questions_tags_container" *ngFor="let t of s.tags"><span class="questions_tags">{{t}}</span></div>
                 </div>

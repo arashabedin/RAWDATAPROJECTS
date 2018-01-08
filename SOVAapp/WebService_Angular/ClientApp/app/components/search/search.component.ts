@@ -1,6 +1,16 @@
-import { Component, Inject,Input,OnInit } from '@angular/core';
+import { Component, Inject,Input,OnInit ,NgModule} from '@angular/core';
 import { Http } from '@angular/http';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { JcloudComponent } from '../jcloud/jcloud.component';
+declare var jquery: any;
+declare var $: any;
+
+@NgModule({
+    declarations: [SearchComponent, JcloudComponent],
+    bootstrap: [SearchComponent]
+})
 
 @Component({
     selector: 'search',
@@ -17,8 +27,11 @@ export class SearchComponent implements OnInit {
     constructor(private http: Http, @Inject('BASE_URL') private baseUrl: string, private route: ActivatedRoute, private router: Router) {
 
 
+        //$('.linked_posts_title').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', function () {
+        //    var $target = $(this).parent().next()
+        //    $target.data('collapse') ? $target.collapse('toggle') : $target.collapse('toggle')
+        //});
 
-     
 
         router.events
             .subscribe((event) => {
@@ -35,6 +48,7 @@ export class SearchComponent implements OnInit {
                     ).subscribe(result => {
                         this.isSearching = false;
                         this.searches = result.json() as GetSearches;
+
                         }, error => console.error(error));
                     }
                 
@@ -48,6 +62,18 @@ export class SearchComponent implements OnInit {
         this.http.get(this.baseUrl + 'api/searchhistory'
         ).subscribe(result => {
             this.searchHistory = result.json() as GetSearchHistory;
+
+            setTimeout(function () {
+                $('.linked_posts_title,#linkposts_button').click(function () {
+                    $("#links").slideToggle();
+
+                });
+
+            }, 500);
+       
+
+        
+
         }, error => console.error(error));
     }
 

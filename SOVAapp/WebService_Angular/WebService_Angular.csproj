@@ -23,6 +23,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\dist\jqcloud2\dist\jqcloud.css" />
+    <None Include="wwwroot\dist\jqcloud2\dist\jqcloud.js" />
+    <None Include="wwwroot\dist\jqcloud2\dist\jqcloud.min.css" />
+    <None Include="wwwroot\dist\jqcloud2\dist\jqcloud.min.js" />
+    <None Include="wwwroot\dist\jqcloud2\LICENSE.txt" />
+    <None Include="wwwroot\dist\jqcloud2\README.md" />
+    <None Include="wwwroot\dist\jqcloud2\src\jqcloud.js" />
+    <None Include="wwwroot\dist\jqcloud2\src\jqcloud.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DataService\DataService.csproj" />
   </ItemGroup>
 

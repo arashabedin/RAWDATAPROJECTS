@@ -813,10 +813,14 @@ namespace DataService.DataAccessLayer
         {
             using (var db = new SovaContext())
             {
-              //  var result = db.Posts.FromSql("call keysearch({0})", keywords);
-                var result2 = db.SearchResult.FromSql("call SentenceSearch({0})", keywords);
+                //  var result = db.Posts.FromSql("call keysearch({0})", keywords);
+                var result = db.SearchResult.FromSql("call SentenceSearch({0})", keywords);
+                var result2 = result.OrderByDescending(x => x.Rank)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList();
                 List <SearchResultDTO> ResultsDTO = new List<SearchResultDTO>();
-                var totalResults= result2.Count(); 
+                var totalResults= result.Count(); 
                 foreach (var FoundItem in result2)
                 {
                     var posttags = GetPostTagsByPostId(FoundItem.Id);
@@ -826,11 +830,8 @@ namespace DataService.DataAccessLayer
                     newItemDTO.totalResults = totalResults;
                     ResultsDTO.Add(newItemDTO);
                 }
-                
-                return ResultsDTO.OrderByDescending(x => x.Rank)
-                    .Skip(page * pageSize)
-                    .Take(pageSize)
-                    .ToList();
+
+                return ResultsDTO;
 
             }
 

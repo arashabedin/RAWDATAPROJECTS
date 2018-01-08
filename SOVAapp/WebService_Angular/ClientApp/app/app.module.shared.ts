@@ -16,6 +16,7 @@ import { MarkingsComponent } from './components/markings/markings.component';
 import { AnnotationsComponent } from './components/annotations/annotations.component';
 import { CustomizationComponent } from './components/customization/customization.component';
 import { SearchComponent } from './components/search/search.component';
+import { JcloudComponent } from './components/jcloud/jcloud.component';
 
 
 
@@ -34,7 +35,8 @@ import { SearchComponent } from './components/search/search.component';
         MarkingsComponent,
         AnnotationsComponent,
         CustomizationComponent,
-        UsersComponent
+        UsersComponent,
+        JcloudComponent
     ],
     imports: [
         CommonModule,
@@ -50,6 +52,7 @@ import { SearchComponent } from './components/search/search.component';
             { path: 'markings', component: MarkingsComponent },
             { path: 'customization', component: CustomizationComponent },
             { path: '**', redirectTo: 'home' }
+            
         ])
     ]
 })
