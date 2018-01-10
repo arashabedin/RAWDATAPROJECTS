@@ -25,8 +25,8 @@ namespace WebService.Controllers
             this._mapper = mapper;
         }
 
-        [HttpGet( Name = nameof(GetAnnotration))]
-        public IActionResult GetAnnotration(int Pid)
+        [HttpGet( Name = nameof(GetAnnotation))]
+        public IActionResult GetAnnotation(int Pid)
         {
             var annot = _repository.GetAnnotationById(Pid);
             var annotationModel = new AnnotationModel();
