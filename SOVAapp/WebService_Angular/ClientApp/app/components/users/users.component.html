@@ -1,13 +1,14 @@
 <h1>Users</h1>
-<div>
-    <div id="loading" *ngIf="!users.data">
-        <span>Loading</span>
-        <div class="dotsContainer">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
+<div id="loading" *ngIf="!users.data">
+    <span>Loading</span>
+    <div class="dotsContainer">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
     </div>
+</div>
+<div  *ngIf="users.data">
+
 
     <section>
 

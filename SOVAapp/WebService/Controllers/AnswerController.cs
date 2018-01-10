@@ -29,17 +29,15 @@ namespace WebService.Controllers
         }
 
         [HttpGet("question/{Qid}/answer", Name = nameof(GetAnswersByQuestionId))]
-        public IActionResult GetAnswersByQuestionId(int Qid, int page = 0, int pageSize = 500)
+        public IActionResult GetAnswersByQuestionId(int Qid)
         {
-            CheckPageSize(ref pageSize);
 
             var total = _repository.CountAnswersByQuestionId(Qid);
-            var totalPages = GetTotalPages(pageSize, total);
 
-            var data = _repository.GetAllAnswersByQuestionId(Qid, page, pageSize)
+            var data = _repository.GetAllAnswersByQuestionId(Qid)
                 .Select(x => new AnswerModel
                 {
-                    Url = Url.Link(nameof(GetAnswerById), new { Qid = x.ParentId , Aid = x.Id}),
+                    Url = Url.Link(nameof(GetAnswerById), new { Qid = x.ParentId, Aid = x.Id }),
                     UserName = x.UserInfo.DisplayName,
                     CreationDate = x.CreationDate,
                     Score = x.Score,
@@ -48,21 +46,14 @@ namespace WebService.Controllers
                     UserUrl = Url.Link(nameof(UserController.GetUserByUserId), new { Uid = x.OwneruserId }),
                     CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByAnswerId), new { Qid = x.ParentId, Aid = x.Id }),
                 });
-
+            
             var result = new
             {
-                Total = total,
-                Pages = totalPages,
-                Page = page,
-                Prev = Link(nameof(GetAnswersByQuestionId), page, pageSize, -1, () => page > 0),
-                Next = Link(nameof(GetAnswersByQuestionId), page, pageSize, 1, () => page < totalPages - 1),
-                Url = Link(nameof(GetAnswersByQuestionId), page, pageSize),
                 Data = data
             };
 
             return Ok(result);
         }
-
 
 
 

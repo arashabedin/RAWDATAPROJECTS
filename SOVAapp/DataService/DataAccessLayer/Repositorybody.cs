@@ -155,13 +155,12 @@ namespace DataService.DataAccessLayer
             }
         }
 
-        public ICollection<AnswerDTO> GetAllAnswersByQuestionId(int id, int page, int pageSize)
+        public ICollection<AnswerDTO> GetAllAnswersByQuestionId(int id)
         {
 
             using (var db = new SovaContext())
             {
-                var answers = db.Posts.Where(u => u.ParentId == id).Skip(page * pageSize)
-                    .Take(pageSize).ToList();
+                var answers = db.Posts.Where(u => u.ParentId == id).ToList();
                 List<AnswerDTO> answersDTO = new List<AnswerDTO>();
                 foreach (var post in answers)
                 {
@@ -278,21 +277,18 @@ namespace DataService.DataAccessLayer
         {
             using (var db = new SovaContext())
             {
-                var questions = db.Posts.Where(i => i.PostTypeId == 1).ToList();
-                var questionsByUserId = questions.Where(u => u.OwnerUserId == id);
+                var questionsByUserId = db.Posts.Where(i => i.PostTypeId == 1).Where(u => u.OwnerUserId == id).Skip(page * pageSize)
+                    .Take(pageSize).ToList();
                 List<QuestionDTO> questionDTO = new List<QuestionDTO>();
 
                 foreach (var post in questionsByUserId)
                 {
-                    var answerCollection = db.Posts.Where(p => p.ParentId == post.Id).ToList();
+                //    var answerCollection = db.Posts.Where(p => p.ParentId == post.Id).ToList();
                     var question = new QuestionDTO(post.Id, post.AcceptedAnswerId, post.OwnerUserId, post.Body, post.Title, post.Score, post.CreationDate,
-    post.ClosedDate, null, answerCollection, GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id), GetLinkedPosts(post.Id));
+    post.ClosedDate, null, null, GetPostTagsByPostId(post.Id), GetUserByPostId(post.Id), GetLinkedPosts(post.Id));
                     questionDTO.Add(question);
                 }
-                return questionDTO.OrderBy(x => x.Id)
-                    .Skip(page * pageSize)
-                    .Take(pageSize)
-                    .ToList();
+                return questionDTO.OrderBy(x => x.Id).ToList();
 
 
             }
@@ -510,19 +506,19 @@ namespace DataService.DataAccessLayer
         }
 
         ////////////////UserInfo
-        public ICollection<UserInfoDTO> GetUsers(int page, int pageSize)
+        public ICollection<UserInfo> GetUsers(int page, int pageSize)
         {
             using (var db = new SovaContext())
             {
-                var users = db.UserInfo.Skip(page * pageSize)
+                return db.UserInfo.Skip(page * pageSize)
                     .Take(pageSize).ToList();
-                List<UserInfoDTO> UsersDTO = new List<UserInfoDTO>();
-                foreach (var i in users)
-                {
-                    var newUser = new UserInfoDTO(i.OwnerUserId, i.OwnerUserDisplayName, i.CreationDate, i.OwnerUserLocation);
-                    UsersDTO.Add(newUser);
-                }
-                return UsersDTO.OrderBy(x => x.Id).ToList();
+                //List<UserInfoDTO> UsersDTO = new List<UserInfoDTO>();
+                //foreach (var i in users)
+                //{
+                //    var newUser = new UserInfoDTO(i.OwnerUserId, i.OwnerUserDisplayName, i.CreationDate, i.OwnerUserLocation);
+                //    UsersDTO.Add(newUser);
+                //}
+          
             }
         }
         public UserInfoDTO GetUserById(int id)
@@ -571,6 +567,13 @@ namespace DataService.DataAccessLayer
             using (var db = new SovaContext())
             {
                 return db.UserInfo.Count();
+            }
+        }
+
+        public bool UserHasQuestion(int id) {
+            using (var db = new SovaContext())
+            {
+                return db.Posts.Where(x=> x.PostTypeId==1).Where(u => u.OwnerUserId == id).ToList().Count > 0;   
             }
         }
 

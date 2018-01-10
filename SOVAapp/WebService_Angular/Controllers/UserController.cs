@@ -42,15 +42,15 @@ namespace WebService.Controllers
             var data = _repository.GetUsers(page, pageSize)
                 .Select(x => new UserInfoModel
                 {
-                    Url = Url.Link(nameof(GetUserByUserId), new { Uid = x.Id }),
-                    DisplayName = x.DisplayName,
+                    Url = Url.Link(nameof(GetUserByUserId), new { Uid = x.OwnerUserId }),
+                    DisplayName = x.OwnerUserDisplayName,
                     CreateDate = x.CreationDate,
-                    Location = x.Location,
+                    Location = x.OwnerUserLocation,
                     QuestionsUrl = 
-                    (_repository.GetQuestionsByUserID(x.Id,0,1).Count ==0)? null :
-                    Url.Link(nameof(QuestionController.GetQuestionsByUserId), new { Uid = x.Id}) ,
-                    AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByUserId), new { Uid = x.Id }),
-                    CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByUserId), new { Uid = x.Id }),
+                    (_repository.UserHasQuestion(x.OwnerUserId))? 
+                    Url.Link(nameof(QuestionController.GetQuestionsByUserId), new { Uid = x.OwnerUserId }) : null,
+                    AnswersUrl = Url.Link(nameof(AnswerController.GetAnswersByUserId), new { Uid = x.OwnerUserId }),
+                    CommentsUrl = Url.Link(nameof(CommentController.GetCommentsByUserId), new { Uid = x.OwnerUserId }),
                 });
 
             var result = new

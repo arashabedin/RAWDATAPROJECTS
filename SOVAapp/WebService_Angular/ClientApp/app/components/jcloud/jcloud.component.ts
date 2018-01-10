@@ -12,16 +12,17 @@ export class JcloudComponent implements OnInit {
     public jclould: GetJCloud;
 
 
-    @Input("parentdata") Url: string;
-
+    @Input("parentdata") id: string;
     constructor(private http: Http, @Inject('BASE_URL') private baseUrl: string, private route: ActivatedRoute, private router: Router) {
     }
 
 
     ngOnInit() {
-        this.http.get(this.Url).subscribe(result => {
+        var CssId = "#" + this.id ;
+        var Url = this.baseUrl + 'api/TermAsResult/' + this.id;
+        this.http.get(Url).subscribe(result => {
             this.jclould = result.json() as GetJCloud;
-            $(".cloud").jQCloud(this.jclould);
+            $(CssId).jQCloud(this.jclould);
         }, error => console.error(error));
 
     }

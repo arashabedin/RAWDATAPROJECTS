@@ -45,7 +45,7 @@
                 <div class="searchTR" (click)="goToQuestion(s.postId)">
 
                     <!--WordCloud -->
-                    <jcloud [parentdata]="s.jCloudUrl"></jcloud>
+                    <jcloud [parentdata]="s.postId"></jcloud>
                     <div class="searchedTitel">{{s.postTitle}}</div>
                     <span class="tags_icon"></span><div class="questions_tags_container" *ngFor="let t of s.tags"><span class="questions_tags">{{t}}</span></div>
                 </div>
